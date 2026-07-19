@@ -1,0 +1,4809 @@
+/*
+ * Phoenix Project — Flame
+ * Ember black + phoenix fire accents.
+ * External stylesheet URL (ApolloStage base recommended).
+ * Pure CSS — no userscript required.
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css
+ */
+:root {
+	--background: #0a0605;
+	--background-accent: #1a0e0a;
+	--background-emphasis: #2a1410;
+	--background-dimmed: #120a08;
+	--background-input: #1e100c;
+	--text: #f0e6dc;
+	--text-dimmed: #c4a890;
+	--text-weak: #8a6a55;
+	--border: #3a2218;
+	--border-accent: #5a3020;
+	--border-emphasis: #7a4030;
+	--shadow: #000;
+	--link: #ffe8d8;
+	--link-soft: #e0c8b0;
+	--link-visited: #c09880;
+	--link-hover: #ffc060;
+	--selection-bg: #5a2008;
+	--selection-fg: #fff5e8;
+	--danger: #e85050;
+	--warn: #e3ba65;
+	--ok: #4fb650;
+	/* Phoenix flame headers — fire orange / gold (#ff8c40) */
+	--head-text: #ff8c40;
+	--head-text-soft: #ffb070;
+	--nav-flat: #2a1410;
+	/* Username / minor tabs sit at the dark end of the ember→black nav ramp */
+	--nav-user: #0a0402;
+}
+
+html,
+body {
+	background: var(--background) !important;
+	background-color: var(--background) !important;
+	color: var(--text) !important;
+}
+
+::selection {
+	background: var(--selection-bg) !important;
+	color: var(--selection-fg) !important;
+}
+
+#wrapper,
+#content,
+#footer,
+.thin,
+.main_column,
+.sidebar {
+	background-color: transparent !important;
+	color: var(--text) !important;
+}
+
+/* ── Header / nav — flat charcoal (no green ramp) ─────── */
+#header {
+	background: var(--background) !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	color: var(--text) !important;
+}
+
+/* Main nav — soft charcoal gradients (3D tab look) */
+#menu {
+	background: transparent !important;
+	border: none !important;
+	border-radius: 6px 6px 0 0 !important;
+	overflow: hidden !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+#menu ul,
+#menu > ul {
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+#menu li,
+#menu > ul > li,
+#menu li:nth-child(n),
+#menu > ul > li:nth-child(n) {
+	border-right: 1px solid rgba(0, 0, 0, 0.45) !important;
+	background-repeat: no-repeat !important;
+	/* default mid-grey (overridden per-tab below) */
+	background-color: #2a3036 !important;
+	background-image: linear-gradient(180deg, #3a424a 0%, #2a3036 48%, #1e242a 100%) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.08),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+/*
+ * Nav ramp: light grey → black (left → right).
+ * PPStage hides #nav_index, so visible tabs are nth-child 2–10:
+ * Torrents · Collages · Requests · Forums · IRC · Top 10 · Rules · Wiki · Image Host
+ */
+#menu > ul > li:nth-child(1),
+#menu li:nth-child(1) {
+	/* Home (usually hidden) */
+	background-color: #5a626c !important;
+	background-image: linear-gradient(180deg, #6a727c 0%, #5a626c 45%, #4a525c 100%) !important;
+}
+#menu > ul > li:nth-child(2),
+#menu li:nth-child(2) {
+	/* Torrents — lightest */
+	background-color: #525a64 !important;
+	background-image: linear-gradient(180deg, #626a74 0%, #525a64 45%, #424a54 100%) !important;
+}
+#menu > ul > li:nth-child(3),
+#menu li:nth-child(3) {
+	/* Collages */
+	background-color: #484f58 !important;
+	background-image: linear-gradient(180deg, #585f68 0%, #484f58 45%, #383f48 100%) !important;
+}
+#menu > ul > li:nth-child(4),
+#menu li:nth-child(4) {
+	/* Requests */
+	background-color: #3e454e !important;
+	background-image: linear-gradient(180deg, #4e555e 0%, #3e454e 45%, #2e353e 100%) !important;
+}
+#menu > ul > li:nth-child(5),
+#menu li:nth-child(5) {
+	/* Forums */
+	background-color: #343b44 !important;
+	background-image: linear-gradient(180deg, #444b54 0%, #343b44 45%, #242b34 100%) !important;
+}
+#menu > ul > li:nth-child(6),
+#menu li:nth-child(6) {
+	/* IRC */
+	background-color: #2a313a !important;
+	background-image: linear-gradient(180deg, #3a414a 0%, #2a313a 45%, #1a212a 100%) !important;
+}
+#menu > ul > li:nth-child(7),
+#menu li:nth-child(7) {
+	/* Top 10 */
+	background-color: #212830 !important;
+	background-image: linear-gradient(180deg, #303740 0%, #212830 45%, #141a22 100%) !important;
+}
+#menu > ul > li:nth-child(8),
+#menu li:nth-child(8) {
+	/* Rules */
+	background-color: #181e26 !important;
+	background-image: linear-gradient(180deg, #262c34 0%, #181e26 45%, #0e1218 100%) !important;
+}
+#menu > ul > li:nth-child(9),
+#menu li:nth-child(9) {
+	/* Wiki */
+	background-color: #10161c !important;
+	background-image: linear-gradient(180deg, #1c2228 0%, #10161c 45%, #080b0e 100%) !important;
+}
+#menu > ul > li:nth-child(10),
+#menu li:nth-child(10) {
+	/* Image Host — near black */
+	background-color: #0a0d10 !important;
+	background-image: linear-gradient(180deg, #14181c 0%, #0a0d10 45%, #050608 100%) !important;
+}
+#menu > ul > li:nth-child(11),
+#menu li:nth-child(11) {
+	/* Staff (if shown in bar) — pure black */
+	background-color: #050608 !important;
+	background-image: linear-gradient(180deg, #0e1014 0%, #050608 45%, #000 100%) !important;
+}
+
+#menu a,
+#menu li a {
+	color: #f0e0d0 !important;
+	background: transparent !important;
+	background-image: none !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+#menu a:hover,
+#menu li a:hover {
+	color: #fff !important;
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.03) 100%
+	) !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Hover: lift toward lighter grey without erasing the ramp identity */
+#menu li:hover {
+	filter: brightness(1.18) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.14),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+#menu .selected,
+#menu li.selected,
+#menu li.active {
+	/* Active tab: phoenix orange under-bar, keep its grey step */
+	filter: brightness(1.08) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 120, 40, 0.16),
+		inset 0 -2px 0 rgba(255, 90, 20, 0.55) !important;
+}
+
+#menu .selected a,
+#menu li.selected a,
+#menu li.active a,
+#nav_collages.active a,
+#nav_forums.active a,
+#nav_top10.active a {
+	color: #fff !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+/* Username + chevron — continue grey→black ramp (right of Image Host) */
+#userinfo_username,
+#userinfo_minor {
+	background-image: linear-gradient(
+		180deg,
+		#181c22 0%,
+		#0c1014 48%,
+		#06080a 100%
+	) !important;
+	background-color: #0c1014 !important;
+	border: none !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.06),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+		0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+#userinfo_username:hover,
+#userinfo_minor:hover {
+	background-image: linear-gradient(
+		180deg,
+		#242a32 0%,
+		#161a20 48%,
+		#0c1014 100%
+	) !important;
+	background-color: #161a20 !important;
+	filter: none !important;
+}
+
+/* Chevron menu slightly darker than username so the pair steps like the nav */
+#userinfo_minor {
+	background-image: linear-gradient(
+		180deg,
+		#12161a 0%,
+		#080a0c 48%,
+		#030405 100%
+	) !important;
+	background-color: #080a0c !important;
+}
+#userinfo_minor:hover {
+	background-image: linear-gradient(
+		180deg,
+		#1c2228 0%,
+		#101418 48%,
+		#080a0c 100%
+	) !important;
+	background-color: #101418 !important;
+}
+
+#userinfo_username a,
+#userinfo_minor a,
+#userinfo_username .username {
+	color: #fff0e4 !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4) !important;
+	background: transparent !important;
+}
+
+#userinfo_stats,
+#userinfo_stats a,
+#userinfo_major a {
+	color: var(--text) !important;
+}
+
+#stats_ratio .r10,
+#stats_ratio .r20,
+#stats_ratio .r50,
+#stats_ratio .r99,
+.stat .r10,
+.stat .r20,
+.stat .r50,
+.stat .r99 {
+	color: var(--ok) !important;
+	text-shadow: none !important;
+}
+
+/* Search bars */
+#searchbars > ul,
+#searchbars ul {
+	background: var(--background-emphasis) !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+#searchbars input {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	box-shadow: none !important;
+}
+
+/* Links */
+a,
+a:link {
+	color: var(--link) !important;
+	text-decoration: none;
+}
+a:visited {
+	color: var(--link-visited) !important;
+}
+a:hover,
+a:focus {
+	color: var(--link-hover) !important;
+	text-shadow: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #fff !important;
+	font-weight: 400 !important;
+}
+
+.user_title,
+span.user_title {
+	/* keep user custom glow; soft default if plain */
+	color: inherit;
+}
+
+/* ── Boxes — charcoal + peach heads ───────────────────── */
+.box,
+.box2,
+.box_info,
+.box_image,
+.box_image_avatar,
+.pad,
+.head,
+.body,
+.profileinfo {
+	background-color: var(--background-accent) !important;
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+}
+
+.head,
+.box > .head,
+.box2 > .head,
+.colhead_dark,
+.box .colhead_dark {
+	background-color: var(--background-emphasis) !important;
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+.head a,
+.colhead_dark a {
+	color: var(--head-text) !important;
+}
+
+/* Forms */
+form {
+	background: transparent !important;
+	color: var(--text) !important;
+}
+
+form table td.label {
+	color: var(--text-dimmed) !important;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input:not([type]),
+select,
+textarea {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	box-shadow: none !important;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+	background: linear-gradient(#fff0e4, #b8b8b8) !important;
+	border: none !important;
+	border-radius: 2px !important;
+	color: #2a1410 !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+	background: linear-gradient(#fff, #c8c8c8) !important;
+	color: #120808 !important;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	accent-color: #c85050;
+}
+
+/* Tables */
+table.torrent_table,
+table.forum_index,
+table.request_table,
+table.collage_table,
+.torrent_table {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+}
+
+.colhead,
+.colhead_dark,
+.colhead td,
+.colhead_dark td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	border-color: var(--border) !important;
+	text-shadow: none !important;
+}
+
+.colhead a,
+.colhead_dark a {
+	color: var(--head-text-soft) !important;
+}
+
+table .rowa,
+table tr.rowa td {
+	background: var(--background-accent) !important;
+}
+
+table .rowb,
+table tr.rowb td {
+	background: #1c100c !important;
+}
+
+table tr:hover td {
+	background: #2e1810 !important;
+}
+
+/* Ratio / status — green good, red bad (stock) */
+.r00, .r01, .r02, .r03,
+.error, .invalid, .warning,
+strong.important_text {
+	color: var(--danger) !important;
+}
+.r04, .r05, .r06, .r07, .r08, .r09 {
+	color: var(--warn) !important;
+}
+.r10, .r20, .r50, .r99,
+.vote_tag_up,
+strong.important_text_alt {
+	color: var(--ok) !important;
+	text-shadow: none !important;
+}
+
+/* Tags — subtle gray chips (not matrix neon) */
+html body .tags,
+html body div.tags {
+	background: transparent !important;
+	border: none !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	font-size: 11px !important;
+	line-height: 1.7 !important;
+}
+
+html body .tags a,
+html body .tags a:link,
+html body .tags a:visited,
+html body .pp-tag-chip {
+	display: inline-block !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	background: #2a1410 !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 10px !important;
+	padding: 1px 8px !important;
+	margin: 1px 3px 1px 0 !important;
+	font-size: 11px !important;
+	font-weight: 500 !important;
+	text-shadow: none !important;
+}
+
+html body .tags a:hover,
+html body .pp-tag-chip:hover {
+	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
+	background: #3a1c14 !important;
+	border-color: #4a565c !important;
+	text-shadow: none !important;
+}
+
+html body div.tags.pp-tags-chipped {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+/* Pagination */
+.linkbox a {
+	color: var(--text-dimmed) !important;
+}
+.linkbox a:hover {
+	color: var(--link-hover) !important;
+}
+.linkbox > b,
+.linkbox > strong {
+	color: #ff9060 !important;
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+	text-shadow: none !important;
+}
+.linkbox a b,
+.linkbox a strong {
+	color: inherit !important;
+	background: transparent !important;
+	border: none !important;
+}
+
+/* Torrent list polish */
+.torrent_table .group_info {
+	word-break: normal !important;
+	overflow-wrap: break-word !important;
+	color: var(--text-dimmed) !important;
+}
+
+.torrent_table .group_info a[href*="torrents.php?id="],
+.torrent_table .group_info a[href*="torrentid="] {
+	color: #fff0e4 !important;
+	font-weight: 600 !important;
+}
+
+.torrent_table .group_info a[href*="artist.php"] {
+	color: #c7c9c9 !important;
+}
+
+.torrent_table .torrent_links_block a {
+	color: var(--text-dimmed) !important;
+	text-shadow: none !important;
+}
+
+.torrent_table tr.torrent:nth-child(even) td,
+.torrent_table tr.group:nth-child(even) td {
+	background: #160c0a !important;
+}
+.torrent_table tr.torrent:nth-child(odd) td,
+.torrent_table tr.group:nth-child(odd) td {
+	background: #1c100c !important;
+}
+.torrent_table tr.torrent:hover td,
+.torrent_table tr.group:hover td {
+	background: #2e1810 !important;
+}
+
+.torrent_table td.td_seeders {
+	color: var(--ok) !important;
+}
+
+/* Filter box */
+.box.filter_torrents {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+}
+.box.filter_torrents > .head {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+}
+
+/* Requests / collages tables */
+.request_table tr.colhead td,
+.collage_table tr.colhead td,
+.forum_index tr.colhead td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+.request_table tr.rowa td,
+.collage_table tr.rowa td,
+.forum_index tr.rowa td {
+	background: #160c0a !important;
+}
+.request_table tr.rowb td,
+.collage_table tr.rowb td,
+.forum_index tr.rowb td {
+	background: #1c100c !important;
+}
+
+.collage_table td.td_collage_category a {
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+}
+.collage_table td.td_info > a {
+	color: #fff0e4 !important;
+	font-weight: 600 !important;
+	text-shadow: none !important;
+}
+
+/* Forums read/unread indicators
+ * RED markup: <td class="unread|read|…"> (not OPS td.td_read)
+ * REDStage paints SVG icons — kill those, use charcoal dots. */
+.forum_index td.td_read,
+.forum_index td.unread,
+.forum_index td.read,
+.forum_index td.read_locked,
+.forum_index td.unread_locked,
+.forum_index td.read_sticky,
+.forum_index td.unread_sticky,
+.forum_index td.read_locked_sticky,
+.forum_index td.unread_locked_sticky,
+.forum_index td[class*="unread"],
+.forum_index td[class*="read"] {
+	background-image: none !important;
+	background-color: transparent !important;
+	filter: none !important;
+	position: relative !important;
+	width: 28px !important;
+	min-width: 28px !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+.forum_index td.td_read::before,
+.forum_index td.unread::before,
+.forum_index td.read::before,
+.forum_index td.read_locked::before,
+.forum_index td.unread_locked::before,
+.forum_index td.read_sticky::before,
+.forum_index td.unread_sticky::before,
+.forum_index td.read_locked_sticky::before,
+.forum_index td.unread_locked_sticky::before {
+	content: "" !important;
+	display: inline-block !important;
+	width: 9px !important;
+	height: 9px !important;
+	border-radius: 50% !important;
+	box-sizing: border-box !important;
+	vertical-align: middle !important;
+}
+/* Unread — soft rose (RED brand, not neon green) */
+.forum_index td.unread::before,
+.forum_index td.td_read.unread::before,
+.forum_index td.unread_locked::before,
+.forum_index td.unread_sticky::before,
+.forum_index td.unread_locked_sticky::before {
+	background: #ff8c40 !important;
+	border: none !important;
+	box-shadow: 0 0 6px rgba(255, 120, 40, 0.45) !important;
+}
+/* Gold-tooltip unread (staff/special) — slightly warmer */
+.forum_index td.unread.tooltip_gold::before,
+.forum_index td.tooltip_gold.unread::before {
+	background: #e3ba65 !important;
+	box-shadow: 0 0 6px rgba(227, 186, 101, 0.45) !important;
+}
+/* Read — hollow ring */
+.forum_index td.read::before,
+.forum_index td.td_read.read::before {
+	background: transparent !important;
+	border: 2px solid #4a565c !important;
+	box-shadow: none !important;
+}
+/* Locked — square ring */
+.forum_index td.read_locked::before,
+.forum_index td.unread_locked::before {
+	border-radius: 2px !important;
+}
+.forum_index td.read_locked::before {
+	background: transparent !important;
+	border: 2px solid #6a7074 !important;
+}
+/* Sticky — diamond-ish via rotate */
+.forum_index td.read_sticky::before,
+.forum_index td.unread_sticky::before {
+	transform: rotate(45deg) !important;
+	border-radius: 2px !important;
+}
+.forum_index td.read_sticky::before {
+	background: transparent !important;
+	border: 2px solid #4a565c !important;
+}
+
+.forum_list h3 {
+	color: #fff4ec !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+	font-weight: 600 !important;
+	font-size: 15px !important;
+	margin: 20px 0 8px !important;
+	padding-bottom: 6px !important;
+	letter-spacing: 0.02em !important;
+}
+
+/* User profile */
+body#user .box,
+body#user .box_info,
+body#user .box_image_avatar {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	overflow: visible !important;
+}
+
+body#user .box .head,
+body#user .box .colhead_dark,
+body#user .box_image_avatar > .head,
+body#user .box_image_avatar > .colhead_dark {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	text-shadow: none !important;
+	border-bottom: 1px solid var(--border) !important;
+}
+
+/* Avatar — fill sidebar box width, keep aspect, centered */
+body#user .box_image_avatar,
+body#user .sidebar .box_image_avatar {
+	overflow: hidden !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	text-align: center !important;
+}
+
+body#user .box_image_avatar > div,
+body#user .box_image_avatar [align="center"] {
+	display: block !important;
+	width: 100% !important;
+	padding: 12px !important;
+	background: var(--background-dimmed) !important;
+	box-sizing: border-box !important;
+	text-align: center !important;
+}
+
+body#user .avatar_container,
+body#user .box_image_avatar .avatar_container {
+	display: block !important;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	line-height: 0 !important;
+}
+
+body#user .avatar_container > div {
+	display: block !important;
+	width: 100% !important;
+	line-height: 0 !important;
+}
+
+body#user .avatar_0,
+body#user .box_image_avatar img,
+body#user .avatar_container img,
+body#user .sidebar .box_image img {
+	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	position: static !important;
+	float: none !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	height: auto !important;
+	max-height: min(280px, 70vw) !important;
+	margin: 0 auto !important;
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	box-shadow: none !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	background: var(--background-dimmed) !important;
+	box-sizing: border-box !important;
+}
+
+body#user ul.stats {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	padding: 8px 12px !important;
+}
+body#user ul.stats > li {
+	border-bottom: 1px solid var(--border) !important;
+	color: var(--text) !important;
+}
+body#user ul.stats a {
+	color: var(--link-soft) !important;
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+	border-radius: 0 !important;
+}
+body#user .box_userinfo_activity ul.stats a {
+	/* keep tags readable as soft chips */
+	display: inline !important;
+	color: #ff9060 !important;
+	background: transparent !important;
+	border: none !important;
+}
+
+body#user .profileinfo,
+body#user #profilediv,
+body#user .box .body,
+body#user .box .pad,
+body#user .main_column .box {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+}
+/* Bio — default grey body; do NOT force all descendants (custom colors / smileys) */
+body#user .profileinfo,
+body#user #profilediv {
+	color: var(--text) !important;
+}
+body#user .profileinfo a,
+body#user #profilediv a {
+	color: #ff9060 !important;
+}
+body#user .profileinfo a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Recent covers — don't break square tiles */
+body#user table.recent,
+body#user table.layout.recent {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	table-layout: fixed !important;
+}
+body#user table.recent tr.colhead:first-child td,
+body#user table.recent tr.colhead td[colspan] {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	text-shadow: none !important;
+	padding: 8px 12px !important;
+}
+
+/* Vote-indicator row (▲ above covers) — was showing as red ▼ */
+body#user table.recent tr.colhead:not(:first-child) td,
+body#user table.recent tr.colhead td:has(.vote_tag_up),
+body#user table.recent tr.colhead td:has(.vote_tag_down) {
+	background: var(--background-dimmed) !important;
+	padding: 6px 0 2px !important;
+	border-bottom: none !important;
+	text-align: center !important;
+	color: inherit !important;
+}
+
+/* Replace broken glyphs: hide text node, paint ▲/▼ via ::after */
+body#user table.recent .vote_tag_up,
+body#user table.recent .vote_album_up,
+body#user .vote_tag_up,
+body#user .vote_album_up,
+html body#user div.vote_tag_up {
+	display: block !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	height: 22px !important;
+	text-align: center !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+	text-shadow: none !important;
+	transform: none !important;
+	filter: none !important;
+	opacity: 1 !important;
+	background: transparent !important;
+}
+body#user table.recent .vote_tag_up::after,
+body#user .vote_tag_up::after,
+html body#user div.vote_tag_up::after {
+	content: "▲" !important;
+	display: inline-block !important;
+	font-size: 18px !important;
+	line-height: 22px !important;
+	font-weight: 700 !important;
+	color: #4fb650 !important;
+	-webkit-text-fill-color: #4fb650 !important;
+	text-shadow: none !important;
+	transform: none !important;
+}
+
+body#user table.recent .vote_tag_down,
+body#user .vote_tag_down,
+body#user .vote_album_down {
+	display: block !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	height: 22px !important;
+	text-align: center !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+	transform: none !important;
+	filter: none !important;
+}
+body#user table.recent .vote_tag_down::after,
+body#user .vote_tag_down::after {
+	content: "▼" !important;
+	display: inline-block !important;
+	font-size: 18px !important;
+	line-height: 22px !important;
+	font-weight: 700 !important;
+	color: #e85050 !important;
+	-webkit-text-fill-color: #e85050 !important;
+}
+
+/* Cover tile cells — Apollostage square aspect */
+body#user table.recent tr:not(.colhead):not(.colhead_dark) > td {
+	background: var(--background-dimmed) !important;
+	padding: 0 !important;
+	border: none !important;
+	position: relative !important;
+	vertical-align: top !important;
+}
+body#user table.recent tr:not(.colhead):not(.colhead_dark) > td:before {
+	content: "" !important;
+	display: block !important;
+	padding-top: 100% !important;
+}
+body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a {
+	position: absolute !important;
+	left: 2px !important;
+	top: 2px !important;
+	right: 2px !important;
+	bottom: 2px !important;
+	overflow: hidden !important;
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+}
+body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a img {
+	position: absolute !important;
+	left: 0 !important;
+	top: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	object-fit: cover !important;
+	border: none !important;
+	display: block !important;
+}
+
+/* Top10 ranks — rose accent (full polish section at end of file) */
+body#top10 .td_rank strong,
+body#top10 .torrent_table td:first-child strong {
+	color: #ff9060 !important;
+	text-shadow: none !important;
+}
+
+/* Edition / group toggles on collages */
+.group_torrent .edition_info > a,
+.hide_torrents > a,
+.show_torrents > a {
+	color: #ff9060 !important;
+	text-shadow: none !important;
+}
+
+/* Scrollbars */
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+*::-webkit-scrollbar-track {
+	background: var(--background-dimmed);
+}
+*::-webkit-scrollbar-thumb {
+	background: #3a454a;
+	border-radius: 5px;
+}
+*::-webkit-scrollbar-thumb:hover {
+	background: #4a565c;
+}
+
+#extra1, #extra2, #extra3 {
+	background: #959a9e !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Index / News (index.php) — body#index
+ * Latest Uploads strip · news boxes · AotM · blog · poll · stats
+ * ══════════════════════════════════════════════════════════ */
+
+body#index .main_column,
+body#index .sidebar {
+	color: var(--text) !important;
+}
+
+/* News / blog post boxes */
+body#index .box,
+body#index .news_post,
+body#index .sidebar .box {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	overflow: visible !important;
+	margin-bottom: 12px !important;
+	color: var(--text) !important;
+}
+
+body#index .box > .head,
+body#index .news_post > .head,
+body#index .sidebar .box > .head,
+body#index .box .colhead_dark {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	padding: 8px 12px !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+body#index .box > .head a,
+body#index .news_post > .head a {
+	color: var(--head-text) !important;
+}
+body#index .box > .head a:hover {
+	color: var(--link-hover) !important;
+}
+
+body#index .box > .head .brackets,
+body#index .box > .head time,
+body#index .box > .head .time {
+	color: var(--text-weak) !important;
+	font-weight: 400 !important;
+}
+
+body#index .box .body,
+body#index .news_post .body,
+body#index .box .pad {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	padding: 12px 14px !important;
+	line-height: 1.55 !important;
+	font-size: 12.5px !important;
+}
+
+body#index .box .body a,
+body#index .news_post .body a {
+	color: #ff9060 !important;
+}
+body#index .box .body a:hover {
+	color: var(--link-hover) !important;
+}
+
+body#index .box .body img,
+body#index .news_post .body img {
+	max-width: 100% !important;
+	height: auto !important;
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	margin: 8px 0 !important;
+}
+
+/* Latest Uploads strip (cover row) */
+body#index #latest_uploads,
+body#index .box#latest_uploads,
+body#index table.recent,
+body#index .latest_uploads {
+	background: var(--background-accent) !important;
+	border-color: var(--border) !important;
+}
+
+body#index #latest_uploads .head,
+body#index .box .head:has(+ * img),
+body#index table.recent .colhead td {
+	color: var(--head-text) !important;
+}
+
+/* Cover thumbnails in latest uploads only */
+body#index #latest_uploads img,
+body#index .latest_uploads img,
+body#index table.recent img {
+	border-radius: 2px;
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+/* Album / image boxes only — not every sidebar <img> / <a img> */
+body#index .sidebar .box_image img,
+body#index .sidebar .box_image_album img,
+body#index .sidebar .box_albumart img {
+	display: block !important;
+	max-width: 100% !important;
+	width: 100% !important;
+	height: auto !important;
+	margin: 0 auto !important;
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	box-sizing: border-box !important;
+	object-fit: contain !important;
+}
+body#index .sidebar .box .body img,
+body#index .sidebar .box .pad img {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+body#index .sidebar .box .body,
+body#index .sidebar .box .pad {
+	padding: 10px !important;
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+}
+
+/* Blog list links */
+body#index .sidebar .box .body ul,
+body#index .sidebar ul.nobullet {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+body#index .sidebar .box .body li,
+body#index .sidebar ul.nobullet li {
+	padding: 5px 0 !important;
+	border-bottom: 1px solid var(--border) !important;
+	line-height: 1.4 !important;
+}
+body#index .sidebar .box .body li:last-child {
+	border-bottom: none !important;
+}
+body#index .sidebar .box .body a {
+	color: var(--text) !important;
+}
+body#index .sidebar .box .body a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Poll */
+body#index .poll,
+body#index form.poll,
+body#index .box .poll {
+	color: var(--text) !important;
+}
+body#index .poll li {
+	margin-bottom: 6px !important;
+	color: var(--text) !important;
+}
+body#index .poll input[type="radio"] {
+	accent-color: #c85050;
+}
+body#index .poll .graph {
+	/* was pink track */
+	border-radius: 2px;
+	overflow: hidden;
+}
+body#index .poll .graph span {
+	/* was pink fill */
+}
+body#index .poll input[type="submit"],
+body#index input[value="Vote"] {
+	margin-top: 8px;
+}
+
+/* Site stats sidebar */
+body#index .sidebar .box ul.stats li,
+body#index .box_stats li {
+	color: var(--text) !important;
+	font-size: 12px !important;
+}
+body#index .sidebar .box ul.stats a {
+	color: #ff9060 !important;
+}
+
+/* Featured / news subheadings in body */
+body#index .box .body strong,
+body#index .news_post .body strong {
+	color: #e8eaea !important;
+	font-weight: 600 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Upload (upload.php) — body#upload
+ * DNU list · announce URL · torrent form table
+ * ══════════════════════════════════════════════════════════ */
+
+body#upload .thin > h2,
+body#upload h2 {
+	color: #fff !important;
+	font-weight: 400 !important;
+	margin: 16px 0 10px !important;
+}
+
+/* Do Not Upload list box */
+body#upload .box,
+body#upload #content .box {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	overflow: hidden;
+	margin-bottom: 16px !important;
+	color: var(--text) !important;
+}
+
+body#upload .box > .head,
+body#upload .box .colhead_dark {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	padding: 8px 12px !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+body#upload .box .body,
+body#upload .box .pad {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	padding: 10px 12px !important;
+	line-height: 1.5 !important;
+}
+
+body#upload .box .body a,
+body#upload .box .pad a {
+	color: #ff9060 !important;
+}
+
+/* DNU table */
+body#upload table,
+body#upload table.layout,
+body#upload #upload_table,
+body#upload form table {
+	background: transparent !important;
+	border-color: var(--border) !important;
+	color: var(--text) !important;
+}
+
+body#upload table .colhead td,
+body#upload table .colhead_dark td,
+body#upload table tr.colhead td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	border-color: var(--border) !important;
+	text-shadow: none !important;
+	padding: 8px 10px !important;
+}
+
+body#upload table tr.rowa td,
+body#upload table .rowa td {
+	background: #160c0a !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 8px 10px !important;
+	vertical-align: top !important;
+}
+
+body#upload table tr.rowb td,
+body#upload table .rowb td {
+	background: #1c100c !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 8px 10px !important;
+	vertical-align: top !important;
+}
+
+body#upload table tr:hover td {
+	background: #2e1810 !important;
+}
+
+body#upload table td.label {
+	background: var(--background-emphasis) !important;
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	width: 140px !important;
+	white-space: nowrap;
+	vertical-align: top !important;
+	padding: 10px 12px !important;
+}
+
+/* (New!) badges on DNU rows */
+body#upload .new,
+body#upload strong.new,
+body#upload span.new {
+	color: var(--danger) !important;
+	font-weight: 700 !important;
+}
+
+/* Announce URL chip */
+body#upload input[readonly],
+body#upload input[type="text"][readonly],
+body#upload .center input {
+	background: var(--background-input) !important;
+	color: var(--text-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important;
+	font-size: 11px !important;
+}
+
+/* File inputs / native choose file stay OS-styled; wrapper row themed */
+body#upload input[type="file"] {
+	color: var(--text) !important;
+}
+
+body#upload select,
+body#upload input[type="text"],
+body#upload input[type="search"],
+body#upload input[type="url"],
+body#upload input[type="number"],
+body#upload textarea {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	box-shadow: none !important;
+}
+
+body#upload textarea {
+	min-height: 4em;
+}
+
+/* Help text under fields */
+body#upload table td {
+	font-size: 12px !important;
+	line-height: 1.45 !important;
+}
+
+body#upload table td a {
+	color: #ff9060 !important;
+}
+body#upload table td a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Banned host warnings — keep red/orange callouts */
+body#upload a[href*="discogs"],
+body#upload a[href*="fbcdn"],
+body#upload a[href*="photobucket"] {
+	color: #e3ba65 !important;
+}
+
+
+
+/* When shown: ensure RED wrapper + table visible */
+
+/* When shown: restore normal box look (undo forced-hide inline remnants) */
+
+/* Upload form (create_form / slices) */
+body#upload form.create_form,
+body#upload #upload_table,
+body#upload table.layout.border,
+body#upload table.layout.border.slice {
+	background: transparent !important;
+	color: var(--text) !important;
+}
+
+body#upload table.layout.border td,
+body#upload table.layout.border.slice td {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 10px 12px !important;
+}
+
+body#upload table.layout.border tr:nth-child(even) td,
+body#upload table.layout.border.slice tr:nth-child(even) td {
+	background: #1c100c !important;
+}
+
+body#upload table.layout.border td.label,
+body#upload table.layout.border.slice td.label {
+	background: var(--background-emphasis) !important;
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	width: 160px !important;
+	vertical-align: top !important;
+}
+
+body#upload .textarea_wrap textarea,
+body#upload #album_desc,
+body#upload #release_desc {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+body#upload .text_preview,
+body#upload .preview_wrap {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	padding: 10px !important;
+}
+
+body#upload p.min_padding {
+	color: var(--text-weak) !important;
+	font-size: 11.5px !important;
+	margin: 6px 0 0 !important;
+}
+
+body#upload #post,
+body#upload input#post {
+	margin-top: 8px !important;
+}
+
+body#upload #check {
+	background: rgba(255, 90, 20, 0.08) !important;
+	border-color: var(--danger) !important;
+	color: var(--text) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * REDStage-Sunset kill-switch (homepage + site-wide)
+ * User skin: cdn.jsdelivr.net/.../REDStage-Sunset.css
+ * Pink nav ramp, mauve body text, purple user tabs, pink noty.
+ * All rules use high specificity + !important.
+ * Homepage structure (body#index):
+ *   .sidebar → Featured Album · blog · changelog · Stats · Poll
+ *   .main_column → #recommended · .news_post · #more_news
+ * ══════════════════════════════════════════════════════════ */
+
+/* Body text — kill mauve #cdb6c5 */
+html body,
+html body#index {
+	background: var(--background) !important;
+	background-color: var(--background) !important;
+	color: var(--text) !important;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body b,
+html body strong {
+	color: #e8eaea !important;
+}
+
+html body a,
+html body a:link {
+	color: var(--link) !important;
+}
+html body a:visited {
+	color: var(--link-visited) !important;
+}
+html body a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Layout shell */
+html body #wrapper {
+	background: transparent !important;
+	color: var(--text) !important;
+}
+html body #content,
+html body #content .thin {
+	background: transparent !important;
+	color: var(--text) !important;
+}
+
+/* Header strip — no REDStage mobile pink bar bleed */
+html body #header {
+	background: var(--background) !important;
+	background-image: none !important;
+	background-color: var(--background) !important;
+	color: var(--text) !important;
+	box-shadow: none !important;
+	opacity: 1 !important;
+	border: none !important;
+}
+
+/* Logo box — leave sizing to Apollostage; actual wordmark painted at EOF
+ * so it wins over REDStage #extra* mute rules. */
+html body #header #logo, html body #wrapper #header #logo {
+	box-sizing: content-box !important;
+	width: 200px !important;
+	height: 41.2px !important;
+	padding: 24px 8px 16px !important;
+	margin: 0 !important;
+	background-color: transparent !important;
+	filter: none !important;
+	opacity: 1 !important;
+	overflow: visible !important;
+}
+
+/* Userinfo — kill purple/mauve; grey→black like nav end */
+html body #userinfo,
+html body #userinfo a,
+html body #userinfo_stats,
+html body #userinfo_stats a,
+html body #userinfo_stats span,
+html body #userinfo_major,
+html body #userinfo_major a {
+	color: var(--text) !important;
+	text-shadow: none !important;
+}
+
+html body #userinfo_username {
+	background: #0c1014 !important;
+	background-color: #0c1014 !important;
+	background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
+	border: none !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.06),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+}
+html body #userinfo_minor {
+	background: #080a0c !important;
+	background-color: #080a0c !important;
+	background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
+	border: none !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.05),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+html body #userinfo_username:hover {
+	background: #161a20 !important;
+	background-color: #161a20 !important;
+	background-image: linear-gradient(180deg, #242a32 0%, #161a20 48%, #0c1014 100%) !important;
+}
+html body #userinfo_minor:hover {
+	background: #101418 !important;
+	background-color: #101418 !important;
+	background-image: linear-gradient(180deg, #1c2228 0%, #101418 48%, #080a0c 100%) !important;
+}
+
+html body #userinfo_username a,
+html body #userinfo_minor a,
+html body #userinfo a.username,
+html body #menu ul li:not(#nav_staff) a {
+	color: #fff4ec !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	background-image: none !important;
+}
+
+html body #userinfo_username a:hover,
+html body #userinfo_minor a:hover,
+html body #menu > ul a:hover {
+	background-color: rgba(255, 255, 255, 0.08) !important;
+	color: #fff !important;
+}
+
+/* REDStage chevron glyph — desaturate purple assets */
+html body #userinfo_minor:before {
+	filter: brightness(1.4) grayscale(1) !important;
+}
+
+html body #nav_staff > a,
+html body #menu > ul > #nav_staff > a {
+	color: var(--text-dimmed) !important;
+	background: transparent !important;
+}
+html body #nav_staff > a:hover {
+	color: var(--link-hover) !important;
+	background: transparent !important;
+}
+
+/* Menu shell — per-tab grey→black ramp is set above; don't flatten here */
+html body #menu,
+html body #menu > ul {
+	background: transparent !important;
+	background-image: none !important;
+	border-radius: 6px 6px 0 0 !important;
+}
+html body #menu > ul > li a,
+html body #menu li a {
+	color: #e4e6e8 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+}
+/* Darker tabs (right side) need slightly brighter label for contrast */
+html body #menu > ul > li:nth-child(n+7) a,
+html body #menu li:nth-child(n+7) a {
+	color: #fff4ec !important;
+}
+html body #menu li.active,
+html body #menu li.active a,
+html body #nav_index.active a {
+	color: #fff !important;
+}
+
+/* Searchbars — kill mauve #3c2f33 / #2e232d */
+html body #searchbars > ul,
+html body #searchbars ul {
+	background: var(--background-emphasis) !important;
+	background-color: var(--background-emphasis) !important;
+	background-image: none !important;
+	border: none !important;
+}
+html body #searchbars input,
+html body #searchbars .search_form input {
+	background: var(--background-input) !important;
+	background-color: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+}
+html body #searchbars .search_form input:focus {
+	background: var(--background-dimmed) !important;
+	border-color: var(--border-accent) !important;
+}
+
+/* Boxes / heads — kill #252026 / #352930 / #4a3a3f */
+html body .box,
+html body .box2,
+html body .news_post,
+html body .changelog_fp,
+html body #recommended,
+html body #more_news {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	color: var(--text) !important;
+	box-shadow: none !important;
+}
+
+html body .head,
+html body .colhead,
+html body .colhead_dark,
+html body .head.colhead_dark,
+html body #content div.thin div.head,
+html body .box > .head,
+html body .news_post > .head,
+html body #recommended > .head,
+html body #more_news > .head {
+	background: var(--background-emphasis) !important;
+	background-color: var(--background-emphasis) !important;
+	background-image: none !important;
+	color: var(--head-text) !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+html body .head a,
+html body .colhead a,
+html body .colhead_dark a,
+html body .head.colhead_dark a {
+	color: var(--head-text) !important;
+}
+html body .head a:hover,
+html body .colhead_dark a:hover {
+	color: var(--link-hover) !important;
+}
+
+html body .head .time,
+html body .news_post .head .time,
+html body .head .brackets {
+	color: var(--text-weak) !important;
+}
+
+html body .pad,
+html body .body,
+html body .box .pad,
+html body .box .body,
+html body .news_post .pad,
+html body .center.pad,
+html body .commit {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	color: var(--text) !important;
+}
+
+/* Nested pad tints from REDStage (rgba pink) */
+html body .body .box.pad,
+html body .box .box.pad,
+html body .main_column .box.pad {
+	background-color: var(--background-dimmed) !important;
+	border: 1px solid var(--border) !important;
+}
+
+/* Tables */
+html body table,
+html body .torrent_table,
+html body table.torrent_table {
+	background: var(--background-dimmed) !important;
+	background-color: var(--background-dimmed) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+}
+html body table .rowa,
+html body table .rowa:nth-child(odd),
+html body table .rowa:nth-child(2n),
+html body #upload tr:nth-child(odd),
+html body table .rowb:nth-child(odd) {
+	background-color: #160c0a !important;
+}
+html body table .rowb,
+html body table .rowa:nth-child(even),
+html body table .rowb:nth-child(2n),
+html body #upload tr:nth-child(2n) {
+	background-color: #1c100c !important;
+}
+html body .torrent_table .group {
+	background-color: var(--background-emphasis) !important;
+}
+html body .group_torrent {
+	background-color: var(--background-accent) !important;
+}
+html body #torrents #torrent_details .group_torrent td.edition_info,
+html body .group_torrent.edition,
+html body .group~.group_torrent.edition {
+	background-color: #2e1810 !important;
+	color: var(--text) !important;
+}
+html body #discog_table tr[id^="torrents_"],
+html body #discog_table > div.box.center {
+	background-color: var(--background-emphasis) !important;
+	color: var(--text) !important;
+}
+
+/* Tags — gray chips, not maroon/purple pills */
+html body .tags a,
+html body .tags a:link,
+html body .tags a:visited,
+html body #torrent_table .group .tags a,
+html body #discog_table .group .tags a,
+html body body#torrents div.box.box_tags li > a:first-child,
+html body #user div.sidebar .box_userinfo_activity ul.stats.nobullet li a {
+	color: var(--text-dimmed) !important;
+	background: #2a1410 !important;
+	background-color: #2a1410 !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 10px !important;
+	font-weight: 500 !important;
+	box-shadow: none !important;
+}
+html body .tags a:hover,
+html body #torrent_table .group .tags a:hover {
+	color: var(--link-hover) !important;
+	background: #3a1c14 !important;
+	background-color: #3a1c14 !important;
+}
+
+/* Forms — kill mauve inputs */
+html body form {
+	background: transparent !important;
+	background-color: transparent !important;
+	color: var(--text) !important;
+}
+html body input[type="date"],
+html body input[type="email"],
+html body input[type="password"],
+html body input[type="search"],
+html body input[type="text"],
+html body input[type="number"],
+html body input[type="url"],
+html body select,
+html body textarea {
+	background: var(--background-input) !important;
+	background-color: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+}
+html body input:focus,
+html body select:focus,
+html body textarea:focus {
+	background: #2a1410 !important;
+	border-color: var(--border-accent) !important;
+	color: #fff0e4 !important;
+}
+
+/* Blockquotes / news body callouts */
+html body blockquote {
+	background: var(--background-dimmed) !important;
+	background-color: var(--background-dimmed) !important;
+	border: 1px dashed var(--border) !important;
+	color: var(--text) !important;
+}
+html body .filelist_table td,
+html body .reportinfo_table,
+html body .torrentdetails {
+	background-color: var(--background-dimmed) !important;
+	color: var(--text) !important;
+}
+
+/* Poll */
+html body .poll .graph {
+	/* was pink track */
+}
+html body .poll .graph span {
+	/* was pink fill */
+}
+
+/* Sidebar lists */
+html body .sidebar ul.stats,
+html body .sidebar ul.nobullet,
+html body .sidebar .pad,
+html body .sidebar .center.pad {
+	background: transparent !important;
+	color: var(--text) !important;
+}
+html body .sidebar ul.stats li,
+html body .sidebar ul.nobullet li {
+	color: var(--text) !important;
+	border-bottom-color: var(--border) !important;
+}
+html body .sidebar a {
+	color: var(--link-soft) !important;
+}
+html body .sidebar a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Homepage: recommended + news */
+html body#index .main_column,
+html body#index .sidebar {
+	color: var(--text) !important;
+}
+html body#index #recommended .torrent_table,
+html body#index #vanityhouse {
+	background: var(--background-dimmed) !important;
+}
+html body#index .news_post .pad,
+html body#index .news_post .pad * {
+	color: var(--text) !important;
+}
+html body#index .news_post .pad a {
+	color: #ff9060 !important;
+}
+html body#index .news_post .pad a:hover {
+	color: var(--link-hover) !important;
+}
+html body#index .news_post img,
+html body#index .scale_image {
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	max-width: 100% !important;
+	height: auto !important;
+}
+html body#index .changelog_fp .commit,
+html body#index .commit_meta,
+html body#index .postlist {
+	color: var(--text-dimmed) !important;
+}
+html body#index #more_news .head,
+html body#index #more_news em {
+	color: var(--text-dimmed) !important;
+}
+
+/* Linkbox current page */
+html body .linkbox > strong {
+	color: #ff9060 !important;
+}
+
+/* Alerts */
+html body .alertbar,
+html body .save_message,
+html body .sys_error,
+html body .error_message {
+	background-color: #3a2a2a !important;
+	background-image: none !important;
+	border: 1px solid var(--danger) !important;
+	color: var(--text) !important;
+}
+
+/* Noty toasts — kill white/pink REDStage chrome */
+html body #noty_bottomRight_layout_container > li,
+html body ul#noty_bottomRight_layout_container > li {
+	background: var(--background-emphasis) !important;
+	background-color: var(--background-emphasis) !important;
+	background-image: none !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 6px !important;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+	color: var(--text) !important;
+}
+html body #noty_bottomRight_layout_container .noty_bar,
+html body #noty_bottomRight_layout_container .noty_message {
+	background: var(--background-emphasis) !important;
+	background-image: none !important;
+	background-color: var(--background-emphasis) !important;
+	color: var(--text) !important;
+	font-weight: 600 !important;
+}
+html body #noty_bottomRight_layout_container .noty_text {
+	color: var(--text) !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	border-top: 1px solid var(--border) !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons a {
+	color: #ff9060 !important;
+	background: transparent !important;
+	border: 1px solid transparent !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons a:hover {
+	color: #fff !important;
+	background: rgba(255, 120, 40, 0.2) !important;
+	border-color: rgba(255, 120, 40, 0.4) !important;
+}
+
+/* Tooltipster */
+html body .tooltipster-default,
+html body .tooltipster-base {
+	background-color: var(--background-emphasis) !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 4px !important;
+	color: var(--text) !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+html body .tooltipster-default .tooltipster-content,
+html body .tooltipster-default .tooltipster-content a {
+	background-color: transparent !important;
+	color: var(--text) !important;
+}
+html body .tooltipster-default .tooltipster-content a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Autocomplete */
+html body .autocomplete-suggestions {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	color: var(--text) !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+html body .autocomplete-suggestions .autocomplete-suggestion {
+	color: var(--text-dimmed) !important;
+}
+html body .autocomplete-suggestions .autocomplete-suggestion strong {
+	color: #fff0e4 !important;
+}
+html body .autocomplete-suggestions .autocomplete-suggestion.autocomplete-selected {
+	background-color: #2e1810 !important;
+}
+
+/* Footer */
+html body #footer,
+html body #footer p,
+html body #disclaimer_container {
+	color: var(--text-weak) !important;
+	background: transparent !important;
+}
+/* Hide REDStage build stamp */
+html body #footer p:last-of-type:after {
+	content: none !important;
+	display: none !important;
+}
+
+/* Extra decorative layers — mute */
+html body #extra1,
+html body #extra2,
+html body #extra3,
+html body #extra4,
+html body #extra5,
+html body #extra6 {
+	background: transparent !important;
+	background-image: none !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+
+/* Code / pre in news */
+html body code,
+html body pre {
+	background: var(--background-dimmed) !important;
+	color: var(--text-dimmed) !important;
+	border-radius: 3px;
+}
+
+/* Mobile REDStage fixed header pink — force charcoal if it engages */
+@media (max-width: 575px) {
+	html body #header,
+	html body #header:hover {
+		background: var(--background) !important;
+		background-color: var(--background) !important;
+		background-image: none !important;
+		border-bottom: 1px solid var(--border) !important;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+		opacity: 1 !important;
+	}
+	/* Keep Phoenix logo; only re-skin username/menu chrome */
+	html body #userinfo_username > li,
+	html body #menu ul,
+	html body #userinfo_minor {
+		background: var(--background-emphasis) !important;
+		background-image: none !important;
+		background-color: var(--background-emphasis) !important;
+	}
+	/* Logo painted at EOF; don't grey-box the logo wrapper here */
+	html body #header #logo, html body #wrapper #header #logo {
+		background-color: transparent !important;
+		filter: none !important;
+		opacity: 1 !important;
+	}
+	html body #menu li {
+
+		background: transparent !important;
+	}
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Requests page polish (requests.php) + shared filter forms
+ * From screenshot: form striping, Filled Yes/No, pagination,
+ * category strip, request name hierarchy, vote [+]
+ * ══════════════════════════════════════════════════════════ */
+
+/* Page title */
+html body#requests .header h2,
+html body#requests h2 {
+	color: #fff4ec !important;
+	font-weight: 500 !important;
+	letter-spacing: 0.01em;
+}
+
+/* Top linkbox: New request · My requests · … */
+html body#requests .linkbox,
+html body#requests .header .linkbox {
+	color: var(--text-weak) !important;
+}
+html body#requests .linkbox a {
+	color: var(--text-dimmed) !important;
+	padding: 0 2px;
+}
+html body#requests .linkbox a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Search / filter card */
+html body#requests form,
+html body#requests .search_form,
+html body#requests .box,
+html body#requests table.layout {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+}
+
+html body#requests table.layout,
+html body#requests form > table {
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+}
+
+/* Filter rows — even zebra, no random bright band on "Include old" */
+html body#requests form table tr td,
+html body#requests table.layout tr td {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 8px 12px !important;
+	vertical-align: middle !important;
+}
+html body#requests form table tr:nth-child(even) td,
+html body#requests table.layout tr:nth-child(even) td {
+	background: #1a2226 !important;
+}
+html body#requests form table tr:hover td,
+html body#requests table.layout tr:hover td {
+	background: #222a2e !important;
+}
+
+html body#requests form table td.label,
+html body#requests table.layout td.label {
+	background: var(--background-emphasis) !important;
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	width: 160px !important;
+	white-space: nowrap;
+}
+
+/* Category strip (Music · Apps · E-Books · …) */
+html body#requests .cat_list,
+html body#requests table.cat_list,
+html body#requests .ft_cat_list {
+	background: var(--background-dimmed) !important;
+}
+html body#requests .cat_list td,
+html body#requests table.cat_list td {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+	padding: 10px 8px !important;
+	border: none !important;
+}
+html body#requests .cat_list label,
+html body#requests .cat_list span {
+	color: var(--text) !important;
+}
+
+/* Release types / formats / bitrates / media blocks */
+html body#requests form label {
+	color: var(--text) !important;
+	font-weight: 400 !important;
+}
+
+/* Primary search button */
+html body#requests input[type="submit"],
+html body#requests input[value="Search requests"] {
+	background: linear-gradient(#f4f4f4, #c8c8c8) !important;
+	color: #120808 !important;
+	border: none !important;
+	border-radius: 4px !important;
+	font-weight: 700 !important;
+	padding: 0 20px !important;
+	height: 34px !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15), 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+html body#requests input[type="submit"]:hover {
+	background: linear-gradient(#fff, #d8d8d8) !important;
+}
+
+/* Pagination — current page as soft pill */
+html body#requests .linkbox {
+	margin: 12px 0 !important;
+	font-size: 12px !important;
+}
+html body .linkbox > strong,
+html body .linkbox > b,
+html body#requests .linkbox > strong,
+html body#requests .linkbox > b {
+	color: #1a1212 !important;
+	background: #ff8c40 !important;
+	background-color: #ff8c40 !important;
+	border-radius: 999px !important;
+	padding: 2px 10px !important;
+	font-weight: 700 !important;
+	box-shadow: 0 0 0 1px rgba(255, 120, 40, 0.35) !important;
+}
+html body .linkbox a {
+	color: var(--text-dimmed) !important;
+	padding: 2px 4px !important;
+}
+html body .linkbox a:hover {
+	color: #ffc060 !important;
+}
+
+/* Results table */
+html body#requests .request_table {
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+}
+html body#requests .request_table tr.colhead td,
+html body#requests .request_table .colhead td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	font-size: 11.5px !important;
+	letter-spacing: 0.02em !important;
+	padding: 10px 10px !important;
+	border-bottom: 1px solid var(--border) !important;
+}
+html body#requests .request_table tr.colhead a {
+	color: var(--head-text-soft) !important;
+}
+
+html body#requests .request_table tr.rowa td {
+	background: #160c0a !important;
+}
+html body#requests .request_table tr.rowb td {
+	background: #1c100c !important;
+}
+html body#requests .request_table tr:hover td {
+	background: #2e1810 !important;
+}
+
+/* Request title — primary hierarchy */
+html body#requests .request_table td:first-child a[href*="requests.php"],
+html body#requests .request_table .td_info > a:first-child,
+html body#requests .request_table a[href*="action=view"] {
+	color: #fff4ec !important;
+	font-weight: 600 !important;
+}
+html body#requests .request_table td:first-child a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Tags under request name */
+html body#requests .request_table .tags a {
+	color: var(--text-dimmed) !important;
+	background: #2a1410 !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 10px !important;
+	padding: 1px 8px !important;
+	font-size: 10.5px !important;
+	font-weight: 500 !important;
+}
+
+/* Votes column + [+] */
+html body#requests .request_table .td_votes,
+html body#requests .request_table td.number_column {
+	color: var(--text) !important;
+	text-align: center !important;
+}
+html body#requests .request_table a[href*="action=vote"],
+html body#requests .request_table a.brackets {
+	color: #ff9060 !important;
+}
+html body#requests .request_table a[href*="action=vote"]:hover {
+	color: #fff !important;
+}
+
+/* Bounty — slight emphasis */
+html body#requests .request_table .td_bounty,
+html body#requests .request_table td.td_size {
+	color: #f0e0d0 !important;
+	font-variant-numeric: tabular-nums !important;
+}
+
+/* Filled Yes / No */
+html body#requests .request_table .td_filled,
+html body#requests .request_table td.td_filled {
+	font-weight: 700 !important;
+	text-align: center !important;
+}
+/* Common Gazelle markup: plain text or class */
+html body#requests .request_table .td_filled {
+	color: var(--text-dimmed) !important;
+}
+html body .important_text,
+html body strong.important_text {
+	color: var(--danger) !important;
+}
+html body .important_text_alt,
+html body strong.important_text_alt {
+	color: var(--ok) !important;
+}
+
+/* Dates / secondary meta */
+html body#requests .request_table .time,
+html body#requests .request_table span.time,
+html body#requests .request_table .td_created,
+html body#requests .request_table .td_lastvote {
+	color: var(--text-weak) !important;
+	font-size: 11.5px !important;
+	white-space: nowrap;
+}
+
+/* Keep donor/elite username custom colors (don't force) */
+html body#requests .request_table a[href*="user.php"] {
+	/* only soften if no inline color */
+	text-decoration: none !important;
+}
+
+/* Searchbars under nav — match charcoal, not mauve */
+html body #searchbars > ul {
+	border-radius: 0 0 4px 4px !important;
+}
+html body #searchbars input::placeholder {
+	color: var(--text-weak) !important;
+	opacity: 1 !important;
+}
+
+/* Stats strip under username (Up/Down/Ratio) */
+html body #userinfo_stats {
+	color: var(--text-dimmed) !important;
+	font-size: 12px !important;
+}
+html body #userinfo_stats .stat {
+	color: var(--text) !important;
+}
+html body #userinfo_major a {
+	color: var(--text-dimmed) !important;
+}
+html body #userinfo_major a:hover {
+	color: #fff !important;
+}
+
+/* Subtle separators between request rows */
+html body#requests .request_table tr:not(.colhead) td {
+	border-top: 1px solid rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Forums index (forums.php) — body#forums
+ * Structure: .forum_list > h3 (section) + table.forum_index
+ *   tr.colhead · tr.rowa/rowb
+ *   td.unread|read · h4 > a (forum name)
+ *   .last_topic · .last_read · .last_poster · .time
+ *   .number_column (topics / posts)
+ * ══════════════════════════════════════════════════════════ */
+
+html body#forums h2 {
+	color: #fff4ec !important;
+	font-weight: 500 !important;
+	margin: 16px 0 8px !important;
+}
+
+html body#forums .linkbox {
+	margin: 0 0 12px !important;
+}
+html body#forums .linkbox a {
+	color: var(--text-dimmed) !important;
+}
+html body#forums .linkbox a:hover {
+	color: var(--link-hover) !important;
+}
+html body#forums .linkbox a.brackets {
+	color: #ff9060 !important;
+}
+
+/* Section groups: Redacted · Community · Music · … */
+html body#forums .forum_list h3 {
+	color: var(--head-text) !important;
+	border-bottom: 1px solid var(--border) !important;
+	font-weight: 600 !important;
+	font-size: 13px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.06em !important;
+	margin: 22px 0 0 !important;
+	padding: 8px 12px 8px !important;
+	background: var(--background-emphasis) !important;
+	border-radius: 6px 6px 0 0 !important;
+	border-bottom-color: var(--border) !important;
+}
+
+/* Each section table sits under its h3 */
+html body#forums .forum_list table.forum_index {
+	background: var(--background-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-top: none !important;
+	border-radius: 0 0 6px 6px !important;
+	overflow: hidden !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	margin: 0 0 4px !important;
+	width: 100% !important;
+}
+
+html body#forums .forum_index tr.colhead td {
+	background: var(--background-accent) !important;
+	color: var(--text-weak) !important;
+	font-weight: 600 !important;
+	font-size: 11px !important;
+	letter-spacing: 0.03em !important;
+	text-transform: uppercase !important;
+	padding: 8px 10px !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+html body#forums .forum_index tr.rowa td {
+	background: #160c0a !important;
+}
+html body#forums .forum_index tr.rowb td {
+	background: #1c100c !important;
+}
+html body#forums .forum_index tr:not(.colhead):hover td {
+	background: #2e1810 !important;
+}
+html body#forums .forum_index tr:not(.colhead) td {
+	padding: 10px 10px !important;
+	border-top: 1px solid rgba(0, 0, 0, 0.22) !important;
+	color: var(--text) !important;
+	vertical-align: middle !important;
+}
+
+/* Forum name */
+html body#forums .forum_index h4,
+html body#forums .forum_index h4.min_padding {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	line-height: 1.35 !important;
+}
+html body#forums .forum_index h4 a {
+	color: #fff4ec !important;
+	text-shadow: none !important;
+}
+html body#forums .forum_index h4 a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Last topic / last poster */
+html body#forums .forum_index .last_topic {
+	float: left !important;
+	max-width: 55% !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+}
+html body#forums .forum_index .last_topic a {
+	color: var(--text) !important;
+	font-weight: 500 !important;
+}
+html body#forums .forum_index .last_topic a:hover {
+	color: var(--link-hover) !important;
+}
+
+html body#forums .forum_index .last_poster {
+	float: right !important;
+	color: var(--text-weak) !important;
+	font-size: 11.5px !important;
+	white-space: nowrap !important;
+}
+html body#forums .forum_index .last_poster a {
+	color: var(--text-dimmed) !important;
+}
+html body#forums .forum_index .last_poster a:hover {
+	color: #fff4ec !important;
+}
+html body#forums .forum_index .last_poster .time,
+html body#forums .forum_index .time {
+	color: var(--text-weak) !important;
+	font-size: 11px !important;
+}
+
+/* Jump-to-last-read arrow (REDStage ➤) */
+html body#forums .forum_index .last_read {
+	float: left !important;
+	margin-left: 8px !important;
+	line-height: 1 !important;
+}
+html body#forums .forum_index .last_read a,
+html body#forums .forum_index .last_read a:before,
+html body#forums .last_read :before {
+	color: #ff8c40 !important;
+	text-decoration: none !important;
+}
+html body#forums .forum_index .last_read a:hover {
+	color: #ffc060 !important;
+}
+/* REDStage injects content:\27A4 via :before on .last_read */
+html body .last_read :before,
+html body .last_read:before {
+	color: #ff8c40 !important;
+}
+
+/* Topics / posts counts */
+html body#forums .forum_index td.number_column {
+	color: var(--text-dimmed) !important;
+	font-variant-numeric: tabular-nums !important;
+	text-align: right !important;
+	font-size: 12px !important;
+	white-space: nowrap !important;
+}
+
+/* Catch up footer link */
+html body#forums .thin > .linkbox:last-child {
+	margin-top: 16px !important;
+	text-align: right !important;
+}
+
+/* Also restyle global forum_index (viewforum thread lists share class) */
+html body table.forum_index {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+}
+html body table.forum_index tr.colhead td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+}
+html body table.forum_index tr.rowa td {
+	background: #160c0a !important;
+}
+html body table.forum_index tr.rowb td {
+	background: #1c100c !important;
+}
+html body table.forum_index tr:not(.colhead):hover td {
+	background: #2e1810 !important;
+}
+
+/* Kill leftover REDStage forum icon sprites on any forum table */
+html body .forum_index .read,
+html body .forum_index .unread,
+html body .forum_index .read_locked,
+html body .forum_index .unread_locked,
+html body .forum_index .read_sticky,
+html body .forum_index .unread_sticky,
+html body .forum_index .read_locked_sticky,
+html body .forum_index .unread_locked_sticky {
+	background-image: none !important;
+	background-size: 0 !important;
+	background-repeat: no-repeat !important;
+	background-position: 50% !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Forums index pass 2 — exact RED classes from dump:
+ *   td.unread.tooltip.tooltipstered
+ *   td.read.tooltip.tooltipstered
+ *   td.unread.tooltip_gold.tooltipstered
+ *   .last_read > a (empty jump link)
+ * Nuclear specificity vs REDStage SVG sprites + noty white chrome
+ * ══════════════════════════════════════════════════════════ */
+
+/* Status column — kill SVG sprites hard, paint our dots */
+html body#forums table.forum_index td.unread,
+html body#forums table.forum_index td.read,
+html body#forums table.forum_index td.unread.tooltip,
+html body#forums table.forum_index td.read.tooltip,
+html body#forums table.forum_index td.unread.tooltipstered,
+html body#forums table.forum_index td.read.tooltipstered,
+html body#forums table.forum_index td.unread.tooltip_gold,
+html body#forums table.forum_index td.tooltip_gold {
+	background: transparent !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	background-size: 0 !important;
+	filter: none !important;
+	width: 28px !important;
+	min-width: 28px !important;
+	max-width: 32px !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	position: relative !important;
+}
+
+html body#forums table.forum_index td.unread::before,
+html body#forums table.forum_index td.read::before,
+html body#forums table.forum_index td.unread.tooltip::before,
+html body#forums table.forum_index td.read.tooltip::before,
+html body#forums table.forum_index td.unread.tooltip_gold::before {
+	content: "" !important;
+	display: inline-block !important;
+	width: 9px !important;
+	height: 9px !important;
+	border-radius: 50% !important;
+	box-sizing: border-box !important;
+	vertical-align: middle !important;
+}
+
+html body#forums table.forum_index td.unread::before,
+html body#forums table.forum_index td.unread.tooltip::before,
+html body#forums table.forum_index td.unread.tooltipstered::before {
+	background: #ff8c40 !important;
+	background-color: #ff8c40 !important;
+	border: none !important;
+	box-shadow: 0 0 6px rgba(255, 120, 40, 0.5) !important;
+}
+
+html body#forums table.forum_index td.unread.tooltip_gold::before,
+html body#forums table.forum_index td.tooltip_gold.unread::before {
+	background: #e3ba65 !important;
+	background-color: #e3ba65 !important;
+	box-shadow: 0 0 6px rgba(227, 186, 101, 0.5) !important;
+}
+
+html body#forums table.forum_index td.read::before,
+html body#forums table.forum_index td.read.tooltip::before,
+html body#forums table.forum_index td.read.tooltipstered::before {
+	background: transparent !important;
+	background-color: transparent !important;
+	border: 2px solid #4a565c !important;
+	box-shadow: none !important;
+}
+
+/* Last-read jump (empty <a>) — always show ➤ */
+html body#forums .last_read,
+html body .forum_index .last_read {
+	display: inline-block !important;
+	float: left !important;
+	margin: 0 0 0 6px !important;
+	line-height: 1.2 !important;
+	vertical-align: middle !important;
+}
+html body#forums .last_read a,
+html body .forum_index .last_read a {
+	display: inline-block !important;
+	min-width: 1em !important;
+	text-decoration: none !important;
+	color: #ff8c40 !important;
+	font-size: 13px !important;
+	line-height: 1 !important;
+}
+html body#forums .last_read a::before,
+html body#forums .last_read::before,
+html body .forum_index .last_read a::before,
+html body .forum_index .last_read :before,
+html body .last_read :before {
+	content: "\27A4" !important;
+	color: #ff8c40 !important;
+	font-size: 13px !important;
+	speak: never;
+}
+html body#forums .last_read a:hover::before,
+html body#forums .last_read a:hover {
+	color: #ffc060 !important;
+}
+
+/* Section card rhythm: h3 sits on table */
+html body#forums .forum_list > h3 + table.forum_index {
+	margin-top: 0 !important;
+}
+
+/* Unread topics + Catch up */
+html body#forums .thin > .linkbox a.brackets {
+	color: #ff9060 !important;
+	font-weight: 600 !important;
+}
+html body#forums .thin > .linkbox a.brackets:hover {
+	color: #ffc060 !important;
+}
+
+/* Noty — beat inline white chrome (noty sets style= on <li>) */
+html body ul#noty_bottomRight_layout_container.i-am-new > li,
+html body #noty_bottomRight_layout_container > li,
+html body ul#noty_bottomRight_layout_container > li[style] {
+	background: var(--background-emphasis) !important;
+	background-color: var(--background-emphasis) !important;
+	background-image: none !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 8px !important;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55) !important;
+	color: var(--text) !important;
+	overflow: hidden !important;
+}
+html body ul#noty_bottomRight_layout_container .noty_bar,
+html body ul#noty_bottomRight_layout_container .noty_message,
+html body ul#noty_bottomRight_layout_container .noty_message[style] {
+	background: var(--background-emphasis) !important;
+	background-color: var(--background-emphasis) !important;
+	background-image: none !important;
+	color: var(--text) !important;
+	font-weight: 600 !important;
+}
+html body ul#noty_bottomRight_layout_container .noty_text {
+	color: #fff4ec !important;
+}
+html body ul#noty_bottomRight_layout_container .noty_buttons,
+html body ul#noty_bottomRight_layout_container .noty_buttons[style] {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	border-top: 1px solid var(--border) !important;
+	padding: 6px 8px !important;
+}
+html body ul#noty_bottomRight_layout_container .noty_buttons a,
+html body ul#noty_bottomRight_layout_container .noty_buttons a[style] {
+	color: #ff9060 !important;
+	background: transparent !important;
+	cursor: pointer !important;
+}
+html body ul#noty_bottomRight_layout_container .noty_buttons a:hover {
+	color: #fff !important;
+	background: rgba(255, 120, 40, 0.18) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Top 10 (top10.php) — body#top10
+ * Type tabs · filter form · h3 sections · numbered torrent tables
+ * Rank is first <td><strong>N</strong> (not always .td_rank on RED)
+ * table.torrent_table.cats.numbering.border
+ * ══════════════════════════════════════════════════════════ */
+
+html body#top10 .header {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: baseline !important;
+	justify-content: space-between !important;
+	gap: 8px 16px !important;
+	margin-bottom: 12px !important;
+}
+html body#top10 .header h2,
+html body#top10 h2 {
+	color: #fff4ec !important;
+	font-weight: 500 !important;
+	margin: 12px 0 0 !important;
+}
+
+/* Type tabs: Torrents | History | Last.fm | Users | Tags | Favorites | Donors */
+html body#top10 .header .linkbox,
+html body#top10 .linkbox {
+	line-height: 1.8 !important;
+}
+html body#top10 .linkbox a {
+	color: var(--text-dimmed) !important;
+}
+html body#top10 .linkbox a:hover {
+	color: var(--link-hover) !important;
+}
+/* Active type is <strong> inside brackets link */
+html body#top10 .linkbox a strong,
+html body#top10 .linkbox strong {
+	color: #1a1212 !important;
+	background: #ff8c40 !important;
+	border-radius: 999px !important;
+	padding: 2px 10px !important;
+	font-weight: 700 !important;
+	box-shadow: 0 0 0 1px rgba(255, 120, 40, 0.35) !important;
+}
+
+/* Filter form (tags / format) */
+html body#top10 form.search_form,
+html body#top10 form.search_form table.layout {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	color: var(--text) !important;
+	margin-bottom: 12px !important;
+	overflow: hidden !important;
+}
+html body#top10 form.search_form table.layout td {
+	background: transparent !important;
+	color: var(--text) !important;
+	border-color: transparent !important;
+	padding: 10px 12px !important;
+}
+html body#top10 form.search_form td.label {
+	background: var(--background-emphasis) !important;
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	white-space: nowrap !important;
+	vertical-align: middle !important;
+	width: 180px !important;
+}
+html body#top10 form.search_form input[type="text"],
+html body#top10 form.search_form textarea,
+html body#top10 form.search_form select {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+}
+html body#top10 form.search_form label {
+	color: var(--text) !important;
+}
+html body#top10 form.search_form input[type="radio"],
+html body#top10 form.search_form input[type="checkbox"] {
+	accent-color: #c85050 !important;
+}
+html body#top10 form.search_form input[type="submit"] {
+	background: linear-gradient(#f4f4f4, #c8c8c8) !important;
+	color: #120808 !important;
+	border: none !important;
+	border-radius: 4px !important;
+	font-weight: 700 !important;
+	height: 34px !important;
+	padding: 0 18px !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Secondary toggles: Current year · Hide freeleech · … */
+html body#top10 .thin > .linkbox {
+	margin: 8px 0 14px !important;
+}
+html body#top10 .thin > .linkbox a.brackets {
+	color: var(--text-dimmed) !important;
+	font-size: 12px !important;
+}
+html body#top10 .thin > .linkbox a.brackets:hover {
+	color: #ff9060 !important;
+}
+
+/* Section headers: "Top 10 Most Active Torrents…" */
+html body#top10 h3 {
+	color: var(--head-text) !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	margin: 22px 0 0 !important;
+	padding: 10px 12px !important;
+	background: var(--background-emphasis) !important;
+	border: 1px solid var(--border) !important;
+	border-bottom: none !important;
+	border-radius: 6px 6px 0 0 !important;
+	text-shadow: none !important;
+	letter-spacing: 0.01em !important;
+}
+html body#top10 h3 small.top10_quantity_links,
+html body#top10 .top10_quantity_links {
+	color: var(--text-weak) !important;
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	text-shadow: none !important;
+}
+html body#top10 .top10_quantity_links a {
+	color: var(--text-dimmed) !important;
+}
+html body#top10 .top10_quantity_links a:hover {
+	color: var(--link-hover) !important;
+}
+/* Current quantity (Top 10) is bare span.brackets */
+html body#top10 .top10_quantity_links > span.brackets {
+	color: #ff9060 !important;
+	font-weight: 700 !important;
+}
+
+/* Numbered torrent tables */
+html body#top10 table.torrent_table,
+html body#top10 table.torrent_table.numbering,
+html body#top10 table.torrent_table.cats {
+	background: var(--background-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-top: none !important;
+	border-radius: 0 0 6px 6px !important;
+	margin: 0 0 18px !important;
+	overflow: hidden !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	width: 100% !important;
+}
+
+html body#top10 .torrent_table tr.colhead td {
+	background: var(--background-accent) !important;
+	color: var(--text-weak) !important;
+	font-weight: 600 !important;
+	font-size: 11px !important;
+	letter-spacing: 0.03em !important;
+	text-transform: uppercase !important;
+	border-bottom: 1px solid var(--border) !important;
+	padding: 9px 8px !important;
+	text-shadow: none !important;
+}
+
+/* Colhead snatch/seed/leech icons — desaturate stock PNGs for charcoal UI */
+html body#top10 .torrent_table tr.colhead td.sign img,
+html body#top10 .torrent_table .sign img {
+	filter: invert(0.75) grayscale(0.4) brightness(1.15) !important;
+	opacity: 0.9 !important;
+}
+
+/* Rank column — first cell with <strong>1</strong>…; stay vertically centered on tall rows */
+html body#top10 .torrent_table tr.torrent > td:first-child,
+html body#top10 .torrent_table td.td_rank {
+	width: 2.5rem !important;
+	min-width: 2.5rem !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	font-variant-numeric: tabular-nums !important;
+	color: var(--text-dimmed) !important;
+	padding: 8px 6px !important;
+}
+html body#top10 .torrent_table tr.torrent > td:first-child strong,
+html body#top10 .torrent_table td.td_rank strong {
+	display: inline-block !important;
+	color: #ff9060 !important;
+	font-size: 14px !important;
+	font-weight: 700 !important;
+	text-shadow: none !important;
+	line-height: 1 !important;
+}
+/* Top 3 ranks slightly larger / brighter */
+html body#top10 .torrent_table tr.torrent:nth-child(2) > td:first-child strong,
+html body#top10 .torrent_table tr.torrent:nth-child(3) > td:first-child strong,
+html body#top10 .torrent_table tr.torrent:nth-child(4) > td:first-child strong {
+	color: #ffc060 !important;
+	font-size: 16px !important;
+}
+
+/* Category stripe cell — full row height */
+html body#top10 .torrent_table td.cats_col,
+html body#top10 .torrent_table .cats_col {
+	width: 8px !important;
+	padding: 0 !important;
+	vertical-align: middle !important;
+}
+html body#top10 .torrent_table .cats_col > div,
+html body#top10 .torrent_table div[class*="cats_"] {
+	min-height: 48px !important;
+	height: calc(100% - 12px) !important;
+	width: 5px !important;
+	margin: 6px auto !important;
+	border-radius: 2px !important;
+	border-right: none !important;
+}
+/* Soft category colors (not REDStage thick borders) */
+html body#top10 .cats_music { background: #5a7078 !important; }
+html body#top10 .cats_applications { background: #6a7a8a !important; }
+html body#top10 .cats_ebooks { background: #7a6a5a !important; }
+html body#top10 .cats_audiobooks { background: #5a6a7a !important; }
+html body#top10 .cats_elearningvideos { background: #6a5a7a !important; }
+html body#top10 .cats_comedy { background: #7a5a5a !important; }
+html body#top10 .cats_comics { background: #6a6a5a !important; }
+
+/* Zebra rows */
+html body#top10 .torrent_table tr.torrent.rowa td,
+html body#top10 .torrent_table tr.rowa td {
+	background: #160c0a !important;
+	background-color: #160c0a !important;
+}
+html body#top10 .torrent_table tr.torrent.rowb td,
+html body#top10 .torrent_table tr.rowb td {
+	background: #1c100c !important;
+	background-color: #1c100c !important;
+}
+html body#top10 .torrent_table tr.torrent:hover td {
+	background: #2e1810 !important;
+	background-color: #2e1810 !important;
+}
+html body#top10 .torrent_table tr.torrent td {
+	padding-top: 8px !important;
+	padding-bottom: 8px !important;
+	border-top: 1px solid rgba(0, 0, 0, 0.28) !important;
+	/* default middle so rank / stats / cats center against tall multi-tag rows */
+	vertical-align: middle !important;
+	color: var(--text) !important;
+}
+/* Title+tags cell keeps top align so cover lines up with first line of text */
+html body#top10 .torrent_table tr.torrent td.big_info {
+	vertical-align: top !important;
+}
+
+/* Cover thumb */
+html body#top10 .torrent_table .group_image {
+	margin-right: 10px !important;
+}
+html body#top10 .torrent_table .group_image img {
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	display: block !important;
+	background: var(--background-dimmed) !important;
+}
+
+/* Title / artist */
+html body#top10 .torrent_table .group_info {
+	color: var(--text-dimmed) !important;
+}
+html body#top10 .torrent_table .group_info strong,
+html body#top10 .torrent_table .group_info strong a {
+	color: #fff4ec !important;
+	font-weight: 600 !important;
+	font-size: 13px !important;
+}
+html body#top10 .torrent_table .group_info strong a[href*="artist.php"] {
+	color: #f0e0d0 !important;
+}
+html body#top10 .torrent_table .group_info strong a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Action links: DL primary (rose), FL / others secondary (dim) */
+html body#top10 .torrent_table .torrent_action_buttons,
+html body#top10 .torrent_table .torrent_links_block,
+html body#top10 .torrent_table .group_info > span {
+	font-size: 11px !important;
+}
+html body#top10 .torrent_table .torrent_action_buttons a,
+html body#top10 .torrent_table .torrent_links_block a,
+html body#top10 .torrent_table a[href*="usetoken"],
+html body#top10 .torrent_table a[href*="useToken"] {
+	color: var(--text-weak) !important;
+	font-weight: 400 !important;
+	opacity: 0.72 !important;
+}
+html body#top10 .torrent_table .torrent_action_buttons a:hover,
+html body#top10 .torrent_table .torrent_links_block a:hover,
+html body#top10 .torrent_table a[href*="usetoken"]:hover {
+	color: #c8c8c8 !important;
+	opacity: 1 !important;
+}
+html body#top10 .torrent_table a.button_dl,
+html body#top10 .torrent_table .torrent_action_buttons a.button_dl,
+html body#top10 .torrent_table a[href*="action=download"]:not([href*="usetoken"]):not([href*="useToken"]) {
+	color: #ff9060 !important;
+	font-weight: 700 !important;
+	opacity: 1 !important;
+}
+html body#top10 .torrent_table a.button_dl:hover,
+html body#top10 .torrent_table a[href*="action=download"]:not([href*="usetoken"]):hover {
+	color: #ffc060 !important;
+}
+
+/* Bookmark */
+html body#top10 .torrent_table .add_bookmark a,
+html body#top10 .torrent_table .bookmarklink_torrent {
+	color: var(--text-dimmed) !important;
+	opacity: 0.85 !important;
+}
+html body#top10 .torrent_table .add_bookmark a:hover {
+	color: #ffc060 !important;
+	opacity: 1 !important;
+}
+
+/* Tags — tighter chips so multi-tag rows stay shorter */
+html body#top10 .torrent_table .tags {
+	line-height: 1.35 !important;
+	margin-top: 3px !important;
+	font-size: 0 !important; /* kill whitespace gaps between chips */
+}
+html body#top10 .torrent_table .tags a {
+	display: inline-block !important;
+	color: var(--text-dimmed) !important;
+	background: #2a1410 !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 8px !important;
+	padding: 0 5px !important;
+	margin: 1px 2px 1px 0 !important;
+	font-size: 10px !important;
+	font-weight: 500 !important;
+	line-height: 1.45 !important;
+	vertical-align: middle !important;
+}
+html body#top10 .torrent_table .tags a:hover {
+	color: var(--link-hover) !important;
+	background: #3a1c14 !important;
+}
+/* Hide the literal ", " text nodes between tag links (REDStage / stock) */
+html body#top10 .torrent_table .tags {
+	word-spacing: -0.35em !important;
+}
+html body#top10 .torrent_table .tags a {
+	word-spacing: normal !important;
+}
+
+/* Snatched! label */
+html body#top10 .torrent_label,
+html body#top10 .tl_snatched,
+html body#top10 strong.torrent_label {
+	color: #83e4a6 !important;
+	font-weight: 600 !important;
+	text-shadow: none !important;
+}
+
+/* Size / data / snatch / seed / leech / peers — centered with rank on tall rows */
+html body#top10 .torrent_table td.number_column {
+	color: var(--text-dimmed) !important;
+	font-variant-numeric: tabular-nums !important;
+	text-align: right !important;
+	white-space: nowrap !important;
+	font-size: 12px !important;
+	vertical-align: middle !important;
+}
+/* Seeders slightly good-status green */
+html body#top10 .torrent_table td.number_column:nth-last-child(3) {
+	color: var(--ok) !important;
+}
+/* Leechers muted */
+html body#top10 .torrent_table td.number_column:nth-last-child(2) {
+	color: var(--text-weak) !important;
+}
+
+/* Snatched rows — subtle left accent, no loud tint */
+html body#top10 .torrent_table tr.snatched_torrent td:first-child,
+html body#top10 .torrent_table tr.snatched_group td:first-child {
+	box-shadow: inset 3px 0 0 rgba(131, 228, 166, 0.55) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * User profile (user.php) — body#user
+ * Header · linkbox · profileinfo · sidebar (Avatar / Stats /
+ * Profile Album / Last.fm) · Recent Badges / Snatches / Uploads
+ * ══════════════════════════════════════════════════════════ */
+
+html body#user .thin {
+	color: var(--text) !important;
+}
+
+/* Username + custom title row */
+html body#user .header h2,
+html body#user h2 {
+	color: #fff4ec !important;
+	font-weight: 500 !important;
+	font-size: 22px !important;
+	line-height: 1.35 !important;
+	margin: 12px 0 6px !important;
+}
+/* Custom title — never force color (user glow / gold / etc.) */
+html body#user .user_title,
+html body#user span.user_title,
+html body#user h2 .user_title {
+	font-weight: 500 !important;
+	margin-left: 0.2em !important;
+	/* leave color: inherit from user styles / inline */
+}
+html body#user .donor_icon {
+	vertical-align: middle !important;
+	margin: 0 4px !important;
+	filter: none !important;
+}
+
+/* Settings · My Reports · Graphs · Badges · … */
+html body#user .linkbox {
+	line-height: 1.8 !important;
+	margin: 0 0 14px !important;
+	text-align: right !important;
+}
+html body#user .linkbox a {
+	color: var(--text-dimmed) !important;
+	font-size: 12px !important;
+	padding: 0 2px !important;
+}
+html body#user .linkbox a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Shared box chrome */
+html body#user .box,
+html body#user .box_info,
+html body#user .box_image,
+html body#user .box_image_avatar,
+html body#user .box_userinfo_stats,
+html body#user .box_userinfo_personal,
+html body#user .box_userinfo_activity,
+html body#user .box_userinfo_community,
+html body#user .box_userinfo_donor_stats,
+html body#user .sidebar .box {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	margin-bottom: 12px !important;
+	color: var(--text) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+html body#user .box > .head,
+html body#user .box > .colhead_dark,
+html body#user .box_image_avatar > .head,
+html body#user .box_image_avatar > .colhead_dark,
+html body#user .sidebar .box > .head {
+	background: var(--background-emphasis) !important;
+	background-image: none !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	letter-spacing: 0.03em !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+html body#user .box > .head a,
+html body#user .colhead_dark a {
+	color: var(--head-text-soft) !important;
+}
+html body#user .box > .head a:hover {
+	color: var(--link-hover) !important;
+}
+html body#user .box > .head .brackets,
+html body#user .box > .head .time {
+	color: var(--text-weak) !important;
+	font-weight: 400 !important;
+}
+
+/* Profile blurb / definition / art */
+html body#user .profileinfo,
+html body#user #profilediv,
+html body#user .main_column .box .pad,
+html body#user .main_column .box .body {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	padding: 12px 14px !important;
+	line-height: 1.55 !important;
+	font-size: 12.5px !important;
+}
+/* Body text grey — do not paint entire tree rose */
+html body#user .profileinfo,
+html body#user #profilediv {
+	color: var(--text) !important;
+}
+html body#user .profileinfo a,
+html body#user #profilediv a {
+	color: #ff9060 !important;
+}
+html body#user .profileinfo a:hover,
+html body#user #profilediv a:hover {
+	color: var(--link-hover) !important;
+}
+html body#user .profileinfo img,
+html body#user #profilediv img,
+html body#user .main_column .box .pad img,
+html body#user .scale_image {
+	max-width: 100% !important;
+	height: auto !important;
+	border-radius: 4px !important;
+	border: 1px solid var(--border) !important;
+	margin: 10px 0 !important;
+	display: block !important;
+}
+/* Hide spoiler / hidden-text toggles */
+html body#user .profileinfo .spoiler,
+html body#user .hidden_text,
+html body#user a[onclick*="gtoggle"] {
+	color: #ff9060 !important;
+}
+
+/* Avatar panel */
+html body#user .box_image_avatar,
+html body#user .sidebar .box_image_avatar {
+	text-align: center !important;
+}
+html body#user .box_image_avatar > div,
+html body#user .box_image_avatar [align="center"] {
+	padding: 12px !important;
+	background: var(--background-dimmed) !important;
+}
+html body#user .box_image_avatar img,
+html body#user .avatar_container img,
+html body#user .sidebar .box_image img {
+	max-height: min(300px, 70vw) !important;
+	width: 100% !important;
+	object-fit: contain !important;
+	border-radius: 4px !important;
+	border: 1px solid var(--border) !important;
+	background: #0a0c0e !important;
+	box-shadow: none !important;
+	filter: none !important;
+}
+
+/* Statistics list */
+html body#user ul.stats,
+html body#user ul.stats.nobullet {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 6px 12px 10px !important;
+	background: var(--background-accent) !important;
+}
+html body#user ul.stats > li {
+	padding: 6px 0 !important;
+	border-bottom: 1px solid var(--border) !important;
+	color: var(--text) !important;
+	font-size: 12.5px !important;
+	line-height: 1.4 !important;
+}
+html body#user ul.stats > li:last-child {
+	border-bottom: none !important;
+}
+html body#user ul.stats .time {
+	color: var(--text-weak) !important;
+}
+html body#user ul.stats a {
+	color: var(--link-soft) !important;
+}
+html body#user ul.stats a:hover {
+	color: var(--link-hover) !important;
+}
+/* Ratio greens / reds already via .r10 etc. — ensure they win */
+html body#user ul.stats .r10,
+html body#user ul.stats .r20,
+html body#user ul.stats .r50,
+html body#user ul.stats .r99 {
+	color: var(--ok) !important;
+	font-weight: 600 !important;
+}
+
+/* Profile Album cover in sidebar */
+html body#user .sidebar .box_image img,
+html body#user .sidebar a img {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	height: auto !important;
+	border-radius: 3px !important;
+	border: 1px solid var(--border) !important;
+	box-sizing: border-box !important;
+}
+html body#user .sidebar .box .pad,
+html body#user .sidebar .box .body {
+	padding: 10px !important;
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+}
+
+/* Last.fm / minor sidebar text */
+html body#user .sidebar .box .pad,
+html body#user .sidebar .box li {
+	color: var(--text) !important;
+	font-size: 12px !important;
+}
+html body#user .sidebar .box a {
+	color: #ff9060 !important;
+}
+html body#user .sidebar .box a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Recent Badges strip */
+html body#user .box .pad img[src*="badge"],
+html body#user .box .pad img[src*="static/common/badges"],
+html body#user .main_column .box img[width],
+html body#user .badge_icon,
+html body#user img.badge {
+	border: none !important;
+	border-radius: 4px !important;
+	margin: 4px 6px 4px 0 !important;
+	vertical-align: middle !important;
+	background: transparent !important;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Recent Snatches / Uploads / cover grids (table.recent) */
+html body#user table.recent,
+html body#user table.layout.recent {
+	background: var(--background-accent) !important;
+	border: none !important;
+	border-radius: 0 0 6px 6px !important;
+	table-layout: fixed !important;
+	width: 100% !important;
+	margin: 0 !important;
+}
+html body#user table.recent tr.colhead td,
+html body#user table.recent tr.colhead_dark td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	padding: 9px 12px !important;
+	text-shadow: none !important;
+	border: none !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td {
+	background: var(--background-dimmed) !important;
+	padding: 3px !important;
+	border: none !important;
+	vertical-align: top !important;
+	position: relative !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a {
+	display: block !important;
+	border-radius: 3px !important;
+	overflow: hidden !important;
+	border: 1px solid var(--border) !important;
+	line-height: 0 !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a img,
+html body#user table.recent img {
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1 !important;
+	object-fit: cover !important;
+	border: none !important;
+	display: block !important;
+	margin: 0 !important;
+	border-radius: 0 !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a:hover {
+	border-color: rgba(255, 120, 40, 0.45) !important;
+	box-shadow: 0 0 0 1px rgba(255, 120, 40, 0.2) !important;
+}
+
+/* Main column boxes that wrap recent sections */
+html body#user .main_column .box > .pad {
+	padding: 10px 12px !important;
+}
+
+/* Two-column thin layout spacing */
+html body#user .thin:last-child {
+	align-items: flex-start !important;
+}
+html body#user .sidebar {
+	color: var(--text) !important;
+}
+html body#user .main_column {
+	color: var(--text) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * User profile — RED markup refinements (user.php HTML dump)
+ * · h2 > strong > a + .user_title (inline glow — never force color)
+ * · .box_image_avatar .double_avatar
+ * · #profile-album / .profile-album-title overlay
+ * · #badgesdiv .profile_badge
+ * · #recent_snatches / #recent_uploads / collage*_box
+ * · Dictionary text lives in .box > .head (wrap + Hide)
+ * · box_lastfm / percentile / personal / community / donor
+ * ══════════════════════════════════════════════════════════ */
+
+/* Username link in h2 — bright, not forced black */
+html body#user .header h2 a,
+html body#user h2 > strong > a {
+	color: #fff4ec !important;
+	text-decoration: none !important;
+}
+html body#user .header h2 a:hover {
+	color: var(--link-hover) !important;
+}
+/* Critical: custom title glow uses color:black + orange shadow — leave alone */
+html body#user .user_title,
+html body#user .user_title span,
+html body#user .user_title [style] {
+	/* do not set color !important */
+	text-shadow: inherit;
+}
+
+/* Profile dictionary head is long prose + [Hide] */
+html body#user .main_column > .box > .head {
+	font-weight: 400 !important;
+	font-size: 12px !important;
+	line-height: 1.45 !important;
+	color: var(--text-dimmed) !important;
+	letter-spacing: 0 !important;
+	white-space: normal !important;
+	overflow: visible !important;
+	height: auto !important;
+	padding: 10px 12px !important;
+}
+html body#user .main_column > .box > .head a.brackets {
+	color: #ff9060 !important;
+	font-weight: 600 !important;
+	white-space: nowrap !important;
+}
+
+/* Avatar — RED uses width=150 + .double_avatar */
+html body#user .box_image_avatar img.double_avatar,
+html body#user img.double_avatar {
+	width: 100% !important;
+	max-width: 100% !important;
+	height: auto !important;
+	max-height: min(320px, 75vw) !important;
+	object-fit: contain !important;
+}
+
+/* Profile Album — image card + title strip */
+html body#user .box_image_profilealbum {
+	overflow: hidden !important;
+}
+html body#user #profile-album,
+html body#user .profile-album {
+	position: relative !important;
+	padding: 0 !important;
+	background: var(--background-dimmed) !important;
+	line-height: 0 !important;
+}
+html body#user .profile-album > a {
+	display: block !important;
+	position: relative !important;
+	text-decoration: none !important;
+	color: inherit !important;
+}
+html body#user .profile-album img {
+	display: block !important;
+	width: 100% !important;
+	height: auto !important;
+	max-height: none !important;
+	border: none !important;
+	border-radius: 0 !important;
+	margin: 0 !important;
+}
+html body#user .profile-album > a > div {
+	position: absolute !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	padding: 10px 12px !important;
+	background: linear-gradient(
+		180deg,
+		transparent 0%,
+		rgba(10, 12, 14, 0.55) 35%,
+		rgba(10, 12, 14, 0.92) 100%
+	) !important;
+	line-height: 1.35 !important;
+}
+html body#user .profile-album-title {
+	display: block !important;
+	color: #fff4ec !important;
+	font-size: 12px !important;
+	font-weight: 600 !important;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+html body#user .profile-album-review {
+	display: block !important;
+	color: var(--text-dimmed) !important;
+	font-size: 11px !important;
+	font-weight: 400 !important;
+	margin-top: 2px !important;
+}
+html body#user .profile-album > a:hover .profile-album-title {
+	color: #ffc060 !important;
+}
+
+/* Last.fm — fix broken div-in-ul; style list items */
+html body#user .box_lastfm ul.stats,
+html body#user #lastfm_stats {
+	color: var(--text) !important;
+}
+html body#user .box_lastfm li,
+html body#user #lastfm_stats li {
+	color: var(--text) !important;
+	padding: 4px 0 !important;
+	border-bottom: 1px solid var(--border) !important;
+	font-size: 12px !important;
+	line-height: 1.4 !important;
+}
+html body#user .box_lastfm li:last-child,
+html body#user #lastfm_stats li:last-child {
+	border-bottom: none !important;
+}
+html body#user #lastfm_username,
+html body#user .box_lastfm a {
+	color: #ff9060 !important;
+}
+html body#user #lastfm_expand,
+html body#user #lastfm_reload {
+	color: var(--text-dimmed) !important;
+	font-size: 11.5px !important;
+}
+html body#user #lastfm_expand:hover,
+html body#user #lastfm_reload:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Personal / Community / Percentile / Donor */
+html body#user .box_userinfo_personal ul.stats > li,
+html body#user .box_userinfo_community ul.stats > li,
+html body#user .box_userinfo_percentile ul.stats > li,
+html body#user .box_userinfo_donor_stats ul.stats > li {
+	padding: 5px 0 !important;
+}
+html body#user .box_userinfo_community .brackets,
+html body#user .box_userinfo_personal .brackets,
+html body#user .user_commstats a {
+	color: #ff9060 !important;
+	font-size: 11.5px !important;
+}
+html body#user #passkey {
+	color: #ff9060 !important;
+}
+
+/* Recent Badges — flex wrap of .profile_badge */
+html body#user #badgesdiv,
+html body#user .profilebadges {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	gap: 8px 10px !important;
+	padding: 12px !important;
+	background: var(--background-accent) !important;
+}
+html body#user .profile_badge {
+	display: inline-block !important;
+	line-height: 0 !important;
+	margin: 0 !important;
+}
+html body#user .profile_badge a {
+	display: block !important;
+	line-height: 0 !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+html body#user .profile_badge a:hover {
+	transform: translateY(-2px) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45) !important;
+}
+html body#user .profile_badge img {
+	display: block !important;
+	width: 70px !important;
+	height: auto !important;
+	max-width: 70px !important;
+	border: none !important;
+	margin: 0 !important;
+	border-radius: 6px !important;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35) !important;
+	background: transparent !important;
+}
+
+/* Recent Snatches / Uploads / personal collages */
+html body#user table.recent#recent_snatches,
+html body#user table.recent#recent_uploads,
+html body#user table.recent[id^="collage"] {
+	width: 100% !important;
+	margin: 0 0 12px !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	background: var(--background-accent) !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+}
+html body#user table.recent tr.colhead td,
+html body#user table.recent tr.colhead td a {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	padding: 9px 12px !important;
+	text-decoration: none !important;
+	border: none !important;
+}
+html body#user table.recent tr.colhead td a:hover {
+	color: var(--link-hover) !important;
+}
+html body#user table.recent tr:not(.colhead) > td {
+	background: var(--background-dimmed) !important;
+	padding: 4px !important;
+	border: none !important;
+	width: 20% !important;
+	vertical-align: top !important;
+}
+html body#user table.recent tr:not(.colhead) > td > a {
+	display: block !important;
+	border-radius: 3px !important;
+	overflow: hidden !important;
+	border: 1px solid var(--border) !important;
+	line-height: 0 !important;
+	background: #0a0c0e !important;
+}
+html body#user table.recent tr:not(.colhead) > td > a:hover {
+	border-color: rgba(255, 120, 40, 0.5) !important;
+}
+html body#user table.recent tr:not(.colhead) img {
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1 !important;
+	object-fit: cover !important;
+	display: block !important;
+	margin: 0 !important;
+	border: none !important;
+	border-radius: 0 !important;
+	max-width: none !important;
+}
+
+/* Profile spoilers */
+html body#user blockquote.spoiler,
+html body#user .spoiler {
+	background: var(--background-dimmed) !important;
+	border: 1px dashed var(--border) !important;
+	color: var(--text) !important;
+	padding: 10px 12px !important;
+	margin: 8px 0 !important;
+	border-radius: 4px !important;
+}
+html body#user .quoteheader {
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+}
+
+/* Requests box on profile */
+html body#user #requests_box,
+html body#user #requests_box .head {
+	/* inherit box chrome */
+}
+html body#user #requests .border,
+html body#user #requests table {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+}
+html body#user #requests td {
+	background: transparent !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 8px !important;
+}
+html body#user #requests a {
+	color: #ff9060 !important;
+}
+html body#user #requests .tags a {
+	color: var(--text-dimmed) !important;
+	background: #2a1410 !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 8px !important;
+	padding: 0 6px !important;
+	font-size: 10px !important;
+}
+
+/* size* spans in profile (size7 title etc.) */
+html body#user .profileinfo .size7,
+html body#user #profilediv .size7 {
+	color: #fff4ec !important;
+	line-height: 1.2 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Upload (upload.php) — RED markup
+ * DNU: #dnu_header + #dnulist (700px centered block, plain tr)
+ * Announce: #announce_url
+ * Form: form#upload_table.create_form · table.layout.border(.slice)
+ *        #dynamic_form · td.label · #album_desc / #release_desc
+ * BC2Red injects .bc2red-btn into searchbars
+ * ══════════════════════════════════════════════════════════ */
+
+html body#upload #content {
+	color: var(--text) !important;
+}
+
+/* ── Do Not Upload block ─────────────────────────────────── */
+html body#upload #content > div[style*="700px"],
+html body#upload #content > div[style*="width: 700"] {
+	max-width: 720px !important;
+	width: min(720px, 100%) !important;
+	margin: 16px auto 20px !important;
+	padding: 14px 16px 16px !important;
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	box-sizing: border-box !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+html body#upload #dnu_header {
+	color: var(--head-text) !important;
+	font-size: 15px !important;
+	font-weight: 600 !important;
+	margin: 0 0 8px !important;
+	padding: 0 0 8px !important;
+	border-bottom: 1px solid var(--border) !important;
+	letter-spacing: 0.02em !important;
+	text-shadow: none !important;
+}
+
+html body#upload #content > div[style*="700"] > p,
+html body#upload #dnu_header + p,
+html body#upload #content p {
+	color: var(--text-dimmed) !important;
+	font-size: 12.5px !important;
+	line-height: 1.5 !important;
+	margin: 6px 0 !important;
+}
+
+html body#upload #dnulist {
+	width: 100% !important;
+	margin: 12px 0 0 !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	overflow: hidden !important;
+	background: var(--background-dimmed) !important;
+}
+
+html body#upload #dnulist tr.colhead td {
+	background: var(--background-emphasis) !important;
+	color: var(--head-text) !important;
+	font-weight: 600 !important;
+	font-size: 11.5px !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid var(--border) !important;
+	text-shadow: none !important;
+}
+
+html body#upload #dnulist tr:not(.colhead) td {
+	background: #160c0a !important;
+	color: var(--text) !important;
+	padding: 9px 12px !important;
+	border-top: 1px solid rgba(0, 0, 0, 0.25) !important;
+	vertical-align: top !important;
+	font-size: 12.5px !important;
+	line-height: 1.45 !important;
+}
+html body#upload #dnulist tr:not(.colhead):nth-child(even) td {
+	background: #1c100c !important;
+}
+html body#upload #dnulist tr:not(.colhead):hover td {
+	background: #2e1810 !important;
+}
+html body#upload #dnulist tr:not(.colhead) td:first-child {
+	font-weight: 600 !important;
+	color: #e8eaea !important;
+	width: 38% !important;
+}
+html body#upload #dnulist a {
+	color: #ff9060 !important;
+}
+html body#upload #dnulist a:hover {
+	color: var(--link-hover) !important;
+}
+html body#upload #dnulist .important_text,
+html body#upload #dnulist strong.important_text {
+	color: var(--danger) !important;
+	font-weight: 700 !important;
+	font-size: 11px !important;
+}
+
+/* ── Announce URL ────────────────────────────────────────── */
+html body#upload .thin > p[style*="center"],
+html body#upload p:has(#announce_url) {
+	text-align: center !important;
+	color: var(--text-dimmed) !important;
+	margin: 18px 0 14px !important;
+	font-size: 12.5px !important;
+}
+html body#upload #announce_url {
+	display: inline-block !important;
+	margin-top: 8px !important;
+	width: min(100%, 520px) !important;
+	max-width: 100% !important;
+	background: var(--background-input) !important;
+	color: var(--text-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 4px !important;
+	padding: 8px 12px !important;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace !important;
+	font-size: 11.5px !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+	cursor: text !important;
+}
+html body#upload #announce_url:focus {
+	border-color: rgba(255, 120, 40, 0.45) !important;
+	color: #fff4ec !important;
+	outline: none !important;
+}
+
+/* ── Upload form tables ──────────────────────────────────── */
+html body#upload .thin {
+	max-width: 980px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+html body#upload form#upload_table,
+html body#upload form.create_form {
+	background: transparent !important;
+	margin-bottom: 24px !important;
+}
+
+html body#upload table.layout.border,
+html body#upload table.layout.border.slice,
+html body#upload #dynamic_form table {
+	width: 100% !important;
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	overflow: hidden !important;
+	margin: 0 0 12px !important;
+}
+
+html body#upload table.layout.border td,
+html body#upload table.layout.border.slice td,
+html body#upload #dynamic_form table td {
+	background: var(--background-accent) !important;
+	color: var(--text) !important;
+	border-color: var(--border) !important;
+	padding: 10px 12px !important;
+	vertical-align: top !important;
+	font-size: 12.5px !important;
+	line-height: 1.45 !important;
+}
+html body#upload table.layout.border tr:nth-child(even) td,
+html body#upload table.layout.border.slice tr:nth-child(even) td {
+	background: #1f282c !important;
+}
+html body#upload table.layout.border tr:hover td,
+html body#upload table.layout.border.slice tr:hover td {
+	background: #252f34 !important;
+}
+
+html body#upload table.layout.border td.label,
+html body#upload table.layout.border.slice td.label,
+html body#upload #dynamic_form td.label {
+	background: var(--background-emphasis) !important;
+	color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	border-right: 1px solid var(--border) !important;
+}
+
+html body#upload table.layout.border td a,
+html body#upload table.layout.border.slice td a,
+html body#upload #dynamic_form a {
+	color: #ff9060 !important;
+}
+html body#upload table.layout.border td a:hover {
+	color: var(--link-hover) !important;
+}
+
+html body#upload .important_text,
+html body#upload strong.important_text,
+html body#upload #format_warning,
+html body#upload #itms_warning {
+	color: var(--danger) !important;
+}
+
+/* Inputs */
+html body#upload input[type="text"],
+html body#upload input[type="url"],
+html body#upload input[type="number"],
+html body#upload input[type="search"],
+html body#upload select,
+html body#upload textarea {
+	background: var(--background-input) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	box-shadow: none !important;
+	padding: 6px 8px !important;
+}
+html body#upload input:focus,
+html body#upload select:focus,
+html body#upload textarea:focus {
+	border-color: rgba(255, 120, 40, 0.45) !important;
+	outline: none !important;
+	background: #2a1410 !important;
+}
+html body#upload input[type="file"] {
+	color: var(--text) !important;
+	font-size: 12px !important;
+}
+html body#upload input[type="checkbox"],
+html body#upload input[type="radio"] {
+	accent-color: #c85050 !important;
+}
+
+html body#upload #album_desc,
+html body#upload #release_desc,
+html body#upload .textarea_wrap textarea {
+	width: 100% !important;
+	min-height: 8em !important;
+	box-sizing: border-box !important;
+	font-family: inherit !important;
+	line-height: 1.45 !important;
+}
+
+html body#upload .text_preview,
+html body#upload .preview_wrap,
+html body#upload .preview_wrap .text_preview {
+	background: var(--background-dimmed) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 3px !important;
+	padding: 10px 12px !important;
+}
+
+/* +/- multi-format buttons */
+html body#upload #add_format,
+html body#upload #remove_format,
+html body#upload input[type="button"] {
+	background: linear-gradient(#3a424a, #2a3138) !important;
+	color: #fff4ec !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 3px !important;
+	font-weight: 700 !important;
+	min-width: 28px !important;
+	height: 28px !important;
+	padding: 0 10px !important;
+	box-shadow: none !important;
+	cursor: pointer !important;
+}
+html body#upload #add_format:hover,
+html body#upload #remove_format:hover,
+html body#upload input[type="button"]:hover {
+	background: linear-gradient(#4a525a, #343b44) !important;
+	color: #fff !important;
+}
+
+/* Primary upload submit */
+html body#upload #post,
+html body#upload input#post[type="submit"] {
+	background: linear-gradient(#f4f4f4, #c8c8c8) !important;
+	color: #120808 !important;
+	border: none !important;
+	border-radius: 4px !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	height: 38px !important;
+	padding: 0 28px !important;
+	margin-top: 6px !important;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+	cursor: pointer !important;
+}
+html body#upload #post:hover {
+	background: linear-gradient(#fff, #d8d8d8) !important;
+}
+html body#upload #post:disabled {
+	opacity: 0.55 !important;
+	cursor: not-allowed !important;
+}
+
+/* Help paragraphs under fields */
+html body#upload table td p,
+html body#upload table td .min_padding {
+	color: var(--text-weak) !important;
+	font-size: 11.5px !important;
+	margin: 6px 0 0 !important;
+	line-height: 1.4 !important;
+}
+
+/* BC2Red “Fill from Bandcamp” in header search (if injected) */
+html body#upload .bc2red-btn,
+html body .bc2red-btn.bc2red-primary {
+	background: linear-gradient(180deg, #3a3232 0%, #2a2222 100%) !important;
+	color: #f0d0d0 !important;
+	border: 1px solid rgba(255, 120, 40, 0.4) !important;
+	border-radius: 4px !important;
+	font-weight: 600 !important;
+	font-size: 11px !important;
+	padding: 4px 10px !important;
+	cursor: pointer !important;
+	box-shadow: none !important;
+	height: auto !important;
+}
+html body#upload .bc2red-btn:hover,
+html body .bc2red-btn.bc2red-primary:hover {
+	background: linear-gradient(180deg, #4a3a3a 0%, #322828 100%) !important;
+	color: #fff !important;
+	border-color: rgba(255, 120, 40, 0.65) !important;
+}
+
+/* Upload-active nav chip */
+html body#upload #nav_upload a,
+html body #userinfo_major #nav_upload.active a {
+	color: #ffc060 !important;
+}
+
+/* MusicBrainz helper CSS (site loads musicbrainz.css) — tone into charcoal */
+html body#upload .mb-related-artist,
+html body#upload [class*="musicbrainz"] {
+	color: var(--text-dimmed) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+ * Public / login pages (static/styles/public/style.css)
+ * Stock already dark-ish; polish into phoenix-dark palette.
+ * ═══════════════════════════════════════════════════════════ */
+html body,
+html body #maincontent {
+	background: var(--background) !important;
+	background-color: var(--background) !important;
+	background-image: radial-gradient(
+		circle at 50% 30%,
+		#2a1208 0%,
+		#140a06 45%,
+		#0a0605 100%
+	) !important;
+	color: var(--text) !important;
+}
+
+#maincontent .main,
+#maincontent .maincell,
+#maincontent #foot,
+#maincontent .links {
+	color: var(--text) !important;
+	background: transparent !important;
+}
+
+#maincontent a,
+#maincontent .main a {
+	color: var(--link) !important;
+}
+#maincontent a:hover,
+#maincontent .main a:hover {
+	color: var(--link-hover) !important;
+}
+
+/* Brand CTA — phoenix orange */
+#maincontent .action-bar a,
+#maincontent .main .submit,
+#maincontent a.login,
+#maincontent .enter a {
+	background-color: #ff6a1a !important;
+	color: #fff !important;
+	border: none !important;
+	text-shadow: none !important;
+}
+#maincontent .action-bar a:hover,
+#maincontent .main .submit:hover,
+#maincontent a.login:hover,
+#maincontent .enter a:hover {
+	background-color: #e84818 !important;
+	color: #fff !important;
+}
+#maincontent .action-bar a.white {
+	background-color: var(--background-emphasis) !important;
+	color: var(--text) !important;
+}
+#maincontent .action-bar a.white:hover {
+	background-color: var(--border-accent) !important;
+}
+
+#maincontent input[type="email"],
+#maincontent input[type="password"],
+#maincontent input[type="text"],
+#maincontent input[type="search"],
+#maincontent select,
+#maincontent textarea,
+#maincontent .auth_form input,
+#maincontent .create_form input {
+	background: var(--background-input) !important;
+	border: 1px solid var(--border) !important;
+	color: var(--text) !important;
+	box-shadow: none !important;
+}
+#maincontent input:focus,
+#maincontent select:focus,
+#maincontent textarea:focus {
+	border-color: #ff6a1a !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(255, 90, 20, 0.35) !important;
+}
+
+#maincontent #referral-code {
+	background-color: var(--background-accent) !important;
+	color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+}
+
+#maincontent .warning,
+#maincontent .warning-login {
+	color: var(--warn) !important;
+}
+#maincontent .info {
+	color: var(--ok) !important;
+}
+#maincontent .tor-login {
+	border-color: var(--danger) !important;
+	color: var(--danger) !important;
+	background: rgba(232, 80, 80, 0.08) !important;
+}
+#maincontent .requirements {
+	border-color: rgba(255, 90, 20, 0.45) !important;
+	background: var(--background-dimmed) !important;
+}
+#maincontent .requirements .title {
+	color: #ff6a1a !important;
+}
+#maincontent .separator {
+	border-bottom-color: var(--border) !important;
+}
+
+
+
+/* ══════════════════════════════════════════════════════════
+ * FLAME nav override — warm ember ramp (replaces charcoal greys)
+ * Left tabs: bright ember · Right tabs: deep ash · Active: flame glow
+ * ══════════════════════════════════════════════════════════ */
+html body #menu li,
+html body #menu > ul > li,
+html body #menu li:nth-child(n),
+html body #menu > ul > li:nth-child(n) {
+	border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+	background-color: #3a1c12 !important;
+	background-image: linear-gradient(
+		180deg,
+		#5a2a18 0%,
+		#3a1c12 48%,
+		#241008 100%
+	) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 160, 80, 0.12),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Ramp: hot ember → deep ash (left → right) */
+html body #menu > ul > li:nth-child(1),
+html body #menu li:nth-child(1) {
+	background-color: #7a3020 !important;
+	background-image: linear-gradient(180deg, #a04028 0%, #7a3020 45%, #5a2010 100%) !important;
+}
+html body #menu > ul > li:nth-child(2),
+html body #menu li:nth-child(2) {
+	background-color: #6a2818 !important;
+	background-image: linear-gradient(180deg, #903820 0%, #6a2818 45%, #4a180c 100%) !important;
+}
+html body #menu > ul > li:nth-child(3),
+html body #menu li:nth-child(3) {
+	background-color: #5a2214 !important;
+	background-image: linear-gradient(180deg, #803018 0%, #5a2214 45%, #3a140a 100%) !important;
+}
+html body #menu > ul > li:nth-child(4),
+html body #menu li:nth-child(4) {
+	background-color: #4a1c12 !important;
+	background-image: linear-gradient(180deg, #702818 0%, #4a1c12 45%, #30100a 100%) !important;
+}
+html body #menu > ul > li:nth-child(5),
+html body #menu li:nth-child(5) {
+	background-color: #3a1810 !important;
+	background-image: linear-gradient(180deg, #602214 0%, #3a1810 45%, #280e08 100%) !important;
+}
+html body #menu > ul > li:nth-child(6),
+html body #menu li:nth-child(6) {
+	background-color: #2e140c !important;
+	background-image: linear-gradient(180deg, #501c10 0%, #2e140c 45%, #1e0a06 100%) !important;
+}
+html body #menu > ul > li:nth-child(7),
+html body #menu li:nth-child(7) {
+	background-color: #24100a !important;
+	background-image: linear-gradient(180deg, #40180e 0%, #24100a 45%, #160806 100%) !important;
+}
+html body #menu > ul > li:nth-child(8),
+html body #menu li:nth-child(8) {
+	background-color: #1a0c08 !important;
+	background-image: linear-gradient(180deg, #30120c 0%, #1a0c08 45%, #100604 100%) !important;
+}
+html body #menu > ul > li:nth-child(9),
+html body #menu li:nth-child(9) {
+	background-color: #120806 !important;
+	background-image: linear-gradient(180deg, #240e0a 0%, #120806 45%, #0a0402 100%) !important;
+}
+html body #menu > ul > li:nth-child(10),
+html body #menu li:nth-child(10),
+html body #menu > ul > li:nth-child(11),
+html body #menu li:nth-child(11) {
+	background-color: #0a0402 !important;
+	background-image: linear-gradient(180deg, #180a06 0%, #0a0402 45%, #050201 100%) !important;
+}
+
+html body #menu a,
+html body #menu li a {
+	color: #ffe8d0 !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+}
+html body #menu a:hover,
+html body #menu li a:hover {
+	color: #fff8f0 !important;
+	background: linear-gradient(
+		180deg,
+		rgba(255, 140, 40, 0.22) 0%,
+		rgba(255, 80, 20, 0.08) 100%
+	) !important;
+}
+html body #menu li:hover {
+	filter: brightness(1.2) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 180, 80, 0.28),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+		0 0 12px rgba(255, 100, 30, 0.15) !important;
+}
+html body #menu .selected,
+html body #menu li.selected,
+html body #menu li.active {
+	filter: brightness(1.12) !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 180, 80, 0.35),
+		inset 0 -2px 0 rgba(255, 100, 20, 0.85),
+		0 0 16px rgba(255, 90, 20, 0.25) !important;
+}
+html body #menu .selected a,
+html body #menu li.selected a,
+html body #menu li.active a {
+	color: #fff !important;
+	text-shadow: 0 0 8px rgba(255, 140, 40, 0.45) !important;
+}
+
+/* Username / chevron — deep ash with ember edge */
+html body #userinfo_username,
+html body #userinfo_minor {
+	background-image: linear-gradient(
+		180deg,
+		#2a120c 0%,
+		#140806 48%,
+		#080402 100%
+	) !important;
+	background-color: #140806 !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 140, 60, 0.12),
+		inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+		0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+html body #userinfo_username:hover,
+html body #userinfo_minor:hover {
+	background-image: linear-gradient(
+		180deg,
+		#3a1a10 0%,
+		#1e0c08 48%,
+		#100604 100%
+	) !important;
+	background-color: #1e0c08 !important;
+}
+
+/* Page glow — subtle radial heat under header */
+html body,
+html body #wrapper {
+	background-image: radial-gradient(
+		ellipse 120% 60% at 50% -10%,
+		rgba(80, 24, 8, 0.55) 0%,
+		transparent 55%
+	) !important;
+	background-color: var(--background) !important;
+}
+html body #header {
+	background: transparent !important;
+	background-image: none !important;
+	box-shadow: 0 1px 0 rgba(255, 100, 40, 0.08) !important;
+}
+
+/* Box heads — hotter */
+html body .head,
+html body .box > .head,
+html body .colhead_dark,
+html body .box .colhead_dark {
+	background-image: linear-gradient(
+		180deg,
+		#3a1810 0%,
+		#24100c 100%
+	) !important;
+	color: var(--head-text) !important;
+	border-bottom: 1px solid rgba(255, 100, 40, 0.25) !important;
+	text-shadow: 0 0 10px rgba(255, 100, 30, 0.25) !important;
+}
+
+/* Links with mild flame hover */
+html body a:hover,
+html body a:focus {
+	color: var(--link-hover) !important;
+	text-shadow: 0 0 8px rgba(255, 140, 40, 0.35) !important;
+}
+
+/* Poll bars / progress — fire gradient */
+html body .poll .graph,
+html body .poll .graph_outer .graph,
+html body .poll li .graph {
+	background: linear-gradient(90deg, #ff4a10, #ff8c20, #ffc040) !important;
+	box-shadow: 0 0 6px rgba(255, 100, 30, 0.35) !important;
+}
+
+/* Buttons — ash chrome with fire hover */
+html body button:hover,
+html body input[type="button"]:hover,
+html body input[type="submit"]:hover {
+	background: linear-gradient(#ffe0c0, #e0a070) !important;
+	color: #2a1008 !important;
+	box-shadow: 0 0 10px rgba(255, 120, 40, 0.35) !important;
+}
+
+/* Search bars — ember wells */
+html body #searchbars > ul,
+html body #searchbars ul {
+	background: #1a0e0a !important;
+	box-shadow: inset 0 0 0 1px rgba(255, 100, 40, 0.12) !important;
+}
+html body #searchbars input {
+	background: #1e100c !important;
+	border-color: #5a3020 !important;
+	color: #ffe8d8 !important;
+}
+html body #searchbars input:focus {
+	border-color: #ff6a1a !important;
+	box-shadow: 0 0 0 1px rgba(255, 106, 26, 0.4) !important;
+}
+
+
+
+
+
+/* ══════════════════════════════════════════════════════════
+ * Index layout repair (two-column + latest uploads)
+ * Soft: reinforce Apollostage flex without crushing stock margins
+ * ══════════════════════════════════════════════════════════ */
+html body#index #content > .thin:last-child,
+html body#index #content .thin:has(> .main_column):has(> .sidebar) {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: flex-start !important;
+	/* keep Apollostage negative margin gutters; don't add huge gap */
+	margin-left: -4px !important;
+	margin-right: -4px !important;
+}
+html body#index .main_column {
+	flex: 3 1 0% !important;
+	min-width: 0 !important;
+	width: auto !important;
+	max-width: none !important;
+	float: none !important;
+	box-sizing: border-box !important;
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+}
+html body#index .sidebar {
+	flex: 1 1 240px !important;
+	min-width: 240px !important;
+	max-width: 360px !important;
+	width: auto !important;
+	float: none !important;
+	order: 5 !important;
+	box-sizing: border-box !important;
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+}
+/* Latest uploads: don't clip covers */
+html body#index #latest_uploads,
+html body#index .box#latest_uploads {
+	overflow: visible !important;
+}
+html body#index #latest_uploads .body,
+html body#index #latest_uploads .pad,
+html body#index .box#latest_uploads .body {
+	overflow: visible !important;
+	padding: 8px !important;
+}
+html body#index #latest_uploads table,
+html body#index table.recent {
+	width: 100% !important;
+	border-collapse: separate !important;
+	border-spacing: 4px !important;
+	table-layout: fixed !important;
+}
+html body#index #latest_uploads td,
+html body#index table.recent td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+html body#index #latest_uploads img,
+html body#index table.recent img {
+	max-width: 100% !important;
+	height: auto !important;
+	display: inline-block !important;
+	vertical-align: middle !important;
+}
+/* News images — cap width, keep flow */
+html body#index .news_post .body img,
+html body#index .main_column .news_post .body img {
+	max-width: min(100%, 720px) !important;
+	height: auto !important;
+	margin: 8px 0 !important;
+}
+/* Avoid double-padding crushing sidebar lists */
+html body#index .sidebar .box .body ul.stats li,
+html body#index .sidebar .box_stats li {
+	padding: 4px 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: Poll polish (Flame) — SCOPED to .poll only
+ * Do NOT style global .box .body (that broke index.php)
+ * ══════════════════════════════════════════════════════════ */
+html body .poll,
+html body form.poll,
+html body ul.poll {
+	padding: 4px 0 0 !important;
+	color: var(--text) !important;
+	list-style: none !important;
+	margin: 0 !important;
+}
+html body .poll li,
+html body ul.poll > li,
+html body form.poll li {
+	list-style: none !important;
+	margin: 0 0 10px !important;
+	padding: 0 !important;
+	color: var(--text) !important;
+	font-size: 12.5px !important;
+	line-height: 1.35 !important;
+}
+html body .poll li:last-of-type {
+	margin-bottom: 2px !important;
+}
+html body .poll label,
+html body .poll li {
+	color: var(--text) !important;
+}
+/* TRACK */
+html body .poll .graph,
+html body ul.poll .graph,
+html body .poll li.graph {
+	display: block !important;
+	position: relative !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	height: 10px !important;
+	margin: 5px 0 2px !important;
+	padding: 0 !important;
+	border-radius: 999px !important;
+	overflow: hidden !important;
+		background: #120a08 !important;
+	background-image: linear-gradient(180deg, #1a100c, #0e0806) !important;
+	border: 1px solid rgba(255, 106, 26, 0.28) !important;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.55) !important;
+	float: none !important;
+	clear: both !important;
+}
+/* FILL (span width = %) */
+html body .poll .graph span,
+html body ul.poll .graph span,
+html body .poll li.graph span {
+	display: block !important;
+	float: left !important;
+	height: 100% !important;
+	min-height: 10px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border-radius: 999px !important;
+		background-color: #ff6a1a !important;
+	background-image: linear-gradient(90deg, #c84010, #ff6a1a, #ffc060) !important;
+	box-shadow: 0 0 10px rgba(255,106,26,0.5), inset 0 1px 0 rgba(255,255,255,0.18) !important;
+	filter: none !important;
+}
+html body .poll input[type="radio"] {
+	accent-color: #ff6a1a !important;
+	margin-right: 6px !important;
+}
+html body .poll input[type="submit"],
+html body .poll input[value="Vote"] {
+	margin-top: 10px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: Apollostage Phoenix Project logo (must be last)
+ * Exact stock wordmark from apollostage/style.css data URI (600×80).
+ * #logo markup: <div id="logo"><a href="index.php"></a></div>
+ * ══════════════════════════════════════════════════════════ */
+html body #header #logo > a,
+html body #wrapper #header #logo a,
+html body #header #logo a {
+	display: block !important;
+	width: 300px !important;
+	height: 100% !important;
+	min-height: 41px !important;
+	margin-top: 0 !important;
+	background-color: transparent !important;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAABQCAYAAADFqguYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDkuMS1jMDAxIDc5LmE4ZDQ3NTM0OSwgMjAyMy8wMy8yMy0xMzowNTo0NSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDI0LjYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTBFMDMyNURFQTY2MTFFRjk3ODA4RUQyRkZFMkMzMzYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTBFMDMyNUVFQTY2MTFFRjk3ODA4RUQyRkZFMkMzMzYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxMEUwMzI1QkVBNjYxMUVGOTc4MDhFRDJGRkUyQzMzNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxMEUwMzI1Q0VBNjYxMUVGOTc4MDhFRDJGRkUyQzMzNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgjRWhcAAB9RSURBVHja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) !important;
+	background-repeat: no-repeat !important;
+	background-position: left center !important;
+	background-size: contain !important;
+	filter: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	color: transparent !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	text-indent: 0 !important;
+	overflow: visible !important;
+}
+html body #header #logo, html body #wrapper #header #logo {
+	background-color: transparent !important;
+	background-image: none !important;
+	filter: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+ * Public login.php / mirage — single centered column
+ * Logo + form share the same horizontal center (stock-like)
+ * ══════════════════════════════════════════════════════════ */
+html body #maincontent {
+	text-align: center !important;
+}
+html body #maincontent .main {
+	display: table !important;
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0 !important;
+	text-align: center !important;
+}
+html body #maincontent .maincell {
+	display: table-cell !important;
+	vertical-align: middle !important;
+	text-align: center !important;
+	width: 100% !important;
+	padding: 40px 16px !important;
+}
+/* Stack logo + auth in one centered column */
+html body #maincontent .maincell {
+	/* children as inline-block stack */
+}
+html body #maincontent #logo {
+	display: block !important;
+	width: min(340px, 90vw) !important;
+	max-width: 340px !important;
+	min-width: 0 !important;
+	height: auto !important;
+	margin: 0 auto 24px !important;
+	padding: 0 !important;
+	text-align: center !important;
+	float: none !important;
+	background: transparent !important;
+	background-image: none !important;
+}
+html body #maincontent #logo a {
+	display: inline-block !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	background: none !important;
+	background-image: none !important;
+	float: none !important;
+	font-size: inherit !important;
+	line-height: normal !important;
+	color: inherit !important;
+}
+html body #maincontent #logo a img {
+	display: inline-block !important;
+	max-height: 4.2em !important;
+	width: auto !important;
+	max-width: min(340px, 90vw) !important;
+	margin: 0 auto !important;
+}
+html body #maincontent .auth,
+html body #maincontent .pwrecover {
+	display: block !important;
+	width: min(360px, 92vw) !important;
+	max-width: 360px !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	float: none !important;
+	text-align: center !important;
+}
+html body #maincontent form.auth_form,
+html body #maincontent .auth_form {
+	display: block !important;
+	width: max-content !important;
+	max-width: min(360px, 94vw) !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	text-align: left !important;
+	box-sizing: border-box !important;
+}
+html body #maincontent .auth_form > div {
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	gap: 12px !important;
+	margin: 0 0 12px !important;
+	padding: 0 !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+html body #maincontent .auth_form label {
+	flex: 0 0 96px !important;
+	width: 96px !important;
+	min-width: 96px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-align: right !important;
+	font-size: 0.9em !important;
+	line-height: 1.35 !important;
+	color: var(--text) !important;
+	display: block !important;
+}
+html body #maincontent .auth_form input.inputtext,
+html body #maincontent .auth_form input[type="text"],
+html body #maincontent .auth_form input[type="password"],
+html body #maincontent .auth_form input[type="email"] {
+	flex: 1 1 auto !important;
+	width: 240px !important;
+	max-width: 240px !important;
+	height: 32px !important;
+	margin: 0 !important;
+	box-sizing: border-box !important;
+}
+html body #maincontent .auth_form input[type="checkbox"] {
+	flex: 0 0 auto !important;
+	margin: 0 !important;
+	width: auto !important;
+}
+html body #maincontent #password_toggle {
+	flex: 0 0 auto !important;
+	margin-left: 2px !important;
+	cursor: pointer !important;
+}
+/* Submit row: center under the whole form (matches stock visual balance) */
+html body #maincontent .auth_form > div:has(input[type="submit"]),
+html body #maincontent .auth_form > div:has(.submit) {
+	display: flex !important;
+	justify-content: center !important;
+	padding-left: 108px !important; /* align under input column */
+	box-sizing: border-box !important;
+	margin-bottom: 4px !important;
+}
+html body #maincontent .auth_form input[type="submit"],
+html body #maincontent .auth_form .submit {
+	display: inline-block !important;
+	width: auto !important;
+	min-width: 96px !important;
+	margin: 4px 0 !important;
+	float: none !important;
+}
+html body #maincontent .auth_form > a,
+html body #maincontent .auth > a {
+	display: block !important;
+	text-align: center !important;
+	margin: 10px 0 0 !important;
+	padding-left: 108px !important;
+	box-sizing: border-box !important;
+	float: none !important;
+	width: 100% !important;
+}
+/* recovery link is sibling of form inside .auth */
+html body #maincontent .auth > a {
+	text-align: center !important;
+	margin-top: 10px !important;
+}
+/* Mirage Enter */
+html body #maincontent .actions,
+html body #maincontent .action-bar,
+html body #maincontent .enter {
+	display: block !important;
+	width: 100% !important;
+	text-align: center !important;
+	margin: 20px auto !important;
+}
+html body #maincontent .action-bar a,
+html body #maincontent .enter a {
+	display: inline-block !important;
+	float: none !important;
+	margin: 0 auto !important;
+}
+@media (max-width: 480px) {
+	html body #maincontent .auth_form > div {
+		flex-wrap: wrap !important;
+	}
+	html body #maincontent .auth_form label {
+		flex: 0 0 100% !important;
+		width: 100% !important;
+		text-align: left !important;
+	}
+	html body #maincontent .auth_form input.inputtext,
+	html body #maincontent .auth_form input[type="text"],
+	html body #maincontent .auth_form input[type="password"] {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	html body #maincontent .auth_form > div:has(input[type="submit"]),
+	html body #maincontent .auth_form > a {
+		padding-left: 0 !important;
+	}
+}
+
+
+/* ══════════════════════════════════════════════════════════
+ * Password recovery (login.php?action=recover) — .pwrecover
+ * First form row is title + help text (not label/input).
+ * ══════════════════════════════════════════════════════════ */
+html body #maincontent .pwrecover {
+	display: block !important;
+	width: min(440px, 94vw) !important;
+	max-width: 440px !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	float: none !important;
+	text-align: center !important;
+}
+html body #maincontent .pwrecover .auth_form,
+html body #maincontent .pwrecover form.auth_form {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 auto !important;
+	text-align: left !important;
+}
+/* Title + help prose */
+html body #maincontent .pwrecover .titletext {
+	display: block !important;
+	width: 100% !important;
+	text-align: center !important;
+	font-size: 1.05em !important;
+	font-weight: 600 !important;
+	color: var(--text) !important;
+	margin: 0 0 8px !important;
+}
+html body #maincontent .pwrecover .auth_form > div:first-child {
+	display: block !important;
+	width: 100% !important;
+	margin: 0 0 18px !important;
+	padding: 0 !important;
+	text-align: center !important;
+	flex-flow: unset !important;
+	gap: 0 !important;
+}
+html body #maincontent .pwrecover .auth_form > div:first-child p {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 0 10px !important;
+	padding: 0 !important;
+	text-align: center !important;
+	font-size: 0.92em !important;
+	line-height: 1.45 !important;
+	color: var(--text-dimmed) !important;
+}
+html body #maincontent .pwrecover .auth_form > div:first-child br {
+	display: none !important; /* spacing via margins */
+}
+/* Email row — same label+input pattern as login */
+html body #maincontent .pwrecover .auth_form > div:has(label) {
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 12px !important;
+	margin: 0 0 14px !important;
+	width: 100% !important;
+}
+html body #maincontent .pwrecover .auth_form label {
+	flex: 0 0 110px !important;
+	width: 110px !important;
+	min-width: 110px !important;
+	text-align: right !important;
+	margin: 0 !important;
+	color: var(--text) !important;
+	font-size: 0.9em !important;
+}
+html body #maincontent .pwrecover .auth_form input.inputtext,
+html body #maincontent .pwrecover .auth_form input[type="text"],
+html body #maincontent .pwrecover .auth_form input[type="email"] {
+	flex: 0 1 240px !important;
+	width: 240px !important;
+	max-width: min(240px, 55vw) !important;
+	height: 32px !important;
+	margin: 0 !important;
+}
+/* Submit centered under form */
+html body #maincontent .pwrecover .auth_form > div:has(input[type="submit"]),
+html body #maincontent .pwrecover .auth_form > div:has(.submit) {
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding-left: 0 !important;
+	margin: 8px 0 0 !important;
+	width: 100% !important;
+}
+html body #maincontent .pwrecover .auth_form input[type="submit"],
+html body #maincontent .pwrecover .auth_form .submit {
+	display: inline-block !important;
+	margin: 0 auto !important;
+	float: none !important;
+}
+@media (max-width: 480px) {
+	html body #maincontent .pwrecover .auth_form > div:has(label) {
+		flex-wrap: wrap !important;
+	}
+	html body #maincontent .pwrecover .auth_form label {
+		flex: 0 0 100% !important;
+		width: 100% !important;
+		text-align: left !important;
+	}
+	html body #maincontent .pwrecover .auth_form input.inputtext {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 1 1 100% !important;
+	}
+}
+

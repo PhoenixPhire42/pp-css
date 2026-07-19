@@ -1,0 +1,7 @@
+# Local-only ops notes (keep private)
+ANONYMOUS.md
+.DS_Store
+*.swp
+.idea/
+.vscode/
+'''
