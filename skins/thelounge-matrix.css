@@ -1,0 +1,903 @@
+/*
+ * The Lounge — Matrix Theme
+ * Green-on-black terminal palette for The Lounge IRC client.
+ *
+ * Install: Settings → Advanced → Custom Stylesheet (paste contents),
+ * or load via URL if your Lounge host supports external theme CSS.
+ *
+ * CDN:
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/thelounge-matrix.css
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css
+ *
+ * Failsafe: add ?nocss to the Lounge URL if something breaks.
+ * Source: https://github.com/PhoenixPhire42/pp-css
+ */
+
+/* ── Core tokens ─────────────────────────────────────────── */
+:root {
+	--matrix-green: #00ff41;
+	--matrix-green-dim: #00b32d;
+	--matrix-green-bright: #39ff14;
+	--matrix-green-glow: #00ff4180;
+	--matrix-green-faint: #00ff4114;
+	--matrix-black: #000000;
+	--matrix-bg: #020402;
+	--matrix-panel: #050a06;
+	--matrix-panel-2: #0a120c;
+	--matrix-border: #0f2a14;
+	--matrix-muted: #3d6b45;
+	--matrix-text: #a8ffb0;
+	--matrix-text-bright: #c8ffc8;
+	--matrix-danger: #ff3355;
+	--matrix-warn: #ffcc00;
+	--matrix-info: #33ccff;
+
+	/* The Lounge variables */
+	--body-color: var(--matrix-text);
+	--body-color-muted: var(--matrix-muted);
+	--body-bg-color: var(--matrix-bg);
+	--button-color: var(--matrix-green);
+	--button-text-color-hover: #000;
+	--overlay-bg-color: rgb(0 0 0 / 75%);
+	--link-color: var(--matrix-green-bright);
+	--window-bg-color: var(--matrix-bg);
+	--form-bg-color: var(--matrix-panel);
+	--window-heading-color: var(--matrix-green);
+	--date-marker-color: rgb(0 255 65 / 45%);
+	--unread-marker-color: rgb(57 255 20 / 55%);
+	--highlight-bg-color: rgb(0 255 65 / 10%);
+	--highlight-border-color: var(--matrix-green);
+	--upload-progressbar-color: var(--matrix-green);
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+html,
+body {
+	background: var(--matrix-bg) !important;
+	color: var(--matrix-text) !important;
+	font-family: "Share Tech Mono", "Fira Code", "Cascadia Code", Consolas, Menlo, Monaco, "Courier New", monospace !important;
+	text-shadow: 0 0 1px rgb(0 255 65 / 15%);
+}
+
+::placeholder {
+	color: rgb(0 255 65 / 30%) !important;
+}
+
+a,
+a:hover,
+a:focus {
+	color: var(--matrix-green-bright) !important;
+}
+
+a:hover {
+	text-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+/* Subtle CRT scanlines + vignette */
+body::before {
+	content: "";
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 99998;
+	background:
+		repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 2px,
+			rgb(0 0 0 / 8%) 2px,
+			rgb(0 0 0 / 8%) 4px
+		);
+	opacity: 0.45;
+}
+
+body::after {
+	content: "";
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	z-index: 99997;
+	background: radial-gradient(ellipse at center, transparent 50%, rgb(0 0 0 / 55%) 100%);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+	border-color: var(--matrix-green) !important;
+	color: var(--matrix-green) !important;
+	background: transparent !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+	box-shadow: 0 0 0 0 transparent;
+	letter-spacing: 1px;
+}
+
+.btn:disabled,
+.btn:hover,
+.btn:focus {
+	background: var(--matrix-green) !important;
+	color: #000 !important;
+	text-shadow: none;
+	box-shadow: 0 0 12px var(--matrix-green-glow);
+}
+
+.input:focus,
+.btn:active,
+.btn:focus {
+	box-shadow: 0 0 0 3px rgb(0 255 65 / 35%) !important;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.input {
+	background-color: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-border) !important;
+	color: var(--matrix-text) !important;
+	border-radius: 0 !important;
+}
+
+.input:disabled {
+	background-color: #0a0a0a !important;
+	opacity: 0.5;
+}
+
+.input:not(:disabled):hover,
+.input:not(:disabled):focus {
+	border-color: var(--matrix-green) !important;
+	box-shadow: 0 0 8px var(--matrix-green-faint);
+}
+
+/* ── Code / pre ──────────────────────────────────────────── */
+code,
+.irc-monospace {
+	color: var(--matrix-green-bright) !important;
+	background-color: rgb(0 255 65 / 8%) !important;
+	border: 1px solid var(--matrix-border);
+}
+
+pre {
+	color: var(--matrix-text) !important;
+	background-color: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-border);
+}
+
+kbd {
+	color: var(--matrix-green) !important;
+	text-shadow: none;
+	background-color: var(--matrix-panel) !important;
+	background-image: none !important;
+	border: 1px solid var(--matrix-green-dim) !important;
+	box-shadow: none !important;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+#sidebar {
+	background: var(--matrix-panel) !important;
+	color: var(--matrix-muted) !important;
+	border-right: 1px solid var(--matrix-border);
+	box-shadow: inset -1px 0 20px rgb(0 255 65 / 4%);
+}
+
+#sidebar .logo {
+	display: none !important;
+}
+
+#sidebar .logo-inverted {
+	display: inline-block !important;
+	filter: hue-rotate(90deg) saturate(2) brightness(1.2);
+	opacity: 0.85;
+}
+
+.channel-list-item {
+	color: var(--matrix-muted) !important;
+	border-left: 2px solid transparent;
+	transition: color 0.15s, background 0.15s, border-color 0.15s, text-shadow 0.15s;
+}
+
+#footer button:hover,
+#footer button.active,
+.channel-list-item:hover,
+.channel-list-item.active {
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+.channel-list-item:hover,
+#footer button:hover {
+	background-color: rgb(0 255 65 / 8%) !important;
+}
+
+#footer button.active,
+.channel-list-item.active {
+	background-color: rgb(0 255 65 / 12%) !important;
+	border-left-color: var(--matrix-green);
+	box-shadow: inset 0 0 20px rgb(0 255 65 / 6%);
+}
+
+.channel-list-item[data-type="lobby"] {
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+.channel-list-item[data-type="lobby"]:hover,
+.channel-list-item[data-type="lobby"].active {
+	color: var(--matrix-green-bright) !important;
+}
+
+.channel-list-item.not-secure {
+	color: var(--matrix-warn) !important;
+}
+
+.channel-list-item.not-connected,
+.channel-list-item.parted-channel {
+	color: var(--matrix-danger) !important;
+}
+
+.channel-list-item .badge {
+	background: rgb(0 255 65 / 12%) !important;
+	color: var(--matrix-green) !important;
+	border: 1px solid var(--matrix-border);
+	border-radius: 0 !important;
+	font-family: inherit;
+}
+
+.channel-list-item .badge.highlight {
+	background: var(--matrix-green) !important;
+	color: #000 !important;
+	border-color: var(--matrix-green);
+	box-shadow: 0 0 10px var(--matrix-green-glow);
+}
+
+.channel-list-item .close::before,
+.channel-list-item[data-type="lobby"] .add-channel::before {
+	color: var(--matrix-green) !important;
+}
+
+#sidebar .network .collapse-network-icon::before {
+	color: var(--matrix-green) !important;
+}
+
+.ui-sortable-ghost::after,
+.ui-sortable-dragging-touch-cue:not(.ui-sortable-dragging)::after {
+	background: var(--matrix-panel) !important;
+	border: 1px dashed var(--matrix-green-dim) !important;
+}
+
+/* Jump-to search */
+.jump-to-input .search,
+#channel-search-input {
+	background: var(--matrix-panel-2) !important;
+	border: 1px solid var(--matrix-border) !important;
+	color: var(--matrix-text) !important;
+	border-radius: 0 !important;
+}
+
+/* Footer icons */
+#footer {
+	border-top: 1px solid var(--matrix-border);
+	background: var(--matrix-panel);
+}
+
+#footer button {
+	color: var(--matrix-muted) !important;
+	border-radius: 0 !important;
+}
+
+#footer .help.notified::after {
+	color: var(--matrix-green) !important;
+	background: var(--matrix-bg) !important;
+}
+
+/* ── Main window / chat ──────────────────────────────────── */
+.window {
+	background: var(--matrix-bg) !important;
+	color: var(--matrix-text);
+}
+
+#chat .header {
+	border-bottom: 1px solid var(--matrix-border) !important;
+	background: var(--matrix-panel);
+	box-shadow: 0 1px 0 rgb(0 255 65 / 8%);
+}
+
+.header .title {
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 8px var(--matrix-green-glow);
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+.header .topic {
+	color: var(--matrix-muted) !important;
+}
+
+.header .topic-input {
+	border: 1px solid var(--matrix-border) !important;
+	color: var(--matrix-text) !important;
+	background: var(--matrix-panel-2) !important;
+}
+
+.topic-container .save-topic span {
+	color: var(--matrix-green) !important;
+}
+
+#viewport .lt,
+#viewport .rt,
+#chat button.mentions,
+#chat button.search,
+#chat button.menu,
+#chat button.close {
+	color: var(--matrix-green-dim) !important;
+}
+
+#viewport .lt:hover,
+#viewport .rt:hover,
+#chat button.mentions:hover,
+#chat button.search:hover,
+#chat button.menu:hover {
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+#viewport .lt::after {
+	background-color: var(--matrix-green) !important;
+	border-color: var(--matrix-bg) !important;
+	box-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+/* Message search in header */
+.message-search .input {
+	background: var(--matrix-panel-2) !important;
+	border-color: var(--matrix-border) !important;
+	color: var(--matrix-text) !important;
+}
+
+/* ── Messages ────────────────────────────────────────────── */
+#chat .time {
+	color: var(--matrix-muted) !important;
+	opacity: 0.85;
+}
+
+#chat .content {
+	border-left: 1px solid var(--matrix-border) !important;
+	color: var(--matrix-text);
+}
+
+#chat .self .content {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .msg[data-type="condensed"] .content,
+#chat .msg[data-type="away"] .content,
+#chat .msg[data-type="back"] .content,
+#chat .msg[data-type="join"] .content,
+#chat .msg[data-type="kick"] .content,
+#chat .msg[data-type="mode"] .content,
+#chat .msg[data-type="nick"] .content,
+#chat .msg[data-type="chghost"] .content,
+#chat .msg[data-type="part"] .content,
+#chat .msg[data-type="quit"] .content,
+#chat .msg[data-type="topic"] .content,
+#chat .msg[data-type="topic_set_by"] .content {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .msg[data-type="action"] .from,
+#chat .msg[data-type="action"] .content,
+#chat .msg[data-type="action"] .user {
+	color: var(--matrix-warn) !important;
+	text-shadow: 0 0 4px rgb(255 204 0 / 30%);
+}
+
+#chat .msg[data-type="notice"] .time,
+#chat .msg[data-type="wallops"] .time,
+#chat .msg[data-type="notice"] .content,
+#chat .msg[data-type="wallops"] .content,
+#chat .msg[data-type="notice"] .user,
+#chat .msg[data-type="wallops"] .user {
+	color: var(--matrix-info) !important;
+}
+
+#chat .msg[data-type="error"],
+#chat .msg[data-type="error"] .from {
+	color: var(--matrix-danger) !important;
+	text-shadow: 0 0 6px rgb(255 51 85 / 40%);
+}
+
+#chat .msg[data-type="warn"],
+#chat .msg[data-type="warn"] .from {
+	color: var(--matrix-warn) !important;
+}
+
+#chat .msg[data-type="note"],
+#chat .msg[data-type="note"] .from {
+	color: var(--matrix-info) !important;
+}
+
+/* Highlights — green cascade */
+#chat .chat-view[data-type="channel"] .msg.highlight {
+	background-color: var(--highlight-bg-color) !important;
+	border-left: 5px solid var(--matrix-green) !important;
+	box-shadow: inset 0 0 30px rgb(0 255 65 / 6%);
+}
+
+#chat .chat-view[data-type="channel"] .msg.highlight .time {
+	color: var(--matrix-green-dim) !important;
+}
+
+#chat .chat-view[data-type="channel"] .msg.highlight .content {
+	border-left-color: transparent !important;
+}
+
+/* Date / unread markers */
+#chat .date-marker::before {
+	border-top-color: var(--date-marker-color) !important;
+}
+
+#chat .date-marker-text::before {
+	background-color: var(--matrix-bg) !important;
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+#chat .unread-marker::before {
+	border-top-color: var(--unread-marker-color) !important;
+}
+
+#chat .unread-marker-text::before {
+	background-color: var(--matrix-bg) !important;
+	color: var(--matrix-green-bright) !important;
+	text-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+/* Status message icons */
+#chat .msg[data-type="join"] .from::before,
+#chat .msg[data-type="topic"] .from::before,
+#chat .msg[data-type="mode_channel"] .from::before,
+#chat .msg[data-type="mode_user"] .from::before,
+#chat .msg[data-type="mode"] .from::before,
+#chat .msg[data-type="whois"] .from::before,
+#chat .msg[data-type="nick"] .from::before,
+#chat .msg[data-type="chghost"] .from::before,
+#chat .msg[data-type="invite"] .from::before,
+#chat .msg[data-type="login"] .from::before {
+	color: var(--matrix-green) !important;
+}
+
+#chat .msg[data-type="part"] .from::before,
+#chat .msg[data-type="quit"] .from::before,
+#chat .msg[data-type="kick"] .from::before,
+#chat .msg[data-type="logout"] .from::before {
+	color: var(--matrix-danger) !important;
+}
+
+#chat .msg[data-type="away"] .from::before,
+#chat .msg[data-type="back"] .from::before {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .msg[data-type="monospace_block"] .text {
+	background: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-border);
+	color: var(--matrix-green-bright);
+}
+
+#chat .msg-statusmsg {
+	background-color: var(--matrix-warn) !important;
+	color: #000 !important;
+}
+
+/* Hover wash on messages */
+#chat .msg:hover {
+	background: rgb(0 255 65 / 3%);
+}
+
+/* Reply context */
+#chat .msg .reply-context {
+	color: var(--matrix-muted) !important;
+	border: 1px solid var(--matrix-border);
+	background: var(--matrix-panel);
+}
+
+#chat .msg .reply-context:not(.disabled):hover {
+	background: rgb(0 255 65 / 8%) !important;
+	color: var(--matrix-text) !important;
+}
+
+#chat .msg .msg-actions {
+	background: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-border) !important;
+	box-shadow: 0 0 12px rgb(0 0 0 / 60%), 0 0 4px var(--matrix-green-faint) !important;
+	border-radius: 0 !important;
+}
+
+#chat .msg .msg-actions button {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .msg .msg-actions button:hover,
+#chat .msg .msg-actions button:focus-visible {
+	background: rgb(0 255 65 / 12%) !important;
+	color: var(--matrix-green) !important;
+}
+
+/* ── Nick colors — Matrix-tinted palette ─────────────────── */
+.user {
+	color: var(--matrix-green) !important;
+}
+
+/* Soft matrix-friendly nick palette — no neon reds */
+.user.color-1  { color: #33ff99 !important; }
+.user.color-2  { color: #66ff66 !important; }
+.user.color-3  { color: #00cc66 !important; }
+.user.color-4  { color: #99ff33 !important; }
+.user.color-5  { color: #c98a7a !important; }  /* muted rose */
+.user.color-6  { color: #33cccc !important; }
+.user.color-7  { color: #00ff99 !important; }
+.user.color-8  { color: #66ccff !important; }
+.user.color-9  { color: #d4a0b8 !important; }  /* soft pink */
+.user.color-10 { color: #00ff66 !important; }
+.user.color-11 { color: #33ff66 !important; }
+.user.color-12 { color: #00e6b8 !important; }
+.user.color-13 { color: #66ffcc !important; }
+.user.color-14 { color: #c990a0 !important; }  /* dusty rose */
+.user.color-15 { color: #d4a574 !important; }  /* warm amber */
+.user.color-16 { color: #39ff14 !important; }
+.user.color-17 { color: #c98aaa !important; }
+.user.color-18 { color: #c98870 !important; }  /* muted coral */
+.user.color-19 { color: #c98088 !important; }
+.user.color-20 { color: #00dd88 !important; }
+.user.color-21 { color: #44aaff !important; }
+.user.color-22 { color: #6688ff !important; }
+.user.color-23 { color: #00ccaa !important; }
+.user.color-24 { color: #5599ff !important; }
+.user.color-25 { color: #00bbdd !important; }
+.user.color-26 { color: #44ff77 !important; }
+.user.color-27 { color: #00aadd !important; }
+.user.color-28 { color: #88ff33 !important; }
+.user.color-29 { color: #c988a8 !important; }
+.user.color-30 { color: #d4a060 !important; }  /* soft amber */
+.user.color-31 { color: #b88878 !important; }  /* bighope etc — muted clay, not fire-engine red */
+.user.color-32 { color: #c080a0 !important; }
+
+/* Gentle nick glow (low intensity so reds don't scream) */
+#chat .from .user,
+#chat .userlist .user {
+	text-shadow: 0 0 2px rgb(0 0 0 / 40%);
+}
+
+/* Optional: pin a specific nick to a calm color regardless of hash */
+#chat .msg .user[data-name="bighope" i],
+#chat .userlist .names .user[data-name="bighope" i] {
+	color: #a8c49a !important; /* soft sage-green, matrix-adjacent */
+	text-shadow: 0 0 2px rgb(0 0 0 / 40%);
+}
+
+/* ── User list ───────────────────────────────────────────── */
+#chat .userlist {
+	border-left: 1px solid var(--matrix-border) !important;
+	background: var(--matrix-panel);
+}
+
+#chat .userlist .count {
+	background: var(--matrix-panel-2) !important;
+	border-bottom: 1px solid var(--matrix-border);
+}
+
+#chat .userlist .search {
+	color: var(--matrix-text) !important;
+}
+
+#chat .count::before {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .user-mode::before {
+	background: var(--matrix-panel) !important;
+	color: var(--matrix-green) !important;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.75em !important;
+	text-shadow: 0 0 4px var(--matrix-green-glow);
+	border-bottom: 1px solid var(--matrix-border);
+}
+
+#chat .userlist .user.active {
+	background-color: rgb(0 255 65 / 12%) !important;
+}
+
+.user-bot-indicator {
+	color: var(--matrix-muted) !important;
+}
+
+/* ── Input form ──────────────────────────────────────────── */
+#form {
+	border-top: 1px solid var(--matrix-border) !important;
+	background: var(--matrix-panel) !important;
+	box-shadow: 0 -1px 20px rgb(0 255 65 / 4%);
+}
+
+#form #nick {
+	background: var(--matrix-panel-2) !important;
+	color: var(--matrix-green) !important;
+	border: 1px solid var(--matrix-border);
+	border-radius: 0 !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+#form #input {
+	color: var(--matrix-text) !important;
+	caret-color: var(--matrix-green);
+}
+
+#form #input:focus {
+	text-shadow: 0 0 2px rgb(0 255 65 / 20%);
+}
+
+#form #upload,
+#form #submit {
+	color: var(--matrix-green) !important;
+}
+
+#form #upload:hover,
+#form #submit:hover {
+	text-shadow: 0 0 10px var(--matrix-green-glow);
+	opacity: 1 !important;
+}
+
+#form .reply-bar {
+	background: var(--matrix-panel-2) !important;
+	border-bottom: 1px solid var(--matrix-border) !important;
+	color: var(--matrix-muted) !important;
+}
+
+#form .reply-bar-close {
+	color: var(--matrix-muted) !important;
+}
+
+#form .reply-bar-close:hover {
+	color: var(--matrix-green) !important;
+}
+
+#user-visible-error {
+	background: var(--matrix-danger) !important;
+	color: #fff !important;
+}
+
+/* ── Link previews ───────────────────────────────────────── */
+#chat .toggle-content {
+	background: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-border);
+	box-shadow: 0 0 12px rgb(0 0 0 / 50%), 0 0 1px var(--matrix-green-glow) !important;
+	border-radius: 0 !important;
+}
+
+#chat .toggle-type-error,
+#chat .toggle-text .body {
+	color: var(--matrix-muted) !important;
+}
+
+#chat .toggle-content .more {
+	color: var(--matrix-green) !important;
+}
+
+/* ── Scroll-down button ──────────────────────────────────── */
+.scroll-down-arrow {
+	background: var(--matrix-panel) !important;
+	color: var(--matrix-green) !important;
+	border-color: var(--matrix-green) !important;
+	border-radius: 0 !important;
+	box-shadow: 0 0 12px var(--matrix-green-glow) !important;
+}
+
+.scroll-down:hover .scroll-down-arrow {
+	background: var(--matrix-green) !important;
+	color: #000 !important;
+}
+
+/* ── Context menus / autocomplete / mentions ─────────────── */
+.mentions-popup,
+#context-menu,
+.textcomplete-menu {
+	background-color: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-green-dim) !important;
+	box-shadow: 0 0 20px rgb(0 0 0 / 80%), 0 0 8px var(--matrix-green-faint) !important;
+	border-radius: 0 !important;
+	color: var(--matrix-text);
+}
+
+.context-menu-divider {
+	background-color: var(--matrix-border) !important;
+}
+
+.context-menu-item,
+.textcomplete-item {
+	color: var(--matrix-text) !important;
+	border-radius: 0 !important;
+}
+
+.context-menu-item.active,
+.textcomplete-item:focus,
+.textcomplete-item:hover,
+.textcomplete-menu .active {
+	background-color: rgb(0 255 65 / 15%) !important;
+	color: var(--matrix-green) !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+.textcomplete-item a {
+	color: var(--matrix-text) !important;
+}
+
+/* ── Dialogs / overlays ──────────────────────────────────── */
+#confirm-dialog {
+	background: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-green) !important;
+	color: var(--matrix-text);
+	box-shadow: 0 0 30px rgb(0 0 0 / 80%), 0 0 15px var(--matrix-green-faint);
+	border-radius: 0 !important;
+}
+
+#confirm-dialog-overlay,
+#upload-overlay,
+#sidebar-overlay {
+	background: var(--overlay-bg-color) !important;
+}
+
+.btn-danger {
+	border-color: var(--matrix-danger) !important;
+	color: var(--matrix-danger) !important;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+	background: var(--matrix-danger) !important;
+	color: #fff !important;
+}
+
+/* ── Settings / windows / tables ─────────────────────────── */
+.window h2,
+.window h3,
+.window#changelog h3 {
+	color: var(--matrix-green) !important;
+	border-bottom-color: var(--matrix-border) !important;
+	text-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+#chat table.channel-list th,
+#chat table.ban-list th,
+#chat table.invite-list th,
+#chat table.ignore-list th,
+#chat table.channel-list td,
+#chat table.ban-list td,
+#chat table.invite-list td {
+	border-bottom-color: var(--matrix-border) !important;
+}
+
+/* Sign-in */
+#sign-in .error {
+	color: var(--matrix-danger) !important;
+}
+
+#loading .logo,
+.window .logo {
+	display: none !important;
+}
+
+#loading .logo-inverted,
+.window .logo-inverted {
+	display: inline-block !important;
+	filter: hue-rotate(90deg) saturate(2) brightness(1.2);
+}
+
+/* Version checker banners */
+#version-checker.loading {
+	background-color: rgb(0 80 100 / 40%) !important;
+	color: var(--matrix-info) !important;
+}
+
+#version-checker.new-version,
+#version-checker.new-packages {
+	color: var(--matrix-warn) !important;
+	background-color: rgb(80 60 0 / 40%) !important;
+}
+
+#version-checker.error {
+	color: var(--matrix-danger) !important;
+	background-color: rgb(80 0 20 / 40%) !important;
+}
+
+#version-checker.up-to-date {
+	background-color: rgb(0 80 20 / 40%) !important;
+	color: var(--matrix-green) !important;
+}
+
+/* Password reveal */
+.password-container .reveal-password span {
+	color: var(--matrix-green-dim) !important;
+}
+
+.password-container .reveal-password-visible span::before {
+	color: var(--matrix-danger) !important;
+}
+
+/* Image viewer */
+#image-viewer {
+	background: rgb(0 0 0 / 92%);
+}
+
+/* ── IRC color overrides for dark bg ─────────────────────── */
+/* White text on dark is fine; pure black fg needs a lift */
+.irc-fg1 { color: #666 !important; }
+.irc-fg0 { color: #e0ffe0 !important; }
+.irc-fg98 { color: #e0ffe0 !important; }
+
+/* ── Scrollbars (WebKit + Firefox) ───────────────────────── */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--matrix-green-dim) var(--matrix-panel);
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: var(--matrix-panel);
+}
+
+*::-webkit-scrollbar-thumb {
+	background: var(--matrix-green-dim);
+	border: 1px solid var(--matrix-border);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: var(--matrix-green);
+	box-shadow: 0 0 6px var(--matrix-green-glow);
+}
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection {
+	background: rgb(0 255 65 / 35%);
+	color: #fff;
+}
+
+/* ── Tooltips ────────────────────────────────────────────── */
+.tooltipped::after {
+	background: var(--matrix-panel) !important;
+	border: 1px solid var(--matrix-green-dim);
+	color: var(--matrix-green) !important;
+	box-shadow: 0 0 10px var(--matrix-green-faint);
+	border-radius: 0 !important;
+	font-family: inherit;
+}
+
+.tooltipped-s::before,
+.tooltipped-n::before,
+.tooltipped-e::before,
+.tooltipped-w::before,
+.tooltipped-se::before,
+.tooltipped-sw::before,
+.tooltipped-ne::before,
+.tooltipped-nw::before {
+	border-top-color: var(--matrix-green-dim) !important;
+	border-bottom-color: var(--matrix-green-dim) !important;
+}
+
+/* ── Optional: chevrons around nicks (classic terminal feel) ─ */
+#chat .msg[data-type="message"] .from .user::before {
+	content: "<";
+	color: var(--matrix-muted);
+	margin-right: 1px;
+}
+
+#chat .msg[data-type="message"] .from .user::after {
+	content: ">";
+	color: var(--matrix-muted);
+	margin-left: 1px;
+}
+
+/* ── Optional: disable scanlines — uncomment to turn off CRT ─
+body::before,
+body::after {
+	display: none !important;
+}
+*/
