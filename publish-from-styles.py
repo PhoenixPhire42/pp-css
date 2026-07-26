@@ -50,6 +50,17 @@ SKINS = {
  */
 """,
     },
+    "phoenix-synth.css": {
+        "header": """/*
+ * Phoenix Project — Synth
+ * 80s synthwave (magenta / violet / cyan neon).
+ * External stylesheet URL (ApolloStage base recommended).
+ * Pure CSS — no userscript required. Self-contained layout + theme.
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css
+ */
+""",
+    },
 }
 
 
