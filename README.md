@@ -1,6 +1,6 @@
 # Phoenix Project (PP) skins
 
-Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, and related clients.
+Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, BroadcasTheNet (BTN), and related clients.
 
 - No userscript required  
 - Install via the site’s **External stylesheet URL** (or Custom Stylesheet paste)  
@@ -35,6 +35,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
+| **BTN Modern Dark** | BroadcasTheNet slate + sky cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -95,6 +96,26 @@ https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/redacted-synt
 
 Self-contained synthwave theme (no monkie userscript). If the site also loads a stock skin, disable or set it to a minimal base so it doesn’t fight the standalone sheet.
 
+### BroadcasTheNet Modern Dark — install (broadcasthe.net)
+
+1. Log in → **Edit** (user settings) → stylesheet / external CSS  
+2. Keep a dark base if required (e.g. **darknround**)  
+3. Set **External stylesheet URL** to:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
+```
+
+4. Save → hard-refresh  
+
+Raw GitHub:
+
+```text
+https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/broadcasthe-dark.css
+```
+
+Modern slate surfaces + sky cyan accents; wider content, card boxes, cleaned potato-menu nav.
+
 ### The Lounge Matrix — install
 
 1. Open The Lounge → **Settings** → enable **Advanced**
@@ -125,6 +146,7 @@ skins/phoenix-neo.css
 skins/phoenix-synth.css
 skins/orpheus-matrix.css
 skins/redacted-synth.css
+skins/broadcasthe-dark.css
 skins/thelounge-matrix.css
 ```
 

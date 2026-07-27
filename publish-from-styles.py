@@ -85,6 +85,16 @@ SKINS = {
         # Monkie gates polish on html[data-monkies-redacted-skin="synth"]; drop for public.
         "rewrite_skin_attr": "synth",
     },
+    "broadcasthe-dark.css": {
+        "header": """/*
+ * BroadcasTheNet — Modern Dark
+ * Deep slate + sky cyan for broadcasthe.net (BTN).
+ * External CSS overlay (works on darknround base). Pure CSS — no userscript required.
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css
+ */
+""",
+    },
 }
 
 
