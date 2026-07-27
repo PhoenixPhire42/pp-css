@@ -72,6 +72,19 @@ SKINS = {
  */
 """,
     },
+    "redacted-synth.css": {
+        "header": """/*
+ * Redacted — Synth
+ * 80s synthwave (magenta / violet / cyan neon) for redacted.sh.
+ * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
+ * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css
+ */
+""",
+        # Monkie gates polish on html[data-monkies-redacted-skin="synth"]; drop for public.
+        "rewrite_skin_attr": "synth",
+    },
 }
 
 
@@ -122,11 +135,26 @@ def soft_clean(css: str) -> str:
     return "".join(cleaned)
 
 
-def build_one(src: Path, dest: Path, header: str) -> None:
+def rewrite_monkies_skin_attr(css: str, skin: str) -> str:
+    """Public external CSS has no monkie userscript — ungate html[data-*-skin="…"] rules."""
+    if not skin:
+        return css
+    # html[data-monkies-redacted-skin="synth"] → html
+    # html[data-monkies-orpheus-skin="matrix"] → html  (if ever needed)
+    pat = re.compile(
+        r'html\[data-monkies-[a-z0-9-]*skin\s*=\s*["\']' + re.escape(skin) + r'["\']\]',
+        re.I,
+    )
+    return pat.sub("html", css)
+
+
+def build_one(src: Path, dest: Path, header: str, rewrite_skin_attr: str | None = None) -> None:
     css = src.read_text(encoding="utf-8")
     css = rewrite_header(css, header)
     css = soft_clean(css)
     css = strip_internal_dnu_attr_rules(css)
+    if rewrite_skin_attr:
+        css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
     open_b, close_b = css.count("{"), css.count("}")
     if open_b != close_b:
         raise SystemExit(f"brace mismatch in {src.name}: {{ {open_b} }} {close_b}")
@@ -149,13 +177,18 @@ def main() -> None:
         print(f"styles dir not found: {styles}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Publishing PP skins from {styles}")
+    print(f"Publishing skins from {styles}")
     for name, meta in SKINS.items():
         src = styles / name
         if not src.is_file():
             print(f"  skip missing {src}")
             continue
-        build_one(src, HERE / "skins" / name, meta["header"])
+        build_one(
+            src,
+            HERE / "skins" / name,
+            meta["header"],
+            rewrite_skin_attr=meta.get("rewrite_skin_attr"),
+        )
 
     print("Done. Commit, tag, push — see README.md for jsDelivr URLs.")
 

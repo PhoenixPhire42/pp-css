@@ -1,11 +1,11 @@
 # Phoenix Project (PP) skins
 
-Pure CSS themes for phoenixproject.app, Orpheus Network, and related clients.
+Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, and related clients.
 
 - No userscript required  
 - Install via the site’s **External stylesheet URL** (or Custom Stylesheet paste)  
 - PP base stylesheet: **ApolloStage** (recommended for PP skins)  
-- OPS Matrix is **self-contained** (no stock skin required)
+- OPS Matrix and RED Synth are **self-contained** (no stock skin required)
 
 Also includes a **The Lounge** Matrix theme (paste into Custom Stylesheet).
 
@@ -34,6 +34,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Flame** | Ember + fire accents | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
+| **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -69,6 +70,31 @@ https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/orpheus-matri
 
 Self-contained: no monkie userscript, no stock Apollostage dependency.
 
+### Redacted Synth — install (redacted.sh)
+
+1. Log in → **Edit** (user settings) → appearance / stylesheet  
+2. Set **External stylesheet URL** to:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/redacted-synth.css
+```
+
+3. Save → hard-refresh  
+
+Prefer a version tag when available:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css
+```
+
+Raw GitHub:
+
+```text
+https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/redacted-synth.css
+```
+
+Self-contained synthwave theme (no monkie userscript). If the site also loads a stock skin, disable or set it to a minimal base so it doesn’t fight the standalone sheet.
+
 ### The Lounge Matrix — install
 
 1. Open The Lounge → **Settings** → enable **Advanced**
@@ -98,6 +124,7 @@ skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css
 skins/orpheus-matrix.css
+skins/redacted-synth.css
 skins/thelounge-matrix.css
 ```
 
