@@ -322,7 +322,7 @@ strong.important_text {
 }
 
 strong.important_text_alt {
-    color: #00f5a0
+    color: #3aefc8
 }
 
 .error, .invalid, .new, .r00, .r01, .r02, .r03, .warning {
@@ -334,12 +334,12 @@ strong.important_text_alt {
 }
 
 .r10, .r20, .r50, .r99, .vote_tag_up {
-    color: #00f5a0
+    color: #3aefc8
 }
 
 .small_upvote, .small_upvoted, .vote_album_up, .vote_artist_up, .vote_tag_up {
     font-weight: bolder;
-    color: #00f5a0
+    color: #3aefc8
 }
 
 .small_downvote, .small_downvoted, .vote_album_down, .vote_artist_down, .vote_tag_down {
@@ -1774,7 +1774,7 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
 
     @keyframes fx-borderpop-good {
         0% {
-            border: thick solid #00f5a0
+            border: thick solid #3aefc8
         }
 
         70% {
@@ -2868,7 +2868,8 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
 	--selection-fg: #efe6ff;
 	--danger: #ff2a6d;
 	--warn: #ffb703;
-	--ok: #00f5a0;
+	/* Cyan-mint “good” (ratio/seeders) — synth-native, not Neo Matrix green */
+	--ok: #3aefc8;
 	/* Neon heads */
 	--head-text: #ff6bcb;
 	--head-text-soft: #c77dff;
@@ -3286,16 +3287,36 @@ table.collage_table,
 
 table .rowa,
 table tr.rowa td {
-	background: var(--background-accent) !important;
+	background: #140a2e !important;
 }
 
 table .rowb,
 table tr.rowb td {
-	background: #12082a !important;
+	background: #0e0622 !important;
+}
+
+/* Slightly stronger zebra contrast for scanability */
+table.torrent_table tr.rowa td,
+table.torrent_table tr.rowb td {
+	border-bottom-color: rgba(61, 31, 110, 0.55) !important;
 }
 
 table tr:hover td {
-	background: #1a0d38 !important;
+	background: #1c0e3a !important;
+}
+
+/* Torrent detail version rows — hover wash (magenta-tinted) */
+html body #torrent_details tr.group_torrent:not(.edition):nth-child(even) td {
+	background: #100628 !important;
+}
+html body #torrent_details tr.group_torrent:not(.edition):nth-child(odd) td {
+	background: #150a30 !important;
+}
+html body #torrent_details tr.group_torrent:not(.edition):hover td,
+html body table.torrent_table tr.group_torrent:not(.edition):hover td,
+html body table.torrent_table tr:not(.colhead, .colhead_dark, .edition):hover td {
+	background: #221040 !important;
+	box-shadow: inset 0 0 0 1px rgba(255, 42, 109, 0.12) !important;
 }
 
 /* Ratio / status — green good, red bad (stock) */
@@ -3357,12 +3378,38 @@ html body div.tags.pp-tags-chipped {
 	padding: 0 !important;
 }
 
-/* Pagination */
+/* Pagination / generic linkboxes — muted */
 .linkbox a {
 	color: var(--text-dimmed) !important;
 }
 .linkbox a:hover {
 	color: var(--link-hover) !important;
+}
+
+/*
+ * Group page action links under the title
+ * (Add version · Edit group · Bookmark · Subscribe · …)
+ * Were too dim on violet ground — soft cyan for findability without fighting the title.
+ */
+html body .thin > .header .linkbox a,
+html body .thin > .header .linkbox a:link,
+html body .thin > .header .linkbox a:visited,
+html body #content .header .linkbox a,
+html body #content .header .linkbox a:link,
+html body #content .header .linkbox a:visited,
+html body .header .linkbox a.brackets,
+html body .header .linkbox a.brackets:link,
+html body .header .linkbox a.brackets:visited {
+	color: #8edce8 !important;
+	-webkit-text-fill-color: #8edce8 !important;
+	opacity: 1 !important;
+	text-shadow: none !important;
+}
+html body .thin > .header .linkbox a:hover,
+html body #content .header .linkbox a:hover,
+html body .header .linkbox a.brackets:hover {
+	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
 }
 .linkbox > b,
 .linkbox > strong {
@@ -7840,7 +7887,7 @@ html body #userinfo_username .username {
 	text-shadow: 0 0 8px rgba(255, 107, 203, 0.4) !important;
 }
 html body .r10, html body .r20, html body .r50, html body .r99 {
-	color: #00f5a0 !important;
+	color: #3aefc8 !important;
 	text-shadow: 0 0 8px rgba(0, 245, 160, 0.35) !important;
 }
 html body #footer {
