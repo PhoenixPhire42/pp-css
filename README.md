@@ -98,23 +98,19 @@ Self-contained synthwave theme (no monkie userscript). If the site also loads a 
 
 ### BroadcasTheNet Modern Dark — install (broadcasthe.net)
 
+BTN swaps out the main skin for **External CSS only**, so this sheet is a **full standalone** theme (layout + chrome + colors).
+
 1. Log in → **Edit** (user settings) → stylesheet / external CSS  
-2. Keep a dark base if required (e.g. **darknround**)  
-3. Set **External stylesheet URL** to:
+2. Stylesheet base can stay **darknround** (BTN still replaces maincss)  
+3. Set **External stylesheet URL** to **jsDelivr only**:
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
 ```
 
-4. Save → hard-refresh  
+4. Save → hard-refresh (⌘⇧R)
 
-Raw GitHub:
-
-```text
-https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/broadcasthe-dark.css
-```
-
-Modern slate surfaces + sky cyan accents; wider content, card boxes, cleaned potato-menu nav.
+**Do not use `raw.githubusercontent.com`.** GitHub serves that as `text/plain` with `X-Content-Type-Options: nosniff`, so the browser refuses the CSS and you get a white/unstyled page.
 
 ### The Lounge Matrix — install
 

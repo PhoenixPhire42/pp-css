@@ -89,9 +89,12 @@ SKINS = {
         "header": """/*
  * BroadcasTheNet — Modern Dark
  * Deep slate + sky cyan for broadcasthe.net (BTN).
- * External CSS overlay (works on darknround base). Pure CSS — no userscript required.
+ * STANDALONE skin: BTN replaces maincss with External CSS only — do not rely on darknround.
+ * Pure CSS — no userscript required.
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css
+ * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
+ * Use jsDelivr (Content-Type: text/css):
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
 """,
     },
