@@ -264,16 +264,17 @@ button:not(.hidden):hover {
 	z-index: 1 !important;
 }
 
-/* Donation — ambient chip (hide stock green bar art) */
+/* Donation — ambient pill, sits UNDER account chips (not on top of them) */
 #donation {
 	position: absolute !important;
 	display: block !important;
 	width: auto !important;
-	min-width: 108px !important;
+	min-width: 0 !important;
 	height: auto !important;
-	top: 10px !important;
-	right: 12px !important;
-	z-index: 40 !important;
+	/* Mid-logo, right column — clears username/major at top and stats at bottom */
+	top: 76px !important;
+	right: 14px !important;
+	z-index: 22 !important;
 	font-size: 10.5px !important;
 	text-align: center !important;
 	padding: 0 !important;
@@ -357,13 +358,14 @@ button:not(.hidden):hover {
 	font-variant-numeric: tabular-nums;
 }
 
+/* Account chips — top-right of logo, clear of donation */
 #userinfo_username {
 	position: absolute !important;
-	top: -155px !important;
-	right: 150px !important;
-	z-index: 15 !important;
+	top: -148px !important;
+	right: 128px !important;
+	z-index: 30 !important;
 	display: block !important;
-	padding: 8px 14px !important;
+	padding: 7px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: 14px !important;
@@ -375,16 +377,17 @@ button:not(.hidden):hover {
 #userinfo_username li {
 	display: block !important;
 	text-align: right !important;
-	padding: 1px 8px 1px 0 !important;
+	padding: 1px 6px 1px 0 !important;
 }
 
 #userinfo_major {
 	position: absolute !important;
-	top: -155px !important;
-	right: 48px !important;
-	z-index: 15 !important;
+	top: -148px !important;
+	right: 12px !important;
+	z-index: 30 !important;
 	display: block !important;
-	padding: 8px 12px !important;
+	padding: 7px 12px !important;
+	min-width: 96px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: 14px !important;
@@ -396,15 +399,17 @@ button:not(.hidden):hover {
 #userinfo_major li {
 	display: block !important;
 	text-align: left !important;
-	padding: 1px 0 1px 8px !important;
+	padding: 1px 0 1px 6px !important;
+	white-space: nowrap !important;
 }
 #userinfo_major a { font-weight: 700 !important; }
 
+/* Stats — bottom-right of logo; full width of right column is fine */
 #userinfo_stats {
 	position: absolute !important;
-	top: -48px !important;
+	top: -42px !important;
 	right: 12px !important;
-	z-index: 15 !important;
+	z-index: 25 !important;
 	display: inline-block !important;
 	padding: 6px 12px !important;
 	background: var(--btn-surface) !important;
