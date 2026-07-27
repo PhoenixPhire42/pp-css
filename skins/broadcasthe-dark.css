@@ -41,7 +41,7 @@
 	--btn-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(94, 200, 232, 0.04);
 	--btn-shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.4);
 	--btn-width: 980px;
-	--btn-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@btn-ambient-v1/skins/assets/btn-logo-ambient-header.jpg");
+	--btn-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@btn-ambient-v2/skins/assets/btn-logo-ambient-header.jpg");
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -264,17 +264,20 @@ button:not(.hidden):hover {
 	z-index: 1 !important;
 }
 
-/* Donation — ambient pill, sits UNDER account chips (not on top of them) */
+/*
+ * Donation — left side of logo ONLY.
+ * Never share the top-right chip column with username/major (they collide).
+ */
 #donation {
 	position: absolute !important;
 	display: block !important;
 	width: auto !important;
 	min-width: 0 !important;
 	height: auto !important;
-	/* Mid-logo, right column — clears username/major at top and stats at bottom */
-	top: 76px !important;
-	right: 14px !important;
-	z-index: 22 !important;
+	top: 12px !important;
+	left: 14px !important;
+	right: auto !important;
+	z-index: 20 !important;
 	font-size: 10.5px !important;
 	text-align: center !important;
 	padding: 0 !important;
@@ -358,11 +361,11 @@ button:not(.hidden):hover {
 	font-variant-numeric: tabular-nums;
 }
 
-/* Account chips — top-right of logo, clear of donation */
+/* Account chips — exclusive top-right of logo (donation is top-left) */
 #userinfo_username {
 	position: absolute !important;
 	top: -148px !important;
-	right: 128px !important;
+	right: 124px !important;
 	z-index: 30 !important;
 	display: block !important;
 	padding: 7px 12px !important;
@@ -387,7 +390,7 @@ button:not(.hidden):hover {
 	z-index: 30 !important;
 	display: block !important;
 	padding: 7px 12px !important;
-	min-width: 96px !important;
+	min-width: 100px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: 14px !important;
@@ -404,7 +407,7 @@ button:not(.hidden):hover {
 }
 #userinfo_major a { font-weight: 700 !important; }
 
-/* Stats — bottom-right of logo; full width of right column is fine */
+/* Stats — bottom-right of logo */
 #userinfo_stats {
 	position: absolute !important;
 	top: -42px !important;
