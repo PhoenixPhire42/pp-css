@@ -1,10 +1,11 @@
 # Phoenix Project (PP) skins
 
-Pure CSS themes for phoenixproject.app and related clients.
+Pure CSS themes for phoenixproject.app, Orpheus Network, and related clients.
 
-- No userscript required for PP skins  
-- Install via the site’s **External stylesheet URL**  
-- Base stylesheet: **ApolloStage** (recommended for PP)
+- No userscript required  
+- Install via the site’s **External stylesheet URL** (or Custom Stylesheet paste)  
+- PP base stylesheet: **ApolloStage** (recommended for PP skins)  
+- OPS Matrix is **self-contained** (no stock skin required)
 
 Also includes a **The Lounge** Matrix theme (paste into Custom Stylesheet).
 
@@ -32,6 +33,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Dark** | Charcoal + soft orange | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css` |
 | **Flame** | Ember + fire accents | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
+| **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -41,6 +43,31 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.1.0/skins/phoenix-synth.css
 ```
 
 Prefer a **version tag** so updates don’t change under people unexpectedly.
+
+### Orpheus Matrix — install (orpheus.network)
+
+1. Log in → **Edit** (user settings) → appearance / stylesheet
+2. Set **External stylesheet URL** (or equivalent custom CSS URL field) to:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/orpheus-matrix.css
+```
+
+3. Save → hard-refresh
+
+Or use a versioned tag (recommended once tagged):
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
+```
+
+Raw GitHub (if jsDelivr lags):
+
+```text
+https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/orpheus-matrix.css
+```
+
+Self-contained: no monkie userscript, no stock Apollostage dependency.
 
 ### The Lounge Matrix — install
 
@@ -70,6 +97,7 @@ skins/phoenix-dark.css
 skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css
+skins/orpheus-matrix.css
 skins/thelounge-matrix.css
 ```
 

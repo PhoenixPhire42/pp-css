@@ -61,6 +61,17 @@ SKINS = {
  */
 """,
     },
+    "orpheus-matrix.css": {
+        "header": """/*
+ * Orpheus Network — Matrix
+ * Green-on-black terminal palette (OPS / orpheus.network).
+ * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
+ * Use as an external stylesheet URL on Orpheus (or paste where custom CSS is allowed).
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
+ */
+""",
+    },
 }
 
 
