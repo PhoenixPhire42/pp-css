@@ -87,9 +87,9 @@ SKINS = {
     },
     "broadcasthe-dark.css": {
         "header": """/*
- * BroadcasTheNet — Modern Dark
- * Deep slate + sky cyan for broadcasthe.net (BTN).
- * STANDALONE skin: BTN replaces maincss with External CSS only — do not rely on darknround.
+ * BroadcasTheNet — Dark Ambient
+ * Deep void + indigo/teal aurora for broadcasthe.net (BTN).
+ * STANDALONE skin with Imagine-generated ambient logo banner.
  * Pure CSS — no userscript required.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).

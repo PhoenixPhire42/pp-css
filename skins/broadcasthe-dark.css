@@ -1,7 +1,7 @@
 /*
- * BroadcasTheNet — Modern Dark
- * Deep slate + sky cyan for broadcasthe.net (BTN).
- * STANDALONE skin: BTN replaces maincss with External CSS only — do not rely on darknround.
+ * BroadcasTheNet — Dark Ambient
+ * Deep void + indigo/teal aurora for broadcasthe.net (BTN).
+ * STANDALONE skin with Imagine-generated ambient logo banner.
  * Pure CSS — no userscript required.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
@@ -9,31 +9,39 @@
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
 /* ══════════════════════════════════════════════════════════
- * Tokens
+ * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
 :root {
-	--btn-bg: #0b0d11;
-	--btn-bg-elevated: #12151c;
-	--btn-surface: #181c24;
-	--btn-surface-2: #1e2430;
-	--btn-surface-3: #252b38;
-	--btn-border: #2a3140;
-	--btn-border-strong: #3a4458;
-	--btn-text: #e8ecf4;
-	--btn-text-dim: #a8b0c0;
-	--btn-text-mute: #7a8496;
-	--btn-accent: #3db8e8;
-	--btn-accent-soft: #5cc8f0;
-	--btn-accent-dim: rgba(61, 184, 232, 0.14);
-	--btn-ok: #4ade80;
-	--btn-warn: #fbbf24;
-	--btn-danger: #f87171;
-	--btn-radius: 10px;
-	--btn-radius-sm: 6px;
+	--btn-bg: #05060a;
+	--btn-bg-elevated: #0a0c12;
+	--btn-surface: rgba(14, 18, 28, 0.78);
+	--btn-surface-solid: #0e121c;
+	--btn-surface-2: rgba(18, 24, 38, 0.88);
+	--btn-surface-2-solid: #121826;
+	--btn-surface-3: rgba(26, 34, 52, 0.92);
+	--btn-surface-3-solid: #1a2234;
+	--btn-border: rgba(90, 120, 170, 0.16);
+	--btn-border-strong: rgba(110, 150, 210, 0.28);
+	--btn-text: #e4eaf6;
+	--btn-text-dim: #9aa8c0;
+	--btn-text-mute: #6a7690;
+	--btn-accent: #5ec8e8;
+	--btn-accent-soft: #8adef5;
+	--btn-accent-deep: #3a8fb8;
+	--btn-accent-dim: rgba(94, 200, 232, 0.12);
+	--btn-glow: rgba(94, 200, 232, 0.22);
+	--btn-violet: rgba(120, 100, 220, 0.18);
+	--btn-ok: #5ed9a0;
+	--btn-warn: #e8c06a;
+	--btn-danger: #e88890;
+	--btn-radius: 14px;
+	--btn-radius-sm: 8px;
 	--btn-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	--btn-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
-	--btn-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+	--btn-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(94, 200, 232, 0.04);
+	--btn-shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.4);
 	--btn-width: 980px;
+	--btn-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/btn-logo-ambient-header.jpg");
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -59,12 +67,17 @@ body {
 	font-size: 13px !important;
 	line-height: 1.55 !important;
 	color: var(--btn-text) !important;
-	background: var(--btn-bg) !important;
+	background-color: var(--btn-bg) !important;
+	/* layered ambient aurora + soft void */
 	background-image:
-		radial-gradient(1100px 520px at 50% -8%, rgba(61, 184, 232, 0.09), transparent 55%),
-		radial-gradient(700px 360px at 100% 0%, rgba(100, 140, 255, 0.05), transparent 50%) !important;
+		radial-gradient(900px 420px at 18% -6%, rgba(94, 200, 232, 0.11), transparent 58%),
+		radial-gradient(780px 380px at 92% 4%, rgba(110, 90, 210, 0.12), transparent 55%),
+		radial-gradient(640px 520px at 50% 110%, rgba(40, 90, 120, 0.10), transparent 60%),
+		radial-gradient(1200px 600px at 50% 40%, rgba(10, 14, 24, 0.4), transparent 70%),
+		linear-gradient(180deg, #06070c 0%, #05060a 40%, #070a12 100%) !important;
 	background-repeat: no-repeat !important;
 	background-attachment: fixed !important;
+	background-size: auto, auto, auto, auto, cover !important;
 	overflow-y: scroll !important;
 }
 
@@ -125,12 +138,12 @@ button.hidden {
 	left: -10000px !important;
 }
 
-/* Forms */
+/* Forms — solid fills (inputs need opacity for readability) */
 input, select, textarea, button {
 	font-family: var(--btn-font) !important;
 	font-size: 12.5px !important;
 	color: var(--btn-text) !important;
-	background: var(--btn-surface-2) !important;
+	background: var(--btn-surface-2-solid) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: var(--btn-radius-sm) !important;
 	padding: 6px 10px !important;
@@ -148,7 +161,8 @@ input[type="button"]:not(.hidden),
 button:not(.hidden) {
 	cursor: pointer !important;
 	font-weight: 600 !important;
-	background: linear-gradient(180deg, var(--btn-surface-3), var(--btn-surface-2)) !important;
+	background: linear-gradient(180deg, var(--btn-surface-3-solid), var(--btn-surface-2-solid)) !important;
+	box-shadow: 0 0 16px rgba(94, 200, 232, 0.06) !important;
 }
 input[type="submit"]:not(.hidden):hover,
 input[type="button"]:not(.hidden):hover,
@@ -168,12 +182,17 @@ button:not(.hidden):hover {
 #wrapper {
 	width: var(--btn-width) !important;
 	max-width: calc(100vw - 16px) !important;
-	margin: 8px auto 24px !important;
-	padding: 8px 10px 20px !important;
-	background: var(--btn-bg-elevated) !important;
+	margin: 10px auto 28px !important;
+	padding: 10px 12px 22px !important;
+	background:
+		linear-gradient(165deg, rgba(16, 22, 36, 0.72) 0%, rgba(8, 10, 16, 0.88) 55%, rgba(10, 12, 20, 0.92) 100%) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 14px !important;
-	box-shadow: var(--btn-shadow) !important;
+	border-radius: 18px !important;
+	box-shadow:
+		var(--btn-shadow),
+		inset 0 1px 0 rgba(160, 200, 255, 0.05) !important;
+	backdrop-filter: blur(10px) saturate(1.1);
+	-webkit-backdrop-filter: blur(10px) saturate(1.1);
 }
 
 #header {
@@ -182,7 +201,7 @@ button:not(.hidden):hover {
 	margin: 0 auto !important;
 	padding: 0 !important;
 	position: relative !important;
-	min-height: 150px !important;
+	min-height: 160px !important;
 }
 
 #content {
@@ -206,26 +225,43 @@ button:not(.hidden):hover {
 #footer a { color: var(--btn-text-dim) !important; }
 #footer a:hover { color: var(--btn-accent) !important; }
 
-/* Logo banner (stock head art, modern frame) */
+/* Logo banner — Imagine dark-ambient rebrand */
 #logo {
 	width: 960px !important;
 	max-width: 100% !important;
-	height: 140px !important;
-	margin: 0 auto 10px !important;
-	background-color: #0a0c10 !important;
-	background-image: url("https://cdn.broadcasthe.net/styles/darknround/images/head.png") !important;
+	height: 150px !important;
+	margin: 0 auto 12px !important;
+	background-color: #020308 !important;
+	background-image:
+		radial-gradient(ellipse 70% 90% at 28% 50%, rgba(94, 200, 232, 0.10), transparent 60%),
+		radial-gradient(ellipse 50% 80% at 70% 55%, rgba(100, 80, 200, 0.08), transparent 55%),
+		var(--btn-logo) !important;
 	background-repeat: no-repeat !important;
-	background-position: center center !important;
-	background-size: contain !important;
+	background-position: center center, center center, center center !important;
+	background-size: cover, cover, cover !important;
 	border-radius: var(--btn-radius) !important;
 	border: 1px solid var(--btn-border) !important;
+	box-shadow:
+		0 0 40px rgba(94, 200, 232, 0.08),
+		inset 0 0 60px rgba(0, 0, 0, 0.35) !important;
 	overflow: hidden !important;
+	position: relative !important;
+}
+#logo::after {
+	content: "";
+	pointer-events: none;
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 55%, rgba(5, 6, 10, 0.35) 100%);
+	border-radius: inherit;
 }
 #logo a {
 	display: block !important;
 	width: 100% !important;
-	height: 140px !important;
+	height: 150px !important;
 	border: none !important;
+	position: relative !important;
+	z-index: 1 !important;
 }
 
 /* Donation bar — children use position:absolute (global.css + inline styles) */
@@ -312,15 +348,17 @@ button:not(.hidden):hover {
 
 #userinfo_username {
 	position: absolute !important;
-	top: -145px !important;
+	top: -155px !important;
 	right: 150px !important;
 	z-index: 15 !important;
 	display: block !important;
 	padding: 8px 14px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 12px !important;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+	border-radius: 14px !important;
+	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-accent) !important;
 }
 #userinfo_username li {
@@ -331,15 +369,17 @@ button:not(.hidden):hover {
 
 #userinfo_major {
 	position: absolute !important;
-	top: -145px !important;
+	top: -155px !important;
 	right: 48px !important;
 	z-index: 15 !important;
 	display: block !important;
 	padding: 8px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 12px !important;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+	border-radius: 14px !important;
+	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-accent) !important;
 }
 #userinfo_major li {
@@ -351,15 +391,17 @@ button:not(.hidden):hover {
 
 #userinfo_stats {
 	position: absolute !important;
-	top: -52px !important;
+	top: -48px !important;
 	right: 12px !important;
 	z-index: 15 !important;
 	display: inline-block !important;
 	padding: 6px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 12px !important;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+	border-radius: 14px !important;
+	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-text-dim) !important;
 	white-space: nowrap !important;
 }
@@ -396,13 +438,18 @@ button:not(.hidden):hover {
 #menu {
 	width: 960px !important;
 	max-width: 100% !important;
-	margin: -8px auto 0 !important;
-	padding: 4px 6px !important;
+	margin: -6px auto 0 !important;
+	padding: 4px 8px !important;
 	text-align: center !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: var(--btn-radius) !important;
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+	box-shadow:
+		var(--btn-shadow-soft),
+		inset 0 1px 0 rgba(160, 200, 255, 0.05),
+		0 0 24px rgba(94, 200, 232, 0.04) !important;
+	backdrop-filter: blur(14px) saturate(1.15);
+	-webkit-backdrop-filter: blur(14px) saturate(1.15);
 	font-size: 13px !important;
 	line-height: 30px !important;
 	list-style: none !important;
@@ -481,16 +528,18 @@ ul.potato-menu > li.potato-menu-hover > a {
 ul.potato-menu > li > ul.potato-menu-group,
 ul.potato-menu ul.potato-menu-group {
 	margin: 0 !important;
-	padding: 6px !important;
+	padding: 8px !important;
 	position: absolute !important;
 	z-index: 1000 !important;
 	left: 0 !important;
 	top: 100% !important;
-	background: rgba(18, 21, 28, 0.97) !important;
+	background: rgba(8, 11, 18, 0.94) !important;
 	border: 1px solid var(--btn-border-strong) !important;
 	border-radius: var(--btn-radius-sm) !important;
-	box-shadow: var(--btn-shadow) !important;
-	width: 180px !important;
+	box-shadow: var(--btn-shadow), 0 0 28px rgba(94, 200, 232, 0.08) !important;
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	width: 190px !important;
 	text-align: left !important;
 	list-style: none !important;
 	/* reinforce global.css hide; hover reveals */
@@ -584,11 +633,13 @@ input#user-search {
 	max-width: 140px !important;
 	padding: 6px 10px !important;
 	font-size: 12px !important;
-	background: var(--btn-surface) !important;
+	background: var(--btn-surface-solid) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: var(--btn-radius-sm) !important;
+	border-radius: 999px !important;
 	color: var(--btn-text) !important;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35) !important;
+	box-shadow:
+		inset 0 1px 4px rgba(0, 0, 0, 0.45),
+		0 0 12px rgba(94, 200, 232, 0.04) !important;
 }
 
 #searchbars input::placeholder {
@@ -618,24 +669,31 @@ div.box {
 	border-radius: var(--btn-radius) !important;
 	color: var(--btn-text) !important;
 	margin: 0 5px 12px 5px !important;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
+	box-shadow:
+		var(--btn-shadow-soft),
+		inset 0 1px 0 rgba(160, 200, 255, 0.04) !important;
 	overflow: hidden !important;
 	list-style: none !important;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 
 .box > .head,
 div.head,
 .head {
-	background: var(--btn-surface-2) !important;
+	background:
+		linear-gradient(90deg, rgba(94, 200, 232, 0.08) 0%, transparent 42%),
+		var(--btn-surface-2) !important;
 	border: none !important;
 	border-bottom: 1px solid var(--btn-border) !important;
 	border-radius: 0 !important;
-	color: var(--btn-accent) !important;
+	color: var(--btn-accent-soft) !important;
 	font-weight: 700 !important;
 	font-size: 12px !important;
-	letter-spacing: 0.03em !important;
-	padding: 9px 12px !important;
+	letter-spacing: 0.04em !important;
+	padding: 10px 14px !important;
 	margin: 0 !important;
+	text-shadow: 0 0 18px rgba(94, 200, 232, 0.25);
 }
 
 .box > .head a,
