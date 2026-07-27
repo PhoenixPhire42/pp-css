@@ -1393,26 +1393,74 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
         vertical-align: top
     }
 
+    /*
+     * Staff — stock Apollostage pins #nav_staff on the major-links band
+     * (Upload · Invite · Donate · Staff). Recolored base had top:29px (mid-menu)
+     * under #menu{overflow:hidden}, so Staff floated next to the username tab.
+     * Lift onto the major row; monkie also reparents into #userinfo_major.
+     */
     #nav_staff {
         font-weight: 400
     }
 
+    #menu {
+        overflow: visible
+    }
+
+    #menu>ul {
+        position: relative;
+        overflow: visible
+    }
+
     #menu>ul>#nav_staff {
-        display: inline;
+        display: block;
         font-size: 13px;
         position: absolute;
-        right: 8px;
-        top: 29px
+        /* Same vertical band as #userinfo_major (top: -53px on #userinfo) */
+        top: -45px;
+        /* Leave room for username chip (~100px) + minor (50px) */
+        right: 152px;
+        z-index: 40;
+        height: auto;
+        width: auto;
+        background: transparent !important;
+        flex: 0 0 auto;
+        list-style: none;
+        margin: 0;
+        padding: 0
     }
 
     #menu>ul>#nav_staff>a {
+        display: inline;
         line-height: 1.6;
-        padding: 0
+        height: auto;
+        padding: 0 2px;
+        white-space: nowrap
     }
 
     #menu>ul>#nav_staff>a:hover {
         background-color: transparent;
         color: #7cff9a
+    }
+
+    /* After monkie reparent: flow as a normal major link */
+    #userinfo_major>#nav_staff,
+    #userinfo_major>li#nav_staff {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        display: list-item !important;
+        font-size: inherit;
+        background: transparent !important;
+        margin-left: 8px
+    }
+
+    #userinfo_major>#nav_staff>a,
+    #userinfo_major>li#nav_staff>a {
+        display: inline !important;
+        line-height: inherit !important;
+        height: auto !important;
+        padding: 0 !important
     }
 
     #userinfo_minor:before {
