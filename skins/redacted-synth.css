@@ -3909,7 +3909,7 @@ html body div.tags.pp-tags-chipped {
 }
 
 .collage_table td.td_collage_category a {
-	color: var(--text-dimmed) !important;
+	color: var(--text-weak) !important;
 	font-weight: 600 !important;
 }
 .collage_table td.td_info > a {
@@ -8681,11 +8681,11 @@ html body#collages .collage_table tr:not(.colhead) td {
 	vertical-align: middle !important;
 }
 
-/* Category column (Theme / Label / …) */
+/* Category column (Theme / Label / …) — quiet meta so cyan titles win hierarchy */
 html body#collages .collage_table td.td_collage_category,
 html body#collages .collage_table td.td_collage_category a {
-	color: var(--text-dimmed) !important;
-	-webkit-text-fill-color: var(--text-dimmed) !important;
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
 	font-weight: 600 !important;
 	font-size: 12px !important;
 	white-space: nowrap !important;
