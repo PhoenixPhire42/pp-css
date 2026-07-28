@@ -5975,9 +5975,12 @@ html body#requests .request_table tr:not(.colhead) td {
  * ══════════════════════════════════════════════════════════ */
 
 html body#forums h2 {
-	color: #efe6ff !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
+	letter-spacing: 0.01em !important;
 	margin: 16px 0 8px !important;
+	text-shadow: 0 0 18px rgba(5, 217, 232, 0.25) !important;
 }
 
 html body#forums .linkbox {
@@ -8916,7 +8919,7 @@ html body#forums h2 {
 	text-shadow: 0 0 18px rgba(5, 217, 232, 0.25) !important;
 }
 
-/* Unread topics / Catch up — action chip */
+/* Unread topics / Viewed only / Toggle exclusion — secondary outline chips */
 html body#forums .header .linkbox a,
 html body#forums .thin > .linkbox a {
 	color: var(--text-dimmed) !important;
@@ -8946,6 +8949,34 @@ html body#forums .linkbox a.brackets:hover {
 	-webkit-text-fill-color: #ffe0f0 !important;
 	background: #2a1050 !important;
 	border-color: #05d9e8 !important;
+}
+
+/* Catch up — primary filled CTA (wins over outline chips) */
+html body#forums .linkbox a[href*="action=catchup"],
+html body#forums .linkbox a[href*="catchup"],
+html body#forums .thin > .linkbox a[href*="action=catchup"],
+html body#forums .thin > .linkbox a[href*="catchup"],
+html body#forums .linkbox a.brackets[href*="catchup"] {
+	display: inline-block !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
+	border: 1px solid transparent !important;
+	border-radius: 999px !important;
+	padding: 3px 14px !important;
+	font-weight: 700 !important;
+	text-decoration: none !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.4) !important;
+}
+html body#forums .linkbox a[href*="catchup"]:hover,
+html body#forums .thin > .linkbox a[href*="catchup"]:hover,
+html body#forums .linkbox a.brackets[href*="catchup"]:hover {
+	color: #0a0418 !important;
+	-webkit-text-fill-color: #0a0418 !important;
+	background: linear-gradient(180deg, #ff9ed8, #ff6bcb) !important;
+	border-color: transparent !important;
+	box-shadow: 0 0 18px rgba(5, 217, 232, 0.35) !important;
 }
 
 /* Section heads: REDACTED · COMMUNITY · … */
@@ -9009,7 +9040,7 @@ html body#forums .forum_index tr:not(.colhead) td {
 	vertical-align: middle !important;
 }
 
-/* Forum name */
+/* Forum name (index: h4 primary) */
 html body#forums .forum_index h4,
 html body#forums .forum_index h4.min_padding {
 	margin: 0 !important;
@@ -9028,16 +9059,31 @@ html body#forums .forum_index h4 a:hover {
 	-webkit-text-fill-color: #ff6bcb !important;
 }
 
-/* Last topic title */
-html body#forums .forum_index .last_topic a {
-	color: var(--text) !important;
-	-webkit-text-fill-color: var(--text) !important;
+/*
+ * Unread list hierarchy (action=unread): first column is forum name (no status dots / no h4).
+ * Quiet forum → cyan thread title leads. Index keeps h4 white as primary.
+ */
+html body#forums table.forum_index tr:not(.colhead) > td:first-child > a {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
 	font-weight: 500 !important;
 	text-decoration: none !important;
 }
-html body#forums .forum_index .last_topic a:hover {
+html body#forums table.forum_index tr:not(.colhead) > td:first-child > a:hover {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+}
+
+/* Last topic title — primary on unread; secondary under h4 on index */
+html body#forums .forum_index .last_topic a {
 	color: #7af0ff !important;
 	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#forums .forum_index .last_topic a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
 }
 
 /* Poster + time */
