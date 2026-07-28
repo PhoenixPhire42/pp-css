@@ -3138,6 +3138,50 @@ body {
 	background: linear-gradient(180deg, rgba(0, 255, 65, 0.12) 0%, transparent 100%) !important;
 }
 
+/*
+ * Chevron next to username — pure CSS glyph (stock SVG/content was blanked).
+ * Closed ▾ on 50×50 face; open ▴ still on the tab face (not full panel width).
+ */
+html body #userinfo_minor:before {
+	content: "▾" !important;
+	display: block !important;
+	width: 50px !important;
+	height: 50px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	background: none !important;
+	background-image: none !important;
+	background-size: auto !important;
+	filter: none !important;
+	font-size: 14px !important;
+	font-weight: 700 !important;
+	line-height: 50px !important;
+	text-align: center !important;
+	letter-spacing: 0 !important;
+	color: #00ff41 !important;
+	text-shadow:
+		0 0 10px rgba(0, 255, 65, 0.55),
+		0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	opacity: 0.95 !important;
+}
+html body #userinfo_minor:hover:before {
+	content: "▴" !important;
+	width: 50px !important;
+	height: 50px !important;
+	max-width: 50px !important;
+	margin: 0 !important;
+	margin-left: 0 !important;
+	padding: 0 !important;
+	line-height: 48px !important;
+	font-size: 13px !important;
+	background-image: none !important;
+	color: #d0ffd0 !important;
+	text-shadow:
+		0 0 12px rgba(0, 255, 65, 0.7),
+		0 1px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
 /* ── Secondary search bar row ──────────────────────────── */
 #searchbars {
 	background: transparent !important;
