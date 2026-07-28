@@ -4249,15 +4249,12 @@ html body #userinfo_minor {
 		inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
 }
 
-html body #userinfo_username:hover {
-	background: #161a20 !important;
-	background-color: #161a20 !important;
-	background-image: linear-gradient(180deg, #242a32 0%, #161a20 48%, #d2d2d7 100%) !important;
-}
+/* Open flyouts: rail chrome handled at EOF (Heywood+chevron end-cap).
+ * Do not paint dark open shells here — that stacked a second ghost card. */
+html body #userinfo_username:hover,
 html body #userinfo_minor:hover {
-	background: #101418 !important;
-	background-color: #101418 !important;
-	background-image: linear-gradient(180deg, #1c2228 0%, #101418 48%, #c7c7cc 100%) !important;
+	/* keep closed-rail look until EOF open rules; avoid dark MacLite hover */
+	filter: none !important;
 }
 
 html body #userinfo_username a,
@@ -4265,20 +4262,21 @@ html body #userinfo_minor a,
 html body #userinfo a.username,
 html body #menu ul li:not(#nav_staff) a {
 	color: #1d1d1f !important;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	text-shadow: none !important;
 	background-image: none !important;
 }
 
 html body #userinfo_username a:hover,
 html body #userinfo_minor a:hover,
 html body #menu > ul a:hover {
-	background-color: rgba(255, 255, 255, 0.08) !important;
-	color: #fff !important;
+	background-color: rgba(0, 113, 227, 0.08) !important;
+	color: #0071e3 !important;
 }
 
-/* REDStage chevron glyph — desaturate purple assets */
-html body #userinfo_minor:before {
-	filter: brightness(1.4) grayscale(1) !important;
+/* Chevron glyph is pure CSS ▾ at EOF — kill stock SVG filter */
+html body #userinfo_minor:before,
+html body #userinfo_minor::before {
+	filter: none !important;
 }
 
 html body #nav_staff > a,
@@ -9036,38 +9034,39 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 	}
 }
 
-/* Open user flyouts may grow; keep them above content without stretching #menu */
-@media (min-width: 576px) {
-	html body #userinfo_username:hover,
-	html body #userinfo_minor:hover {
-		height: auto !important;
-		max-height: none !important;
-		min-height: 50px !important;
-		overflow: visible !important;
-		z-index: 1000 !important;
-	}
-}
-
 /* ══════════════════════════════════════════════════════════
- * Heywood + chevron end-cap (closed rail)
- * Fix: white empty square + tiny orphaned arrow — rebuild as
- * 100px username + 50px chevron, same 50px height as #menu.
+ * Heywood + chevron end-cap (V53)
+ * Closed: 100px Heywood + 50px ▾ on the menu rail.
+ * Open: transparent shell; white card via ::after BELOW the rail
+ * so tabs stay put and the list is one continuous panel
+ * (no orphan Better/Posts/Upvotes card).
  * ══════════════════════════════════════════════════════════ */
 @media (min-width: 576px) {
-	/* Anchor tabs to the menu row (stock Apollostage end of #header) */
+	/* #userinfo collapses — absolute children share the menu baseline */
 	html body #userinfo {
 		position: relative !important;
+		display: block !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
 		overflow: visible !important;
 		z-index: 950 !important;
+		float: none !important;
 	}
+	html body #userinfo li::marker,
+	html body #userinfo_username li::marker,
+	html body #userinfo_minor li::marker {
+		content: none !important;
+		display: none !important;
+	}
+
 	html body #userinfo_username,
 	html body #userinfo_minor {
 		position: absolute !important;
-		/* Align with #menu: logo padding + menu — stock uses same top band as menu */
-		top: auto !important;
+		top: 0 !important; /* same band as #menu (userinfo height:0) */
 		bottom: auto !important;
-		/* Sit on the menu bar: header is flex column; match last-known menu offset */
-		/* Prefer sticking to the menu row via absolute right of header */
+		left: auto !important;
 		right: 0 !important;
 		height: 50px !important;
 		min-height: 50px !important;
@@ -9077,8 +9076,13 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		list-style: none !important;
 		box-sizing: border-box !important;
 		overflow: hidden !important;
+		display: block !important;
+		float: none !important;
+		flex-direction: unset !important;
+		flex-wrap: nowrap !important;
+		column-count: auto !important;
+		columns: auto !important;
 		z-index: 960 !important;
-		/* Shared light→mid gray end of the nav ramp (not pure white) */
 		background: #b8b8bd !important;
 		background-color: #b8b8bd !important;
 		background-image: linear-gradient(180deg, #c8c8cd 0%, #b0b0b5 48%, #9a9aa0 100%) !important;
@@ -9088,7 +9092,7 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 			inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
 		filter: none !important;
 	}
-	/* Heywood slot — left of the 50px chevron */
+	/* Heywood — left of the 50px chevron */
 	html body #userinfo_username {
 		right: 50px !important;
 		width: 100px !important;
@@ -9096,18 +9100,18 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
 		z-index: 961 !important;
 	}
-	/* Chevron slot — rounded end-cap of the rail */
+	/* Chevron end-cap */
 	html body #userinfo_minor {
 		right: 0 !important;
 		width: 50px !important;
 		border-radius: 0 10px 10px 0 !important;
-		/* One step darker than Heywood so the pair reads as two cells */
 		background: #a8a8ad !important;
 		background-color: #a8a8ad !important;
 		background-image: linear-gradient(180deg, #b8b8bd 0%, #a0a0a5 48%, #8e8e93 100%) !important;
 		z-index: 962 !important;
 	}
-	/* Closed: only the username label shows inside Heywood */
+
+	/* Closed: only Heywood label */
 	html body #userinfo_username:not(:hover) > li:not(#nav_userinfo),
 	html body #userinfo_username:not(:hover) a:not(.username) {
 		display: none !important;
@@ -9121,6 +9125,10 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		width: 100% !important;
 		margin: 0 !important;
 		padding: 0 !important;
+		background: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+		border: none !important;
 	}
 	html body #userinfo_username a.username,
 	html body #userinfo_username #nav_userinfo > a {
@@ -9129,7 +9137,7 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		justify-content: center !important;
 		width: 100% !important;
 		height: 50px !important;
-		line-height: 50px !important;
+		line-height: 1 !important;
 		padding: 0 6px !important;
 		margin: 0 !important;
 		box-sizing: border-box !important;
@@ -9144,10 +9152,10 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		text-overflow: ellipsis !important;
 		white-space: nowrap !important;
 	}
-	/* Closed chevron: full-cell centered ▾ (kill stock blank + tiny orphan arrow) */
+	/* Closed chevron glyph */
 	html body #userinfo_minor::before,
 	html body #userinfo_minor:before {
-		content: "\25BE" !important; /* ▾ */
+		content: "\25BE" !important;
 		display: flex !important;
 		align-items: center !important;
 		justify-content: center !important;
@@ -9157,74 +9165,136 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		max-width: 50px !important;
 		max-height: 50px !important;
 		margin: 0 !important;
+		margin-left: 0 !important;
 		padding: 0 !important;
 		box-sizing: border-box !important;
 		font-size: 16px !important;
 		font-weight: 700 !important;
-		line-height: 50px !important;
+		line-height: 1 !important;
 		letter-spacing: 0 !important;
 		color: #1d1d1f !important;
 		-webkit-text-fill-color: #1d1d1f !important;
 		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) !important;
 		background: transparent !important;
 		background-image: none !important;
-		background-size: auto !important;
 		filter: none !important;
 		opacity: 1 !important;
 		visibility: visible !important;
 		pointer-events: none !important;
 	}
-	/* Closed: hide minor menu links (Inbox, etc.) */
+	/* Closed: hide Inbox… list */
 	html body #userinfo_minor:not(:hover) > li,
 	html body #userinfo_minor:not(:hover) a {
 		display: none !important;
 	}
-	/* Open flyouts — expand below; keep chevron pinned in end-cap */
+	/* Closed: no card pseudo */
+	html body #userinfo_username:not(:hover)::after,
+	html body #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+
+	/*
+	 * OPEN — pure dropdown BELOW the rail.
+	 * Shell is transparent (tabs stay grey); ::after paints one white card.
+	 */
 	html body #userinfo_username:hover,
 	html body #userinfo_minor:hover {
+		right: 0 !important;
+		width: 176px !important;
 		height: auto !important;
 		max-height: none !important;
 		min-height: 50px !important;
-		overflow: visible !important;
-		width: 176px !important;
-		right: 0 !important;
-		z-index: 1000 !important;
 		padding: 54px 0 8px !important;
-		background: #ffffff !important;
+		overflow: visible !important;
+		border: none !important;
+		border-radius: 0 !important;
+		background: transparent !important;
+		background-color: transparent !important;
 		background-image: none !important;
-		border: 1px solid rgba(0, 0, 0, 0.1) !important;
-		border-radius: 12px !important;
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
+		box-shadow: none !important;
+		filter: none !important;
+		z-index: 1000 !important;
+		/* single column — kill any flex-wrap / float multi-card leaks */
+		display: block !important;
+		flex-wrap: nowrap !important;
+		column-count: 1 !important;
+		columns: auto !important;
 	}
 	html body #userinfo_username:hover {
-		/* open panel still leaves rail end for chevron when only username open */
+		z-index: 1002 !important;
 	}
+	html body #userinfo_minor:hover {
+		z-index: 1001 !important;
+	}
+	/* One continuous white card under the rail */
+	html body #userinfo_username:hover::after,
+	html body #userinfo_minor:hover::after {
+		content: "" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 54px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		border-radius: 12px !important;
+		border: 1px solid rgba(0, 0, 0, 0.1) !important;
+		background: #ffffff !important;
+		background-color: #ffffff !important;
+		background-image: none !important;
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
+		z-index: 0 !important;
+		pointer-events: none !important;
+	}
+	/* Keep ▾ pinned in the rail cell while list is open below */
 	html body #userinfo_minor:hover::before,
 	html body #userinfo_minor:hover:before {
 		content: "\25BE" !important;
+		display: flex !important;
 		position: absolute !important;
 		top: 0 !important;
 		right: 0 !important;
 		left: auto !important;
 		width: 50px !important;
 		height: 50px !important;
-		line-height: 50px !important;
 		margin: 0 !important;
+		margin-left: 0 !important;
 		z-index: 3 !important;
+		pointer-events: none !important;
 		color: #1d1d1f !important;
 		-webkit-text-fill-color: #1d1d1f !important;
-		background: linear-gradient(180deg, #b8b8bd 0%, #a0a0a5 48%, #8e8e93 100%) !important;
-		border-radius: 0 10px 0 0 !important;
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+		background: #a8a8ad !important;
+		background-image: linear-gradient(180deg, #b8b8bd 0%, #a0a0a5 48%, #8e8e93 100%) !important;
+		border-radius: 0 10px 10px 0 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.4),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
+		filter: none !important;
 	}
-	/* Kill stock “shift chevron by 100px” when open */
-	html body #userinfo_minor:hover:before,
-	html body #userinfo_minor:hover::before {
-		margin-left: 0 !important;
+	/* Rows — single vertical stack inside the card */
+	html body #userinfo_username:hover > li,
+	html body #userinfo_minor:hover > li {
+		display: list-item !important;
+		float: none !important;
+		clear: both !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		position: relative !important;
+		z-index: 1 !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		flex: none !important;
 	}
-	/* Open links */
-	html body #userinfo_username:hover a,
-	html body #userinfo_minor:hover a {
+	/* Open links (menu rows — not the rail Heywood label) */
+	html body #userinfo_minor:hover a,
+	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
+	html body #userinfo_username:hover a:not(.username) {
 		display: block !important;
 		width: 100% !important;
 		height: auto !important;
@@ -9232,11 +9302,19 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		max-height: none !important;
 		line-height: 34px !important;
 		padding: 0 14px !important;
+		margin: 0 !important;
+		text-align: left !important;
+		position: relative !important;
+		z-index: 1 !important;
 		color: #1d1d1f !important;
 		-webkit-text-fill-color: #1d1d1f !important;
 		background: transparent !important;
 		text-shadow: none !important;
 		box-sizing: border-box !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		white-space: nowrap !important;
 	}
 	html body #userinfo_username:hover a:hover,
 	html body #userinfo_minor:hover a:hover {
@@ -9244,8 +9322,121 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		color: #0071e3 !important;
 		-webkit-text-fill-color: #0071e3 !important;
 	}
-	/* When one flyout open, keep the other as closed rail cell */
+
+	/* Pin Heywood rail label while its own menu is open (Settings/Logout below) */
+	html body #userinfo_username:hover #nav_userinfo,
+	html body #userinfo_username:hover > li#nav_userinfo {
+		position: absolute !important;
+		top: 0 !important;
+		right: 50px !important;
+		left: auto !important;
+		width: 100px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		z-index: 3 !important;
+		background: #b8b8bd !important;
+		background-image: linear-gradient(180deg, #c8c8cd 0%, #b0b0b5 48%, #9a9aa0 100%) !important;
+		border: none !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+		border-radius: 0 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.45),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
+		box-sizing: border-box !important;
+	}
+	html body #userinfo_username:hover #nav_userinfo > a,
+	html body #userinfo_username:hover a.username {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 100% !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		text-align: center !important;
+		font-size: 13px !important;
+		font-weight: 700 !important;
+		color: #0071e3 !important;
+		-webkit-text-fill-color: #0071e3 !important;
+		background: transparent !important;
+	}
+
+	/* When ▼ open: Heywood stays closed 100px rail cell (do not expand username) */
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover {
+		visibility: visible !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		right: 50px !important;
+		width: 100px !important;
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		border-radius: 0 !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+		z-index: 1003 !important;
+		background: #b8b8bd !important;
+		background-color: #b8b8bd !important;
+		background-image: linear-gradient(180deg, #c8c8cd 0%, #b0b0b5 48%, #9a9aa0 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.45),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a:not(.username),
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a:not(.username),
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo ~ li,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username > li:not(#nav_userinfo) {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a.username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo > a,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a.username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo > a {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 100% !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		text-align: center !important;
+		font-size: 13px !important;
+		font-weight: 700 !important;
+		color: #0071e3 !important;
+		-webkit-text-fill-color: #0071e3 !important;
+		background: transparent !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo {
+		display: flex !important;
+		position: static !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 100% !important;
+		width: 100% !important;
+		right: auto !important;
+		border: none !important;
+		background: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username::after,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover::after {
+		display: none !important;
+		content: none !important;
+	}
+
+	/* When Heywood open: keep ▼ as closed rail cell */
 	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) {
+		visibility: visible !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
 		right: 0 !important;
 		width: 50px !important;
 		height: 50px !important;
@@ -9253,18 +9444,20 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		padding: 0 !important;
 		overflow: hidden !important;
 		border-radius: 0 10px 10px 0 !important;
+		z-index: 1003 !important;
+		background: #a8a8ad !important;
 		background-image: linear-gradient(180deg, #b8b8bd 0%, #a0a0a5 48%, #8e8e93 100%) !important;
-		z-index: 1001 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.4),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
 	}
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:not(:hover) {
-		right: 50px !important;
-		width: 100px !important;
-		height: 50px !important;
-		max-height: 50px !important;
-		padding: 0 !important;
-		overflow: hidden !important;
-		border-radius: 0 !important;
-		z-index: 1001 !important;
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) a,
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) > li {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
 	}
 }
 
