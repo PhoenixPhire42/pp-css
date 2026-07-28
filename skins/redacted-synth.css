@@ -12577,6 +12577,525 @@ html body#comments .forum_post .body img {
 }
 
 /* ══════════════════════════════════════════════════════════
+ * FINAL: index / home polish (index.php) — body#index
+ * News cards · latest uploads · AotM · poll · sidebar stats
+ * ══════════════════════════════════════════════════════════ */
+
+html body#index .box,
+html body#index .news_post,
+html body#index .sidebar .box {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+	overflow: hidden !important;
+	margin-bottom: 14px !important;
+}
+html body#index .box > .head,
+html body#index .news_post > .head,
+html body#index .sidebar .box > .head,
+html body#index .box .colhead_dark {
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	font-weight: 700 !important;
+	font-size: 12.5px !important;
+	letter-spacing: 0.03em !important;
+	padding: 9px 12px !important;
+	text-shadow: 0 0 10px rgba(255, 107, 203, 0.2) !important;
+}
+html body#index .box > .head a,
+html body#index .news_post > .head a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+html body#index .box > .head a:hover,
+html body#index .news_post > .head a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+html body#index .box > .head .time,
+html body#index .news_post > .head .time,
+html body#index .box > .head .brackets {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-weight: 500 !important;
+	text-shadow: none !important;
+}
+html body#index .box .body,
+html body#index .news_post .body,
+html body#index .box .pad {
+	background: transparent !important;
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	padding: 12px 14px !important;
+	line-height: 1.55 !important;
+	font-size: 13px !important;
+}
+html body#index .box .body a,
+html body#index .news_post .body a {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+	text-decoration: none !important;
+}
+html body#index .box .body a:hover,
+html body#index .news_post .body a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	text-decoration: underline !important;
+}
+html body#index .box .body strong,
+html body#index .news_post .body strong {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+/* Latest uploads / cover strip */
+html body#index table.recent,
+html body#index #latest_uploads,
+html body#index .latest_uploads {
+	border-radius: 0 0 8px 8px !important;
+}
+html body#index table.recent img,
+html body#index #latest_uploads img {
+	border-radius: 4px !important;
+	border: 1px solid var(--border) !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+html body#index table.recent a:hover img,
+html body#index #latest_uploads a:hover img {
+	border-color: #05d9e8 !important;
+	box-shadow: 0 0 0 1px rgba(5, 217, 232, 0.35) !important;
+}
+/* Sidebar links + stats */
+html body#index .sidebar .box .body a,
+html body#index .sidebar .box .pad a,
+html body#index .sidebar ul.stats a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+html body#index .sidebar .box .body a:hover,
+html body#index .sidebar ul.stats a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+html body#index .sidebar ul.stats li,
+html body#index .box_stats li {
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	font-size: 12.5px !important;
+	line-height: 1.45 !important;
+}
+/* Poll */
+html body#index .poll li {
+	color: #efe6ff !important;
+}
+html body#index .poll input[type="radio"] {
+	accent-color: #ff2a6d !important;
+}
+html body#index .poll .graph {
+	background: rgba(255, 42, 109, 0.12) !important;
+	border-radius: 3px !important;
+}
+html body#index .poll .graph span {
+	background: linear-gradient(90deg, #ff2a6d, #ff6bcb) !important;
+}
+html body#index .poll input[type="submit"],
+html body#index input[value="Vote"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	margin-top: 10px !important;
+	padding: 6px 16px !important;
+	height: 32px !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	border: none !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	cursor: pointer !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.35) !important;
+}
+html body#index .poll input[type="submit"]:hover,
+html body#index input[value="Vote"]:hover {
+	background: linear-gradient(180deg, #ff9ed8, #ff6bcb) !important;
+	box-shadow: 0 0 16px rgba(5, 217, 232, 0.3) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: Top 10 polish (top10.php) — body#top10
+ * Type chips · filter CTA · section heads · ranks · tables
+ * ══════════════════════════════════════════════════════════ */
+
+html body#top10 .header h2,
+html body#top10 h2 {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 500 !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 16px rgba(5, 217, 232, 0.22) !important;
+	margin: 0 !important;
+}
+/* Type tabs as chips */
+html body#top10 .header .linkbox,
+html body#top10 .header .linkbox {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px !important;
+	line-height: 1.4 !important;
+}
+html body#top10 .header .linkbox a,
+html body#top10 .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 11px !important;
+	color: #c4b0e8 !important;
+	-webkit-text-fill-color: #c4b0e8 !important;
+	background: #1a0d38 !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: 0 0 8px rgba(255, 42, 109, 0.08) !important;
+}
+html body#top10 .header .linkbox a:hover,
+html body#top10 .linkbox a:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	background: #2a1050 !important;
+	border-color: #05d9e8 !important;
+}
+html body#top10 .header .linkbox > strong,
+html body#top10 .linkbox > strong,
+html body#top10 .header .linkbox > b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 11px !important;
+	color: #1a0a18 !important;
+	-webkit-text-fill-color: #1a0a18 !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	font-size: 12px !important;
+	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
+}
+html body#top10 .linkbox a strong {
+	display: inline !important;
+	padding: 0 !important;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	font-weight: inherit !important;
+}
+/* Filter form + CTA */
+html body#top10 form.search_form,
+html body#top10 form.search_form table.layout {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+	overflow: hidden !important;
+}
+html body#top10 form.search_form input[type="submit"] {
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	border: none !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	height: 32px !important;
+	padding: 0 18px !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.35) !important;
+	cursor: pointer !important;
+}
+html body#top10 form.search_form input[type="submit"]:hover {
+	background: linear-gradient(180deg, #ff9ed8, #ff6bcb) !important;
+	box-shadow: 0 0 16px rgba(5, 217, 232, 0.28) !important;
+}
+/* Section heads */
+html body#top10 h3 {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	border: 1px solid var(--border) !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	border-radius: 8px 8px 0 0 !important;
+	font-weight: 700 !important;
+	text-shadow: 0 0 10px rgba(255, 107, 203, 0.2) !important;
+}
+html body#top10 .top10_quantity_links a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+html body#top10 .top10_quantity_links > span.brackets {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+/* Tables + ranks */
+html body#top10 table.torrent_table {
+	background: var(--background-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-top: none !important;
+	border-radius: 0 0 8px 8px !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+}
+html body#top10 .torrent_table tr.colhead td {
+	background: #12082a !important;
+	color: var(--head-text) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
+	font-weight: 600 !important;
+}
+html body#top10 .td_rank strong,
+html body#top10 .torrent_table td:first-child strong {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	font-weight: 800 !important;
+	font-size: 14px !important;
+	text-shadow: 0 0 10px rgba(255, 107, 203, 0.35) !important;
+}
+html body#top10 .torrent_table .group_info a[href*="torrents.php"],
+html body#top10 .torrent_table .group_info a[href*="artist.php"] {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+}
+html body#top10 .torrent_table .group_info a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+html body#top10 .torrent_table .tags a {
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
+	background: transparent !important;
+	border: none !important;
+	font-weight: 500 !important;
+}
+html body#top10 .torrent_table .tags a:hover {
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
+}
+/* Secondary filter brackets as chips */
+html body#top10 .thin > .linkbox a.brackets {
+	display: inline-flex !important;
+	padding: 3px 10px !important;
+	color: #c4b0e8 !important;
+	-webkit-text-fill-color: #c4b0e8 !important;
+	background: #1a0d38 !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#top10 .thin > .linkbox a.brackets:hover {
+	color: #ffe0f0 !important;
+	border-color: #05d9e8 !important;
+	background: #2a1050 !important;
+}
+html body#top10 .thin > .linkbox a.brackets::before,
+html body#top10 .thin > .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: torrent group page polish (torrents.php?id=…)
+ * Cover · group header · DL/CL · tags · edition rows · comments
+ * Complements collage-head + edition-toggle FINAL below.
+ * ══════════════════════════════════════════════════════════ */
+
+/* Group title h2 */
+html body#torrents .header h2,
+html body#torrents h2 {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+html body#torrents .header h2 a,
+html body#torrents h2 a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	text-decoration: none !important;
+}
+html body#torrents .header h2 a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+/* Group cover */
+html body#torrents .box_image img:not(.monkies-cover-host-external):not(.monkies-cover-host-ptpimg):not([data-monkies-cover-host]),
+html body#torrents .sidebar .box_image img:not(.monkies-cover-host-external):not(.monkies-cover-host-ptpimg):not([data-monkies-cover-host]),
+html body#torrents #cover img:not(.monkies-cover-host-external):not(.monkies-cover-host-ptpimg):not([data-monkies-cover-host]) {
+	border-radius: 6px !important;
+	border: 1px solid var(--border) !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+/* Sidebar boxes on group page */
+html body#torrents .sidebar .box {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+	overflow: hidden !important;
+	margin-bottom: 12px !important;
+}
+html body#torrents .sidebar .box > .head {
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	font-weight: 700 !important;
+	font-size: 12px !important;
+	padding: 8px 12px !important;
+}
+html body#torrents .sidebar .box a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+html body#torrents .sidebar .box a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+/* Tag box — deep violet names */
+html body#torrents .sidebar .box_tags a:first-child,
+html body#torrents .sidebar .box_tags li > a:first-of-type,
+html body#torrents .box_tags li > a:first-child {
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
+	background: transparent !important;
+	border: none !important;
+	font-weight: 500 !important;
+}
+/* Main column boxes (description, files, comments) */
+html body#torrents .main_column .box {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+	overflow: hidden !important;
+	margin-bottom: 12px !important;
+}
+html body#torrents .main_column .box > .head {
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	font-weight: 700 !important;
+}
+html body#torrents .main_column .box .body,
+html body#torrents .main_column .box .pad {
+	color: #efe6ff !important;
+	line-height: 1.55 !important;
+}
+html body#torrents .main_column .box .body a,
+html body#torrents .main_column .box .pad a {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+}
+/* Edition bars */
+html body#torrents tr.edition,
+html body#torrents tr.edition td,
+html body#torrents .group_torrent.edition td,
+html body#torrents td.edition_info {
+	background: #1a0d38 !important;
+	background-color: #1a0d38 !important;
+	color: #c4b0e8 !important;
+	border-color: rgba(255, 42, 109, 0.25) !important;
+}
+/* Torrent rows under group */
+html body#torrents tr.group_torrent td {
+	background: #0e0620 !important;
+	color: var(--text) !important;
+}
+html body#torrents tr.group_torrent:hover td {
+	background: #1a0d38 !important;
+}
+/* DL / CL / FL action links on group page */
+html body#torrents .group_torrent a[href*="action=download"]:not([href*="usetoken"]):not([href*="useToken"]),
+html body#torrents .torrent_links_block a[href*="action=download"]:not([href*="usetoken"]) {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	font-weight: 700 !important;
+}
+html body#torrents .group_torrent a[href*="action=download"]:hover {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+}
+html body#torrents .torrent_links_block a,
+html body#torrents .group_torrent .brackets {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#torrents .torrent_links_block a:hover {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+}
+/* Group page comments reuse forum_post cards */
+html body#torrents table.forum_post {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	overflow: hidden !important;
+	margin: 0 0 12px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	width: 100% !important;
+}
+html body#torrents table.forum_post tr.colhead_dark td {
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	color: var(--text-dimmed) !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	padding: 8px 12px !important;
+}
+html body#torrents table.forum_post tr.colhead_dark a[href*="user.php"] {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+}
+html body#torrents table.forum_post .time {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+}
+html body#torrents table.forum_post td.body,
+html body#torrents table.forum_post .body {
+	background: var(--background-dimmed) !important;
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	line-height: 1.55 !important;
+	padding: 12px 14px !important;
+}
+html body#torrents table.forum_post .body a {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+}
+html body#torrents table.forum_post .avatar img {
+	border-radius: 4px !important;
+	border: 1px solid var(--border) !important;
+}
+/* File list / snatch list tables on group */
+html body#torrents .filelist_table,
+html body#torrents table.filelist_table {
+	background: var(--background-dimmed) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+}
+html body#torrents .filelist_table tr.colhead_dark td,
+html body#torrents .filelist_table .colhead td {
+	background: #12082a !important;
+	color: var(--head-text) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
  * FINAL: cover-host rings — never let page polish hide them
  * Yellow = external host; red = ptpimg.me. Loader also injects
  * #monkies-red-cover-host last; this is belt-and-suspenders.
