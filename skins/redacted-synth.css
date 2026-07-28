@@ -6734,24 +6734,27 @@ html body#user .thin {
 	color: var(--text) !important;
 }
 
-/* Username + custom title row */
+/* Username + custom title row — cyan only on name, never on .user_title */
 html body#user .header h2,
 html body#user h2 {
+	/* layout only — do NOT set fill/shadow here (would paint custom title) */
 	color: #7af0ff !important;
-	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
 	line-height: 1.35 !important;
 	margin: 12px 0 6px !important;
-	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
+	text-shadow: none !important;
+	-webkit-text-fill-color: unset !important;
 }
-/* Custom title — never force color (user glow / gold / etc.) */
+/* Custom title — never force color / fill / shadow (user glow / gold / etc.) */
 html body#user .user_title,
 html body#user span.user_title,
-html body#user h2 .user_title {
+html body#user h2 .user_title,
+html body#user .user_title * {
 	font-weight: 500 !important;
 	margin-left: 0.2em !important;
-	/* leave color: inherit from user styles / inline */
+	-webkit-text-fill-color: unset !important;
+	/* leave color + text-shadow from user styles / inline only */
 }
 html body#user .donor_icon {
 	vertical-align: middle !important;
@@ -7043,21 +7046,28 @@ html body#user .main_column {
  * · box_lastfm / percentile / personal / community / donor
  * ══════════════════════════════════════════════════════════ */
 
-/* Username link in h2 — bright, not forced black */
+/* Username link only — cyan glow; never style .user_title */
 html body#user .header h2 a,
-html body#user h2 > strong > a {
-	color: #efe6ff !important;
+html body#user h2 > strong > a,
+html body#user h2 > a {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	text-decoration: none !important;
+	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
 }
-html body#user .header h2 a:hover {
-	color: var(--link-hover) !important;
+html body#user .header h2 a:hover,
+html body#user h2 > strong > a:hover,
+html body#user h2 > a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
 }
-/* Critical: custom title glow uses color:black + orange shadow — leave alone */
+/* Critical: custom title uses own color + orange shadow — leave alone */
 html body#user .user_title,
 html body#user .user_title span,
-html body#user .user_title [style] {
-	/* do not set color !important */
-	text-shadow: inherit;
+html body#user .user_title [style],
+html body#user h2 .user_title {
+	/* do not set color / text-shadow !important */
+	-webkit-text-fill-color: unset !important;
 }
 
 /* Profile dictionary head is long prose + [Hide] */
@@ -7345,7 +7355,7 @@ html body#user #profilediv .size7 {
  * Custom .user_title glow is never forced.
  * ══════════════════════════════════════════════════════════ */
 
-/* Header: username cyan glow (linked or plain); custom title left alone */
+/* Header: cyan glow only on username; custom title completely untouched */
 html body#user .header {
 	display: flex !important;
 	flex-flow: row wrap !important;
@@ -7354,35 +7364,45 @@ html body#user .header {
 	gap: 10px 16px !important;
 	margin-bottom: 10px !important;
 }
+/* h2 shell — layout + default name color for plain text; NO fill/shadow (title inherits those) */
 html body#user .header h2,
 html body#user h2 {
 	color: #7af0ff !important;
-	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
 	margin: 0 !important;
-	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
+	text-shadow: none !important;
+	-webkit-text-fill-color: unset !important;
 }
-html body#user .header h2 a,
+/* Username only (link / strong>a) — cyan + glow. Never style h2 strong wholesale. */
+html body#user .header h2 a:not(.user_title),
 html body#user h2 > strong > a,
-html body#user h2 > a,
-html body#user h2 strong {
+html body#user h2 > a:not(.user_title) {
 	color: #7af0ff !important;
 	-webkit-text-fill-color: #7af0ff !important;
 	text-decoration: none !important;
 	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
 }
-html body#user .header h2 a:hover {
+html body#user .header h2 a:not(.user_title):hover,
+html body#user h2 > strong > a:hover,
+html body#user h2 > a:not(.user_title):hover {
 	color: #ff6bcb !important;
 	-webkit-text-fill-color: #ff6bcb !important;
 }
-/* NEVER force custom title color (inline orange glow etc.) — break fill inheritance */
+/*
+ * Custom title — isolation wall.
+ * RED often uses color:black + orange text-shadow (inline). Never set color/shadow here.
+ * Clear webkit fill so parent cyan paint cannot cover the orange glow.
+ */
 html body#user .user_title,
+html body#user span.user_title,
 html body#user .user_title span,
 html body#user .user_title [style],
-html body#user h2 .user_title {
+html body#user h2 .user_title,
+html body#user h2 > .user_title,
+html body#user .header h2 .user_title {
 	-webkit-text-fill-color: unset !important;
-	/* leave color / text-shadow from user styles / inline */
+	/* intentionally no color / text-shadow / filter */
 }
 
 /* Settings · My Reports · Graphs · Badges · … — action pills */
