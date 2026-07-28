@@ -9847,6 +9847,272 @@ html body#wiki .main_column table td small {
 }
 
 /* ══════════════════════════════════════════════════════════
+ * FINAL: image host polish (imagehost.php) — body#imagehost
+ * Dropzone · Fetch & rehost CTA · My uploads chip · card/intro
+ * ══════════════════════════════════════════════════════════ */
+
+/* Page title */
+html body#imagehost .header,
+html body#imagehost .thin > .header {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: baseline !important;
+	justify-content: space-between !important;
+	gap: 10px 16px !important;
+	margin-bottom: 14px !important;
+}
+html body#imagehost .header h2,
+html body#imagehost h2 {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 500 !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 18px rgba(5, 217, 232, 0.25) !important;
+	margin: 0 !important;
+}
+
+/* My uploads — outline secondary chip */
+html body#imagehost .header .linkbox,
+html body#imagehost .thin > .header .linkbox,
+html body#imagehost .linkbox {
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: none !important;
+}
+html body#imagehost .header .linkbox a,
+html body#imagehost .linkbox a,
+html body#imagehost .header .linkbox a.brackets,
+html body#imagehost a[href*="action=history"],
+html body#imagehost a[href*="action=uploads"],
+html body#imagehost a[href*="uploaded"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	background: #1a0d38 !important;
+	border: 1px solid #ff2a6d !important;
+	border-radius: 999px !important;
+	padding: 3px 12px !important;
+	font-weight: 600 !important;
+	font-size: 12.5px !important;
+	text-decoration: none !important;
+	box-shadow: 0 0 8px rgba(255, 42, 109, 0.15) !important;
+}
+html body#imagehost .header .linkbox a:hover,
+html body#imagehost .linkbox a:hover,
+html body#imagehost a[href*="action=history"]:hover,
+html body#imagehost a[href*="action=uploads"]:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	background: #2a1050 !important;
+	border-color: #05d9e8 !important;
+	box-shadow: 0 0 12px rgba(5, 217, 232, 0.2) !important;
+}
+html body#imagehost .linkbox a.brackets::before,
+html body#imagehost .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Main card shell + intro copy quieter so UI is focus */
+html body#imagehost .box,
+html body#imagehost .box.pad,
+html body#imagehost .thin > .box,
+html body#imagehost #content .box {
+	background: var(--background-accent) !important;
+	background-color: var(--background-accent) !important;
+	background-image: none !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 10px !important;
+	box-shadow:
+		0 0 0 1px rgba(255, 42, 109, 0.06),
+		0 10px 28px rgba(0, 0, 0, 0.32) !important;
+	overflow: visible !important;
+}
+html body#imagehost .box .pad,
+html body#imagehost .box.pad {
+	padding: 18px 20px !important;
+}
+html body#imagehost .box > p,
+html body#imagehost .box.pad > p,
+html body#imagehost .box .pad > p,
+html body#imagehost .thin > .box > p {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	line-height: 1.55 !important;
+	margin: 0 0 12px !important;
+	font-size: 13px !important;
+}
+html body#imagehost .box > p:last-of-type,
+html body#imagehost .box.pad > p:last-of-type {
+	margin-bottom: 16px !important;
+}
+
+/* Dropzone — synth fill + dashed magenta/cyan border + hover/drag glow */
+html body#imagehost #dropzone,
+html body#imagehost #drop_zone,
+html body#imagehost #file_drop,
+html body#imagehost #drop-area,
+html body#imagehost .dropzone,
+html body#imagehost .drop_zone,
+html body#imagehost .drop-zone,
+html body#imagehost .file-drop,
+html body#imagehost .upload-drop,
+html body#imagehost [class*="dropzone"],
+html body#imagehost [id*="dropzone"],
+html body#imagehost [id*="drop_zone"],
+html body#imagehost [class*="Dropzone"],
+html body#imagehost label[for*="file"],
+html body#imagehost .box [class*="drop"] {
+	background: var(--background-dimmed) !important;
+	background-color: var(--background-dimmed) !important;
+	background-image: none !important;
+	border: 2px dashed rgba(255, 42, 109, 0.55) !important;
+	border-radius: 10px !important;
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	box-shadow: inset 0 0 24px rgba(5, 217, 232, 0.04) !important;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
+	min-height: 120px !important;
+	box-sizing: border-box !important;
+	cursor: pointer !important;
+}
+html body#imagehost #dropzone:hover,
+html body#imagehost #drop_zone:hover,
+html body#imagehost .dropzone:hover,
+html body#imagehost .drop_zone:hover,
+html body#imagehost [class*="dropzone"]:hover,
+html body#imagehost [class*="drop"]:hover,
+html body#imagehost label[for*="file"]:hover,
+html body#imagehost #dropzone.dragover,
+html body#imagehost #dropzone.drag-over,
+html body#imagehost #dropzone.is-dragover,
+html body#imagehost .dropzone.dragover,
+html body#imagehost .dropzone.drag-over,
+html body#imagehost .dropzone.is-dragover,
+html body#imagehost [class*="drop"].dragover,
+html body#imagehost [class*="drop"].drag-over {
+	border-color: #05d9e8 !important;
+	background: #140a2e !important;
+	background-color: #140a2e !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	box-shadow:
+		inset 0 0 28px rgba(5, 217, 232, 0.1),
+		0 0 18px rgba(255, 42, 109, 0.25) !important;
+}
+
+/* Dropzone placeholder / helper text quieter */
+html body#imagehost #dropzone,
+html body#imagehost .dropzone,
+html body#imagehost [class*="dropzone"] {
+	font-size: 13px !important;
+	line-height: 1.45 !important;
+	text-align: center !important;
+}
+html body#imagehost .box .pad > div {
+	/* keep flex layouts usable */
+	color: var(--text-dimmed) !important;
+}
+
+/* URL rehost textarea */
+html body#imagehost textarea,
+html body#imagehost .box textarea {
+	background: var(--background-input) !important;
+	background-color: var(--background-input) !important;
+	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	padding: 10px 12px !important;
+	font-family: var(--monospace-ui, ui-monospace, monospace) !important;
+	font-size: 12.5px !important;
+	line-height: 1.45 !important;
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2) !important;
+	resize: vertical !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+html body#imagehost textarea::placeholder,
+html body#imagehost .box textarea::placeholder {
+	color: var(--text-weak) !important;
+	opacity: 1 !important;
+}
+html body#imagehost textarea:focus,
+html body#imagehost .box textarea:focus {
+	border-color: #05d9e8 !important;
+	box-shadow: 0 0 0 1px rgba(5, 217, 232, 0.28) !important;
+	outline: none !important;
+}
+
+/* Labels above URL box */
+html body#imagehost .box label,
+html body#imagehost .box .pad label {
+	color: var(--text-dimmed) !important;
+	font-weight: 500 !important;
+	font-size: 12.5px !important;
+}
+
+/* Fetch & rehost — primary filled CTA */
+html body#imagehost input[type="submit"],
+html body#imagehost input[type="button"],
+html body#imagehost button,
+html body#imagehost input[value*="Fetch"],
+html body#imagehost input[value*="rehost"],
+html body#imagehost input[value*="Rehost"],
+html body#imagehost button[id*="rehost"],
+html body#imagehost button[class*="rehost"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 100% !important;
+	min-height: 36px !important;
+	margin-top: 8px !important;
+	padding: 8px 16px !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
+	border: 1px solid transparent !important;
+	border-radius: 8px !important;
+	font-weight: 700 !important;
+	font-size: 13.5px !important;
+	letter-spacing: 0.01em !important;
+	cursor: pointer !important;
+	box-shadow: 0 0 16px rgba(255, 42, 109, 0.4) !important;
+	text-shadow: none !important;
+}
+html body#imagehost input[type="submit"]:hover,
+html body#imagehost input[type="button"]:hover,
+html body#imagehost button:hover,
+html body#imagehost input[value*="Fetch"]:hover,
+html body#imagehost input[value*="rehost"]:hover {
+	color: #0a0418 !important;
+	-webkit-text-fill-color: #0a0418 !important;
+	background: linear-gradient(180deg, #ff9ed8, #ff6bcb) !important;
+	box-shadow: 0 0 20px rgba(5, 217, 232, 0.35) !important;
+}
+
+/* Clipboard hint under controls */
+html body#imagehost .box .pad > div + p,
+html body#imagehost .box .pad p:last-child,
+html body#imagehost .box small,
+html body#imagehost .box .pad small {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-size: 12px !important;
+	text-align: center !important;
+}
+
+/* “…or…” separator between dropzone and URL column */
+html body#imagehost .box em,
+html body#imagehost .box .or {
+	color: var(--text-weak) !important;
+	font-style: normal !important;
+}
+
+/* ══════════════════════════════════════════════════════════
  * FINAL: bookmarks polish (bookmarks.php) — body#bookmarks
  * Cover grid · sidebar Stats/Tags/Artists · torrent list ·
  * tag commas · pager pill · action linkbox.
