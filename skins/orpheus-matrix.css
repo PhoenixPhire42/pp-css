@@ -449,7 +449,8 @@ table.box, table.box2 {
     display: inline-block
 }
 
-#userinfo_minor:before, .linkbox br {
+/* Do NOT blank #userinfo_minor:before — chevron glyph lives there */
+.linkbox br {
     content: ""
 }
 
@@ -3139,34 +3140,65 @@ body {
 }
 
 /*
- * Chevron next to username — pure CSS glyph (stock SVG/content was blanked).
- * Closed ▾ on 50×50 face; open ▴ still on the tab face (not full panel width).
+ * Chevron next to Phaedra — pin 50×50 tab + pure CSS glyph.
+ * Stock blanked :before; also ensure layout so glyph isn't zero-size/clipped.
  */
+html body #header #userinfo_minor,
+html body #userinfo_minor {
+	position: absolute !important;
+	right: 0 !important;
+	width: 50px !important;
+	min-width: 50px !important;
+	max-width: 50px !important;
+	height: 50px !important;
+	min-height: 50px !important;
+	box-sizing: border-box !important;
+	overflow: visible !important;
+	z-index: 40 !important;
+	font-size: 14px !important;
+}
+html body #header #userinfo_username,
+html body #userinfo_username {
+	right: 50px !important;
+}
+html body #header #userinfo_minor::before,
+html body #header #userinfo_minor:before,
+html body #userinfo_minor::before,
 html body #userinfo_minor:before {
-	content: "▾" !important;
+	content: "\25BE" !important; /* ▾ */
 	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
 	width: 50px !important;
 	height: 50px !important;
+	min-width: 50px !important;
+	min-height: 50px !important;
+	max-width: 50px !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	box-sizing: border-box !important;
-	background: none !important;
+	background: transparent !important;
 	background-image: none !important;
 	background-size: auto !important;
 	filter: none !important;
-	font-size: 14px !important;
+	font-family: system-ui, "Segoe UI", "Apple Color Emoji", sans-serif !important;
+	font-size: 16px !important;
 	font-weight: 700 !important;
 	line-height: 50px !important;
 	text-align: center !important;
 	letter-spacing: 0 !important;
-	color: #00ff41 !important;
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
 	text-shadow:
-		0 0 10px rgba(0, 255, 65, 0.55),
-		0 1px 0 rgba(0, 0, 0, 0.55) !important;
-	opacity: 0.95 !important;
+		0 0 12px rgba(0, 255, 65, 0.75),
+		0 0 4px rgba(0, 255, 65, 0.9),
+		0 1px 0 rgba(0, 0, 0, 0.65) !important;
 }
+html body #header #userinfo_minor:hover::before,
+html body #header #userinfo_minor:hover:before,
+html body #userinfo_minor:hover::before,
 html body #userinfo_minor:hover:before {
-	content: "▴" !important;
+	content: "\25B4" !important; /* ▴ */
 	width: 50px !important;
 	height: 50px !important;
 	max-width: 50px !important;
@@ -3174,11 +3206,12 @@ html body #userinfo_minor:hover:before {
 	margin-left: 0 !important;
 	padding: 0 !important;
 	line-height: 48px !important;
-	font-size: 13px !important;
+	font-size: 15px !important;
 	background-image: none !important;
-	color: #d0ffd0 !important;
+	color: #ffffff !important;
+	-webkit-text-fill-color: #ffffff !important;
 	text-shadow:
-		0 0 12px rgba(0, 255, 65, 0.7),
+		0 0 14px rgba(0, 255, 65, 0.85),
 		0 1px 0 rgba(0, 0, 0, 0.5) !important;
 }
 
@@ -6641,6 +6674,175 @@ html body #maincontent .tor-login {
 html:has(#maincontent) #monkies-ops-theme-pill,
 html:has(#maincontent) #monkies-dev-alive {
 	display: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: torrents browse polish (torrents.php) — body#torrents
+ * Pager chips · Show search · DL primary · quieter tags · dim zeros
+ * ══════════════════════════════════════════════════════════ */
+
+/* Pager — outline chips; current filled */
+html[data-monkies-orpheus-skin="matrix"] body#torrents .linkbox,
+html body#torrents .thin > .linkbox,
+html body#torrents .linkbox {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 4px !important;
+	margin: 10px 0 12px !important;
+	font-size: 12px !important;
+}
+html body#torrents .linkbox a,
+html body#torrents .thin > .linkbox a,
+html body#torrents .linkbox a strong,
+html body#torrents .linkbox a b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 3px 10px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#torrents .linkbox a:hover,
+html body#torrents .linkbox a:hover strong {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+	box-shadow: 0 0 10px rgba(0, 255, 65, 0.15) !important;
+}
+html body#torrents .linkbox > strong,
+html body#torrents .linkbox > b,
+html body#torrents .thin > .linkbox > strong,
+html body#torrents .thin > .linkbox > b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 3px 10px !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	background: linear-gradient(180deg, #5dff7a, #00cc44) !important;
+	border: 1px solid transparent !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	box-shadow: 0 0 12px rgba(0, 255, 65, 0.35) !important;
+}
+
+/* [Show search form] — outline chip (collapsed filter header) */
+html body#torrents .box a.brackets,
+html body#torrents .filter_torrents a.brackets,
+html body#torrents a.brackets[onclick*="search"],
+html body#torrents a.brackets[onclick*="Search"],
+html body#torrents a.brackets[onclick*="filter"],
+html body#torrents a.brackets[onclick*="gtoggle"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#torrents .box a.brackets:hover,
+html body#torrents a.brackets[onclick]:hover {
+	color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+html body#torrents .box a.brackets::before,
+html body#torrents .box a.brackets::after,
+html body#torrents a.brackets[onclick]::before,
+html body#torrents a.brackets[onclick]::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* DL primary · FL/RP quieter */
+html body#torrents .torrent_links_block,
+html body#torrents .group_info .torrent_links_block,
+html body#torrents span.torrent_links_block {
+	color: #5a7a5a !important;
+}
+html body#torrents .torrent_links_block a,
+html body#torrents .group_info .torrent_links_block a {
+	color: #6a906a !important;
+	-webkit-text-fill-color: #6a906a !important;
+	font-weight: 500 !important;
+	text-decoration: none !important;
+	opacity: 0.9 !important;
+}
+html body#torrents .torrent_links_block a:hover {
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	opacity: 1 !important;
+}
+html body#torrents .torrent_links_block a[href*="action=download"]:not([href*="usetoken"]):not([href*="useToken"]),
+html body#torrents a.button_dl,
+html body#torrents .torrent_links_block a[title*="Download"],
+html body#torrents .torrent_links_block a[title*="download"] {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+	opacity: 1 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.35) !important;
+}
+html body#torrents .torrent_links_block a[href*="action=download"]:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+
+/* Tag chips — slightly quieter so titles win */
+html body#torrents .tags a,
+html body#torrents .group_info .tags a,
+html body#torrents .pp-tag-chip,
+html body#torrents div.tags a {
+	color: #a8d8a8 !important;
+	-webkit-text-fill-color: #a8d8a8 !important;
+	background: #0f2414 !important;
+	background-color: #0f2414 !important;
+	border: 1px solid #2a5c32 !important;
+	font-weight: 500 !important;
+	opacity: 0.92 !important;
+}
+html body#torrents .tags a:hover,
+html body#torrents .pp-tag-chip:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	background: #1a4d28 !important;
+	border-color: #3dcc55 !important;
+	opacity: 1 !important;
+}
+
+/* Peer counts — tabular; default muted (zeros); pop when linked/strong */
+html body#torrents .torrent_table td.td_seeders,
+html body#torrents .torrent_table td.td_leechers,
+html body#torrents .torrent_table td.td_snatched,
+html body#torrents .torrent_table .number_column {
+	font-variant-numeric: tabular-nums !important;
+	font-weight: 600 !important;
+	color: #6a866a !important;
+	-webkit-text-fill-color: #6a866a !important;
+}
+html body#torrents .torrent_table td.td_seeders a,
+html body#torrents .torrent_table td.td_leechers a,
+html body#torrents .torrent_table td.td_snatched a,
+html body#torrents .torrent_table td.td_seeders strong,
+html body#torrents .torrent_table td.td_leechers strong,
+html body#torrents .torrent_table td.td_snatched strong {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+	text-shadow: 0 0 6px rgba(0, 255, 65, 0.3) !important;
 }
 
 /* ══════════════════════════════════════════════════════════
