@@ -9483,19 +9483,37 @@ html body .alertbar.blend a {
 
 /* ══════════════════════════════════════════════════════════
  * Torrent badges: Freeleech = green, New = orange
- * (icons + labels in group/torrent tables)
+ * Match each other: icon + label same semantic color.
+ * PP often uses .tl_new / .torrent_label (not only .new).
  * ══════════════════════════════════════════════════════════ */
+
+/* NEW — label text must be orange (same weight as Freeleech green) */
 html body .new,
 html body strong.new,
 html body span.new,
-html body .torrent_table .new,
-html body .group_torrent .new,
-html body td .new,
 html body a.new,
-html body .torrent_info .new {
+html body .tl_new,
+html body strong.tl_new,
+html body span.tl_new,
+html body .torrent_label.tl_new,
+html body .torrent_label.new,
+html body strong.torrent_label.new,
+html body .torrent_table .new,
+html body .torrent_table .tl_new,
+html body .group_torrent .new,
+html body .group_torrent .tl_new,
+html body #torrent_details .new,
+html body #torrent_details .tl_new,
+html body td .new,
+html body td .tl_new,
+html body .torrent_info .new,
+html body .torrent_info .tl_new,
+html body .group_info .new,
+html body .group_info .tl_new {
 	color: #ff9f0a !important;
 	-webkit-text-fill-color: #ff9f0a !important;
 	font-weight: 700 !important;
+	font-style: normal !important;
 }
 
 /* Freeleech text + common Gazelle freeleech classes */
@@ -9503,6 +9521,7 @@ html body .freeleech,
 html body strong.freeleech,
 html body span.freeleech,
 html body .tl_free,
+html body .torrent_label.tl_free,
 html body .torrent_table .freeleech,
 html body .group_torrent .freeleech,
 html body .torrent_info .freeleech,
@@ -9519,7 +9538,8 @@ html body .important_text_alt {
 html body .freeleech > img,
 html body strong.freeleech > img,
 html body span.freeleech > img,
-html body .tl_free > img {
+html body .tl_free > img,
+html body .torrent_label.tl_free > img {
 	filter: invert(48%) sepia(79%) saturate(400%) hue-rotate(90deg) brightness(1.05) !important;
 	opacity: 1 !important;
 	max-width: 18px !important;
@@ -9533,17 +9553,24 @@ html body .tl_free::before {
 	-webkit-text-fill-color: #34c759 !important;
 }
 
-/* New: hide stock + img; paint clean orange circle + (no global img filters) */
+/* New: hide stock + img; paint clean orange circle + */
 html body .new > img,
 html body strong.new > img,
 html body span.new > img,
-html body .tl_new > img {
+html body .tl_new > img,
+html body .torrent_label.tl_new > img,
+html body .torrent_label.new > img {
 	display: none !important;
 }
 html body .new::before,
 html body strong.new::before,
 html body span.new::before,
-html body .tl_new::before {
+html body a.new::before,
+html body .tl_new::before,
+html body strong.tl_new::before,
+html body span.tl_new::before,
+html body .torrent_label.tl_new::before,
+html body .torrent_label.new::before {
 	content: "+" !important;
 	display: inline-flex !important;
 	align-items: center !important;
@@ -9554,12 +9581,57 @@ html body .tl_new::before {
 	padding: 0 !important;
 	border-radius: 50% !important;
 	background: #ff9f0a !important;
+	background-color: #ff9f0a !important;
 	color: #ffffff !important;
 	-webkit-text-fill-color: #ffffff !important;
-	font: 800 11px/1 system-ui, sans-serif !important;
+	font: 800 11px/1 system-ui, -apple-system, sans-serif !important;
 	vertical-align: middle !important;
 	box-sizing: border-box !important;
 	border: none !important;
+	/* do not inherit label fill onto the + glyph */
+	text-shadow: none !important;
+}
+
+/*
+ * Fallback: stock New icon is a bare <img alt/title/src*="new">
+ * next to plain “New” text (no .new wrapper). Tint only badge-sized
+ * icons inside torrent rows — never cover art.
+ */
+html body .group_torrent img[alt="New" i],
+html body .group_torrent img[alt="New!" i],
+html body .group_torrent img[title="New" i],
+html body .group_torrent img[title*="Newly" i],
+html body .group_torrent img[src*="symbols/new" i],
+html body .group_torrent img[src*="/new." i],
+html body .group_torrent img[src*="new.png" i],
+html body .group_torrent img[src*="new.gif" i],
+html body .torrent_table .group_info img[alt="New" i],
+html body .torrent_table .group_info img[alt="New!" i],
+html body .torrent_table .group_info img[title="New" i],
+html body .torrent_table .group_info img[src*="symbols/new" i],
+html body .torrent_table td img[alt="New" i],
+html body .torrent_table td img[src*="symbols/new" i],
+html body #torrent_details .group_torrent img[alt="New" i],
+html body #torrent_details .group_torrent img[src*="symbols/new" i] {
+	/* orange badge chip look when stock PNG is used */
+	filter: invert(62%) sepia(78%) saturate(1200%) hue-rotate(1deg) brightness(1.05) contrast(1.05) !important;
+	opacity: 1 !important;
+	max-width: 16px !important;
+	max-height: 16px !important;
+	width: auto !important;
+	height: auto !important;
+	vertical-align: middle !important;
+	display: inline-block !important;
+}
+
+/* When New is plain text after the icon, PP often wraps both in torrent_label */
+html body .group_torrent .torrent_label:has(img[alt="New" i]),
+html body .group_torrent .torrent_label:has(img[src*="symbols/new" i]),
+html body .torrent_table .torrent_label:has(img[alt="New" i]),
+html body #torrent_details .torrent_label:has(img[alt="New" i]) {
+	color: #ff9f0a !important;
+	-webkit-text-fill-color: #ff9f0a !important;
+	font-weight: 700 !important;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -10231,4 +10303,45 @@ html body#torrents .sidebar img,
 html body#torrents .box_image img {
 	filter: none !important;
 	-webkit-filter: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * FINAL: New badge text = orange (parity with Freeleech green)
+ * Must stay last — beats group_info / td text fill rules.
+ * ══════════════════════════════════════════════════════════ */
+html body .group_torrent .new,
+html body .group_torrent .tl_new,
+html body .group_torrent strong.new,
+html body .group_torrent span.new,
+html body .group_torrent .torrent_label.new,
+html body .group_torrent .torrent_label.tl_new,
+html body .torrent_table .new,
+html body .torrent_table .tl_new,
+html body .torrent_table strong.new,
+html body .torrent_table span.new,
+html body #torrent_details .new,
+html body #torrent_details .tl_new,
+html body #torrent_details strong.new,
+html body#torrents .torrent_table .group_info .new,
+html body#torrents .torrent_table .group_info .tl_new,
+html body#torrents .torrent_table td .new,
+html body#torrents .torrent_table td .tl_new {
+	color: #ff9f0a !important;
+	-webkit-text-fill-color: #ff9f0a !important;
+	font-weight: 700 !important;
+}
+/* Freeleech parity (same cascade position) */
+html body .group_torrent .freeleech,
+html body .group_torrent .tl_free,
+html body .group_torrent strong.freeleech,
+html body .group_torrent .important_text_alt,
+html body .torrent_table .freeleech,
+html body .torrent_table .tl_free,
+html body .torrent_table .important_text_alt,
+html body #torrent_details .freeleech,
+html body #torrent_details .tl_free,
+html body #torrent_details .important_text_alt {
+	color: #34c759 !important;
+	-webkit-text-fill-color: #34c759 !important;
+	font-weight: 700 !important;
 }
