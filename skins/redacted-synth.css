@@ -10244,7 +10244,8 @@ html body#bookmarks h2 a img {
 }
 
 /* Header actions only: Torrents · Artists · Collages · Requests · Remove · Manage */
-html body#bookmarks .header .linkbox {
+html body#bookmarks .header .linkbox,
+html body#bookmarks .thin > .header .linkbox {
 	display: flex !important;
 	flex-flow: row wrap !important;
 	align-items: center !important;
@@ -10260,6 +10261,7 @@ html body#bookmarks .header .linkbox a.brackets {
 	color: #c4b0e8 !important;
 	-webkit-text-fill-color: #c4b0e8 !important;
 	background: #1a0d38 !important;
+	background-color: #1a0d38 !important;
 	border: 1px solid var(--border) !important;
 	border-radius: 999px !important;
 	font-weight: 600 !important;
@@ -10273,19 +10275,45 @@ html body#bookmarks .header .linkbox a:hover {
 	border-color: #ff2a6d !important;
 	background: #2a1050 !important;
 }
-/* Active type tab (Torrents) */
+/*
+ * Active type tab (Torrents / Artists / …)
+ * Gazelle: bare <strong>Torrents</strong> among <a> siblings — match nested strong too.
+ */
 html body#bookmarks .header .linkbox > strong,
-html body#bookmarks .header .linkbox > b {
+html body#bookmarks .header .linkbox > b,
+html body#bookmarks .header .linkbox strong,
+html body#bookmarks .header .linkbox b,
+html body#bookmarks .header .linkbox span.selected,
+html body#bookmarks .header .linkbox a.selected,
+html body#bookmarks .header .linkbox a.active {
 	display: inline-flex !important;
 	align-items: center !important;
 	padding: 4px 11px !important;
+	margin: 0 !important;
 	color: #1a0a18 !important;
 	-webkit-text-fill-color: #1a0a18 !important;
 	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
+	border: 1px solid transparent !important;
 	border-radius: 999px !important;
 	font-weight: 700 !important;
 	font-size: 12px !important;
-	box-shadow: 0 0 12px rgba(255, 42, 109, 0.3) !important;
+	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
+	text-decoration: none !important;
+}
+/* Don't paint filled style on strong inside page-range links (pager uses a>strong) */
+html body#bookmarks .header .linkbox a strong,
+html body#bookmarks .header .linkbox a b {
+	display: inline !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	background: transparent !important;
+	border: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	font-weight: inherit !important;
 }
 html body#bookmarks .header .linkbox a.brackets::before,
 html body#bookmarks .header .linkbox a.brackets::after {
@@ -10293,16 +10321,31 @@ html body#bookmarks .header .linkbox a.brackets::after {
 	content: none !important;
 }
 
-/* Pager linkboxes: plain links, neon capsule only on current range */
-html body#bookmarks .thin > .linkbox {
+/*
+ * Pager (cover grid + list) — plain links; neon capsule only on current range.
+ * Match any .linkbox under #bookmarks (not only .thin > .linkbox).
+ */
+html body#bookmarks .linkbox:not(.header .linkbox),
+html body#bookmarks .thin > .linkbox,
+html body#bookmarks .main_column .linkbox,
+html body#bookmarks .box + .linkbox,
+html body#bookmarks .pad + .linkbox,
+html body#bookmarks center .linkbox {
 	display: block !important;
 	text-align: center !important;
 	margin: 12px 0 !important;
 	font-size: 12px !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 html body#bookmarks .thin > .linkbox a,
+html body#bookmarks .main_column .linkbox a,
+html body#bookmarks .box + .linkbox a,
+html body#bookmarks center .linkbox a,
 html body#bookmarks .thin > .linkbox a strong,
-html body#bookmarks .thin > .linkbox a b {
+html body#bookmarks .thin > .linkbox a b,
+html body#bookmarks .main_column .linkbox a strong {
 	display: inline !important;
 	color: #c4b0e8 !important;
 	-webkit-text-fill-color: #c4b0e8 !important;
@@ -10314,20 +10357,38 @@ html body#bookmarks .thin > .linkbox a b {
 	font-weight: 600 !important;
 }
 html body#bookmarks .thin > .linkbox a:hover,
-html body#bookmarks .thin > .linkbox a:hover strong {
+html body#bookmarks .main_column .linkbox a:hover,
+html body#bookmarks .thin > .linkbox a:hover strong,
+html body#bookmarks .main_column .linkbox a:hover strong {
 	color: #05d9e8 !important;
 	-webkit-text-fill-color: #05d9e8 !important;
 }
+/* Current page range — direct-child strong/b only (never a>strong) */
 html body#bookmarks .thin > .linkbox > strong,
-html body#bookmarks .thin > .linkbox > b {
+html body#bookmarks .thin > .linkbox > b,
+html body#bookmarks .main_column .linkbox > strong,
+html body#bookmarks .main_column .linkbox > b,
+html body#bookmarks .box + .linkbox > strong,
+html body#bookmarks center .linkbox > strong,
+html body#bookmarks .linkbox > strong,
+html body#bookmarks .linkbox > b {
 	display: inline-block !important;
 	color: #1a0a18 !important;
 	-webkit-text-fill-color: #1a0a18 !important;
 	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
 	border-radius: 999px !important;
 	padding: 2px 10px !important;
 	font-weight: 700 !important;
 	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
+}
+/* Header linkbox strong is active tab — already filled above; exclude from pager-only if nested */
+html body#bookmarks .header .linkbox > strong,
+html body#bookmarks .header .linkbox > b {
+	/* re-assert active tab after broad .linkbox > strong */
+	display: inline-flex !important;
+	padding: 4px 11px !important;
+	font-size: 12px !important;
 }
 
 /* Cover art box + grid + sidebar cards */
@@ -10449,6 +10510,47 @@ html body#bookmarks .torrent_table .group_info a[href*="artist.php"] {
 html body#bookmarks .torrent_table .group_info a:hover {
 	color: #ff6bcb !important;
 	-webkit-text-fill-color: #ff6bcb !important;
+}
+/*
+ * List genre tags — deep violet (not cyan title color).
+ * Win over group_info a / artist / torrents.php link rules.
+ */
+html body#bookmarks .torrent_table .tags,
+html body#bookmarks .torrent_table .group_info .tags,
+html body#bookmarks .torrent_table div.tags,
+html body#bookmarks table.torrent_table .tags {
+	font-size: 12px !important;
+	line-height: 1.5 !important;
+	margin-top: 3px !important;
+	color: var(--text-dimmed) !important;
+}
+html body#bookmarks .torrent_table .tags a,
+html body#bookmarks .torrent_table .group_info .tags a,
+html body#bookmarks .torrent_table div.tags a,
+html body#bookmarks .torrent_table .tags a:link,
+html body#bookmarks .torrent_table .tags a:visited,
+html body#bookmarks .torrent_table .group_info .tags a[href*="torrents.php"],
+html body#bookmarks .torrent_table .group_info .tags a[href*="taglist"],
+html body#bookmarks .torrent_table .group_info .tags a[href*="tag"] {
+	display: inline !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
+	background: transparent !important;
+	border: none !important;
+	border-radius: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	font-size: inherit !important;
+	font-weight: 500 !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+}
+html body#bookmarks .torrent_table .tags a:hover,
+html body#bookmarks .torrent_table .group_info .tags a:hover {
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
+	text-decoration: underline !important;
 }
 html body#bookmarks .torrent_table a[href*="action=remove"],
 html body#bookmarks .torrent_table a[href*="remove_bookmark"],
