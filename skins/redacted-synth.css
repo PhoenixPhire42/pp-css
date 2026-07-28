@@ -6737,11 +6737,13 @@ html body#user .thin {
 /* Username + custom title row */
 html body#user .header h2,
 html body#user h2 {
-	color: #efe6ff !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
 	line-height: 1.35 !important;
 	margin: 12px 0 6px !important;
+	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
 }
 /* Custom title — never force color (user glow / gold / etc.) */
 html body#user .user_title,
@@ -7343,7 +7345,7 @@ html body#user #profilediv .size7 {
  * Custom .user_title glow is never forced.
  * ══════════════════════════════════════════════════════════ */
 
-/* Header: username cyan; custom title left alone */
+/* Header: username cyan glow (linked or plain); custom title left alone */
 html body#user .header {
 	display: flex !important;
 	flex-flow: row wrap !important;
@@ -7354,14 +7356,17 @@ html body#user .header {
 }
 html body#user .header h2,
 html body#user h2 {
-	color: #efe6ff !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
 	margin: 0 !important;
-	text-shadow: none !important;
+	text-shadow: 0 0 14px rgba(5, 217, 232, 0.28) !important;
 }
 html body#user .header h2 a,
-html body#user h2 > strong > a {
+html body#user h2 > strong > a,
+html body#user h2 > a,
+html body#user h2 strong {
 	color: #7af0ff !important;
 	-webkit-text-fill-color: #7af0ff !important;
 	text-decoration: none !important;
@@ -7371,11 +7376,13 @@ html body#user .header h2 a:hover {
 	color: #ff6bcb !important;
 	-webkit-text-fill-color: #ff6bcb !important;
 }
-/* NEVER force custom title color (inline orange glow etc.) */
+/* NEVER force custom title color (inline orange glow etc.) — break fill inheritance */
 html body#user .user_title,
 html body#user .user_title span,
-html body#user .user_title [style] {
-	/* leave color / text-shadow from user styles */
+html body#user .user_title [style],
+html body#user h2 .user_title {
+	-webkit-text-fill-color: unset !important;
+	/* leave color / text-shadow from user styles / inline */
 }
 
 /* Settings · My Reports · Graphs · Badges · … — action pills */
@@ -7419,6 +7426,27 @@ html body#user .linkbox a.brackets::before,
 html body#user .linkbox a.brackets::after {
 	display: none !important;
 	content: none !important;
+}
+
+/* Settings — primary filled CTA (header only) */
+html body#user .header .linkbox a[href*="action=edit"],
+html body#user .header .linkbox a.brackets[href*="action=edit"],
+html body#user .thin > .header .linkbox a[href*="action=edit"] {
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
+	border: 1px solid transparent !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.4) !important;
+	font-weight: 700 !important;
+}
+html body#user .header .linkbox a[href*="action=edit"]:hover,
+html body#user .thin > .header .linkbox a[href*="action=edit"]:hover {
+	color: #0a0418 !important;
+	-webkit-text-fill-color: #0a0418 !important;
+	background: linear-gradient(180deg, #ff9ed8, #ff6bcb) !important;
+	border-color: transparent !important;
+	box-shadow: 0 0 18px rgba(5, 217, 232, 0.35) !important;
 }
 
 /* Sidebar box heads — magenta neon strip */
@@ -7587,6 +7615,28 @@ html body#user table.recent tr:not(.colhead) > td > a:hover {
 	box-shadow: 0 0 0 1px rgba(5, 217, 232, 0.35), 0 0 12px rgba(255, 42, 109, 0.15) !important;
 }
 
+/* Stats — brighter primary lines for faster scan; times stay quieter */
+html body#user .box_userinfo_stats ul.stats > li,
+html body#user .sidebar .box_userinfo_stats ul.stats > li,
+html body#user ul.stats > li {
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	font-weight: 500 !important;
+}
+html body#user ul.stats > li .time,
+html body#user .box_userinfo_stats ul.stats .time {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	font-weight: 400 !important;
+}
+/* Ratio greens / reds still win */
+html body#user ul.stats .r10,
+html body#user ul.stats .r20,
+html body#user ul.stats .r50,
+html body#user ul.stats .r99,
+html body#user ul.stats span[class^="r"] {
+	font-weight: 700 !important;
+}
 /* Stats list links cyan soft */
 html body#user ul.stats a {
 	color: #7af0ff !important;
