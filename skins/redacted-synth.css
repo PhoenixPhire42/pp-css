@@ -5653,12 +5653,14 @@ html body pre {
  * category strip, request name hierarchy, vote [+]
  * ══════════════════════════════════════════════════════════ */
 
-/* Page title */
+/* Page title — match collages cyan glow for browse-page parity */
 html body#requests .header h2,
 html body#requests h2 {
-	color: #efe6ff !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 500 !important;
-	letter-spacing: 0.01em;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 18px rgba(5, 217, 232, 0.25) !important;
 }
 
 /* Top linkbox: New request · My requests · … */
