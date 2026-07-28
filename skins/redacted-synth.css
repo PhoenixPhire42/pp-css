@@ -668,7 +668,7 @@ div#flip_view_1 div#similar-artist .name {
 }
 
 .tags a:hover {
-    color: #ff6bcb
+    color: #9b5cff
 }
 
 .group_info>span:first-child, .group_torrent td:first-child>span, .torrent_links_block {
@@ -5223,7 +5223,7 @@ html body#torrents div.box.box_tags li > a:first-child,
 html body div.box.box_tags li > a:first-child,
 html body .box_tags li > a:first-child,
 html body #user div.sidebar .box_userinfo_activity ul.stats.nobullet li a {
-	color: #ff6bcb !important;
+	color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -5236,7 +5236,7 @@ html body #user div.sidebar .box_userinfo_activity ul.stats.nobullet li a {
 html body .tags a:hover,
 html body #torrent_table .group .tags a:hover,
 html body .box_tags li > a:first-child:hover {
-	color: #ff9ed8 !important;
+	color: #c77dff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	border: none !important;
@@ -5862,7 +5862,7 @@ html body#requests .request_table td:first-child a:hover {
 
 /* Tags under request name — plain text */
 html body#requests .request_table .tags a {
-	color: #ff6bcb !important;
+	color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -6670,7 +6670,7 @@ html body#top10 .torrent_table .tags {
 }
 html body#top10 .torrent_table .tags a {
 	display: inline !important;
-	color: #ff6bcb !important;
+	color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -6682,7 +6682,7 @@ html body#top10 .torrent_table .tags a {
 	vertical-align: baseline !important;
 }
 html body#top10 .torrent_table .tags a:hover {
-	color: #ff9ed8 !important;
+	color: #c77dff !important;
 	background: transparent !important;
 }
 
@@ -7316,7 +7316,7 @@ html body#user #requests a {
 	color: #ff6bcb !important;
 }
 html body#user #requests .tags a {
-	color: #ff6bcb !important;
+	color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -7546,8 +7546,8 @@ html body#user #requests .tags {
 html body#user #requests .tags a {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -7558,8 +7558,8 @@ html body#user #requests .tags a {
 	box-shadow: none !important;
 }
 html body#user #requests .tags a:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	border: none !important;
 	text-decoration: underline !important;
@@ -8432,7 +8432,7 @@ html body .sidebar .box_tags a {
 	font-weight: 500 !important;
 }
 
-/* Tag name only — plain pink text (no pill) */
+/* Tag name only — deep violet text (no pill) */
 html body .box_tags li > a:first-child,
 html body .box.box_tags li > a:first-of-type,
 html body#torrents .box_tags li > a:first-child,
@@ -8442,8 +8442,8 @@ html body .tags a:link,
 html body .tags a:visited,
 html body .pp-tag-chip {
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -8463,8 +8463,8 @@ html body .box_tags li > a:first-child:hover,
 html body .box.box_tags li > a:first-of-type:hover,
 html body .tags a:hover,
 html body .pp-tag-chip:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -8722,8 +8722,8 @@ html body#collages .collage_table .tags a:link,
 html body#collages .collage_table .tags a:visited {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -8738,8 +8738,8 @@ html body#collages .collage_table .tags a:visited {
 }
 html body#collages .collage_table .tags a:hover,
 html body .collage_table .tags a:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	border: none !important;
 	text-decoration: underline !important;
@@ -8855,8 +8855,8 @@ html body#requests .request_table .tags a,
 html body#requests table.request_table .tags a {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -9687,8 +9687,8 @@ html body .torrent_table .group_info .tags a,
 html body#bookmarks .tags a {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-image: none !important;
 	border: none !important;
@@ -9702,8 +9702,8 @@ html body#bookmarks .tags a {
 }
 html body .torrent_table .tags a:hover,
 html body#bookmarks .tags a:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	border: none !important;
 	text-decoration: underline !important;
@@ -9883,8 +9883,8 @@ html body#bookmarks .sidebar .tags {
 html body#bookmarks .sidebar .tags a {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -10426,8 +10426,8 @@ html body#artist #discog_table .tags a,
 html body#artist .tags a {
 	font-size: inherit !important;
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	border: none !important;
 	border-radius: 0 !important;
@@ -10440,8 +10440,8 @@ html body#artist .tags a {
 }
 html body#torrents .torrent_table .tags a:hover,
 html body#artist .tags a:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	border: none !important;
 	text-decoration: underline !important;
@@ -11213,7 +11213,7 @@ html body a.monkies-cover-host-ptpimg {
 }
 
 /* ══════════════════════════════════════════════════════════
- * FINAL: genres/tags = plain pink text only (no neon pills)
+ * FINAL: genres/tags = deep violet text only (no neon pills)
  * Wins over REDStage + earlier synth chip rules.
  * ══════════════════════════════════════════════════════════ */
 html body .tags,
@@ -11239,8 +11239,8 @@ html body .pp-tag-chip,
 html body .box_tags li > a:first-child,
 html body .box_tags li > a:first-of-type {
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -11264,8 +11264,8 @@ html body .request_table .tags a:hover,
 html body .pp-tag-chip:hover,
 html body .box_tags li > a:first-child:hover,
 html body .box_tags li > a:first-of-type:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	border: none !important;
