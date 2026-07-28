@@ -12172,6 +12172,294 @@ html body#userhistory a.brackets::after {
 }
 
 /* ══════════════════════════════════════════════════════════
+ * FINAL: comments polish (comments.php) — body#comments
+ * Your torrent/artist/collage/request comments list.
+ * Type chips · colhead hierarchy · card shells · body text
+ * ══════════════════════════════════════════════════════════ */
+
+/* Page title */
+html body#comments .header,
+html body#comments .thin > .header {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: baseline !important;
+	justify-content: space-between !important;
+	gap: 10px 16px !important;
+	margin-bottom: 10px !important;
+}
+html body#comments .header h2,
+html body#comments h2 {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 500 !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 16px rgba(5, 217, 232, 0.22) !important;
+	margin: 0 !important;
+}
+
+/* Type switches — outline chips; current mode filled */
+html body#comments .header .linkbox,
+html body#comments .thin > .header .linkbox {
+	display: flex !important;
+	flex-flow: row wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: none !important;
+	max-width: 55% !important;
+}
+html body#comments .header .linkbox a,
+html body#comments .header .linkbox a.brackets {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 11px !important;
+	margin: 0 !important;
+	color: #c4b0e8 !important;
+	-webkit-text-fill-color: #c4b0e8 !important;
+	background: #1a0d38 !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: 0 0 8px rgba(255, 42, 109, 0.08) !important;
+	white-space: nowrap !important;
+}
+html body#comments .header .linkbox a:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	background: #2a1050 !important;
+	border-color: #05d9e8 !important;
+}
+/* Current type (Torrents) — bare strong among links */
+html body#comments .header .linkbox > strong,
+html body#comments .header .linkbox > b,
+html body#comments .header .linkbox strong,
+html body#comments .header .linkbox b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 11px !important;
+	color: #1a0a18 !important;
+	-webkit-text-fill-color: #1a0a18 !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	font-size: 12px !important;
+	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
+}
+html body#comments .header .linkbox a strong,
+html body#comments .header .linkbox a b {
+	display: inline !important;
+	padding: 0 !important;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	font-weight: inherit !important;
+}
+html body#comments .header .linkbox a.brackets::before,
+html body#comments .header .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+
+/* Pager */
+html body#comments .thin > .linkbox,
+html body#comments .main_column .linkbox {
+	text-align: center !important;
+	margin: 10px 0 14px !important;
+	font-size: 12px !important;
+}
+html body#comments .thin > .linkbox a,
+html body#comments .thin > .linkbox a strong {
+	display: inline !important;
+	color: #c4b0e8 !important;
+	-webkit-text-fill-color: #c4b0e8 !important;
+	background: transparent !important;
+	border: none !important;
+	padding: 0 2px !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+}
+html body#comments .thin > .linkbox a:hover {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+}
+html body#comments .thin > .linkbox > strong,
+html body#comments .thin > .linkbox > b,
+html body#comments .linkbox > strong {
+	display: inline-block !important;
+	color: #1a0a18 !important;
+	-webkit-text-fill-color: #1a0a18 !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	border-radius: 999px !important;
+	padding: 2px 10px !important;
+	font-weight: 700 !important;
+	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
+}
+
+/* Comment cards — shell + spacing */
+html body#comments table.forum_post,
+html body#comments .forum_post,
+html body#comments table.border {
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 8px !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	overflow: hidden !important;
+	width: 100% !important;
+	margin: 0 0 14px !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+html body#comments table.forum_post:hover,
+html body#comments .forum_post:hover {
+	border-color: rgba(255, 42, 109, 0.4) !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3), 0 0 12px rgba(255, 42, 109, 0.1) !important;
+}
+
+/* Colhead bar */
+html body#comments .forum_post tr.colhead_dark td,
+html body#comments .forum_post tr.colhead td,
+html body#comments table.forum_post .colhead_dark td {
+	background: linear-gradient(180deg, #1a0d38, #12082a) !important;
+	background-color: #1a0d38 !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	border-bottom: 1px solid rgba(255, 42, 109, 0.35) !important;
+	padding: 9px 12px !important;
+	font-weight: 500 !important;
+	font-size: 12.5px !important;
+	line-height: 1.4 !important;
+	text-shadow: none !important;
+}
+
+/* #comment id — quiet */
+html body#comments .forum_post .colhead_dark a[href*="#"],
+html body#comments .forum_post .colhead_dark a[href*="postid"],
+html body#comments .colhead_dark a[name],
+html body#comments .forum_post tr.colhead_dark a:first-child {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+
+/* Username — cyan */
+html body#comments .forum_post .colhead_dark a[href*="user.php"],
+html body#comments .colhead_dark a.username,
+html body#comments .forum_post tr.colhead_dark a[href*="user.php"] {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#comments .forum_post .colhead_dark a[href*="user.php"]:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+
+/* Class badge e.g. (Elite TM) — soft violet */
+html body#comments .forum_post .colhead_dark a[href*="wiki"],
+html body#comments .forum_post .colhead_dark .userclass,
+html body#comments .colhead_dark span[class*="class"] {
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
+	font-weight: 500 !important;
+}
+
+/* Time — quiet */
+html body#comments .forum_post .colhead_dark .time,
+html body#comments .forum_post .time,
+html body#comments .colhead_dark span.time {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-weight: 500 !important;
+	font-size: 12px !important;
+}
+
+/* “on [torrent/group]” title — cyan primary (not colhead pink) */
+html body#comments .forum_post .colhead_dark a[href*="torrents.php"],
+html body#comments .forum_post .colhead_dark a[href*="artist.php"],
+html body#comments .forum_post .colhead_dark a[href*="collages.php"],
+html body#comments .forum_post .colhead_dark a[href*="requests.php"],
+html body#comments .colhead_dark a[href*="torrents.php?id="] {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#comments .forum_post .colhead_dark a[href*="torrents.php"]:hover,
+html body#comments .forum_post .colhead_dark a[href*="artist.php"]:hover,
+html body#comments .forum_post .colhead_dark a[href*="collages.php"]:hover,
+html body#comments .forum_post .colhead_dark a[href*="requests.php"]:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+}
+
+/* Body row + avatar cell */
+html body#comments .forum_post td.body,
+html body#comments .forum_post .body,
+html body#comments .forum_post tr:not(.colhead_dark) td {
+	background: var(--background-dimmed) !important;
+	background-color: var(--background-dimmed) !important;
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	padding: 12px 14px !important;
+	line-height: 1.55 !important;
+	font-size: 13px !important;
+	vertical-align: top !important;
+	border: none !important;
+}
+html body#comments .forum_post .avatar,
+html body#comments .forum_post td.avatar {
+	background: #0a0418 !important;
+	background-color: #0a0418 !important;
+	padding: 10px !important;
+	width: 150px !important;
+	vertical-align: top !important;
+	border-right: 1px solid rgba(61, 31, 110, 0.45) !important;
+}
+html body#comments .forum_post .avatar img,
+html body#comments .forum_post td.avatar img {
+	display: block !important;
+	max-width: 150px !important;
+	width: auto !important;
+	height: auto !important;
+	border-radius: 4px !important;
+	border: 1px solid var(--border) !important;
+}
+
+/* Body text + inline links */
+html body#comments .forum_post .body,
+html body#comments .forum_post td.body,
+html body#comments .forum_post .body * {
+	line-height: 1.55 !important;
+}
+html body#comments .forum_post .body {
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+}
+html body#comments .forum_post .body a {
+	color: #05d9e8 !important;
+	-webkit-text-fill-color: #05d9e8 !important;
+	text-decoration: none !important;
+}
+html body#comments .forum_post .body a:hover {
+	color: #ff6bcb !important;
+	-webkit-text-fill-color: #ff6bcb !important;
+	text-decoration: underline !important;
+}
+/* Stickers / emotes stay natural */
+html body#comments .forum_post .body img {
+	vertical-align: middle !important;
+	max-height: 100px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
  * FINAL: cover-host rings — never let page polish hide them
  * Yellow = external host; red = ptpimg.me. Loader also injects
  * #monkies-red-cover-host last; this is belt-and-suspenders.
@@ -12395,4 +12683,23 @@ html body td.edition_info a::after,
 html body .edition_info a::after {
 	content: none !important;
 	display: none !important;
+}
+
+/* Cover box — make [Add alternate cover] easier to spot */
+body#torrents .sidebar .box_image a[href*="editgroup"],
+body#torrents .sidebar .box_image a[href*="editgroupid"],
+body#torrents .sidebar .box_image a[href*="add_cover"],
+body#torrents .sidebar .box_image a[href*="action=edit"],
+body#torrents .sidebar .box_image .brackets,
+body#torrents .sidebar .box_image a {
+    color: var(--cyan, #7af0ff) !important;
+    -webkit-text-fill-color: var(--cyan, #7af0ff) !important;
+    opacity: 0.92 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+body#torrents .sidebar .box_image a:hover {
+    opacity: 1 !important;
+    text-decoration: underline !important;
+    text-shadow: 0 0 10px rgba(122, 240, 255, 0.35);
 }
