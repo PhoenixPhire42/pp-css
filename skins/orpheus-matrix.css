@@ -6734,13 +6734,17 @@ html body#torrents .thin > .linkbox > b {
 	box-shadow: 0 0 12px rgba(0, 255, 65, 0.35) !important;
 }
 
-/* [Show search form] — outline chip (collapsed filter header) */
+/* Show/Hide search · Switch basic · remaster toggle — outline chips */
 html body#torrents .box a.brackets,
 html body#torrents .filter_torrents a.brackets,
 html body#torrents a.brackets[onclick*="search"],
 html body#torrents a.brackets[onclick*="Search"],
 html body#torrents a.brackets[onclick*="filter"],
-html body#torrents a.brackets[onclick*="gtoggle"] {
+html body#torrents a.brackets[onclick*="gtoggle"],
+html body#torrents a.brackets[href*="action=advanced"],
+html body#torrents a.brackets[href*="action=basic"],
+html body#torrents .search_form a.brackets,
+html body#torrents form.search_form a.brackets {
 	display: inline-flex !important;
 	align-items: center !important;
 	padding: 4px 12px !important;
@@ -6754,7 +6758,8 @@ html body#torrents a.brackets[onclick*="gtoggle"] {
 	box-shadow: none !important;
 }
 html body#torrents .box a.brackets:hover,
-html body#torrents a.brackets[onclick]:hover {
+html body#torrents a.brackets[onclick]:hover,
+html body#torrents .search_form a.brackets:hover {
 	color: #e8ffe8 !important;
 	border-color: #00ff41 !important;
 	background: #122816 !important;
@@ -6762,9 +6767,79 @@ html body#torrents a.brackets[onclick]:hover {
 html body#torrents .box a.brackets::before,
 html body#torrents .box a.brackets::after,
 html body#torrents a.brackets[onclick]::before,
-html body#torrents a.brackets[onclick]::after {
+html body#torrents a.brackets[onclick]::after,
+html body#torrents .search_form a.brackets::before,
+html body#torrents .search_form a.brackets::after {
 	display: none !important;
 	content: none !important;
+}
+
+/* Advanced search form card */
+html body#torrents .filter_torrents,
+html body#torrents .box.filter_torrents,
+html body#torrents form.search_form,
+html body#torrents .search_form {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+}
+html body#torrents .filter_torrents td.label,
+html body#torrents .search_form td.label,
+html body#torrents form.search_form td.label {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	background: transparent !important;
+}
+html body#torrents .filter_torrents input[type="text"],
+html body#torrents .filter_torrents input[type="search"],
+html body#torrents .filter_torrents select,
+html body#torrents .search_form input[type="text"],
+html body#torrents .search_form select,
+html body#torrents form.search_form input[type="text"],
+html body#torrents form.search_form select {
+	background: #061008 !important;
+	color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+}
+html body#torrents .filter_torrents input[type="submit"],
+html body#torrents .search_form input[type="submit"],
+html body#torrents form.search_form input[type="submit"],
+html body#torrents input[value="Search"] {
+	background: linear-gradient(180deg, #5dff7a, #00cc44) !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	border: none !important;
+	border-radius: 6px !important;
+	font-weight: 700 !important;
+	padding: 6px 18px !important;
+	box-shadow: 0 0 12px rgba(0, 255, 65, 0.3) !important;
+	cursor: pointer !important;
+}
+html body#torrents .filter_torrents input[type="button"],
+html body#torrents .search_form input[type="button"],
+html body#torrents input[value="Reset"],
+html body#torrents input[value="reset"] {
+	background: #0c1a0c !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 6px !important;
+	font-weight: 600 !important;
+	padding: 6px 14px !important;
+	cursor: pointer !important;
+}
+html body#torrents input[type="checkbox"],
+html body#torrents input[type="radio"] {
+	accent-color: #00ff41 !important;
+}
+html body#torrents .filter_torrents a[href*="random"],
+html body#torrents .search_form a[href*="random"] {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
 }
 
 /* DL primary · FL/RP quieter */
