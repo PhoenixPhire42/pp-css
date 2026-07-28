@@ -11264,23 +11264,153 @@ html body#staffpm textarea {
 	border-radius: 4px !important;
 	box-sizing: border-box !important;
 }
+/*
+ * Toolbar chips (Mark as read / unread · Delete · User/System PMs)
+ * Secondary outline — not pale lilac bars.
+ */
 html body#inbox input[type="submit"],
-html body#staffpm input[type="submit"] {
-	background: linear-gradient(180deg, #efe6ff, #c4b0e8) !important;
-	color: #12081f !important;
-	-webkit-text-fill-color: #12081f !important;
-	border: none !important;
-	border-radius: 6px !important;
-	font-weight: 700 !important;
-	padding: 0 18px !important;
+html body#inbox input[type="button"],
+html body#staffpm input[type="submit"],
+html body#staffpm input[type="button"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: auto !important;
+	min-width: 0 !important;
+	background: #1a0d38 !important;
+	background-color: #1a0d38 !important;
+	background-image: none !important;
+	color: #c4b0e8 !important;
+	-webkit-text-fill-color: #c4b0e8 !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12.5px !important;
+	padding: 0 14px !important;
 	height: 32px !important;
+	margin: 0 4px 6px 0 !important;
 	cursor: pointer !important;
-	box-shadow: 0 2px 10px rgba(255, 42, 109, 0.18) !important;
+	box-shadow: 0 0 8px rgba(255, 42, 109, 0.08) !important;
+	text-shadow: none !important;
 }
 html body#inbox input[type="submit"]:hover,
-html body#staffpm input[type="submit"]:hover {
-	background: linear-gradient(180deg, #fff, #d8c8f0) !important;
-	box-shadow: 0 0 14px rgba(5, 217, 232, 0.22) !important;
+html body#inbox input[type="button"]:hover,
+html body#staffpm input[type="submit"]:hover,
+html body#staffpm input[type="button"]:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	background: #2a1050 !important;
+	background-color: #2a1050 !important;
+	border-color: #05d9e8 !important;
+	box-shadow: 0 0 12px rgba(5, 217, 232, 0.2) !important;
+}
+
+/* Delete — danger outline */
+html body#inbox input[value*="Delete"],
+html body#inbox input[value*="delete"],
+html body#inbox input[name*="delete"],
+html body#inbox input[name*="Delete"],
+html body#staffpm input[value*="Delete"],
+html body#staffpm input[value*="delete"] {
+	color: #ff8aaa !important;
+	-webkit-text-fill-color: #ff8aaa !important;
+	background: rgba(255, 42, 109, 0.1) !important;
+	background-color: rgba(255, 42, 109, 0.1) !important;
+	border: 1px solid #ff2a6d !important;
+	box-shadow: 0 0 10px rgba(255, 42, 109, 0.18) !important;
+}
+html body#inbox input[value*="Delete"]:hover,
+html body#inbox input[value*="delete"]:hover,
+html body#inbox input[name*="delete"]:hover,
+html body#staffpm input[value*="Delete"]:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	background: rgba(255, 42, 109, 0.22) !important;
+	border-color: #ff6bcb !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.35) !important;
+}
+
+/*
+ * User PMs Only / System PMs Only — filter chips (cyan edge).
+ * Active when disabled, aria-pressed, .selected, or :checked (if used as toggle).
+ */
+html body#inbox input[value*="User PMs"],
+html body#inbox input[value*="System PMs"],
+html body#inbox input[value*="User PM"],
+html body#inbox input[value*="System PM"],
+html body#inbox input[name*="userbox"],
+html body#inbox input[name*="systembox"],
+html body#inbox input[name*="section"] {
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	background: #1a0d38 !important;
+	border: 1px solid rgba(5, 217, 232, 0.4) !important;
+	box-shadow: 0 0 8px rgba(5, 217, 232, 0.12) !important;
+}
+html body#inbox input[value*="User PMs"]:hover,
+html body#inbox input[value*="System PMs"]:hover,
+html body#inbox input[value*="User PM"]:hover,
+html body#inbox input[value*="System PM"]:hover {
+	color: #ffe0f0 !important;
+	-webkit-text-fill-color: #ffe0f0 !important;
+	border-color: #05d9e8 !important;
+	background: #2a1050 !important;
+	box-shadow: 0 0 12px rgba(5, 217, 232, 0.22) !important;
+}
+/* Active / current filter mode */
+html body#inbox input[value*="User PMs"]:disabled,
+html body#inbox input[value*="System PMs"]:disabled,
+html body#inbox input[value*="User PM"]:disabled,
+html body#inbox input[value*="System PM"]:disabled,
+html body#inbox input[value*="User PMs"][aria-pressed="true"],
+html body#inbox input[value*="System PMs"][aria-pressed="true"],
+html body#inbox input[value*="User PMs"].selected,
+html body#inbox input[value*="System PMs"].selected,
+html body#inbox input[value*="User PMs"].active,
+html body#inbox input[value*="System PMs"].active,
+html body#inbox input[name*="userbox"]:disabled,
+html body#inbox input[name*="systembox"]:disabled {
+	opacity: 1 !important;
+	cursor: default !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	background-color: #ff2a6d !important;
+	border: 1px solid transparent !important;
+	box-shadow: 0 0 14px rgba(255, 42, 109, 0.4) !important;
+	font-weight: 700 !important;
+}
+/* Section links as filter chips (if RED uses <a> not <input>) */
+html body#inbox a[href*="section=user"],
+html body#inbox a[href*="section=system"],
+html body#inbox a[href*="section=1"],
+html body#inbox a[href*="section=2"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 5px 14px !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
+	background: #1a0d38 !important;
+	border: 1px solid rgba(5, 217, 232, 0.4) !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+/* Current section: bare strong / non-link next to chips, or link with .active */
+html body#inbox .manage_form strong,
+html body#inbox form strong:not(.time),
+html body#inbox a[href*="section="].active,
+html body#inbox a[href*="section="].selected {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 5px 14px !important;
+	color: #12081f !important;
+	-webkit-text-fill-color: #12081f !important;
+	background: linear-gradient(180deg, #ff6bcb, #ff2a6d) !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	border: 1px solid transparent !important;
+	box-shadow: 0 0 12px rgba(255, 42, 109, 0.35) !important;
 }
 
 /* Filter / mass-action brackets under the list */
@@ -11376,22 +11506,30 @@ html body#inbox tr.unread:hover td {
 	background: rgba(255, 42, 109, 0.22) !important;
 	background-color: rgba(255, 42, 109, 0.22) !important;
 }
+/* Subject (conversation) — primary cyan hierarchy */
 html body#inbox table a,
+html body#inbox table a[href*="viewconv"],
+html body#inbox table a[href*="action=view"],
+html body#inbox table tr:not(.colhead):not(.colhead_dark) td:nth-child(2) a,
 html body#staffpm table a {
-	color: #efe6ff !important;
-	-webkit-text-fill-color: #efe6ff !important;
+	color: #7af0ff !important;
+	-webkit-text-fill-color: #7af0ff !important;
 	font-weight: 600 !important;
 	text-decoration: none !important;
 }
 html body#inbox table a:hover,
+html body#inbox table a[href*="viewconv"]:hover,
+html body#inbox table tr:not(.colhead) td:nth-child(2) a:hover,
 html body#staffpm table a:hover {
 	color: #ff6bcb !important;
 	-webkit-text-fill-color: #ff6bcb !important;
 }
+/* Sender — leave class colors; soft cyan fallback only */
 html body#inbox table a[href*="user.php"],
 html body#staffpm table a[href*="user.php"] {
-	color: #7af0ff !important;
-	-webkit-text-fill-color: #7af0ff !important;
+	/* do not force cyan over class colors; keep weight */
+	font-weight: 600 !important;
+	text-decoration: none !important;
 }
 html body#inbox table a[href*="user.php"]:hover {
 	color: #ff6bcb !important;
