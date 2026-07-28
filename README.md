@@ -33,6 +33,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Dark** | Charcoal + soft orange | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css` |
 | **Flame** | Ember + fire accents | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
+| **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **BTN Dark Ambient** | BroadcasTheNet void + teal aurora (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
@@ -45,6 +46,28 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.1.0/skins/phoenix-synth.css
 ```
 
 Prefer a **version tag** so updates don’t change under people unexpectedly.
+
+### MacLite — install (phoenixproject.app)
+
+Apple-inspired **light** UI (SF blue accents, soft grey chrome). Self-contained pure CSS.
+
+1. Log in → **Edit settings** → **Site Appearance Settings**
+2. **Stylesheet:** `ApolloStage` (or leave minimal if the site allows external-only)
+3. **External stylesheet URL** — use **jsDelivr only**:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-maclite.css
+```
+
+4. Save → hard-refresh (⌘⇧R)
+
+**Do not use `raw.githubusercontent.com`.** GitHub serves that as `text/plain` with `X-Content-Type-Options: nosniff`, so the browser refuses the CSS and the page can go unstyled/white.
+
+Prefer a version tag when available:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
+```
 
 ### Orpheus Matrix — install (orpheus.network)
 
@@ -140,6 +163,7 @@ skins/phoenix-dark.css
 skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css
+skins/phoenix-maclite.css
 skins/orpheus-matrix.css
 skins/redacted-synth.css
 skins/broadcasthe-dark.css

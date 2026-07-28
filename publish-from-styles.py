@@ -61,6 +61,18 @@ SKINS = {
  */
 """,
     },
+    "phoenix-maclite.css": {
+        "header": """/*
+ * Phoenix Project — MacLite
+ * Apple-inspired light UI (SF blue accents, soft grey chrome).
+ * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
+ * Use as an external stylesheet URL on phoenixproject.app (or paste where custom CSS is allowed).
+ *
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). raw.githubusercontent.com is text/plain.
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-maclite.css
+ */
+""",
+    },
     "orpheus-matrix.css": {
         "header": """/*
  * Orpheus Network — Matrix
