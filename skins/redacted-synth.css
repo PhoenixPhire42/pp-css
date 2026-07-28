@@ -3765,7 +3765,7 @@ strong.important_text_alt {
 	text-shadow: none !important;
 }
 
-/* Tags / genres — plain pink text links (no pill chrome) */
+/* Tags / genres — deep violet text (synth, not hot pink) */
 html body .tags,
 html body div.tags {
 	background: transparent !important;
@@ -3781,8 +3781,8 @@ html body .tags a:link,
 html body .tags a:visited,
 html body .pp-tag-chip {
 	display: inline !important;
-	color: #ff6bcb !important;
-	-webkit-text-fill-color: #ff6bcb !important;
+	color: #9b5cff !important;
+	-webkit-text-fill-color: #9b5cff !important;
 	background: transparent !important;
 	background-color: transparent !important;
 	background-image: none !important;
@@ -3799,8 +3799,8 @@ html body .pp-tag-chip {
 
 html body .tags a:hover,
 html body .pp-tag-chip:hover {
-	color: #ff9ed8 !important;
-	-webkit-text-fill-color: #ff9ed8 !important;
+	color: #c77dff !important;
+	-webkit-text-fill-color: #c77dff !important;
 	background: transparent !important;
 	border: none !important;
 	text-shadow: none !important;
