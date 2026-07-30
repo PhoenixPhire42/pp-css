@@ -2836,15 +2836,25 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
     content: " | Apollostage build 240906 sunset"
 }
 
-/* Hack fix for hiding badges taken from the official site CSS */
-.hidden {
-    left: -10000px;
-    position: absolute;
-  }
-  .hidden,
-  input.hidden {
-    display: none;
-  }
+/* Hack fix for hiding badges taken from the official site CSS.
+ * Must use !important — later forums a.btn { display:inline-flex !important }
+ * was un-hiding the inactive like/heart control (double hearts on posts). */
+.hidden,
+input.hidden,
+a.hidden,
+.btn.hidden,
+html body .hidden,
+html body a.hidden,
+html body .btn.hidden {
+	display: none !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+}
+/* keep stock off-screen fallback for non-display hide hacks */
+.hidden:not(input):not(a):not(.btn) {
+	left: -10000px;
+	position: absolute;
+}
 
 /* ══════════════════════════════════════════════════════════
  * THEME OVERLAY — colors, logos, kill-switches, page polish
@@ -7635,10 +7645,10 @@ html body#forums .forum_index td.unread_locked_sticky::before {
 html body#forums .forum_index td.read::before {
 	border-color: #5a6570 !important;
 }
-/* Linkbox buttons on forums */
-html body#forums .btn-group .btn,
-html body#forums .linkbox .btn,
-html body#forums a.btn-outline-secondary {
+/* Linkbox buttons on forums — never restyle .hidden (inactive like/heart) */
+html body#forums .btn-group .btn:not(.hidden),
+html body#forums .linkbox .btn:not(.hidden),
+html body#forums a.btn-outline-secondary:not(.hidden) {
 	background: var(--background-accent) !important;
 	border: 1px solid var(--border-accent) !important;
 	color: var(--text-dimmed) !important;
@@ -7647,8 +7657,8 @@ html body#forums a.btn-outline-secondary {
 	margin: 0 3px !important;
 	text-shadow: none !important;
 }
-html body#forums .btn-group .btn:hover,
-html body#forums a.btn-outline-secondary:hover {
+html body#forums .btn-group .btn:not(.hidden):hover,
+html body#forums a.btn-outline-secondary:not(.hidden):hover {
 	border-color: rgba(212, 132, 140, 0.45) !important;
 	color: #f0f2f4 !important;
 	background: var(--background-emphasis) !important;
@@ -7798,11 +7808,13 @@ html body#forums .header h2 a:hover {
 	color: #f0c0c8 !important;
 	-webkit-text-fill-color: #f0c0c8 !important;
 }
-/* Search forums · Catch up */
+/* Search forums · Catch up · post action pills
+ * Exclude .hidden — stock hides the inactive like/heart state that way.
+ * Without :not(.hidden), both outline + filled hearts show (double likes). */
 html body#forums .linkbox a.brackets,
-html body#forums .linkbox a,
-html body#forums .btn-group .btn,
-html body#forums a.btn {
+html body#forums .linkbox a:not(.hidden),
+html body#forums .btn-group .btn:not(.hidden),
+html body#forums a.btn:not(.hidden) {
 	display: inline-flex !important;
 	align-items: center !important;
 	padding: 6px 14px !important;
@@ -7816,6 +7828,38 @@ html body#forums a.btn {
 	font-size: 12px !important;
 	text-decoration: none !important;
 	box-shadow: none !important;
+}
+/* Re-assert hide after any display:!important on .btn */
+html body#forums a.btn.hidden,
+html body#forums .btn-group .btn.hidden,
+html body#forums a.hidden,
+html body .forum_post a.hidden,
+html body .forum_post .btn.hidden,
+html body .forum_post .hidden {
+	display: none !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+	width: 0 !important;
+	min-width: 0 !important;
+	max-width: 0 !important;
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	border: none !important;
+}
+/* FA dual-icon like: only one of regular/solid should paint inside a single control */
+html body .forum_post a:not(.liked):not(.post_liked):not(.is-liked) > .fa-solid.fa-heart,
+html body .forum_post a:not(.liked):not(.post_liked):not(.is-liked) > i.fa-solid.fa-heart,
+html body .forum_post .btn:not(.liked):not(.post_liked) > .fa-solid.fa-heart {
+	display: none !important;
+}
+html body .forum_post a.liked > .fa-regular.fa-heart,
+html body .forum_post a.post_liked > .fa-regular.fa-heart,
+html body .forum_post a.is-liked > .fa-regular.fa-heart,
+html body .forum_post .btn.liked > .fa-regular.fa-heart,
+html body .forum_post .btn.post_liked > .fa-regular.fa-heart {
+	display: none !important;
 }
 html body#forums .linkbox a.brackets::before,
 html body#forums .linkbox a.brackets::after {
@@ -8429,4 +8473,4 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		content: none !important;
 	}
 }
-/* PP-DARK-CACHE-V46 */
+/* PP-DARK-CACHE-V47 — double like hearts fix */
