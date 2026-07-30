@@ -1,6 +1,6 @@
 # Phoenix Project (PP) skins
 
-Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, BroadcasTheNet (BTN), and related clients.
+Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, BroadcasTheNet (BTN), Emp, and related clients.
 
 - No userscript required  
 - Install via the site’s **External stylesheet URL** (or Custom Stylesheet paste)  
@@ -37,6 +37,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **BTN Dark Ambient** | BroadcasTheNet void + teal aurora (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
+| **Emp Noir** | Emp modern dark — charcoal greys + silver Emp logo | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/emp-dark.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -119,6 +120,24 @@ https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/redacted-synt
 
 Self-contained synthwave theme (no monkie userscript). If the site also loads a stock skin, disable or set it to a minimal base so it doesn’t fight the standalone sheet.
 
+### Emp Noir — install (Emp)
+
+Modern dark overlay for Emp (Gazelle) — charcoal greys, silver accents, Imagine **Emp** wordmark logo. Works on top of **Afterdark** (or another base skin).
+
+1. Log in → **Edit** (user settings) → stylesheet / appearance  
+2. Keep **Stylesheet** as `Afterdark` (or your preferred base)  
+3. Set **External stylesheet URL** to **jsDelivr only**:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-dark.css
+```
+
+4. Save → hard-refresh (⌘⇧R)
+
+**Do not use `raw.githubusercontent.com`.** GitHub serves that as `text/plain` with `X-Content-Type-Options: nosniff`, so the browser refuses the CSS.
+
+Local file (while iterating): `styles/emp-dark.css` in the monkies repo — use Stylus or a local file URL only for testing.
+
 ### BroadcasTheNet Modern Dark — install (broadcasthe.net)
 
 BTN swaps out the main skin for **External CSS only**, so this sheet is a **full standalone** theme (layout + chrome + colors).
@@ -167,6 +186,7 @@ skins/phoenix-maclite.css
 skins/orpheus-matrix.css
 skins/redacted-synth.css
 skins/broadcasthe-dark.css
+skins/emp-dark.css
 skins/thelounge-matrix.css
 ```
 
