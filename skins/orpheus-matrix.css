@@ -345,7 +345,8 @@ strong.important_text_alt {
 
 .small_downvote, .small_downvoted, .vote_album_down, .vote_artist_down, .vote_tag_down {
     font-weight: bolder;
-    color: #ff4444
+    /* Not stock pink/magenta — matrix amber (distinct from green up) */
+    color: #e8c060
 }
 
 #wrapper {
@@ -443,10 +444,41 @@ table.box, table.box2 {
     margin-left: 8px
 }
 
-.last_read :before {
-    content: "\27A4";
-    color: #b43477;
-    display: inline-block
+/*
+ * Last-read jump arrow — stock Apollostage uses magenta
+ * ($color-accent-forum-inline-last-read / #b43477) on
+ * `.last_read ::before` (empty <a> child). Force matrix green.
+ */
+.last_read,
+span.last_read {
+    margin-left: 6px !important;
+}
+.last_read::before,
+.last_read:before,
+.last_read ::before,
+.last_read :before,
+.last_read a::before,
+.last_read a:before,
+.last_read > a::before,
+.last_read > a:before,
+span.last_read a::before,
+span.last_read a:before {
+    content: "\25B8" !important; /* ▸ */
+    color: #00ff41 !important;
+    -webkit-text-fill-color: #00ff41 !important;
+    display: inline-block !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    margin-left: 4px !important;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.55) !important;
+    filter: none !important;
+    opacity: 1 !important;
+}
+.last_read a {
+    color: #00ff41 !important;
+    -webkit-text-fill-color: #00ff41 !important;
+    text-decoration: none !important;
 }
 
 /* Do NOT blank #userinfo_minor:before — chevron glyph lives there */
@@ -3111,28 +3143,57 @@ body {
 	text-shadow: 0 0 8px rgba(0, 255, 65, 0.35) !important;
 }
 
-/* Username tab + chevron (Phaedra / dropdown) */
+/*
+ * Username tab + chevron (Phaedra / dropdown)
+ * Same forest end-cap as last #menu tabs (not neon chip / black chevron cell).
+ */
 #userinfo_username,
 #userinfo_minor {
-	background-image: linear-gradient(180deg, #1f7030 0%, #145c28 48%, #0e481c 100%) !important;
-	background-color: #145c28 !important;
-	border: 1px solid var(--border-accent) !important;
-	box-shadow: inset 0 1px 0 rgba(0, 255, 65, 0.2), 0 0 12px rgba(0, 255, 65, 0.18) !important;
+	/* Match #menu > ul > li:nth-child(9) ramp */
+	background-image: linear-gradient(180deg, #245a34 0%, #1c3c24 48%, #18321c 100%) !important;
+	background-color: #1c3c24 !important;
+	border: none !important;
+	border-left: 1px solid rgba(0, 0, 0, 0.4) !important;
+	box-shadow: inset 0 1px 0 rgba(0, 255, 65, 0.08) !important;
+	box-sizing: border-box !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	top: 0 !important;
+	height: 50px !important;
+	min-height: 50px !important;
+}
+
+#userinfo_minor {
+	border-radius: 0 6px 0 0 !important;
 }
 
 #userinfo_username:hover,
 #userinfo_minor:hover {
-	background-image: linear-gradient(180deg, #2a8a3c 0%, #1a7030 48%, #125820 100%) !important;
+	background-image: linear-gradient(180deg, #226030 0%, #1a4024 48%, #122c18 100%) !important;
+	background-color: #1a4024 !important;
 }
 
-#userinfo_username a,
-#userinfo_minor a,
-#userinfo_username .username {
-	color: var(--link) !important;
-	text-shadow: 0 0 6px rgba(0, 255, 65, 0.3) !important;
+/* Face label matches menu tab text — not neon link green */
+#userinfo_username > #nav_userinfo > a,
+#userinfo_username > #nav_userinfo > a.username,
+#userinfo_username a.username {
+	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5) !important;
 	background: transparent !important;
 }
-
+#userinfo_username > #nav_userinfo > a:hover,
+#userinfo_username a.username:hover {
+	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.35) !important;
+	background: linear-gradient(180deg, rgba(0, 255, 65, 0.12) 0%, transparent 100%) !important;
+}
+#userinfo_username a,
+#userinfo_minor a {
+	color: var(--text) !important;
+	background: transparent !important;
+}
 #userinfo_username a:hover,
 #userinfo_minor a:hover {
 	color: var(--link-hover) !important;
@@ -3140,26 +3201,94 @@ body {
 }
 
 /*
- * Chevron next to Phaedra — pin 50×50 tab + pure CSS glyph.
- * Stock blanked :before; also ensure layout so glyph isn't zero-size/clipped.
+ * Pin Phaedra (100px) + chevron (50px) flush to menu end.
+ * Force shared fill so chevron cell is never black page bg.
  */
+html body #header #userinfo_username,
+html body #userinfo_username,
 html body #header #userinfo_minor,
 html body #userinfo_minor {
 	position: absolute !important;
-	right: 0 !important;
-	width: 50px !important;
-	min-width: 50px !important;
-	max-width: 50px !important;
+	top: 0 !important;
+	left: auto !important;
 	height: 50px !important;
 	min-height: 50px !important;
+	max-height: none !important;
 	box-sizing: border-box !important;
-	overflow: visible !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
 	z-index: 40 !important;
-	font-size: 14px !important;
+	background-image: linear-gradient(180deg, #245a34 0%, #1c3c24 48%, #18321c 100%) !important;
+	background-color: #1c3c24 !important;
+	background-repeat: no-repeat !important;
+	border: none !important;
+	border-left: 1px solid rgba(0, 0, 0, 0.4) !important;
+	box-shadow: inset 0 1px 0 rgba(0, 255, 65, 0.08) !important;
 }
 html body #header #userinfo_username,
 html body #userinfo_username {
 	right: 50px !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	max-width: 100px !important;
+	overflow: hidden !important;
+	border-radius: 0 !important;
+}
+html body #header #userinfo_username:hover,
+html body #userinfo_username:hover {
+	overflow: visible !important;
+	height: auto !important;
+	min-height: 50px !important;
+	max-height: none !important;
+}
+html body #header #userinfo_username #nav_userinfo,
+html body #userinfo_username #nav_userinfo {
+	display: block !important;
+	height: 50px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+}
+html body #header #userinfo_username #nav_userinfo > a,
+html body #userinfo_username #nav_userinfo > a,
+html body #header #userinfo_username #nav_userinfo > a.username,
+html body #userinfo_username #nav_userinfo > a.username {
+	display: block !important;
+	width: 100% !important;
+	height: 50px !important;
+	line-height: 50px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	box-sizing: border-box !important;
+	text-align: center !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
+}
+html body #header #userinfo_minor,
+html body #userinfo_minor {
+	right: 0 !important;
+	width: 50px !important;
+	min-width: 50px !important;
+	max-width: 50px !important;
+	overflow: visible !important;
+	font-size: 14px !important;
+	border-radius: 0 6px 0 0 !important;
+}
+/* Leave exact room for 100px Phaedra + 50px chevron */
+html body #header #menu > ul,
+html body #menu > ul {
+	width: calc(100% - 150px) !important;
+	max-width: calc(100% - 150px) !important;
+}
+/* Menu frame should not draw a right edge under the username gap */
+html body #header #menu,
+html body #menu {
+	border-right: none !important;
+	border-top-right-radius: 0 !important;
 }
 html body #header #userinfo_minor::before,
 html body #header #userinfo_minor:before,
@@ -3671,7 +3800,9 @@ strong.important_text_alt {
 }
 .small_downvote, .small_downvoted,
 .vote_album_down, .vote_artist_down, .vote_tag_down {
-	color: var(--danger) !important;
+	/* Matrix gold — not Apollostage pink/magenta redzone */
+	color: #e8c060 !important;
+	-webkit-text-fill-color: #e8c060 !important;
 }
 
 /* ── Category stripe (left edge of cover) — Matrix variants ── */
@@ -4143,14 +4274,64 @@ table.forum_index.m_table {
 	font-size: 11px !important;
 }
 
-/* Jump-to-last-read arrow */
-.forum_index .last_read a,
-.forum_index .last_read:before {
-	color: var(--link) !important;
+/*
+ * Jump-to-last-read arrow — stock Apollostage paints magenta (#b43477)
+ * via `.last_read :before` (space = child). Override every variant.
+ */
+html body .last_read,
+html body#forums .last_read,
+html body .forum_index .last_read,
+html body .forum_list .last_read {
+	margin-left: 6px !important;
+	display: inline !important;
 }
-.forum_index .last_read a:hover {
-	color: var(--link-hover) !important;
-	text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+html body .last_read::before,
+html body .last_read:before,
+html body .last_read a::before,
+html body .last_read a:before,
+html body .last_read > a::before,
+html body .last_read > a:before,
+html body .last_read :before,
+html body#forums .last_read::before,
+html body#forums .last_read:before,
+html body#forums .last_read a::before,
+html body#forums .last_read a:before,
+html body .forum_index .last_read::before,
+html body .forum_index .last_read:before,
+html body .forum_index .last_read a::before,
+html body .forum_index .last_read a:before,
+html body .forum_index .last_read :before,
+html body .forum_list .last_read::before,
+html body .forum_list .last_read:before,
+html body .forum_list .last_read a::before,
+html body .forum_list .last_read a:before {
+	content: "\25B8" !important; /* ▸ single clean chevron */
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	display: inline-block !important;
+	font-size: 12px !important;
+	font-weight: 700 !important;
+	line-height: 1 !important;
+	margin-left: 4px !important;
+	vertical-align: 1px !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.55) !important;
+	filter: none !important;
+	opacity: 1 !important;
+}
+html body .last_read a,
+html body#forums .last_read a,
+html body .forum_index .last_read a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	text-decoration: none !important;
+}
+html body .last_read a:hover,
+html body .last_read a:hover::before,
+html body .last_read a:hover:before,
+html body .forum_index .last_read a:hover::before {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	text-shadow: 0 0 10px rgba(0, 255, 65, 0.7) !important;
 }
 
 /* Thread / post counts */
@@ -4171,6 +4352,132 @@ body#forums .linkbox a {
 }
 body#forums .linkbox a:hover {
 	color: var(--link-hover) !important;
+}
+
+/*
+ * FINAL forums index polish (forums.php)
+ */
+html body#forums .thin > h2,
+html body#forums #content > .thin > h2,
+html body#forums .thin > .header h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.45rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.2) !important;
+	margin: 0 0 14px !important;
+}
+/* Section headers: Site · Suggestions · Community · Class Restricted */
+html body#forums .forum_list h3,
+html body#forums h3 {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.06em !important;
+	text-transform: uppercase !important;
+	margin: 22px 0 8px !important;
+	padding: 0 0 6px !important;
+	border-bottom: 1px solid #1a4d1a !important;
+	text-shadow: none !important;
+}
+html body#forums .forum_list h3:first-of-type,
+html body#forums h3:first-of-type {
+	margin-top: 4px !important;
+}
+/* Table shell */
+html body#forums table.forum_index,
+html body#forums .forum_list table.forum_index,
+html body#forums table.forum_index.m_table {
+	border: 1px solid #1a4d1a !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+	margin-bottom: 4px !important;
+}
+/* Forum name primary */
+html body#forums .forum_index td.td_forum h4 a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.15) !important;
+}
+html body#forums .forum_index td.td_forum h4 a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+/* Last post title secondary; poster quieter */
+html body#forums .forum_index .last_topic,
+html body#forums .forum_index .last_topic a {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	font-weight: 500 !important;
+}
+html body#forums .forum_index .last_topic a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#forums .forum_index .last_poster,
+html body#forums .forum_index .last_poster a {
+	color: #7a9a7a !important;
+	-webkit-text-fill-color: #7a9a7a !important;
+	font-size: 11.5px !important;
+}
+html body#forums .forum_index .last_poster a {
+	color: #8fbc8f !important;
+	-webkit-text-fill-color: #8fbc8f !important;
+	font-weight: 500 !important;
+}
+html body#forums .forum_index .last_poster a:hover {
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+}
+html body#forums .forum_index .last_poster .time,
+html body#forums .forum_index .td_latest .time {
+	color: #5a7a5a !important;
+	-webkit-text-fill-color: #5a7a5a !important;
+}
+/* Counts: posts a bit stronger than threads */
+html body#forums .forum_index td.td_topic_count {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+}
+html body#forums .forum_index td.td_post_count {
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	font-weight: 700 !important;
+}
+/* Catch-up / linkbox chips on forums */
+html body#forums .linkbox {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	gap: 6px 8px !important;
+	margin: 8px 0 12px !important;
+}
+html body#forums .linkbox a.brackets,
+html body#forums .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+}
+html body#forums .linkbox a.brackets::before,
+html body#forums .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#forums .linkbox a:hover {
+	color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
 }
 
 /* Thread list (viewforum) — same family as forum_index */
@@ -4801,6 +5108,263 @@ html body .request_table div.tags {
 	color: var(--link-hover) !important;
 }
 
+/*
+ * FINAL requests browse polish (requests.php)
+ * body#requests · form.search_form[name=requests] · #request_table
+ */
+html body#requests .thin > .header h2,
+html body#requests #content > .thin > .header h2,
+html body#requests .thin > .header h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.45rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.2) !important;
+	margin: 0 0 10px !important;
+}
+/* Top action linkbox — pill chips */
+html body#requests .thin > .linkbox,
+html body#requests .header + .linkbox,
+html body#requests .linkbox {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px 8px !important;
+	margin: 0 0 12px !important;
+	line-height: 1.4 !important;
+}
+html body#requests .linkbox a.brackets,
+html body#requests .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#requests .linkbox a.brackets::before,
+html body#requests .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#requests .linkbox a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Search form card */
+html body#requests form.search_form,
+html body#requests form.search_form[name="requests"],
+html body#requests #content form.search_form {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	padding: 8px 6px 6px !important;
+	margin: 0 0 14px !important;
+}
+html body#requests form.search_form table.layout,
+html body#requests form.search_form table {
+	background: transparent !important;
+	border: none !important;
+}
+html body#requests form.search_form table.layout td,
+html body#requests form.search_form table td {
+	background: transparent !important;
+	border: none !important;
+	padding: 6px 12px !important;
+	vertical-align: top !important;
+	color: #c8ffc8 !important;
+}
+html body#requests form.search_form td.label {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	width: 11rem !important;
+	white-space: nowrap !important;
+	padding-top: 10px !important;
+}
+html body#requests form.search_form input[type="search"],
+html body#requests form.search_form input[type="text"] {
+	background: #061008 !important;
+	background-color: #061008 !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+	box-sizing: border-box !important;
+	height: 32px !important;
+	min-height: 32px !important;
+	padding: 0 10px !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+html body#requests form.search_form input[type="search"]:focus,
+html body#requests form.search_form input[type="text"]:focus {
+	border-color: #2a8a3a !important;
+	background: #0a160c !important;
+	color: #e8ffe8 !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+/* Wiki tip line under search */
+html body#requests form.search_form a[href*="wiki"],
+html body#requests form.search_form a[href*="articles"] {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	font-weight: 600 !important;
+}
+html body#requests form.search_form label,
+html body#requests form.search_form .req-choice {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	font-weight: 500 !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 5px !important;
+	margin: 0 10px 6px 0 !important;
+	white-space: nowrap !important;
+	line-height: 1.35 !important;
+	vertical-align: middle !important;
+}
+html body#requests form.search_form input[type="checkbox"],
+html body#requests form.search_form input[type="radio"] {
+	accent-color: #00ff41 !important;
+	width: 14px !important;
+	height: 14px !important;
+	margin: 0 !important;
+	flex: 0 0 auto !important;
+}
+/* Search requests CTA + match count */
+html body#requests form.search_form td.center,
+html body#requests form.search_form tr:last-child > td.center {
+	text-align: left !important;
+	padding: 12px 12px 14px !important;
+}
+html body#requests form.search_form input[type="submit"],
+html body#requests form.search_form input[value="Search requests"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-block !important;
+	box-sizing: border-box !important;
+	height: 34px !important;
+	min-height: 34px !important;
+	min-width: 140px !important;
+	padding: 0 20px !important;
+	margin: 0 12px 0 0 !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 6px !important;
+	background: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	background-color: #12c44a !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	line-height: 32px !important;
+	cursor: pointer !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	vertical-align: middle !important;
+}
+html body#requests form.search_form input[type="submit"]:hover,
+html body#requests form.search_form input[value="Search requests"]:hover {
+	background: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	border-color: #5dff7a !important;
+}
+html body#requests form.search_form td.center h5,
+html body#requests form.search_form h5 {
+	display: inline-block !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	vertical-align: middle !important;
+	line-height: 34px !important;
+	height: 34px !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+}
+/* Pager */
+html body#requests .linkbox > b,
+html body#requests .thin .linkbox b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 3px 10px !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	background: linear-gradient(180deg, #4ae866, #12c44a) !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+}
+html body#requests .linkbox a b {
+	display: inline !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: none !important;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	border-radius: 0 !important;
+	font-weight: inherit !important;
+}
+/* Results table */
+html body#requests table.request_table,
+html body#requests #request_table,
+html body#requests .request_table {
+	border: 1px solid #1a4d1a !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+html body#requests .request_table tr:not(.colhead):not(.colhead_dark) td:first-child a,
+html body#requests .request_table a[href*="requests.php?action=view"] {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.18) !important;
+}
+html body#requests .request_table .td_bounty,
+html body#requests .request_table td:nth-child(3) {
+	color: #e8c060 !important;
+	-webkit-text-fill-color: #e8c060 !important;
+	font-weight: 700 !important;
+}
+html body#requests .request_table strong.important_text,
+html body#requests .request_table .important_text,
+html body#requests #request_table td.m_hidden strong {
+	color: #ff6b6b !important;
+	-webkit-text-fill-color: #ff6b6b !important;
+}
+html body#requests .request_table a[href*="user.php"] {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	font-weight: 600 !important;
+}
+html body#requests .request_table a[href*="action=vote"],
+html body#requests .request_table .request-vote {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+}
+html body#requests .request_table a[href*="action=vote"]:hover,
+html body#requests .request_table .request-vote:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#requests .request_table .time,
+html body#requests .request_table span.time {
+	color: #6a866a !important;
+	-webkit-text-fill-color: #6a866a !important;
+}
+
 /* Request detail page (view) — sidebar + description */
 #request_comments,
 .box_request_desc,
@@ -5110,6 +5674,270 @@ body#collage .linkbox a b {
 	border: none !important;
 	padding: 0 !important;
 	color: inherit !important;
+}
+
+/*
+ * FINAL collages browse polish (collages.php)
+ * body#collage · form.search_form[name=collages] · table.collage_table
+ */
+html body#collage .thin > .header h2,
+html body#collage #content > .thin > .header h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.45rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.2) !important;
+	margin: 0 0 12px !important;
+}
+/* Search panel — match torrents card chrome */
+html body#collage form.search_form,
+html body#collage form.search_form[name="collages"],
+html body#collage #content form.search_form {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	padding: 6px 4px 4px !important;
+	margin: 0 0 14px !important;
+}
+html body#collage form.search_form table.layout,
+html body#collage form.search_form table.layout td {
+	background: transparent !important;
+	border: none !important;
+	padding: 7px 12px !important;
+	vertical-align: middle !important;
+}
+html body#collage form.search_form td.label {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	width: 11.5rem !important;
+	white-space: nowrap !important;
+	vertical-align: top !important;
+	padding-top: 12px !important;
+}
+html body#collage form.search_form input[type="search"],
+html body#collage form.search_form input[type="text"],
+html body#collage form.search_form select {
+	background: #061008 !important;
+	background-color: #061008 !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+	box-sizing: border-box !important;
+	height: 32px !important;
+	min-height: 32px !important;
+	padding: 0 10px !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+	vertical-align: middle !important;
+}
+html body#collage form.search_form input[type="search"]:focus,
+html body#collage form.search_form input[type="text"]:focus,
+html body#collage form.search_form select:focus {
+	border-color: #2a8a3a !important;
+	background: #0a160c !important;
+	color: #e8ffe8 !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+html body#collage form.search_form select {
+	cursor: pointer !important;
+	margin-right: 6px !important;
+}
+/* Radios / checkboxes */
+html body#collage form.search_form label,
+html body#collage .cat-choice {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	font-weight: 500 !important;
+	margin: 0 10px 6px 0 !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 5px !important;
+	white-space: nowrap !important;
+	line-height: 1.35 !important;
+	vertical-align: middle !important;
+}
+html body#collage form.search_form input[type="checkbox"],
+html body#collage form.search_form input[type="radio"] {
+	accent-color: #00ff41 !important;
+	width: 14px !important;
+	height: 14px !important;
+	margin: 0 !important;
+	flex: 0 0 auto !important;
+}
+/* Category grid — 5-up, no mid-label wraps like "Genre / Introduction" */
+html body#collage form.search_form tr#categories > td:last-child {
+	display: block !important; /* keep structure; inner flex wraps */
+}
+html body#collage form.search_form .cat-choice {
+	min-width: 9.5rem !important;
+	margin: 0 4px 8px 0 !important;
+}
+/* All/None/Invert controls */
+html body#collage #cat-all,
+html body#collage #cat-none,
+html body#collage #cat-invert {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 30px !important;
+	height: 30px !important;
+	margin: 6px 6px 0 0 !important;
+	border-radius: 6px !important;
+	border: 1px solid #1a4d1a !important;
+	background: #0c1a0c !important;
+	font-size: 14px !important;
+	line-height: 1 !important;
+	text-decoration: none !important;
+	opacity: 0.95 !important;
+}
+html body#collage #cat-all:hover,
+html body#collage #cat-none:hover,
+html body#collage #cat-invert:hover {
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+	opacity: 1 !important;
+	filter: none !important;
+	box-shadow: 0 0 10px rgba(0, 255, 65, 0.2) !important;
+}
+/* Search CTA — left-aligned under Order by (not lonely center float) */
+html body#collage form.search_form tr:last-child > td.center,
+html body#collage form.search_form td.center {
+	text-align: left !important;
+	padding: 10px 12px 14px !important;
+}
+html body#collage form.search_form input[type="submit"],
+html body#collage form.search_form input[value="Search"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-block !important;
+	box-sizing: border-box !important;
+	height: 34px !important;
+	min-height: 34px !important;
+	min-width: 96px !important;
+	padding: 0 20px !important;
+	margin: 0 !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 6px !important;
+	background: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	background-color: #12c44a !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	line-height: 32px !important;
+	cursor: pointer !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	vertical-align: middle !important;
+}
+html body#collage form.search_form input[type="submit"]:hover,
+html body#collage form.search_form input[value="Search"]:hover {
+	background: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	border-color: #5dff7a !important;
+}
+/* Action linkbox chips under the form */
+html body#collage .thin > .linkbox,
+html body#collage .linkbox {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 6px 8px !important;
+	margin: 10px 0 12px !important;
+	line-height: 1.4 !important;
+}
+html body#collage .linkbox br {
+	display: none !important;
+	content: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+html body#collage .linkbox a.brackets,
+html body#collage .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#collage .linkbox a.brackets::before,
+html body#collage .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#collage .linkbox a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Pager — current page capsule */
+html body#collage .linkbox > b,
+html body#collage .linkbox b {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 3px 10px !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	background: linear-gradient(180deg, #4ae866, #12c44a) !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+}
+html body#collage .linkbox a b {
+	display: inline !important;
+	padding: 0 !important;
+	background: transparent !important;
+	border: none !important;
+	color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	border-radius: 0 !important;
+	font-weight: inherit !important;
+}
+/* Table shell + hierarchy */
+html body#collage table.collage_table,
+html body#collage .collage_table {
+	border: 1px solid #1a4d1a !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+html body#collage .collage_table td.td_torrent_count {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+}
+html body#collage .collage_table td.td_subscribers {
+	color: #6a866a !important;
+	-webkit-text-fill-color: #6a866a !important;
+}
+html body#collage .collage_table td.td_author a {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	font-weight: 600 !important;
+}
+html body#collage .collage_table td.td_author a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#collage .collage_table td.td_collage_category a {
+	color: #8fbc8f !important;
+	-webkit-text-fill-color: #8fbc8f !important;
+	font-size: 11px !important;
+	letter-spacing: 0.03em !important;
+	text-transform: none !important;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -5626,6 +6454,262 @@ body#top10 table tr.rowb td {
 	color: var(--text) !important;
 }
 
+/*
+ * FINAL top10 polish (top10.php)
+ * Type chips · filter card · Filter torrents CTA · freeleech toggle · ranks
+ */
+html body#top10 .thin > .header h2,
+html body#top10 .header h2,
+html body#top10 h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.4rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.2) !important;
+}
+/* Type tabs: Torrents · Last.fm · Users · Tags · Votes · Donors */
+html body#top10 .header .linkbox,
+html body#top10 .thin > .header .linkbox,
+html body#top10 .linkbox:not(.pager) {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px 8px !important;
+	line-height: 1.4 !important;
+	margin: 0 0 12px !important;
+}
+html body#top10 .linkbox a.brackets,
+html body#top10 .header .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#top10 .linkbox a.brackets::before,
+html body#top10 .linkbox a.brackets::after,
+html body#top10 .header .linkbox a.brackets::before,
+html body#top10 .header .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#top10 .linkbox a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Active type — strong inside chip */
+html body#top10 .linkbox a strong,
+html body#top10 .linkbox strong {
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	background: transparent !important;
+	text-shadow: none !important;
+	font-weight: 700 !important;
+}
+html body#top10 .linkbox a:has(strong),
+html body#top10 .header .linkbox a:has(strong) {
+	background: linear-gradient(180deg, #4ae866, #12c44a) !important;
+	border-color: #1ad656 !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+}
+/* Filter form card */
+html body#top10 form.search_form,
+html body#top10 form.search_form table.layout {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	margin-bottom: 12px !important;
+}
+html body#top10 form.search_form table.layout td {
+	background: transparent !important;
+	border: none !important;
+	padding: 8px 12px !important;
+	vertical-align: middle !important;
+}
+html body#top10 form.search_form td.label {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	width: 12rem !important;
+	white-space: nowrap !important;
+	vertical-align: top !important;
+	padding-top: 12px !important;
+}
+html body#top10 form.search_form input[type="text"],
+html body#top10 form.search_form input[type="search"],
+html body#top10 form.search_form textarea,
+html body#top10 form.search_form select {
+	background: #061008 !important;
+	background-color: #061008 !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+	box-sizing: border-box !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+html body#top10 form.search_form input[type="text"],
+html body#top10 form.search_form input[type="search"],
+html body#top10 form.search_form select {
+	height: 32px !important;
+	min-height: 32px !important;
+	padding: 0 10px !important;
+}
+html body#top10 form.search_form textarea {
+	min-height: 4.5em !important;
+	padding: 8px 10px !important;
+	line-height: 1.4 !important;
+}
+html body#top10 form.search_form label {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	margin-right: 10px !important;
+}
+html body#top10 form.search_form input[type="radio"],
+html body#top10 form.search_form input[type="checkbox"] {
+	accent-color: #00ff41 !important;
+}
+/* Filter torrents CTA */
+html body#top10 form.search_form td.center,
+html body#top10 form.search_form tr:last-child td {
+	text-align: left !important;
+	padding: 10px 12px 14px !important;
+}
+html body#top10 form.search_form input[type="submit"],
+html body#top10 form.search_form input[value="Filter torrents"],
+html body#top10 form.search_form input[value*="Filter"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-block !important;
+	box-sizing: border-box !important;
+	height: 34px !important;
+	min-height: 34px !important;
+	min-width: 120px !important;
+	padding: 0 18px !important;
+	margin: 0 !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 6px !important;
+	background: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	background-color: #12c44a !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	line-height: 32px !important;
+	cursor: pointer !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+html body#top10 form.search_form input[type="submit"]:hover,
+html body#top10 form.search_form input[value*="Filter"]:hover {
+	background: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	border-color: #5dff7a !important;
+}
+/* Show/hide freeleech toggle */
+html body#top10 a[href*="freeleech="],
+html body#top10 .linkbox a[href*="freeleech"] {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	float: none !important;
+}
+html body#top10 a[href*="freeleech="]:hover {
+	color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Section headers + Top 10/100/250 quantity */
+html body#top10 h3 {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.02em !important;
+	margin: 20px 0 10px !important;
+	padding-bottom: 6px !important;
+	border-bottom: 1px solid #1a4d1a !important;
+	text-shadow: none !important;
+}
+html body#top10 h3 a,
+html body#top10 .top10_quantity_links a {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#top10 h3 a:hover,
+html body#top10 .top10_quantity_links a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#top10 h3 .brackets,
+html body#top10 .top10_quantity_links .brackets,
+html body#top10 h3 strong {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+}
+/* Table shell */
+html body#top10 table.torrent_table,
+html body#top10 table.torrent_table.numbering,
+html body#top10 table.torrent_table.cats {
+	border: 1px solid #1a4d1a !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+/* Rank glow — #1 brightest */
+html body#top10 .torrent_table td.td_rank strong {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-size: 15px !important;
+	text-shadow: 0 0 10px rgba(0, 255, 65, 0.45) !important;
+}
+html body#top10 .torrent_table tr.torrent:nth-child(2) td.td_rank strong {
+	font-size: 16px !important;
+	text-shadow: 0 0 14px rgba(0, 255, 65, 0.55) !important;
+}
+/* Title primary */
+html body#top10 .torrent_table .group_info strong a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+}
+html body#top10 .torrent_table .group_info strong a[href*="artist.php"] {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+}
+/* Freeleech / PL accents in torrent links */
+html body#top10 .torrent_table .torrent_links_block a[href*="usetoken"],
+html body#top10 .torrent_table a.tl_free,
+html body#top10 .torrent_table .torrent_label.tl_free,
+html body#top10 .torrent_table .tl_free {
+	color: #5dff7a !important;
+	-webkit-text-fill-color: #5dff7a !important;
+	font-weight: 700 !important;
+}
+
 /* ══════════════════════════════════════════════════════════
  * User profile (user.php?id=…)
  * body#user · .sidebar (avatar + box_userinfo_*) · .main_column
@@ -5984,14 +7068,18 @@ body#user .vote_album_down {
 	filter: none !important;
 }
 body#user table.recent .vote_tag_down::after,
-body#user .vote_tag_down::after {
+body#user .vote_tag_down::after,
+body#user .vote_album_down::after,
+body#user .vote_artist_down::after {
 	content: "▼" !important;
 	display: inline-block !important;
 	font-size: 18px !important;
 	line-height: 22px !important;
 	font-weight: 700 !important;
-	color: #ff5555 !important;
-	-webkit-text-fill-color: #ff5555 !important;
+	color: #e8c060 !important;
+	-webkit-text-fill-color: #e8c060 !important;
+	text-shadow: 0 0 8px rgba(232, 192, 96, 0.4) !important;
+	filter: none !important;
 }
 
 /*
@@ -6059,6 +7147,255 @@ body#user table.recent tr.images td {
 /* Email link — don't go pure cyan */
 body#user a[href^="mailto:"] {
 	color: var(--link-soft) !important;
+}
+
+/*
+ * FINAL user profile polish (user.php)
+ * Header title · linkbox chips · profileinfo · sidebar stats · recent covers
+ */
+html body#user .header h2,
+html body#user h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.45rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.15) !important;
+	line-height: 1.35 !important;
+}
+/* Username link in h2 */
+html body#user .header h2 a,
+html body#user h2 a.username,
+html body#user h2 > a {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	text-decoration: none !important;
+}
+html body#user .header h2 a:hover {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+}
+/* Custom title — keep user color; ensure not overridden to cyan/link */
+html body#user .user_title,
+html body#user span.user_title,
+html body#user h2 .user_title {
+	font-weight: 600 !important;
+	margin-left: 0.35em !important;
+	text-shadow: 0 0 10px rgba(0, 255, 65, 0.25) !important;
+}
+html body#user .donor_icon {
+	filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.35)) !important;
+	vertical-align: middle !important;
+}
+/* Settings · Friends · Stats chips */
+html body#user .header .linkbox,
+html body#user .thin > .header .linkbox,
+html body#user .linkbox {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px 8px !important;
+	margin: 0 0 12px !important;
+	line-height: 1.4 !important;
+}
+html body#user .linkbox a.brackets,
+html body#user .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#user .linkbox a.brackets::before,
+html body#user .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#user .linkbox a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Boxes — unified card chrome */
+html body#user .box,
+html body#user .box_info,
+html body#user .box_userinfo_stats,
+html body#user .box_userinfo_personal,
+html body#user .box_userinfo_nextclass,
+html body#user .box_userinfo_percentile,
+html body#user .box_userinfo_activity,
+html body#user .box_userinfo_community,
+html body#user .box_userinfo_donor_stats,
+html body#user .box_image_avatar,
+html body#user .sidebar .box_image {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+	overflow: hidden !important;
+	margin-bottom: 12px !important;
+}
+html body#user .box .head,
+html body#user .box .colhead_dark,
+html body#user .box_info .head,
+html body#user .box_image_avatar > .head,
+html body#user .box_image_avatar > .colhead_dark {
+	background: linear-gradient(180deg, #16301a 0%, #122016 100%) !important;
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+	font-size: 12.5px !important;
+	letter-spacing: 0.02em !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid #1a4d1a !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.15) !important;
+}
+html body#user .box .head a,
+html body#user .colhead_dark a,
+html body#user .box .head .brackets {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#user .box .head a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+/* Profile blurb */
+html body#user .profileinfo,
+html body#user #profilediv,
+html body#user .box .body,
+html body#user .box .pad {
+	background: #0a140c !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	padding: 12px 14px !important;
+	line-height: 1.55 !important;
+	font-size: 13.5px !important;
+}
+html body#user .profileinfo a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+}
+/* Stats list hierarchy */
+html body#user ul.stats,
+html body#user ul.stats.nobullet {
+	background: #0a140c !important;
+	padding: 8px 12px !important;
+}
+html body#user ul.stats > li {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	border-bottom: 1px solid #152815 !important;
+	padding: 6px 0 !important;
+	font-size: 12.5px !important;
+}
+html body#user ul.stats > li:last-child {
+	border-bottom: none !important;
+}
+html body#user ul.stats strong {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+}
+html body#user ul.stats a {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+}
+html body#user ul.stats a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#user ul.stats .time {
+	color: #6a866a !important;
+	-webkit-text-fill-color: #6a866a !important;
+}
+/* Ratio value pop */
+html body#user ul.stats .r10,
+html body#user ul.stats .r20,
+html body#user ul.stats .r50,
+html body#user ul.stats .r99 {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.3) !important;
+}
+/* Recent snatches / uploads / votes shells */
+html body#user table.recent,
+html body#user table.layout.recent {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+	overflow: hidden !important;
+	margin-bottom: 14px !important;
+}
+html body#user table.recent tr.colhead:first-child td,
+html body#user table.recent tr.colhead td[colspan] {
+	background: linear-gradient(180deg, #16301a 0%, #122016 100%) !important;
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid #1a4d1a !important;
+}
+html body#user table.recent tr.colhead a,
+html body#user table.recent .colhead a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+}
+html body#user table.recent tr.colhead .brackets {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+}
+/* Cover tiles hover */
+html body#user table.recent tr:not(.colhead) > td > a:hover {
+	border-color: #00ff41 !important;
+	box-shadow: 0 0 12px rgba(0, 255, 65, 0.35) !important;
+}
+/* Vote arrows — up green · down matrix gold (never stock pink) */
+html body .vote_tag_down,
+html body .vote_album_down,
+html body .vote_artist_down,
+html body .small_downvote,
+html body .small_downvoted,
+html body#user .vote_tag_down,
+html body#user .vote_album_down,
+html body#user .vote_artist_down {
+	color: #e8c060 !important;
+	-webkit-text-fill-color: #e8c060 !important;
+}
+html body .vote_tag_down::after,
+html body .vote_tag_down:after,
+html body .vote_album_down::after,
+html body .vote_album_down:after,
+html body .vote_artist_down::after,
+html body .vote_artist_down:after,
+html body#user table.recent .vote_tag_down::after,
+html body#user .vote_tag_down::after,
+html body#user .vote_album_down::after {
+	content: "▼" !important;
+	color: #e8c060 !important;
+	-webkit-text-fill-color: #e8c060 !important;
+	text-shadow: 0 0 8px rgba(232, 192, 96, 0.4) !important;
+	filter: none !important;
+}
+html body#user table.recent .vote_tag_up::after,
+html body#user .vote_tag_up::after {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -6792,87 +8129,248 @@ html body#torrents form.search_form td.label {
 	font-weight: 600 !important;
 	background: transparent !important;
 }
+/* OPS uses type=search + .inputtext for nearly all filter fields */
 html body#torrents .filter_torrents input[type="text"],
 html body#torrents .filter_torrents input[type="search"],
 html body#torrents .filter_torrents select,
 html body#torrents .search_form input[type="text"],
+html body#torrents .search_form input[type="search"],
 html body#torrents .search_form select,
 html body#torrents form.search_form input[type="text"],
-html body#torrents form.search_form select {
+html body#torrents form.search_form input[type="search"],
+html body#torrents form.search_form select,
+html body#torrents #ft_container input.inputtext,
+html body#torrents #ft_container input[type="search"],
+html body#torrents #ft_container select,
+html body#torrents .search_form input.inputtext {
 	background: #061008 !important;
+	background-color: #061008 !important;
 	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
 	border: 1px solid #1a4d1a !important;
 	border-radius: 4px !important;
+	box-sizing: border-box !important;
+	height: 32px !important;
+	min-height: 32px !important;
+	padding: 0 10px !important;
+	vertical-align: middle !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
 }
-/* Search + Reset — same height, baseline, gap (border-box so 1px border doesn't skew) */
-html body#torrents .filter_torrents .ft_submit,
+html body#torrents #ft_container input[type="search"]:focus,
+html body#torrents .search_form input[type="search"]:focus,
+html body#torrents .search_form input.inputtext:focus,
+html body#torrents #ft_container select:focus,
+html body#torrents .search_form select:focus {
+	border-color: #2a8a3a !important;
+	background: #0a160c !important;
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+/* Year / catalogue “smallest” — stop the orphan postage-stamp box */
+html body#torrents #ft_container input.smallest,
+html body#torrents .search_form input.smallest,
+html body#torrents input.inputtext.smallest,
+html body#torrents input[name="year"],
+html body#torrents input[name="remasteryear"],
+html body#torrents .ft_year input,
+html body#torrents .ft_remasteryear input {
+	width: 5.5em !important;
+	min-width: 5.5em !important;
+	max-width: 7em !important;
+	height: 32px !important;
+	min-height: 32px !important;
+	text-align: center !important;
+	padding: 0 8px !important;
+}
+/* Selects in rip/misc rows — same height, comfy pad */
+html body#torrents #ft_container select,
+html body#torrents .search_form select {
+	height: 32px !important;
+	min-height: 32px !important;
+	padding: 0 8px !important;
+	cursor: pointer !important;
+}
+/* Category checkbox row — even gap, readable labels */
+html body#torrents #ft_container tr#search_group_results ~ tr label,
+html body#torrents #ft_container label,
+html body#torrents .search_form label {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 500 !important;
+	margin-right: 14px !important;
+	white-space: nowrap !important;
+}
+html body#torrents #ft_container input[type="checkbox"],
+html body#torrents .search_form input[type="checkbox"] {
+	width: 14px !important;
+	height: 14px !important;
+	margin: 0 6px 0 0 !important;
+	vertical-align: -2px !important;
+	accent-color: #00ff41 !important;
+}
+/* Random / Show tags links — quiet chips */
+html body#torrents .search_form a[href*="random"],
+html body#torrents a[href*="action=random"],
+html body#torrents #ft_container a.brackets[href*="random"],
+html body#torrents a.brackets[onclick*="tag"] {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	font-weight: 600 !important;
+}
+html body#torrents .search_form a[href*="random"]:hover,
+html body#torrents a[href*="action=random"]:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+/* Form card inner pad so Search row isn’t glued to the border */
+html body#torrents #ft_container,
+html body#torrents form.search_form .pad,
+html body#torrents #ft_container.pad {
+	padding: 14px 16px 12px !important;
+}
+/*
+ * Search + Reset (OPS browse-header.twig):
+ *   <div class="submit ft_submit">
+ *     <input type="submit" class="search_button" value="Search">
+ *     <input type="button" class="reset_button" value="Reset">
+ *   </div>
+ * No .filter_torrents on modern OPS — class hooks + value hooks.
+ * Identical outer box (Brave sizes submit vs button differently otherwise).
+ */
+html body .search_form div.submit,
+html body .search_form .ft_submit,
+html body#torrents .search_form div.submit,
 html body#torrents .search_form .ft_submit,
-html body#torrents form.search_form .ft_submit {
-	display: inline-flex !important;
+html body#torrents #ft_container .ft_submit,
+html body#torrents #ft_container div.submit {
+	display: flex !important;
 	flex-flow: row nowrap !important;
 	align-items: center !important;
+	justify-content: flex-start !important;
 	gap: 8px !important;
-	vertical-align: middle !important;
+	margin: 12px 0 6px !important;
+	padding: 0 !important;
+	min-height: 34px !important;
+	text-align: left !important;
 }
-html body#torrents .filter_torrents .ft_submit input,
-html body#torrents .search_form .ft_submit input,
-html body#torrents form.search_form .ft_submit input {
-	margin: 0 !important;
-	vertical-align: middle !important;
-}
-html body#torrents .filter_torrents .ft_submit span,
-html body#torrents .search_form .ft_submit span {
-	order: 3 !important;
-	margin-left: 10px !important;
+html body .search_form div.submit > span,
+html body .search_form .ft_submit > span,
+html body#torrents .search_form .ft_submit > span,
+html body#torrents #ft_container .ft_submit > span {
+	order: 9 !important;
+	margin: 0 0 0 6px !important;
+	padding: 0 !important;
 	align-self: center !important;
-	line-height: 1.3 !important;
+	line-height: 34px !important;
+	height: 34px !important;
 	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-size: 12.5px !important;
+	white-space: nowrap !important;
 }
-html body#torrents .filter_torrents input[type="submit"],
-html body#torrents .search_form input[type="submit"],
-html body#torrents form.search_form input[type="submit"],
+/* Shared shell — .search_button + .reset_button must match pixel-for-pixel */
+html body .search_form .search_button,
+html body .search_form .reset_button,
+html body .search_form input.search_button,
+html body .search_form input.reset_button,
+html body#torrents .search_form .search_button,
+html body#torrents .search_form .reset_button,
+html body#torrents .search_button,
+html body#torrents .reset_button,
+html body#torrents input.search_button,
+html body#torrents input.reset_button,
+html body#torrents .ft_submit input[type="submit"].search_button,
+html body#torrents .ft_submit input[type="button"].reset_button,
+html body#torrents .ft_submit input[type="submit"],
+html body#torrents .ft_submit input[type="button"],
 html body#torrents input[value="Search"],
-html body#torrents .filter_torrents input[type="button"],
-html body#torrents .search_form input[type="button"],
-html body#torrents input[value="Reset"],
-html body#torrents input[value="reset"] {
-	display: inline-flex !important;
-	align-items: center !important;
-	justify-content: center !important;
+html body#torrents input[value="Reset"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-block !important;
 	box-sizing: border-box !important;
 	height: 34px !important;
 	min-height: 34px !important;
 	max-height: 34px !important;
+	width: auto !important;
 	min-width: 88px !important;
-	padding: 0 18px !important;
-	margin: 0 8px 0 0 !important;
+	padding: 0 16px !important;
+	margin: 0 !important;
+	border-width: 1px !important;
+	border-style: solid !important;
 	border-radius: 6px !important;
+	font-family: inherit !important;
 	font-size: 13px !important;
-	line-height: 1 !important;
+	font-weight: 700 !important;
+	line-height: 32px !important;
+	letter-spacing: 0.01em !important;
+	text-align: center !important;
 	vertical-align: middle !important;
 	cursor: pointer !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	outline: none !important;
+	float: none !important;
 }
-html body#torrents .filter_torrents input[type="submit"],
-html body#torrents .search_form input[type="submit"],
-html body#torrents form.search_form input[type="submit"],
+/* Search — primary fill */
+html body .search_form .search_button,
+html body .search_form input.search_button,
+html body#torrents .search_button,
+html body#torrents input.search_button,
+html body#torrents .ft_submit input[type="submit"].search_button,
+html body#torrents .ft_submit input.search_button,
 html body#torrents input[value="Search"] {
-	background: linear-gradient(180deg, #5dff7a, #00cc44) !important;
+	background: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	background-color: #12c44a !important;
+	background-image: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	border-color: #1ad656 !important;
 	color: #041004 !important;
 	-webkit-text-fill-color: #041004 !important;
-	border: 1px solid transparent !important;
-	font-weight: 700 !important;
-	box-shadow: 0 0 12px rgba(0, 255, 65, 0.3) !important;
 }
-html body#torrents .filter_torrents input[type="button"],
-html body#torrents .search_form input[type="button"],
-html body#torrents input[value="Reset"],
-html body#torrents input[value="reset"] {
-	background: #0c1a0c !important;
-	color: #9fd89f !important;
-	-webkit-text-fill-color: #9fd89f !important;
-	border: 1px solid #1a4d1a !important;
+html body .search_form .search_button:hover,
+html body#torrents .search_button:hover,
+html body#torrents input[value="Search"]:hover {
+	background: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	background-image: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	border-color: #5dff7a !important;
+}
+/* Reset — secondary outline, same outer size as Search */
+html body .search_form .reset_button,
+html body .search_form input.reset_button,
+html body#torrents .reset_button,
+html body#torrents input.reset_button,
+html body#torrents .ft_submit input[type="button"].reset_button,
+html body#torrents .ft_submit input.reset_button,
+html body#torrents input[value="Reset"] {
+	background: #0a140c !important;
+	background-color: #0a140c !important;
+	background-image: none !important;
+	border-color: #2a6a2a !important;
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
 	font-weight: 600 !important;
-	box-shadow: none !important;
+}
+html body .search_form .reset_button:hover,
+html body#torrents .reset_button:hover,
+html body#torrents input[value="Reset"]:hover {
+	background: #0e1c10 !important;
+	background-image: none !important;
+	border-color: #3a8a3a !important;
+	color: #d8ffd8 !important;
+	-webkit-text-fill-color: #d8ffd8 !important;
+}
+/* Hide rare default-search chrome so only Search+Reset show as a pair */
+html body#torrents .setdefault_button,
+html body#torrents .cleardefault_button {
+	height: 34px !important;
+	min-height: 34px !important;
+	box-sizing: border-box !important;
+	padding: 0 12px !important;
+	margin: 0 !important;
+	border-radius: 6px !important;
+	vertical-align: middle !important;
 }
 html body#torrents input[type="checkbox"],
 html body#torrents input[type="radio"] {
@@ -6961,6 +8459,526 @@ html body#torrents .torrent_table td.td_snatched strong {
 	-webkit-text-fill-color: #00ff41 !important;
 	font-weight: 700 !important;
 	text-shadow: 0 0 6px rgba(0, 255, 65, 0.3) !important;
+}
+
+/*
+ * FINAL chat / IRC (chat.php)
+ * h3#irc rules · h3#general join · a.ircjoin > button
+ */
+html body#chat .thin > h3,
+html body#chat h3#irc,
+html body#chat h3#general,
+html body .thin > h3#irc,
+html body .thin > h3#general {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.25rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.18) !important;
+	margin: 0 0 12px !important;
+}
+html body#chat .thin > h3#general,
+html body .thin > h3#general {
+	margin-top: 22px !important;
+}
+/* Rules + join cards */
+html body#chat .thin > .box.pad,
+html body#chat .box.pad,
+html body .thin:has(h3#irc) .box.pad,
+html body .thin:has(h3#general) .box.pad {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	color: #c8ffc8 !important;
+	padding: 16px 20px 18px !important;
+	margin: 0 0 8px !important;
+}
+/* Numbered IRC rules */
+html body#chat .box.pad ol,
+html body .thin:has(h3#irc) .box.pad ol {
+	margin: 0 !important;
+	padding: 0 0 0 1.5rem !important;
+	list-style: decimal !important;
+	color: #c8ffc8 !important;
+}
+html body#chat .box.pad ol > li,
+html body .thin:has(h3#irc) .box.pad ol > li {
+	margin: 0 0 0.7em !important;
+	padding: 0 !important;
+	line-height: 1.5 !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	font-size: 13.5px !important;
+}
+html body#chat .box.pad ol > li::marker,
+html body .thin:has(h3#irc) .box.pad ol > li::marker {
+	color: #00ff41 !important;
+	font-weight: 700 !important;
+}
+html body#chat .box.pad a,
+html body#chat .thin a,
+html body .thin:has(h3#irc) .box.pad a,
+html body .thin:has(h3#general) .box.pad a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	text-shadow: 0 0 6px rgba(0, 255, 65, 0.2) !important;
+}
+html body#chat .box.pad a:hover,
+html body .thin:has(h3#general) .box.pad a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	text-shadow: 0 0 10px rgba(0, 255, 65, 0.4) !important;
+}
+html body#chat .box.pad p,
+html body .thin:has(h3#general) .box.pad p {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	line-height: 1.55 !important;
+	margin: 0 0 0.85em !important;
+	font-size: 13.5px !important;
+}
+/* Join Chat CTA — stock wraps <button> in <a class="ircjoin"> */
+html body#chat a.ircjoin,
+html body a.ircjoin {
+	display: inline-block !important;
+	text-decoration: none !important;
+	margin: 4px 0 0 !important;
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	padding: 0 !important;
+}
+html body#chat a.ircjoin button,
+html body a.ircjoin button,
+html body#chat a.ircjoin > button,
+html body a.ircjoin > button {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-block !important;
+	box-sizing: border-box !important;
+	height: 38px !important;
+	min-height: 38px !important;
+	padding: 0 22px !important;
+	margin: 0 !important;
+	border: 1px solid #1ad656 !important;
+	border-radius: 6px !important;
+	background: linear-gradient(180deg, #4ae866 0%, #12c44a 100%) !important;
+	background-color: #12c44a !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	font-weight: 700 !important;
+	font-size: 13.5px !important;
+	line-height: 36px !important;
+	cursor: pointer !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	vertical-align: middle !important;
+}
+html body#chat a.ircjoin:hover button,
+html body a.ircjoin:hover button,
+html body#chat a.ircjoin button:hover,
+html body a.ircjoin button:hover {
+	background: linear-gradient(180deg, #6fff88 0%, #1adc55 100%) !important;
+	border-color: #5dff7a !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+}
+/* Disabled IRC privileges notice */
+html body#chat .box.pad strong,
+html body .thin:has(h3#irc) .box.pad strong {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+}
+
+/*
+ * FINAL wiki (wiki.php)
+ * .wiki_article · .sidebar Search/ToC/box_info · header linkbox
+ */
+html body#wiki .header h3,
+html body#wiki .thin > .header h3 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 1.25rem !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.15) !important;
+	margin: 0 0 10px !important;
+}
+html body#wiki .header h3 a {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#wiki .header h3 a:hover {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+}
+/* Browse · Create · History chips */
+html body#wiki .header .linkbox,
+html body#wiki .linkbox {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	gap: 6px 8px !important;
+	margin: 0 0 12px !important;
+}
+html body#wiki .linkbox a.brackets,
+html body#wiki .header .linkbox a {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 4px 12px !important;
+	margin: 0 !important;
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	background: #0c1a0c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+}
+html body#wiki .linkbox a.brackets::before,
+html body#wiki .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#wiki .linkbox a:hover {
+	color: #e8ffe8 !important;
+	border-color: #00ff41 !important;
+	background: #122816 !important;
+}
+/* Main article card */
+html body#wiki .main_column .wiki_article,
+html body#wiki .wiki_article {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	overflow: hidden !important;
+}
+html body#wiki .wiki_article > .pad,
+html body#wiki .wiki_article .pad {
+	background: transparent !important;
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	padding: 18px 20px 22px !important;
+	line-height: 1.6 !important;
+	font-size: 14px !important;
+}
+html body#wiki .wiki_article p {
+	color: #c8ffc8 !important;
+	-webkit-text-fill-color: #c8ffc8 !important;
+	margin: 0 0 1em !important;
+	line-height: 1.6 !important;
+}
+html body#wiki .wiki_article a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#wiki .wiki_article a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.35) !important;
+}
+/* Section headings in article body */
+html body#wiki .wiki_article h2,
+html body#wiki .wiki_article h3,
+html body#wiki .wiki_article h4 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	margin: 1.35em 0 0.55em !important;
+	padding: 0 0 0.35em !important;
+	border-bottom: 1px solid #1a4d1a !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.12) !important;
+}
+html body#wiki .wiki_article h2 {
+	font-size: 1.2rem !important;
+}
+html body#wiki .wiki_article h3 {
+	font-size: 1.05rem !important;
+	border-bottom-color: #152815 !important;
+}
+html body#wiki .wiki_article ul,
+html body#wiki .wiki_article ol {
+	margin: 0 0 1em 1.2rem !important;
+	padding: 0 !important;
+	color: #c8ffc8 !important;
+}
+html body#wiki .wiki_article li {
+	margin: 0 0 0.4em !important;
+	line-height: 1.5 !important;
+	color: #c8ffc8 !important;
+}
+html body#wiki .wiki_article li::marker {
+	color: #00ff41 !important;
+}
+/* Sidebar cards */
+html body#wiki .sidebar .box,
+html body#wiki .sidebar .box_info {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+	overflow: hidden !important;
+	margin-bottom: 12px !important;
+}
+html body#wiki .sidebar .box .head {
+	background: linear-gradient(180deg, #16301a 0%, #122016 100%) !important;
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 700 !important;
+	font-size: 12.5px !important;
+	letter-spacing: 0.03em !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid #1a4d1a !important;
+}
+html body#wiki .sidebar .box .pad,
+html body#wiki .sidebar .box .body,
+html body#wiki .sidebar .box_info {
+	background: #0a140c !important;
+	color: #c8ffc8 !important;
+	padding: 12px !important;
+	line-height: 1.5 !important;
+	font-size: 12.5px !important;
+}
+html body#wiki .sidebar .box_info {
+	padding: 12px 14px !important;
+}
+html body#wiki .sidebar input[type="search"],
+html body#wiki .sidebar input[type="text"] {
+	width: 100% !important;
+	box-sizing: border-box !important;
+	height: 32px !important;
+	background: #061008 !important;
+	color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+	padding: 0 10px !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+html body#wiki .sidebar input[type="search"]:focus,
+html body#wiki .sidebar input[type="text"]:focus {
+	border-color: #2a8a3a !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+html body#wiki .sidebar a {
+	color: #7cff9a !important;
+	-webkit-text-fill-color: #7cff9a !important;
+	text-decoration: none !important;
+	font-weight: 500 !important;
+}
+html body#wiki .sidebar a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#wiki .sidebar .box .body a,
+html body#wiki .sidebar .body ol a,
+html body#wiki .sidebar .body ul a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+}
+html body#wiki .sidebar ul,
+html body#wiki .sidebar ol {
+	margin: 0 !important;
+	padding-left: 1.15rem !important;
+	color: #b8e8b8 !important;
+}
+html body#wiki .sidebar li {
+	margin: 0 0 0.4em !important;
+	color: #b8e8b8 !important;
+	line-height: 1.45 !important;
+}
+html body#wiki .sidebar strong {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+}
+html body#wiki .sidebar .time {
+	color: #6a866a !important;
+	-webkit-text-fill-color: #6a866a !important;
+}
+
+/*
+ * FINAL rules (rules.php)
+ * TOC .rule_table · Golden Rules .rule_summary · .rule_link / .rule_short / .rule_long
+ */
+html body#rules h3#jump,
+html body#rules .thin > h3,
+html body#rules .header h2,
+html body#rules h2#general,
+html body#rules h2 {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.01em !important;
+	text-shadow: 0 0 12px rgba(0, 255, 65, 0.18) !important;
+	margin: 0 0 10px !important;
+}
+html body#rules h3#jump {
+	font-size: 1.15rem !important;
+	margin-bottom: 12px !important;
+}
+html body#rules .header h2,
+html body#rules h2 {
+	font-size: 1.4rem !important;
+	margin-top: 22px !important;
+}
+html body#rules .header p,
+html body#rules .thin > .header p {
+	color: #9fd89f !important;
+	-webkit-text-fill-color: #9fd89f !important;
+	font-size: 13.5px !important;
+	line-height: 1.5 !important;
+	margin: 0 0 12px !important;
+	max-width: 52rem !important;
+}
+/* TOC + rule cards */
+html body#rules .box.pad.rule_table,
+html body#rules .box.pad.rule_summary,
+html body#rules .rule_table,
+html body#rules .rule_summary {
+	background: #0a140c !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+	padding: 14px 16px 16px !important;
+	margin: 0 0 8px !important;
+	color: #c8ffc8 !important;
+}
+/* TOC table */
+html body#rules .rule_table table.m_table,
+html body#rules .rule_table table {
+	width: 100% !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	background: transparent !important;
+}
+html body#rules .rule_table tr.colhead td {
+	background: linear-gradient(180deg, #16301a 0%, #122016 100%) !important;
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	letter-spacing: 0.03em !important;
+	padding: 10px 12px !important;
+	border-bottom: 2px solid #1a4d1a !important;
+}
+html body#rules .rule_table tr.rowa td,
+html body#rules .rule_table tr.rowb td {
+	padding: 11px 12px !important;
+	border-bottom: 1px solid #1a3a1a !important;
+	vertical-align: top !important;
+	line-height: 1.45 !important;
+}
+html body#rules .rule_table tr.rowa td {
+	background: #0c160c !important;
+}
+html body#rules .rule_table tr.rowb td {
+	background: #101c10 !important;
+}
+html body#rules .rule_table tr.rowa:hover td,
+html body#rules .rule_table tr.rowb:hover td {
+	background: #14301a !important;
+}
+html body#rules .rule_table td.nobr a,
+html body#rules .rule_table a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	text-shadow: 0 0 6px rgba(0, 255, 65, 0.15) !important;
+}
+html body#rules .rule_table a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#rules .rule_table td:last-child {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	font-size: 13px !important;
+}
+/* Golden / section rules list */
+html body#rules ul.rules,
+html body#rules ul.golden_rules,
+html body#rules .golden_rules {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+html body#rules ul.rules > li,
+html body#rules .golden_rules > li {
+	display: block !important;
+	margin: 0 0 1.15em !important;
+	padding: 0 0 1.05em !important;
+	border-bottom: 1px solid #152815 !important;
+	list-style: none !important;
+}
+html body#rules ul.rules > li:last-child,
+html body#rules .golden_rules > li:last-child {
+	border-bottom: none !important;
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
+html body#rules a.rule_link {
+	display: inline-block !important;
+	color: #5dff7a !important;
+	-webkit-text-fill-color: #5dff7a !important;
+	font-weight: 700 !important;
+	font-size: 12px !important;
+	font-variant-numeric: tabular-nums !important;
+	letter-spacing: 0.04em !important;
+	text-decoration: none !important;
+	margin: 0 0 4px !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.25) !important;
+}
+html body#rules a.rule_link:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+}
+html body#rules .rule_wrap {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+html body#rules .rule_short {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	font-weight: 700 !important;
+	font-size: 14.5px !important;
+	line-height: 1.35 !important;
+	margin: 0 0 6px !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.12) !important;
+}
+html body#rules .rule_long {
+	color: #b8e8b8 !important;
+	-webkit-text-fill-color: #b8e8b8 !important;
+	font-size: 13.5px !important;
+	line-height: 1.55 !important;
+	font-weight: 400 !important;
+}
+html body#rules .rule_long a,
+html body#rules .rule_summary a {
+	color: #00ff41 !important;
+	-webkit-text-fill-color: #00ff41 !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#rules .rule_long a:hover,
+html body#rules .rule_summary a:hover {
+	color: #e8ffe8 !important;
+	-webkit-text-fill-color: #e8ffe8 !important;
+	text-shadow: 0 0 8px rgba(0, 255, 65, 0.35) !important;
 }
 
 /* ══════════════════════════════════════════════════════════
