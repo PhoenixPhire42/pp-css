@@ -1450,17 +1450,14 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
         z-index: 900
     }
 
+    /* Open z-index / right:0 owned by V45 MacLite end-cap — stock lowered z-index hid the flyout */
     #userinfo_minor:hover, #userinfo_username:hover {
-        z-index: 800
+        z-index: 1000
     }
 
     #userinfo_username:hover {
-        border-radius: 0 10px 0 0;
-        right: 0
-    }
-
-    #userinfo_minor:hover, #userinfo_username:hover {
-        background-color: #6c6584
+        border-radius: 0;
+        /* right:0 on open is V45 panel expand — not stock slide-over-chevron alone */
     }
 
     .settings_sidebar {
@@ -3080,15 +3077,9 @@ body {
 		0 1px 3px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Open flyout (V45 MacLite port): transparent shell + card — do not solid-fill on :hover */
 #userinfo_username:hover,
 #userinfo_minor:hover {
-	background-image: linear-gradient(
-		180deg,
-		#242a32 0%,
-		#161a20 48%,
-		#0c1014 100%
-	) !important;
-	background-color: #161a20 !important;
 	filter: none !important;
 }
 
@@ -3101,15 +3092,6 @@ body {
 		#030405 100%
 	) !important;
 	background-color: #080a0c !important;
-}
-#userinfo_minor:hover {
-	background-image: linear-gradient(
-		180deg,
-		#1c2228 0%,
-		#101418 48%,
-		#080a0c 100%
-	) !important;
-	background-color: #101418 !important;
 }
 
 #userinfo_username a,
@@ -4371,15 +4353,12 @@ html body #userinfo_minor {
 		inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
 }
 
+/* Open flyout paints transparent shell + card (V45 EOF). Don't solid-fill on :hover here. */
 html body #userinfo_username:hover {
-	background: #161a20 !important;
-	background-color: #161a20 !important;
-	background-image: linear-gradient(180deg, #242a32 0%, #161a20 48%, #0c1014 100%) !important;
+	/* rail label paint lives in V45 end-cap */
 }
 html body #userinfo_minor:hover {
-	background: #101418 !important;
-	background-color: #101418 !important;
-	background-image: linear-gradient(180deg, #1c2228 0%, #101418 48%, #080a0c 100%) !important;
+	/* open shell transparent — V45 end-cap */
 }
 
 html body #userinfo_username a,
@@ -7990,9 +7969,11 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 
 
 /* ══════════════════════════════════════════════════════════
- * Heywood end-cap V44 — MacLite flyout port (dark charcoal)
- * Closed: 100px Heywood + 50px ▾ on the menu rail (no Wiki merge)
- * Open: pure dropdown BELOW the rail; exclusive open via :has()
+ * Heywood + chevron end-cap (V45 — MacLite V53 port, dark charcoal)
+ * Closed: 100px Heywood + 50px ▾ on the menu rail.
+ * Open: transparent shell; charcoal card via ::after BELOW the rail
+ * so tabs stay put and the list is one continuous panel
+ * (no orphan Better/Posts/Upvotes card).
  * ══════════════════════════════════════════════════════════ */
 @media (min-width: 576px) {
 	/* #userinfo collapses — absolute children share the menu baseline */
@@ -8007,6 +7988,11 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		z-index: 950 !important;
 		float: none !important;
 	}
+	html body #menu > ul {
+		width: calc(100% - 150px) !important;
+		overflow: hidden !important;
+	}
+
 	html body #userinfo li::marker,
 	html body #userinfo_username li::marker,
 	html body #userinfo_minor li::marker {
@@ -8014,16 +8000,10 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		display: none !important;
 	}
 
-	/* Menu reserves 150px for Heywood + chevron */
-	html body #menu > ul {
-		width: calc(100% - 150px) !important;
-		overflow: hidden !important;
-	}
-
 	html body #userinfo_username,
 	html body #userinfo_minor {
 		position: absolute !important;
-		top: 0 !important;
+		top: 0 !important; /* same band as #menu (userinfo height:0) */
 		bottom: auto !important;
 		left: auto !important;
 		right: 0 !important;
@@ -8042,40 +8022,32 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		column-count: auto !important;
 		columns: auto !important;
 		z-index: 960 !important;
+		background: #0c1014 !important;
+		background-color: #0c1014 !important;
+		background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
 		border: none !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 		filter: none !important;
 	}
-
 	/* Heywood — left of the 50px chevron */
 	html body #userinfo_username {
 		right: 50px !important;
 		width: 100px !important;
-		min-width: 100px !important;
-		max-width: 100px !important;
 		border-radius: 0 !important;
 		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
 		z-index: 961 !important;
-		background: #0c1014 !important;
-		background-color: #0c1014 !important;
-		background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.06),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 	}
 	/* Chevron end-cap */
 	html body #userinfo_minor {
 		right: 0 !important;
 		width: 50px !important;
-		min-width: 50px !important;
-		max-width: 50px !important;
 		border-radius: 0 6px 0 0 !important;
-		z-index: 962 !important;
 		background: #080a0c !important;
 		background-color: #080a0c !important;
 		background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.05),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+		z-index: 962 !important;
 	}
 
 	/* Closed: only Heywood label */
@@ -8110,11 +8082,11 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		box-sizing: border-box !important;
 		text-align: center !important;
 		font-size: 13px !important;
-		font-weight: 600 !important;
+		font-weight: 700 !important;
 		color: #f0f2f4 !important;
 		-webkit-text-fill-color: #f0f2f4 !important;
 		background: transparent !important;
-		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+		text-shadow: none !important;
 		overflow: hidden !important;
 		text-overflow: ellipsis !important;
 		white-space: nowrap !important;
@@ -8163,14 +8135,12 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 
 	/*
 	 * OPEN — pure dropdown BELOW the rail.
-	 * Shell is transparent (tabs stay on rail); ::after paints one charcoal card.
+	 * Shell is transparent (tabs stay grey); ::after paints one white card.
 	 */
 	html body #userinfo_username:hover,
 	html body #userinfo_minor:hover {
 		right: 0 !important;
 		width: 176px !important;
-		min-width: 176px !important;
-		max-width: 176px !important;
 		height: auto !important;
 		max-height: none !important;
 		min-height: 50px !important;
@@ -8184,6 +8154,7 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		box-shadow: none !important;
 		filter: none !important;
 		z-index: 1000 !important;
+		/* single column — kill any flex-wrap / float multi-card leaks */
 		display: block !important;
 		flex-wrap: nowrap !important;
 		column-count: 1 !important;
@@ -8236,7 +8207,7 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		border-radius: 0 6px 0 0 !important;
 		box-shadow:
 			inset 0 1px 0 rgba(255, 255, 255, 0.05),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 		filter: none !important;
 	}
 	/* Rows — single vertical stack inside the card */
@@ -8327,13 +8298,13 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		padding: 0 6px !important;
 		text-align: center !important;
 		font-size: 13px !important;
-		font-weight: 600 !important;
+		font-weight: 700 !important;
 		color: #f0f2f4 !important;
 		-webkit-text-fill-color: #f0f2f4 !important;
 		background: transparent !important;
 	}
 
-	/* When ▼ open: Heywood stays closed 100px rail cell (do not expand over Wiki) */
+	/* When ▼ open: Heywood stays closed 100px rail cell (do not expand username) */
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username,
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover {
 		visibility: visible !important;
@@ -8341,8 +8312,6 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		pointer-events: auto !important;
 		right: 50px !important;
 		width: 100px !important;
-		min-width: 100px !important;
-		max-width: 100px !important;
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
@@ -8377,7 +8346,7 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		padding: 0 6px !important;
 		text-align: center !important;
 		font-size: 13px !important;
-		font-weight: 600 !important;
+		font-weight: 700 !important;
 		color: #f0f2f4 !important;
 		-webkit-text-fill-color: #f0f2f4 !important;
 		background: transparent !important;
@@ -8409,8 +8378,6 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		pointer-events: auto !important;
 		right: 0 !important;
 		width: 50px !important;
-		min-width: 50px !important;
-		max-width: 50px !important;
 		height: 50px !important;
 		max-height: 50px !important;
 		padding: 0 !important;
@@ -8421,7 +8388,7 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
 		box-shadow:
 			inset 0 1px 0 rgba(255, 255, 255, 0.05),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 	}
 	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) a,
 	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) > li {
@@ -8431,19 +8398,5 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		display: none !important;
 		content: none !important;
 	}
-	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::before,
-	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover):before {
-		content: "\25BE" !important;
-		display: flex !important;
-		position: static !important;
-		width: 50px !important;
-		height: 50px !important;
-		margin: 0 !important;
-		margin-left: 0 !important;
-		color: #e8ecef !important;
-		-webkit-text-fill-color: #e8ecef !important;
-		background: transparent !important;
-		background-image: none !important;
-	}
 }
-/* PP-DARK-CACHE-V44 */
+/* PP-DARK-CACHE-V45 */
