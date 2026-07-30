@@ -7,7 +7,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css
  */
 /*
- * PP Dark standalone
+ * PP Dark standalone — Charcoal UI + soft orange accents (dark theme).
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
  */
 /* ══════════════════════════════════════════════════════════
@@ -442,13 +442,18 @@ table.box, table.box2 {
     margin-left: 8px
 }
 
-.last_read :before {
-    content: "\27A4";
-    color: #b43477;
+/* Soft rose (theme accent) — not stock hot magenta #b43477 */
+.last_read :before,
+.last_read::before,
+.last_read a:before,
+.last_read a::before {
+    content: "\25B8"; /* ▸ */
+    color: #d4848c;
     display: inline-block
 }
 
-#userinfo_minor:before, .linkbox br {
+/* Do NOT blank #userinfo_minor:before — chevron glyph lives there */
+.linkbox br {
     content: ""
 }
 
@@ -4393,10 +4398,71 @@ html body #menu > ul a:hover {
 	color: #fff !important;
 }
 
-/* REDStage chevron glyph — desaturate purple assets */
-html body #userinfo_minor:before {
-	filter: brightness(1.4) grayscale(1) !important;
+/*
+ * Heywood + chevron end-cap (closed rail) — V44
+ * Full open/closed flyout rebuild lives at EOF (MacLite port, dark palette).
+ * Stock Apollostage used a sprite; REDStage blanked :before content.
+ */
+html body #header #userinfo_minor,
+html body #userinfo_minor {
+	position: absolute !important;
+	right: 0 !important;
+	width: 50px !important;
+	min-width: 50px !important;
+	max-width: 50px !important;
+	height: 50px !important;
+	min-height: 50px !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+	z-index: 962 !important;
 }
+html body #header #userinfo_username,
+html body #userinfo_username {
+	position: absolute !important;
+	right: 50px !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	max-width: 100px !important;
+	height: 50px !important;
+	min-height: 50px !important;
+	max-height: 50px !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+	z-index: 961 !important;
+}
+html body #header #userinfo_minor::before,
+html body #header #userinfo_minor:before,
+html body #userinfo_minor::before,
+html body #userinfo_minor:before {
+	content: "\25BE" !important; /* ▾ */
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	width: 50px !important;
+	height: 50px !important;
+	min-width: 50px !important;
+	min-height: 50px !important;
+	max-width: 50px !important;
+	margin: 0 !important;
+	margin-left: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	background: transparent !important;
+	background-image: none !important;
+	filter: none !important;
+	font-family: system-ui, "Segoe UI", sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	line-height: 1 !important;
+	text-align: center !important;
+	color: #e8ecef !important;
+	-webkit-text-fill-color: #e8ecef !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	pointer-events: none !important;
+}
+/* Open-state glyph + flyout: see EOF "Heywood end-cap V44" block */
 
 html body #nav_staff > a,
 html body #menu > ul > #nav_staff > a {
@@ -7599,3 +7665,785 @@ html body#forums a.btn-outline-secondary:hover {
 html body#forums .box > .head {
 	color: var(--head-text) !important;
 }
+
+/*
+ * Desktop menu height lock — #menu>ul a { height:100% } + flex:1 li was stretching
+ * the primary nav into tall empty charcoal columns (see PP index Dark).
+ * Same fix as Neo V40 / Synth V40 / MacLite V40.
+ */
+@media (min-width: 576px) {
+	html body #header {
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		opacity: 1 !important;
+		position: relative !important;
+		overflow: visible !important;
+		transform: none !important;
+	}
+	html body #menu,
+	html body #menu > ul {
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		position: relative !important;
+		top: auto !important;
+		bottom: auto !important;
+		left: auto !important;
+		right: auto !important;
+		display: flex !important;
+		flex-flow: row nowrap !important;
+		align-items: stretch !important;
+		box-sizing: border-box !important;
+	}
+	html body #menu > ul {
+		width: calc(100% - 149px) !important;
+		overflow: hidden !important;
+	}
+	html body #menu > ul > li,
+	html body #menu li {
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		flex: 1 1 0 !important;
+		box-sizing: border-box !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	html body #menu > ul > li > a,
+	html body #menu li a,
+	html body #menu a {
+		display: block !important;
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		line-height: 50px !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		box-sizing: border-box !important;
+		overflow: hidden !important;
+	}
+	/* Username tab (Heywood) — match menu row height */
+	html body #userinfo_username,
+	html body #userinfo_minor {
+		height: 50px !important;
+		max-height: 50px !important;
+		min-height: 50px !important;
+	}
+	html body #userinfo_username > li > a,
+	html body #userinfo_username a.username {
+		line-height: 50px !important;
+		height: 50px !important;
+	}
+}
+
+/*
+ * Last-read arrows sitewide (index, forums unread, forum index)
+ * Soft rose accent — never stock #b43477 magenta
+ */
+html body .last_read,
+html body .last_read a,
+html body#index .last_read,
+html body#index .last_read a,
+html body#forums .last_read,
+html body#forums .last_read a {
+	color: #d4848c !important;
+	-webkit-text-fill-color: #d4848c !important;
+	text-decoration: none !important;
+}
+html body .last_read::before,
+html body .last_read:before,
+html body .last_read a::before,
+html body .last_read a:before,
+html body .last_read :before,
+html body#index .last_read::before,
+html body#index .last_read:before,
+html body#index .last_read a::before,
+html body#index .last_read a:before,
+html body#forums .last_read::before,
+html body#forums .last_read:before,
+html body#forums .last_read a::before,
+html body#forums .last_read a:before {
+	content: "\25B8" !important; /* ▸ */
+	color: #d4848c !important;
+	-webkit-text-fill-color: #d4848c !important;
+	display: inline-block !important;
+	font-size: 12px !important;
+	font-weight: 700 !important;
+	line-height: 1 !important;
+	margin-left: 4px !important;
+	filter: none !important;
+	opacity: 1 !important;
+}
+html body .last_read a:hover,
+html body .last_read a:hover::before,
+html body#forums .last_read a:hover,
+html body#forums .last_read a:hover::before {
+	color: #f0c0c8 !important;
+	-webkit-text-fill-color: #f0c0c8 !important;
+}
+
+/*
+ * FINAL: forums unread / search (forums.php?action=viewunread)
+ */
+html body#forums .thin > .header h2,
+html body#forums .header h2,
+html body#forums h2 {
+	color: #f0f2f4 !important;
+	-webkit-text-fill-color: #f0f2f4 !important;
+	font-weight: 700 !important;
+	font-size: 1.35rem !important;
+	letter-spacing: 0.01em !important;
+}
+html body#forums .header h2 a,
+html body#forums h2 a {
+	color: #d4a0a8 !important;
+	-webkit-text-fill-color: #d4a0a8 !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#forums .header h2 a:hover {
+	color: #f0c0c8 !important;
+	-webkit-text-fill-color: #f0c0c8 !important;
+}
+/* Search forums · Catch up */
+html body#forums .linkbox a.brackets,
+html body#forums .linkbox a,
+html body#forums .btn-group .btn,
+html body#forums a.btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	padding: 6px 14px !important;
+	margin: 0 4px 6px 0 !important;
+	color: #d4d0d0 !important;
+	-webkit-text-fill-color: #d4d0d0 !important;
+	background: #1a1f28 !important;
+	border: 1px solid #3a424c !important;
+	border-radius: 999px !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+	box-shadow: none !important;
+}
+html body#forums .linkbox a.brackets::before,
+html body#forums .linkbox a.brackets::after {
+	display: none !important;
+	content: none !important;
+}
+html body#forums .linkbox a:hover,
+html body#forums a.btn:hover {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-color: rgba(212, 132, 140, 0.5) !important;
+	background: #222830 !important;
+}
+/* Unread topics table */
+html body#forums table.forum_index,
+html body#forums table.forum_list,
+html body#forums .forum_index {
+	background: #161b22 !important;
+	border: 1px solid #2a323c !important;
+	border-radius: 8px !important;
+	overflow: hidden !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	width: 100% !important;
+}
+html body#forums .forum_index tr.colhead td,
+html body#forums .forum_index tr.colhead_dark td {
+	background: linear-gradient(180deg, #2a323c 0%, #1e242c 100%) !important;
+	color: #d4848c !important;
+	-webkit-text-fill-color: #d4848c !important;
+	font-weight: 700 !important;
+	font-size: 11px !important;
+	letter-spacing: 0.04em !important;
+	text-transform: uppercase !important;
+	padding: 10px 12px !important;
+	border-bottom: 1px solid #3a424c !important;
+}
+html body#forums .forum_index tr.rowa td,
+html body#forums .forum_index tr.rowb td {
+	padding: 11px 12px !important;
+	border-bottom: 1px solid #1e242c !important;
+	vertical-align: middle !important;
+}
+html body#forums .forum_index tr.rowa td {
+	background: #161b22 !important;
+}
+html body#forums .forum_index tr.rowb td {
+	background: #1a1f28 !important;
+}
+html body#forums .forum_index tr.rowa:hover td,
+html body#forums .forum_index tr.rowb:hover td {
+	background: #222830 !important;
+}
+/* Forum name column — quieter */
+html body#forums .forum_index td.td_forum,
+html body#forums .forum_index td:first-child {
+	color: #8a9098 !important;
+	-webkit-text-fill-color: #8a9098 !important;
+	font-size: 12px !important;
+	font-weight: 600 !important;
+}
+html body#forums .forum_index td.td_forum a {
+	color: #a8b0b8 !important;
+	-webkit-text-fill-color: #a8b0b8 !important;
+	text-decoration: none !important;
+}
+/* Thread title — primary */
+html body#forums .forum_index .last_topic,
+html body#forums .forum_index .last_topic a,
+html body#forums .forum_index td.td_topic a,
+html body#forums .forum_index td:nth-child(2) > a {
+	color: #e8ecef !important;
+	-webkit-text-fill-color: #e8ecef !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+}
+html body#forums .forum_index .last_topic a:hover,
+html body#forums .forum_index td:nth-child(2) > a:hover {
+	color: #f0c0c8 !important;
+	-webkit-text-fill-color: #f0c0c8 !important;
+}
+/* Author / time */
+html body#forums .forum_index .last_poster,
+html body#forums .forum_index .last_poster a,
+html body#forums .forum_index .time {
+	color: #7a828c !important;
+	-webkit-text-fill-color: #7a828c !important;
+	font-size: 12px !important;
+	font-weight: 400 !important;
+}
+html body#forums .forum_index .last_poster a {
+	color: #d4848c !important;
+	-webkit-text-fill-color: #d4848c !important;
+	font-weight: 500 !important;
+}
+html body#forums .forum_index .last_poster a:hover {
+	color: #f0c0c8 !important;
+	-webkit-text-fill-color: #f0c0c8 !important;
+}
+/* Replies count */
+html body#forums .forum_index td.td_replies,
+html body#forums .forum_index td.number_column,
+html body#forums .forum_index td:nth-child(4) {
+	color: #c6c9c9 !important;
+	-webkit-text-fill-color: #c6c9c9 !important;
+	font-variant-numeric: tabular-nums !important;
+	font-weight: 600 !important;
+}
+
+/*
+ * Noty toasts — nuclear kill of stock white inline styles
+ * (noty default theme paints background:url(...) #fff on <li>)
+ */
+html body #noty_bottomRight_layout_container > li,
+html body ul#noty_bottomRight_layout_container > li,
+html body #noty_bottomRight_layout_container li.i-am-new,
+html body #noty_bottomRight_layout_container li[style] {
+	background: #1a1f28 !important;
+	background-color: #1a1f28 !important;
+	background-image: none !important;
+	border: 1px solid #3a424c !important;
+	border-radius: 8px !important;
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
+	color: #e8ecef !important;
+	overflow: hidden !important;
+}
+html body #noty_bottomRight_layout_container .noty_bar,
+html body #noty_bottomRight_layout_container .noty_message,
+html body #noty_bottomRight_layout_container .noty_message[style],
+html body #noty_bottomRight_layout_container .noty_bar[style] {
+	background: #1a1f28 !important;
+	background-color: #1a1f28 !important;
+	background-image: none !important;
+	color: #e8ecef !important;
+	font-weight: 600 !important;
+}
+html body #noty_bottomRight_layout_container .noty_text {
+	color: #e8ecef !important;
+	-webkit-text-fill-color: #e8ecef !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons,
+html body #noty_bottomRight_layout_container .noty_buttons[style] {
+	background: #12151c !important;
+	background-color: #12151c !important;
+	background-image: none !important;
+	border-top: 1px solid #2a323c !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons a,
+html body #noty_bottomRight_layout_container .noty_buttons a[style] {
+	color: #d4848c !important;
+	-webkit-text-fill-color: #d4848c !important;
+	background: transparent !important;
+	background-color: transparent !important;
+	border: 1px solid transparent !important;
+	cursor: pointer !important;
+}
+html body #noty_bottomRight_layout_container .noty_buttons a:hover {
+	color: #f0c0c8 !important;
+	-webkit-text-fill-color: #f0c0c8 !important;
+	background: rgba(212, 132, 140, 0.15) !important;
+	border-color: rgba(212, 132, 140, 0.4) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+ * Heywood end-cap V44 — MacLite flyout port (dark charcoal)
+ * Closed: 100px Heywood + 50px ▾ on the menu rail (no Wiki merge)
+ * Open: pure dropdown BELOW the rail; exclusive open via :has()
+ * ══════════════════════════════════════════════════════════ */
+@media (min-width: 576px) {
+	/* #userinfo collapses — absolute children share the menu baseline */
+	html body #userinfo {
+		position: relative !important;
+		display: block !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		z-index: 950 !important;
+		float: none !important;
+	}
+	html body #userinfo li::marker,
+	html body #userinfo_username li::marker,
+	html body #userinfo_minor li::marker {
+		content: none !important;
+		display: none !important;
+	}
+
+	/* Menu reserves 150px for Heywood + chevron */
+	html body #menu > ul {
+		width: calc(100% - 150px) !important;
+		overflow: hidden !important;
+	}
+
+	html body #userinfo_username,
+	html body #userinfo_minor {
+		position: absolute !important;
+		top: 0 !important;
+		bottom: auto !important;
+		left: auto !important;
+		right: 0 !important;
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		list-style: none !important;
+		box-sizing: border-box !important;
+		overflow: hidden !important;
+		display: block !important;
+		float: none !important;
+		flex-direction: unset !important;
+		flex-wrap: nowrap !important;
+		column-count: auto !important;
+		columns: auto !important;
+		z-index: 960 !important;
+		border: none !important;
+		filter: none !important;
+	}
+
+	/* Heywood — left of the 50px chevron */
+	html body #userinfo_username {
+		right: 50px !important;
+		width: 100px !important;
+		min-width: 100px !important;
+		max-width: 100px !important;
+		border-radius: 0 !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+		z-index: 961 !important;
+		background: #0c1014 !important;
+		background-color: #0c1014 !important;
+		background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+	}
+	/* Chevron end-cap */
+	html body #userinfo_minor {
+		right: 0 !important;
+		width: 50px !important;
+		min-width: 50px !important;
+		max-width: 50px !important;
+		border-radius: 0 6px 0 0 !important;
+		z-index: 962 !important;
+		background: #080a0c !important;
+		background-color: #080a0c !important;
+		background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.05),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+	}
+
+	/* Closed: only Heywood label */
+	html body #userinfo_username:not(:hover) > li:not(#nav_userinfo),
+	html body #userinfo_username:not(:hover) a:not(.username) {
+		display: none !important;
+	}
+	html body #userinfo_username:not(:hover) #nav_userinfo,
+	html body #userinfo_username:not(:hover) > li#nav_userinfo {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 50px !important;
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		background: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+		border: none !important;
+	}
+	html body #userinfo_username a.username,
+	html body #userinfo_username #nav_userinfo > a {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 50px !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		margin: 0 !important;
+		box-sizing: border-box !important;
+		text-align: center !important;
+		font-size: 13px !important;
+		font-weight: 600 !important;
+		color: #f0f2f4 !important;
+		-webkit-text-fill-color: #f0f2f4 !important;
+		background: transparent !important;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		white-space: nowrap !important;
+	}
+	/* Closed chevron glyph */
+	html body #userinfo_minor::before,
+	html body #userinfo_minor:before {
+		content: "\25BE" !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		position: static !important;
+		width: 50px !important;
+		height: 50px !important;
+		max-width: 50px !important;
+		max-height: 50px !important;
+		margin: 0 !important;
+		margin-left: 0 !important;
+		padding: 0 !important;
+		box-sizing: border-box !important;
+		font-size: 16px !important;
+		font-weight: 700 !important;
+		line-height: 1 !important;
+		letter-spacing: 0 !important;
+		color: #e8ecef !important;
+		-webkit-text-fill-color: #e8ecef !important;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+		background: transparent !important;
+		background-image: none !important;
+		filter: none !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		pointer-events: none !important;
+	}
+	/* Closed: hide Inbox… list */
+	html body #userinfo_minor:not(:hover) > li,
+	html body #userinfo_minor:not(:hover) a {
+		display: none !important;
+	}
+	/* Closed: no card pseudo */
+	html body #userinfo_username:not(:hover)::after,
+	html body #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+
+	/*
+	 * OPEN — pure dropdown BELOW the rail.
+	 * Shell is transparent (tabs stay on rail); ::after paints one charcoal card.
+	 */
+	html body #userinfo_username:hover,
+	html body #userinfo_minor:hover {
+		right: 0 !important;
+		width: 176px !important;
+		min-width: 176px !important;
+		max-width: 176px !important;
+		height: auto !important;
+		max-height: none !important;
+		min-height: 50px !important;
+		padding: 54px 0 8px !important;
+		overflow: visible !important;
+		border: none !important;
+		border-radius: 0 !important;
+		background: transparent !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+		filter: none !important;
+		z-index: 1000 !important;
+		display: block !important;
+		flex-wrap: nowrap !important;
+		column-count: 1 !important;
+		columns: auto !important;
+	}
+	html body #userinfo_username:hover {
+		z-index: 1002 !important;
+	}
+	html body #userinfo_minor:hover {
+		z-index: 1001 !important;
+	}
+	/* One continuous charcoal card under the rail */
+	html body #userinfo_username:hover::after,
+	html body #userinfo_minor:hover::after {
+		content: "" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 54px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		border-radius: 10px !important;
+		border: 1px solid #2a323c !important;
+		background: #1a1f28 !important;
+		background-color: #1a1f28 !important;
+		background-image: none !important;
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55) !important;
+		z-index: 0 !important;
+		pointer-events: none !important;
+	}
+	/* Keep ▾ pinned in the rail cell while list is open below */
+	html body #userinfo_minor:hover::before,
+	html body #userinfo_minor:hover:before {
+		content: "\25BE" !important;
+		display: flex !important;
+		position: absolute !important;
+		top: 0 !important;
+		right: 0 !important;
+		left: auto !important;
+		width: 50px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		margin-left: 0 !important;
+		z-index: 3 !important;
+		pointer-events: none !important;
+		color: #e8ecef !important;
+		-webkit-text-fill-color: #e8ecef !important;
+		background: #080a0c !important;
+		background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
+		border-radius: 0 6px 0 0 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.05),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+		filter: none !important;
+	}
+	/* Rows — single vertical stack inside the card */
+	html body #userinfo_username:hover > li,
+	html body #userinfo_minor:hover > li {
+		display: list-item !important;
+		float: none !important;
+		clear: both !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		position: relative !important;
+		z-index: 1 !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		flex: none !important;
+	}
+	/* Open links (menu rows — not the rail Heywood label) */
+	html body #userinfo_minor:hover a,
+	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
+	html body #userinfo_username:hover a:not(.username) {
+		display: block !important;
+		width: 100% !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		line-height: 34px !important;
+		padding: 0 14px !important;
+		margin: 0 !important;
+		text-align: left !important;
+		position: relative !important;
+		z-index: 1 !important;
+		color: #e8ecef !important;
+		-webkit-text-fill-color: #e8ecef !important;
+		background: transparent !important;
+		text-shadow: none !important;
+		box-sizing: border-box !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		white-space: nowrap !important;
+	}
+	html body #userinfo_username:hover a:hover,
+	html body #userinfo_minor:hover a:hover {
+		background: rgba(232, 180, 180, 0.12) !important;
+		color: #f0c0c8 !important;
+		-webkit-text-fill-color: #f0c0c8 !important;
+	}
+
+	/* Pin Heywood rail label while its own menu is open (Settings/Logout below) */
+	html body #userinfo_username:hover #nav_userinfo,
+	html body #userinfo_username:hover > li#nav_userinfo {
+		position: absolute !important;
+		top: 0 !important;
+		right: 50px !important;
+		left: auto !important;
+		width: 100px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		z-index: 3 !important;
+		background: #0c1014 !important;
+		background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
+		border: none !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+		border-radius: 0 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+		box-sizing: border-box !important;
+	}
+	html body #userinfo_username:hover #nav_userinfo > a,
+	html body #userinfo_username:hover a.username {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 100% !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		text-align: center !important;
+		font-size: 13px !important;
+		font-weight: 600 !important;
+		color: #f0f2f4 !important;
+		-webkit-text-fill-color: #f0f2f4 !important;
+		background: transparent !important;
+	}
+
+	/* When ▼ open: Heywood stays closed 100px rail cell (do not expand over Wiki) */
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover {
+		visibility: visible !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		right: 50px !important;
+		width: 100px !important;
+		min-width: 100px !important;
+		max-width: 100px !important;
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		border-radius: 0 !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+		z-index: 1003 !important;
+		background: #0c1014 !important;
+		background-color: #0c1014 !important;
+		background-image: linear-gradient(180deg, #181c22 0%, #0c1014 48%, #06080a 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a:not(.username),
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a:not(.username),
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo ~ li,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username > li:not(#nav_userinfo) {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a.username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo > a,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a.username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo > a {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 100% !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		text-align: center !important;
+		font-size: 13px !important;
+		font-weight: 600 !important;
+		color: #f0f2f4 !important;
+		-webkit-text-fill-color: #f0f2f4 !important;
+		background: transparent !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo {
+		display: flex !important;
+		position: static !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 100% !important;
+		width: 100% !important;
+		right: auto !important;
+		border: none !important;
+		background: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username::after,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover::after {
+		display: none !important;
+		content: none !important;
+	}
+
+	/* When Heywood open: keep ▼ as closed rail cell */
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) {
+		visibility: visible !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		right: 0 !important;
+		width: 50px !important;
+		min-width: 50px !important;
+		max-width: 50px !important;
+		height: 50px !important;
+		max-height: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		border-radius: 0 6px 0 0 !important;
+		z-index: 1003 !important;
+		background: #080a0c !important;
+		background-image: linear-gradient(180deg, #12161a 0%, #080a0c 48%, #030405 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.05),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) a,
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) > li {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::before,
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover):before {
+		content: "\25BE" !important;
+		display: flex !important;
+		position: static !important;
+		width: 50px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		margin-left: 0 !important;
+		color: #e8ecef !important;
+		-webkit-text-fill-color: #e8ecef !important;
+		background: transparent !important;
+		background-image: none !important;
+	}
+}
+/* PP-DARK-CACHE-V44 */
