@@ -110,18 +110,6 @@ SKINS = {
  */
 """,
     },
-    "emp-dark.css": {
-        "header": """/*
- * Emp — Noir (modern dark)
- * Charcoal glass + monochrome silver accents for Emp (Gazelle).
- * Imagine greyscale "Emp" wordmark logo. Overlay on Afterdark.
- * Pure CSS — no userscript required.
- *
- * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). raw.githubusercontent.com is text/plain.
- *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-dark.css
- */
-""",
-    },
 }
 
 
