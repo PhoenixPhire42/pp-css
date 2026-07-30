@@ -4378,12 +4378,14 @@ html body #menu > ul a:hover {
 }
 
 /*
- * Heywood + chevron end-cap (closed rail) — V44
- * Full open/closed flyout rebuild lives at EOF (MacLite port, dark palette).
- * Stock Apollostage used a sprite; REDStage blanked :before content.
+ * Heywood + chevron — closed rail only (:not(:hover)).
+ * CRITICAL: never lock width/height/overflow without :not(:hover).
+ * A permanent html body #header #userinfo_minor { max-width:50px } (spec 202)
+ * beats open :hover rules (spec 112) and makes the menu impossible to open.
+ * Full open/closed flyout = EOF V46 (MacLite V53 port).
  */
-html body #header #userinfo_minor,
-html body #userinfo_minor {
+html body #header #userinfo_minor:not(:hover),
+html body #userinfo_minor:not(:hover) {
 	position: absolute !important;
 	right: 0 !important;
 	width: 50px !important;
@@ -4391,12 +4393,14 @@ html body #userinfo_minor {
 	max-width: 50px !important;
 	height: 50px !important;
 	min-height: 50px !important;
+	max-height: 50px !important;
 	box-sizing: border-box !important;
 	overflow: hidden !important;
 	z-index: 962 !important;
+	padding: 0 !important;
 }
-html body #header #userinfo_username,
-html body #userinfo_username {
+html body #header #userinfo_username:not(:hover),
+html body #userinfo_username:not(:hover) {
 	position: absolute !important;
 	right: 50px !important;
 	width: 100px !important;
@@ -4408,6 +4412,15 @@ html body #userinfo_username {
 	box-sizing: border-box !important;
 	overflow: hidden !important;
 	z-index: 961 !important;
+	padding: 0 !important;
+}
+/* Absolute position baseline (open + closed) — no size lock here */
+html body #header #userinfo_minor,
+html body #userinfo_minor,
+html body #header #userinfo_username,
+html body #userinfo_username {
+	position: absolute !important;
+	box-sizing: border-box !important;
 }
 html body #header #userinfo_minor::before,
 html body #header #userinfo_minor:before,
@@ -4441,7 +4454,7 @@ html body #userinfo_minor:before {
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
 	pointer-events: none !important;
 }
-/* Open-state glyph + flyout: see EOF "Heywood end-cap V44" block */
+/* Open-state flyout: EOF V46 */
 
 html body #nav_staff > a,
 html body #menu > ul > #nav_staff > a {
@@ -7702,15 +7715,15 @@ html body#forums .box > .head {
 		box-sizing: border-box !important;
 		overflow: hidden !important;
 	}
-	/* Username tab (Heywood) — match menu row height */
-	html body #userinfo_username,
-	html body #userinfo_minor {
+	/* Username tab closed only — never lock open flyout height */
+	html body #userinfo_username:not(:hover),
+	html body #userinfo_minor:not(:hover) {
 		height: 50px !important;
 		max-height: 50px !important;
 		min-height: 50px !important;
 	}
-	html body #userinfo_username > li > a,
-	html body #userinfo_username a.username {
+	html body #userinfo_username:not(:hover) > li > a,
+	html body #userinfo_username:not(:hover) a.username {
 		line-height: 50px !important;
 		height: 50px !important;
 	}
@@ -7969,7 +7982,7 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 
 
 /* ══════════════════════════════════════════════════════════
- * Heywood + chevron end-cap (V45 — MacLite V53 port, dark charcoal)
+ * Heywood + chevron end-cap (V46 — MacLite V53 port, dark charcoal)
  * Closed: 100px Heywood + 50px ▾ on the menu rail.
  * Open: transparent shell; charcoal card via ::after BELOW the rail
  * so tabs stay put and the list is one continuous panel
@@ -8137,10 +8150,14 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 	 * OPEN — pure dropdown BELOW the rail.
 	 * Shell is transparent (tabs stay grey); ::after paints one white card.
 	 */
+	html body #header #userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
 	html body #userinfo_username:hover,
 	html body #userinfo_minor:hover {
 		right: 0 !important;
 		width: 176px !important;
+		min-width: 176px !important;
+		max-width: 176px !important;
 		height: auto !important;
 		max-height: none !important;
 		min-height: 50px !important;
@@ -8160,13 +8177,17 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		column-count: 1 !important;
 		columns: auto !important;
 	}
+	html body #header #userinfo_username:hover,
 	html body #userinfo_username:hover {
 		z-index: 1002 !important;
 	}
+	html body #header #userinfo_minor:hover,
 	html body #userinfo_minor:hover {
 		z-index: 1001 !important;
 	}
 	/* One continuous charcoal card under the rail */
+	html body #header #userinfo_username:hover::after,
+	html body #header #userinfo_minor:hover::after,
 	html body #userinfo_username:hover::after,
 	html body #userinfo_minor:hover::after {
 		content: "" !important;
@@ -8186,6 +8207,8 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		pointer-events: none !important;
 	}
 	/* Keep ▾ pinned in the rail cell while list is open below */
+	html body #header #userinfo_minor:hover::before,
+	html body #header #userinfo_minor:hover:before,
 	html body #userinfo_minor:hover::before,
 	html body #userinfo_minor:hover:before {
 		content: "\25BE" !important;
@@ -8211,6 +8234,8 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		filter: none !important;
 	}
 	/* Rows — single vertical stack inside the card */
+	html body #header #userinfo_username:hover > li,
+	html body #header #userinfo_minor:hover > li,
 	html body #userinfo_username:hover > li,
 	html body #userinfo_minor:hover > li {
 		display: list-item !important;
@@ -8231,6 +8256,9 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		flex: none !important;
 	}
 	/* Open links (menu rows — not the rail Heywood label) */
+	html body #header #userinfo_minor:hover a,
+	html body #header #userinfo_username:hover > li:not(#nav_userinfo) a,
+	html body #header #userinfo_username:hover a:not(.username),
 	html body #userinfo_minor:hover a,
 	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
 	html body #userinfo_username:hover a:not(.username) {
@@ -8255,6 +8283,8 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		box-shadow: none !important;
 		white-space: nowrap !important;
 	}
+	html body #header #userinfo_username:hover a:hover,
+	html body #header #userinfo_minor:hover a:hover,
 	html body #userinfo_username:hover a:hover,
 	html body #userinfo_minor:hover a:hover {
 		background: rgba(232, 180, 180, 0.12) !important;
@@ -8399,4 +8429,4 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		content: none !important;
 	}
 }
-/* PP-DARK-CACHE-V45 */
+/* PP-DARK-CACHE-V46 */
