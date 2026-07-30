@@ -131,7 +131,7 @@ td a:hover,
 	color: #f0f0f0 !important;
 }
 
-/* Body / chrome text also grey (not blue-tinted) */
+/* Body chrome text grey (scoped — avoid span/li bombs that thrash Brave) */
 body,
 #wrapper,
 #content,
@@ -140,11 +140,6 @@ body,
 .box,
 .pad,
 .head,
-td,
-th,
-p,
-li,
-span,
 .label,
 .small,
 .time,
@@ -266,8 +261,6 @@ button:hover {
 	box-shadow:
 		var(--emp-shadow),
 		inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-	backdrop-filter: blur(12px) saturate(1.12);
-	-webkit-backdrop-filter: blur(12px) saturate(1.12);
 }
 
 #header {
@@ -366,8 +359,6 @@ button:hover {
 	border: 1px solid var(--emp-border) !important;
 	border-radius: 12px !important;
 	box-shadow: var(--emp-shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
 }
 #stats_block table.userinfo_stats,
 table.userinfo_stats {
@@ -417,8 +408,6 @@ table.userinfo_stats .stat {
 		var(--emp-shadow-soft),
 		inset 0 1px 0 rgba(255, 255, 255, 0.04),
 		0 0 28px rgba(255, 255, 255, 0.03) !important;
-	backdrop-filter: blur(14px) saturate(1.15);
-	-webkit-backdrop-filter: blur(14px) saturate(1.15);
 	font-size: 13px !important;
 	line-height: 1.2 !important;
 	position: relative !important;
@@ -489,8 +478,6 @@ div.alertbar {
 	font-weight: 600 !important;
 	font-size: 12px !important;
 	box-shadow: var(--emp-shadow-soft) !important;
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
 }
 .alertbar a,
 #alerts .alertbar a {
@@ -666,8 +653,6 @@ div.alertbar {
 	font-weight: 600 !important;
 	font-size: 12px !important;
 	box-shadow: var(--emp-shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 	white-space: nowrap !important;
 }
 
@@ -704,8 +689,6 @@ div.alertbar {
 	border: 1px solid var(--emp-border-strong) !important;
 	border-radius: var(--emp-radius-sm) !important;
 	box-shadow: var(--emp-shadow), 0 0 28px rgba(255, 255, 255, 0.06) !important;
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
 	z-index: 1000 !important;
 }
 
@@ -801,8 +784,6 @@ div.box {
 		inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
 	overflow: hidden !important;
 	list-style: none !important;
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
 }
 
 .box > .head,
@@ -1145,8 +1126,6 @@ a:focus-visible {
 	box-shadow: var(--emp-shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
 	padding: 12px 14px 10px !important;
 	margin: 0 0 12px 0 !important;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
 }
 
 #search_box table,
@@ -1684,11 +1663,6 @@ html body td a:hover {
 html body,
 html body #wrapper,
 html body #content,
-html body td,
-html body th,
-html body p,
-html body span,
-html body li,
 html body .label {
 	color: #d0d0d0 !important;
 }
