@@ -1318,79 +1318,119 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     box-sizing: border-box
 }
 
-/* ALWAYS-ON menu clamp V55 */
+/* ALWAYS-ON menu clamp V56 — PUBLIC CSS fix for tall columns
+ * PP markup: #main_site_menu > #menu > ul.main_site_menu_inner > li > a
+ *            li may contain nested ul#torrent_reviews (dropdown)
+ * NEVER use "#menu ul" / "#menu li" / "#menu a" — those match nested dropdowns
+ * and flex min-height:auto stretches the bar into tall charcoal columns.
+ */
 #main_site_menu {
-    height: 50px !important;
-    max-height: 50px !important;
-    min-height: 50px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 50px !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	flex: 0 0 50px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
 }
 #menu,
 #wrapper #header #menu,
 #header #menu,
 #main_site_menu #menu {
-    height: 50px !important;
-    max-height: 50px !important;
-    min-height: 50px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 50px !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	flex: 0 0 50px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
+	position: relative !important;
+	top: auto !important;
+	bottom: auto !important;
 }
 #menu > ul,
 #menu > ul.main_site_menu_inner {
-    height: 50px !important;
-    max-height: 50px !important;
-    min-height: 50px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    position: relative !important;
-    top: auto !important;
-    bottom: auto !important;
-    display: flex !important;
-    flex-flow: row nowrap !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 0 !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	position: relative !important;
+	top: auto !important;
+	bottom: auto !important;
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: stretch !important;
+	width: 100% !important;
 }
 #menu > ul > li {
-    height: 50px !important;
-    max-height: 50px !important;
-    min-height: 50px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    position: relative !important;
-    top: auto !important;
-    bottom: auto !important;
-    flex: 1 1 0 !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 0 !important; /* flexbox: defeat min-height:auto content stretch */
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	position: relative !important;
+	top: auto !important;
+	bottom: auto !important;
+	flex: 1 1 0 !important;
+	width: auto !important;
 }
 #menu > ul > li > a {
-    display: block !important;
-    height: 50px !important;
-    max-height: 50px !important;
-    min-height: 50px !important;
-    line-height: 50px !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+	display: block !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 0 !important;
+	line-height: 50px !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
 }
+/* Nested dropdowns: out of flow so they NEVER stretch the 50px bar */
 #menu > ul > li > ul,
-#menu #torrent_reviews {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    z-index: 200 !important;
-    height: auto !important;
-    max-height: min(70vh, 480px) !important;
+#menu #torrent_reviews,
+#menu ul ul {
+	position: absolute !important;
+	top: 100% !important;
+	left: 0 !important;
+	right: auto !important;
+	bottom: auto !important;
+	z-index: 200 !important;
+	display: none !important;
+	flex-flow: column nowrap !important;
+	height: auto !important;
+	max-height: min(70vh, 480px) !important;
+	min-height: 0 !important;
+	width: max-content !important;
+	min-width: 100% !important;
+	overflow: auto !important;
 }
-html[data-monkies-phoenix-dark]:not([data-monkies-nav-ready="1"]) #main_site_menu,
-html[data-monkies-phoenix-dark]:not([data-monkies-nav-ready="1"]) #menu {
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+#menu > ul > li:hover > ul,
+#menu > ul > li:focus-within > ul,
+#menu > ul > li:hover #torrent_reviews,
+#menu > ul > li:focus-within #torrent_reviews {
+	display: flex !important;
 }
-html[data-monkies-phoenix-dark][data-monkies-nav-ready="1"] #main_site_menu,
-html[data-monkies-phoenix-dark][data-monkies-nav-ready="1"] #menu {
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
+#menu > ul > li > ul > li,
+#menu #torrent_reviews > li {
+	height: auto !important;
+	max-height: none !important;
+	min-height: 0 !important;
+	flex: 0 0 auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+}
+#menu > ul > li > ul > li > a,
+#menu #torrent_reviews > li > a {
+	height: auto !important;
+	max-height: none !important;
+	min-height: 0 !important;
+	line-height: 1.4 !important;
+	padding: 8px 12px !important;
+	overflow: visible !important;
+	white-space: nowrap !important;
 }
 
 #nav_index {
@@ -8701,11 +8741,124 @@ html body#forums .forum_index tr.colhead_dark td {
 }
 
 /* ══════════════════════════════════════════════════════════
- * MENU HEIGHT LOCK (desktop) — ported from MacLite V40 / Neo V40
- * #header is flex-column; without flex:0 0 50px on #menu + max-height,
- * tab links (height:100%) stretch into tall empty charcoal columns.
- * MUST stay at absolute EOF so progressive parse / FOUC never paints tall tabs.
+ * MENU HEIGHT LOCK V56 (desktop + all) — PUBLIC CSS tall-column fix
+ * Direct children ONLY. Nested #torrent_reviews must stay absolute.
+ * min-height:0 defeats flexbox content-based stretch.
  * ══════════════════════════════════════════════════════════ */
+html body #main_site_menu {
+	flex: 0 0 50px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
+	height: 50px !important;
+	min-height: 0 !important;
+	max-height: 50px !important;
+	overflow: hidden !important;
+	box-sizing: border-box !important;
+}
+html body #menu,
+html body #wrapper #header #menu,
+html body #main_site_menu #menu {
+	flex: 0 0 50px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
+	height: 50px !important;
+	min-height: 0 !important;
+	max-height: 50px !important;
+	position: relative !important;
+	top: auto !important;
+	bottom: auto !important;
+	left: auto !important;
+	right: auto !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+html body #menu > ul,
+html body #menu > ul.main_site_menu_inner {
+	height: 50px !important;
+	min-height: 0 !important;
+	max-height: 50px !important;
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: stretch !important;
+	box-sizing: border-box !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	overflow: hidden !important;
+	position: relative !important;
+	bottom: auto !important;
+	top: auto !important;
+}
+html body #menu > ul > li {
+	height: 50px !important;
+	min-height: 0 !important;
+	max-height: 50px !important;
+	flex: 1 1 0 !important;
+	box-sizing: border-box !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	position: relative !important;
+	bottom: auto !important;
+	top: auto !important;
+	overflow: hidden !important;
+	width: auto !important;
+}
+html body #menu > ul > li > a {
+	display: block !important;
+	height: 50px !important;
+	min-height: 0 !important;
+	max-height: 50px !important;
+	line-height: 50px !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+/* Nested dropdowns out of flow */
+html body #menu > ul > li > ul,
+html body #menu #torrent_reviews,
+html body #menu ul ul {
+	position: absolute !important;
+	top: 100% !important;
+	left: 0 !important;
+	bottom: auto !important;
+	z-index: 200 !important;
+	display: none !important;
+	flex-flow: column nowrap !important;
+	height: auto !important;
+	max-height: min(70vh, 480px) !important;
+	min-height: 0 !important;
+	width: max-content !important;
+	min-width: 100% !important;
+	overflow: auto !important;
+}
+html body #menu > ul > li:hover > ul,
+html body #menu > ul > li:focus-within > ul {
+	display: flex !important;
+}
+html body #menu > ul > li > ul > li,
+html body #menu #torrent_reviews > li {
+	height: auto !important;
+	max-height: none !important;
+	min-height: 0 !important;
+	flex: 0 0 auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+}
+html body #menu > ul > li > ul > li > a,
+html body #menu #torrent_reviews > li > a {
+	height: auto !important;
+	max-height: none !important;
+	min-height: 0 !important;
+	line-height: 1.4 !important;
+	padding: 8px 12px !important;
+	overflow: visible !important;
+}
+html body #menu > ul > li#nav_staff {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	flex: 0 0 auto !important;
+}
 @media (min-width: 576px) {
 html body #header,
 html body #wrapper #header {
@@ -8720,77 +8873,13 @@ html body #wrapper #header {
 	flex-direction: column !important;
 	align-items: stretch !important;
 }
-html body #menu,
-html body #wrapper #header #menu {
-	flex: 0 0 50px !important;
-	flex-grow: 0 !important;
-	flex-shrink: 0 !important;
-	height: 50px !important;
-	min-height: 50px !important;
-	max-height: 50px !important;
-	position: relative !important;
-	top: auto !important;
-	bottom: auto !important;
-	left: auto !important;
-	right: auto !important;
-	box-sizing: border-box !important;
-	overflow: hidden !important;
-}
-html body #menu > ul,
-html body #menu ul {
-	height: 50px !important;
-	min-height: 50px !important;
-	max-height: 50px !important;
-	display: flex !important;
-	flex-flow: row nowrap !important;
-	align-items: stretch !important;
-	box-sizing: border-box !important;
-	width: calc(100% - 149px) !important;
-	overflow: hidden !important;
-	position: relative !important;
-	bottom: auto !important;
-	top: auto !important;
-}
-html body #menu > ul > li,
-html body #menu li {
-	height: 50px !important;
-	min-height: 50px !important;
-	max-height: 50px !important;
-	flex: 1 1 0 !important;
-	box-sizing: border-box !important;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
-	position: relative !important;
-	bottom: auto !important;
-	top: auto !important;
-}
-html body #menu > ul > li > a,
-html body #menu li a,
-html body #menu a {
-	display: block !important;
-	height: 50px !important;
-	min-height: 50px !important;
-	max-height: 50px !important;
-	line-height: 50px !important;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
-	box-sizing: border-box !important;
-	overflow: hidden !important;
-}
-html body #menu > ul > li#nav_staff,
-html body #menu li#nav_staff {
-	height: auto !important;
-	min-height: 0 !important;
-	max-height: none !important;
-	flex: 0 0 auto !important;
-}
 html body #userinfo_username:not(:hover),
 html body #userinfo_minor:not(:hover) {
 	height: 50px !important;
 	max-height: 50px !important;
 	min-height: 50px !important;
-	box-sizing: border-box !important;
 	overflow: hidden !important;
+	box-sizing: border-box !important;
 }
 html body #userinfo_username:not(:hover) > li > a,
 html body #userinfo_username:not(:hover) a.username {
@@ -8813,4 +8902,4 @@ html body #searchbars li {
 }
 }
 
-/* PP-DARK-CACHE-V55 — structural menu 50px (no height:100%); FOUC veil in loader */
+/* PP-DARK-CACHE-V56 — public CSS tall columns: direct selectors + min-height:0 flex fix */
