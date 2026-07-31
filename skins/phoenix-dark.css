@@ -1318,7 +1318,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     box-sizing: border-box
 }
 
-/* ALWAYS-ON menu clamp V57 — flat 50px bar; dropdowns overflow:visible
+/* ALWAYS-ON menu clamp V58 — flat 50px bar; dropdowns overflow:visible
  * Nested #torrent_reviews under Torrents must paint BELOW the bar (absolute).
  * Do not set overflow:hidden on #menu / #main_site_menu / #menu>ul>li — that clips pull-downs.
  */
@@ -1553,7 +1553,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 
 #menu {
     border-radius: 5px 5px 0 0;
-    overflow: hidden
+    overflow: visible
 }
 
 @media(min-width:575px) {
@@ -3100,12 +3100,14 @@ body {
 	color: var(--text) !important;
 }
 
-/* Main nav — soft charcoal gradients (3D tab look) */
+/* Main nav — soft charcoal gradients (3D tab look)
+ * overflow MUST be visible so Torrents #torrent_reviews can paint below the bar.
+ */
 #menu {
 	background: transparent !important;
 	border: none !important;
 	border-radius: 6px 6px 0 0 !important;
-	overflow: hidden !important;
+	overflow: visible !important;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
 }
 
@@ -4372,10 +4374,85 @@ body#upload a[href*="photobucket"] {
 }
 
 
+/* DNU list — hidden unless html[data-monkies-dnu="show"] (pill / menu toggle)
+ * RED markup: centered wrapper div > #dnu_header + intro <p>s + #dnulist
+ */
+html[data-monkies-dnu="hide"] body#upload .dnu_list,
+html[data-monkies-dnu="hide"] body#upload .dnu_list.box,
+html[data-monkies-dnu="hide"] body#upload .dnu_list.box.pad,
+html[data-monkies-dnu="hide"] body#upload #dnulist,
+html[data-monkies-dnu="hide"] body#upload #dnu_header,
+html[data-monkies-dnu="hide"] body#upload #showdnu,
+html[data-monkies-dnu="hide"] body#upload h3#dnu_header,
+html[data-monkies-dnu="hide"] body#upload .box:has(#dnulist),
+html[data-monkies-dnu="hide"] body#upload .box:has(#dnu_header),
+html[data-monkies-dnu="hide"] body#upload .box:has(h3#dnu_header),
+html[data-monkies-dnu="hide"] body#upload table#dnulist,
+html[data-monkies-dnu="hide"] body#upload #dnulist_box,
+html[data-monkies-dnu="hide"] body#upload .dnu_box,
+html[data-monkies-dnu="hide"] body#upload #content > div:has(#dnu_header),
+html[data-monkies-dnu="hide"] body#upload #content > div:has(#dnulist),
+html[data-monkies-dnu="hide"] body#upload #content > div:has(> #dnu_header) {
+	display: none !important;
+	visibility: hidden !important;
+	height: 0 !important;
+	max-height: 0 !important;
+	overflow: hidden !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
 
 /* When shown: ensure RED wrapper + table visible */
+html[data-monkies-dnu="show"] body#upload #content > div:has(#dnulist),
+html[data-monkies-dnu="show"] body#upload #content > div:has(#dnu_header) {
+	display: block !important;
+	visibility: visible !important;
+	height: auto !important;
+	max-height: none !important;
+	overflow: visible !important;
+}
 
 /* When shown: restore normal box look (undo forced-hide inline remnants) */
+html[data-monkies-dnu="show"] body#upload .dnu_list,
+html[data-monkies-dnu="show"] body#upload .dnu_list.box.pad {
+	display: block !important;
+	visibility: visible !important;
+	height: auto !important;
+	max-height: none !important;
+	overflow: visible !important;
+	margin: 0 0 16px !important;
+	padding: 12px !important;
+	border: 1px solid var(--border) !important;
+	background: var(--background-accent) !important;
+	border-radius: 4px !important;
+}
+html[data-monkies-dnu="show"] body#upload #dnu_header,
+html[data-monkies-dnu="show"] body#upload h3#dnu_header {
+	display: block !important;
+	visibility: visible !important;
+	height: auto !important;
+	margin: 0 0 8px !important;
+	padding: 0 !important;
+	color: var(--head-text) !important;
+}
+html[data-monkies-dnu="show"] body#upload #showdnu {
+	display: inline !important;
+	visibility: visible !important;
+	height: auto !important;
+}
+html[data-monkies-dnu="show"] body#upload table#dnulist {
+	display: table !important;
+	visibility: visible !important;
+	height: auto !important;
+	max-height: none !important;
+	width: 100% !important;
+	margin-top: 8px !important;
+}
+html[data-monkies-dnu="show"] body#upload table#dnulist.hidden {
+	/* force open even if site left class=hidden */
+	display: table !important;
+}
 
 /* Upload form (create_form / slices) */
 body#upload form.create_form,
@@ -8776,7 +8853,7 @@ html body#forums .forum_index tr.colhead_dark td {
 }
 
 /* ══════════════════════════════════════════════════════════
- * MENU HEIGHT LOCK V57 — flat bar + working Torrents pull-down
+ * MENU HEIGHT LOCK V58 — flat bar + working Torrents pull-down
  * overflow:visible on #menu / li so absolute #torrent_reviews is not clipped
  * ══════════════════════════════════════════════════════════ */
 html body #main_site_menu {
@@ -8966,4 +9043,41 @@ html body #searchbars li {
 }
 }
 
-/* PP-DARK-CACHE-V57 — Torrents pull-down: overflow visible + nested absolute dropdown */
+
+/* V58 — belt-and-suspenders: #nav_torrents + broad descendant hover (stock may nest differently) */
+html body #menu #nav_torrents,
+html body #menu > ul > li#nav_torrents {
+	overflow: visible !important;
+	position: relative !important;
+	z-index: 1 !important;
+}
+html body #menu #nav_torrents:hover,
+html body #menu #nav_torrents:focus-within {
+	z-index: 500 !important;
+}
+html body #menu #nav_torrents:hover > ul,
+html body #menu #nav_torrents:focus-within > ul,
+html body #menu #nav_torrents:hover > #torrent_reviews,
+html body #menu #nav_torrents:focus-within > #torrent_reviews,
+html body #menu li#nav_torrents:hover ul#torrent_reviews,
+html body #menu li#nav_torrents:focus-within ul#torrent_reviews {
+	display: flex !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	pointer-events: auto !important;
+	position: absolute !important;
+	top: 100% !important;
+	left: 0 !important;
+	z-index: 9999 !important;
+}
+/* Kill any leftover clip on header chrome that could still mask the flyout */
+html body #header,
+html body #wrapper #header,
+html body #main_site_menu {
+	overflow: visible !important;
+	clip: auto !important;
+	clip-path: none !important;
+	contain: none !important;
+}
+
+/* PP-DARK-CACHE-V58 — Torrents pull-down: overflow visible + nested absolute dropdown */
