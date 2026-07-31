@@ -1318,6 +1318,54 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     box-sizing: border-box
 }
 
+/* ALWAYS-ON menu clamp (no media) — FOUC insurance; desktop lock also at EOF */
+#menu,
+#wrapper #header #menu,
+#header #menu {
+    height: 50px !important;
+    max-height: 50px !important;
+    min-height: 50px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+#menu > ul,
+#menu ul {
+    height: 50px !important;
+    max-height: 50px !important;
+    min-height: 50px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+}
+#menu > ul > li,
+#menu li {
+    height: 50px !important;
+    max-height: 50px !important;
+    min-height: 50px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+}
+#menu > ul > li > a,
+#menu li a,
+#menu a {
+    display: block !important;
+    height: 50px !important;
+    max-height: 50px !important;
+    min-height: 50px !important;
+    line-height: 50px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+
 #nav_index {
     display: none
 }
@@ -8738,4 +8786,4 @@ html body #searchbars li {
 }
 }
 
-/* PP-DARK-CACHE-V52 — structural menu 50px (no height:100%); FOUC veil in loader */
+/* PP-DARK-CACHE-V53 — structural menu 50px (no height:100%); FOUC veil in loader */
