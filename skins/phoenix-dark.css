@@ -1318,7 +1318,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     box-sizing: border-box
 }
 
-/* ALWAYS-ON menu clamp V58 — flat 50px bar; dropdowns overflow:visible
+/* ALWAYS-ON menu clamp V59 — flat 50px bar; dropdowns overflow:visible
  * Nested #torrent_reviews under Torrents must paint BELOW the bar (absolute).
  * Do not set overflow:hidden on #menu / #main_site_menu / #menu>ul>li — that clips pull-downs.
  */
@@ -1398,7 +1398,14 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
 }
-/* Nested pull-downs (Torrents → Browse/Reviews/etc.) */
+/* Nested pull-downs V59 — polished Torrents flyout
+ * flush width, opaque panel, left-rail active, parent tab open, roomy items
+ */
+#menu > ul > li:hover > a,
+#menu > ul > li:focus-within > a {
+	color: #fff !important;
+	background-color: rgba(255, 255, 255, 0.08) !important;
+}
 #menu > ul > li > ul,
 #menu #torrent_reviews,
 #menu ul ul {
@@ -1407,7 +1414,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 	left: 0 !important;
 	right: auto !important;
 	bottom: auto !important;
-	z-index: 400 !important;
+	z-index: 1000 !important;
 	display: none !important;
 	flex-direction: column !important;
 	flex-flow: column nowrap !important;
@@ -1415,17 +1422,22 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 	height: auto !important;
 	max-height: min(70vh, 480px) !important;
 	min-height: 0 !important;
+	/* flush to parent tab; grow with longest label */
 	width: max-content !important;
-	min-width: 12rem !important;
+	min-width: max(100%, 12rem) !important;
 	margin: 0 !important;
-	padding: 6px 0 !important;
+	padding: 4px 0 !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
 	list-style: none !important;
-	background: #1a1f28 !important;
+	background: #161b22 !important;
+	background-image: none !important;
 	border: 1px solid #3a424c !important;
-	border-radius: 0 0 8px 8px !important;
-	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55) !important;
+	border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+	border-radius: 0 0 10px 10px !important;
+	box-shadow:
+		0 16px 40px rgba(0, 0, 0, 0.65),
+		0 0 0 1px rgba(255, 255, 255, 0.04) !important;
 }
 #menu > ul > li:hover > ul,
 #menu > ul > li:focus-within > ul,
@@ -1447,25 +1459,74 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 	position: relative !important;
 	top: auto !important;
 	bottom: auto !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+/* subtle hairline between items (not after last) */
+#menu > ul > li > ul > li + li,
+#menu #torrent_reviews > li + li {
+	border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 #menu > ul > li > ul > li > a,
 #menu #torrent_reviews > li > a {
 	display: block !important;
 	height: auto !important;
 	max-height: none !important;
-	min-height: 0 !important;
-	line-height: 1.4 !important;
-	padding: 8px 14px !important;
+	min-height: 36px !important;
+	line-height: 1.35 !important;
+	padding: 10px 16px !important;
 	overflow: visible !important;
 	white-space: nowrap !important;
 	text-align: left !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
 	color: #e4e6e8 !important;
+	-webkit-text-fill-color: #e4e6e8 !important;
 	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	border-left: 3px solid transparent !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	box-sizing: border-box !important;
 }
 #menu > ul > li > ul > li > a:hover,
 #menu #torrent_reviews > li > a:hover {
-	background: rgba(212, 132, 140, 0.15) !important;
+	background: rgba(212, 132, 140, 0.14) !important;
 	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left-color: rgba(212, 132, 140, 0.55) !important;
+}
+/* active / current page — left rose rail (not thin bottom underline) */
+#menu > ul > li > ul > li.selected > a,
+#menu > ul > li > ul > li.active > a,
+#menu > ul > li > ul > li > a.selected,
+#menu > ul > li > ul > li > a.active,
+#menu #torrent_reviews > li.selected > a,
+#menu #torrent_reviews > li.active > a,
+#menu #torrent_reviews > li > a.selected,
+#menu #torrent_reviews > li > a.active,
+#menu > ul > li > ul > li > a[aria-current="page"],
+#menu #torrent_reviews > li > a[aria-current="page"] {
+	background: rgba(212, 132, 140, 0.12) !important;
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left: 3px solid #d4848c !important;
+	border-bottom: none !important;
+	box-shadow: none !important;
+}
+/* kill stock underlines / bottom borders on nested links */
+#menu > ul > li > ul > li > a::after,
+#menu > ul > li > ul > li > a::before,
+#menu #torrent_reviews > li > a::after,
+#menu #torrent_reviews > li > a::before {
+	content: none !important;
+	display: none !important;
+	border: none !important;
+	background: none !important;
 }
 
 #nav_index {
@@ -8853,8 +8914,8 @@ html body#forums .forum_index tr.colhead_dark td {
 }
 
 /* ══════════════════════════════════════════════════════════
- * MENU HEIGHT LOCK V58 — flat bar + working Torrents pull-down
- * overflow:visible on #menu / li so absolute #torrent_reviews is not clipped
+ * MENU HEIGHT LOCK V59 — flat bar + polished Torrents pull-down
+ * overflow:visible; flush width; opaque panel; left-rail active; open parent tab
  * ══════════════════════════════════════════════════════════ */
 html body #main_site_menu {
 	flex: 0 0 50px !important;
@@ -8867,6 +8928,9 @@ html body #main_site_menu {
 	box-sizing: border-box !important;
 	position: relative !important;
 	z-index: 100 !important;
+	clip: auto !important;
+	clip-path: none !important;
+	contain: none !important;
 }
 html body #menu,
 html body #wrapper #header #menu,
@@ -8920,7 +8984,14 @@ html body #menu > ul > li {
 }
 html body #menu > ul > li:hover,
 html body #menu > ul > li:focus-within {
-	z-index: 300 !important;
+	z-index: 500 !important;
+}
+/* parent tab stays lit while flyout open */
+html body #menu > ul > li:hover > a,
+html body #menu > ul > li:focus-within > a {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	background-color: rgba(255, 255, 255, 0.08) !important;
 }
 html body #menu > ul > li > a {
 	display: block !important;
@@ -8932,6 +9003,7 @@ html body #menu > ul > li > a {
 	padding-bottom: 0 !important;
 	box-sizing: border-box !important;
 	overflow: hidden !important;
+	font-size: 13px !important;
 }
 html body #menu > ul > li > ul,
 html body #menu #torrent_reviews,
@@ -8940,7 +9012,7 @@ html body #menu ul ul {
 	top: 100% !important;
 	left: 0 !important;
 	bottom: auto !important;
-	z-index: 400 !important;
+	z-index: 1000 !important;
 	display: none !important;
 	flex-direction: column !important;
 	flex-flow: column nowrap !important;
@@ -8948,16 +9020,20 @@ html body #menu ul ul {
 	max-height: min(70vh, 480px) !important;
 	min-height: 0 !important;
 	width: max-content !important;
-	min-width: 12rem !important;
+	min-width: max(100%, 12rem) !important;
 	margin: 0 !important;
-	padding: 6px 0 !important;
+	padding: 4px 0 !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
 	list-style: none !important;
-	background: #1a1f28 !important;
+	background: #161b22 !important;
+	background-image: none !important;
 	border: 1px solid #3a424c !important;
-	border-radius: 0 0 8px 8px !important;
-	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55) !important;
+	border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+	border-radius: 0 0 10px 10px !important;
+	box-shadow:
+		0 16px 40px rgba(0, 0, 0, 0.65),
+		0 0 0 1px rgba(255, 255, 255, 0.04) !important;
 }
 html body #menu > ul > li:hover > ul,
 html body #menu > ul > li:focus-within > ul,
@@ -8976,23 +9052,71 @@ html body #menu #torrent_reviews > li {
 	flex: 0 0 auto !important;
 	width: 100% !important;
 	overflow: visible !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+html body #menu > ul > li > ul > li + li,
+html body #menu #torrent_reviews > li + li {
+	border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 html body #menu > ul > li > ul > li > a,
 html body #menu #torrent_reviews > li > a {
 	display: block !important;
 	height: auto !important;
 	max-height: none !important;
-	min-height: 0 !important;
-	line-height: 1.4 !important;
-	padding: 8px 14px !important;
+	min-height: 36px !important;
+	line-height: 1.35 !important;
+	padding: 10px 16px !important;
 	overflow: visible !important;
 	white-space: nowrap !important;
 	text-align: left !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	color: #e4e6e8 !important;
+	-webkit-text-fill-color: #e4e6e8 !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	border-left: 3px solid transparent !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	box-sizing: border-box !important;
 }
 html body #menu > ul > li > ul > li > a:hover,
 html body #menu #torrent_reviews > li > a:hover {
-	background: rgba(212, 132, 140, 0.15) !important;
+	background: rgba(212, 132, 140, 0.14) !important;
 	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left-color: rgba(212, 132, 140, 0.55) !important;
+}
+html body #menu > ul > li > ul > li.selected > a,
+html body #menu > ul > li > ul > li.active > a,
+html body #menu > ul > li > ul > li > a.selected,
+html body #menu > ul > li > ul > li > a.active,
+html body #menu #torrent_reviews > li.selected > a,
+html body #menu #torrent_reviews > li.active > a,
+html body #menu #torrent_reviews > li > a.selected,
+html body #menu #torrent_reviews > li > a.active,
+html body #menu > ul > li > ul > li > a[aria-current="page"],
+html body #menu #torrent_reviews > li > a[aria-current="page"] {
+	background: rgba(212, 132, 140, 0.12) !important;
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left: 3px solid #d4848c !important;
+	border-bottom: none !important;
+	box-shadow: none !important;
+}
+html body #menu > ul > li > ul > li > a::after,
+html body #menu > ul > li > ul > li > a::before,
+html body #menu #torrent_reviews > li > a::after,
+html body #menu #torrent_reviews > li > a::before {
+	content: none !important;
+	display: none !important;
+	border: none !important;
+	background: none !important;
 }
 html body #menu > ul > li#nav_staff {
 	height: auto !important;
@@ -9036,15 +9160,25 @@ html body #searchbars ul {
 	height: auto !important;
 	min-height: 0 !important;
 	max-height: none !important;
+	z-index: 1 !important;
 }
 html body #searchbars li {
 	height: auto !important;
 	min-height: 0 !important;
 }
+/* dim searchbars while a main-nav flyout is open */
+html body #header:has(#menu > ul > li:hover) #searchbars,
+html body #header:has(#menu > ul > li:focus-within) #searchbars,
+html body #wrapper #header:has(#menu > ul > li:hover) #searchbars,
+html body #wrapper #header:has(#menu > ul > li:focus-within) #searchbars {
+	opacity: 0.42 !important;
+	filter: saturate(0.7) !important;
+	transition: opacity 0.12s ease, filter 0.12s ease !important;
+	pointer-events: none !important;
+}
 }
 
-
-/* V58 — belt-and-suspenders: #nav_torrents + broad descendant hover (stock may nest differently) */
+/* V59 — #nav_torrents open state + flyout z */
 html body #menu #nav_torrents,
 html body #menu > ul > li#nav_torrents {
 	overflow: visible !important;
@@ -9053,7 +9187,13 @@ html body #menu > ul > li#nav_torrents {
 }
 html body #menu #nav_torrents:hover,
 html body #menu #nav_torrents:focus-within {
-	z-index: 500 !important;
+	z-index: 600 !important;
+}
+html body #menu #nav_torrents:hover > a,
+html body #menu #nav_torrents:focus-within > a {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	background-color: rgba(255, 255, 255, 0.08) !important;
 }
 html body #menu #nav_torrents:hover > ul,
 html body #menu #nav_torrents:focus-within > ul,
@@ -9068,7 +9208,9 @@ html body #menu li#nav_torrents:focus-within ul#torrent_reviews {
 	position: absolute !important;
 	top: 100% !important;
 	left: 0 !important;
-	z-index: 9999 !important;
+	z-index: 1000 !important;
+	min-width: max(100%, 12rem) !important;
+	background: #161b22 !important;
 }
 /* Kill any leftover clip on header chrome that could still mask the flyout */
 html body #header,
@@ -9080,4 +9222,4 @@ html body #main_site_menu {
 	contain: none !important;
 }
 
-/* PP-DARK-CACHE-V58 — Torrents pull-down: overflow visible + nested absolute dropdown */
+/* PP-DARK-CACHE-V59 — Torrents pull-down polish: flush width, left-rail active, dim searchbars */
