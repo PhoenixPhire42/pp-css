@@ -20,7 +20,7 @@ SKINS = {
     "phoenix-dark.css": {
         "header": """/*
  * Phoenix Project — Dark
- * Charcoal UI + soft orange accents.
+ * Charcoal UI + rose-ember accents.
  * External stylesheet URL (ApolloStage base recommended).
  * Pure CSS — no userscript required.
  *

@@ -1,14 +1,15 @@
 /*
  * Phoenix Project — Dark
- * Charcoal UI + soft orange accents.
+ * Charcoal UI + rose-ember accents.
  * External stylesheet URL (ApolloStage base recommended).
  * Pure CSS — no userscript required.
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css
  */
 /*
- * PP Dark standalone — Charcoal UI + soft orange accents (dark theme).
+ * PP Dark standalone — Charcoal UI + rose-ember accents (dark theme).
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
+ * Accent: muted wine/rose (#d4848c), not peach/orange or stock OPS magenta.
  */
 /* ══════════════════════════════════════════════════════════
  * STRUCTURAL BASE — REDStage-Sunset recolored (standalone Gazelle chrome)
@@ -82,7 +83,15 @@ a:hover {
     color: #e8b0b8
 }
 
-a:active, a:focus, button:active, button:focus, input:active, input:focus, select:active, select:focus, textarea:active, textarea:focus {
+a:active, button:active, input:active, select:active, textarea:active {
+    outline: 0
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
     outline: 0
 }
 
@@ -399,7 +408,7 @@ table.box, table.box2 {
 }
 
 .forum_post.forum_unread {
-    border-top: 2px solid #b43477
+    border-top: 2px solid #d4848c
 }
 
 .forum_post .avatar {
@@ -1279,20 +1288,34 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 #menu>ul {
     display: flex;
     flex-flow: row nowrap;
+    align-items: stretch;
     font-size: 13px;
     overflow: hidden;
-    width: calc(100% - 149px)
+    width: calc(100% - 149px);
+    height: 50px;
+    max-height: 50px;
+    min-height: 50px;
+    box-sizing: border-box
 }
 
 #menu>ul li {
-    flex: 1 1 auto
+    flex: 1 1 0;
+    height: 50px;
+    max-height: 50px;
+    min-height: 50px;
+    min-width: 0;
+    box-sizing: border-box
 }
 
 #menu>ul a {
     display: block;
-    height: 100%;
+    height: 50px;
+    max-height: 50px;
+    min-height: 50px;
     line-height: 50px;
-    text-align: center
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box
 }
 
 #nav_index {
@@ -2881,9 +2904,17 @@ html body .btn.hidden {
 	--danger: #e85050;
 	--warn: #e3ba65;
 	--ok: #4fb650;
-	/* Rose-ember headers — muted wine on charcoal (not peach) */
+	/* Rose-ember headers — muted wine on charcoal (not peach/orange) */
 	--head-text: #d4848c;
 	--head-text-soft: #c07880;
+	--head-text-bright: #f0c0c8;
+	--accent: #d4848c;
+	--accent-soft: rgba(212, 132, 140, 0.35);
+	--accent-glow: 0 0 0 1px rgba(212, 132, 140, 0.35);
+	--text-bright: #f0f2f4;
+	--row-a: #161b22;
+	--row-b: #1a1f28;
+	--row-hover: #222830;
 	--nav-flat: #262e3c;
 	/* Username / minor tabs sit at the dark end of the grey→black nav ramp */
 	--nav-user: #0c1016;
@@ -3235,10 +3266,10 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-	background: linear-gradient(#f0f0f0, #b8b8b8) !important;
-	border: none !important;
-	border-radius: 2px !important;
-	color: #252f32 !important;
+	background: var(--background-accent) !important;
+	border: 1px solid var(--border-accent) !important;
+	border-radius: 4px !important;
+	color: var(--text) !important;
 	text-shadow: none !important;
 	box-shadow: none !important;
 	font-weight: 600 !important;
@@ -3246,13 +3277,21 @@ input[type="reset"] {
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-	background: linear-gradient(#fff, #c8c8c8) !important;
-	color: #1a1a1a !important;
+	background: var(--background-emphasis) !important;
+	border-color: var(--accent-soft) !important;
+	color: var(--text-bright) !important;
+}
+button:focus-visible,
+input[type="button"]:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible {
+	outline: 2px solid var(--accent-soft) !important;
+	outline-offset: 2px !important;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-	accent-color: #c85050;
+	accent-color: var(--accent);
 }
 
 /* Tables */
@@ -3505,13 +3544,13 @@ html body div.tags.pp-tags-chipped {
 .forum_index td.unread_locked_sticky::before {
 	background: #d4848c !important;
 	border: none !important;
-	box-shadow: 0 0 6px rgba(200, 100, 110, 0.45) !important;
+	box-shadow: var(--accent-glow) !important;
 }
 /* Gold-tooltip unread (staff/special) — slightly warmer */
 .forum_index td.unread.tooltip_gold::before,
 .forum_index td.tooltip_gold.unread::before {
 	background: #e3ba65 !important;
-	box-shadow: 0 0 6px rgba(227, 186, 101, 0.45) !important;
+	box-shadow: 0 0 0 1px rgba(227, 186, 101, 0.4) !important;
 }
 /* Read — hollow ring */
 .forum_index td.read::before,
@@ -4501,13 +4540,18 @@ html body #nav_index.active a {
 	color: #fff !important;
 }
 
-/* Searchbars — kill mauve #3c2f33 / #2e232d */
+/* Searchbars — charcoal chrome continuous with #menu (not cold blue/mauve) */
 html body #searchbars > ul,
 html body #searchbars ul {
-	background: var(--background-emphasis) !important;
-	background-color: var(--background-emphasis) !important;
-	background-image: none !important;
-	border: none !important;
+	background: linear-gradient(180deg, #2a323c 0%, #1e242c 100%) !important;
+	background-color: #1e242c !important;
+	background-image: linear-gradient(180deg, #2a323c 0%, #1e242c 100%) !important;
+	border: 1px solid var(--border) !important;
+	border-top: none !important;
+	border-radius: 0 0 6px 6px !important;
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.04),
+		0 2px 8px rgba(0, 0, 0, 0.25) !important;
 }
 html body #searchbars input,
 html body #searchbars .search_form input {
@@ -4769,13 +4813,16 @@ html body .linkbox > strong {
 html body .alertbar,
 html body .alertbar.blend,
 html body #alerts .alertbar {
-	background: var(--background-emphasis) !important;
-	background-color: var(--background-emphasis) !important;
+	background: var(--background-dimmed) !important;
+	background-color: var(--background-dimmed) !important;
 	background-image: none !important;
-	border: 1px solid rgba(212, 132, 140, 0.45) !important;
-	border-radius: 4px !important;
-	color: var(--text) !important;
-	box-shadow: 0 0 0 1px rgba(0,0,0,0.2) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 6px !important;
+	color: var(--text-dimmed) !important;
+	box-shadow: none !important;
+	font-weight: 600 !important;
+	font-size: 13px !important;
+	padding: 8px 14px !important;
 }
 html body .alertbar a,
 html body .alertbar.blend a {
@@ -5185,9 +5232,31 @@ html body#requests .request_table a[href*="user.php"] {
 	text-decoration: none !important;
 }
 
-/* Searchbars under nav — match charcoal, not mauve */
+/* Searchbars under nav — labels + fields */
 html body #searchbars > ul {
-	border-radius: 0 0 4px 4px !important;
+	border-radius: 0 0 6px 6px !important;
+}
+html body #searchbars > ul > li,
+html body #searchbars li {
+	border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+}
+html body #searchbars > ul > li:last-child,
+html body #searchbars li:last-child {
+	border-right: none !important;
+}
+html body #searchbars label,
+html body #searchbars .search_form label,
+html body #searchbars li > span {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	font-weight: 600 !important;
+	font-size: 12px !important;
+}
+html body #searchbars a {
+	color: var(--text-dimmed) !important;
+}
+html body #searchbars a:hover {
+	color: var(--text-bright) !important;
 }
 html body #searchbars input::placeholder {
 	color: var(--text-weak) !important;
@@ -5242,19 +5311,21 @@ html body#forums .linkbox a.brackets {
 	color: #d4a0a8 !important;
 }
 
-/* Section groups: Redacted · Community · Music · … */
+/* Section groups: Staff · Site · Community · … */
 html body#forums .forum_list h3 {
 	color: var(--head-text) !important;
-	border-bottom: 1px solid var(--border) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
+	border: 1px solid var(--border) !important;
+	border-bottom: none !important;
+	border-left: 3px solid var(--accent) !important;
 	font-weight: 600 !important;
-	font-size: 13px !important;
+	font-size: 12px !important;
 	text-transform: uppercase !important;
-	letter-spacing: 0.06em !important;
+	letter-spacing: 0.04em !important;
 	margin: 22px 0 0 !important;
-	padding: 8px 12px 8px !important;
-	background: var(--background-emphasis) !important;
-	border-radius: 6px 6px 0 0 !important;
-	border-bottom-color: var(--border) !important;
+	padding: 10px 12px 8px !important;
+	background: var(--background-dimmed) !important;
+	border-radius: 8px 8px 0 0 !important;
 }
 
 /* Each section table sits under its h3 */
@@ -5270,9 +5341,11 @@ html body#forums .forum_list table.forum_index {
 	width: 100% !important;
 }
 
-html body#forums .forum_index tr.colhead td {
+html body#forums .forum_index tr.colhead td,
+html body#forums .forum_index tr.colhead_dark td {
 	background: var(--background-accent) !important;
 	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
 	font-weight: 600 !important;
 	font-size: 11px !important;
 	letter-spacing: 0.03em !important;
@@ -5308,14 +5381,16 @@ html body#forums .forum_index h4.min_padding {
 	line-height: 1.35 !important;
 }
 html body#forums .forum_index h4 a {
-	color: #f0f2f4 !important;
+	color: var(--text-bright) !important;
+	-webkit-text-fill-color: var(--text-bright) !important;
 	text-shadow: none !important;
 }
 html body#forums .forum_index h4 a:hover {
 	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
 }
 
-/* Last topic / last poster */
+/* Last topic — secondary on index */
 html body#forums .forum_index .last_topic {
 	float: left !important;
 	max-width: 55% !important;
@@ -5325,10 +5400,12 @@ html body#forums .forum_index .last_topic {
 }
 html body#forums .forum_index .last_topic a {
 	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
 	font-weight: 500 !important;
 }
 html body#forums .forum_index .last_topic a:hover {
 	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
 }
 
 html body#forums .forum_index .last_poster {
@@ -5338,10 +5415,12 @@ html body#forums .forum_index .last_poster {
 	white-space: nowrap !important;
 }
 html body#forums .forum_index .last_poster a {
-	color: var(--text-dimmed) !important;
+	color: var(--head-text) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
 }
 html body#forums .forum_index .last_poster a:hover {
-	color: #f0f2f4 !important;
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
 }
 html body#forums .forum_index .last_poster .time,
 html body#forums .forum_index .time {
@@ -5470,14 +5549,14 @@ html body#forums table.forum_index td.unread.tooltipstered::before {
 	background: #d4848c !important;
 	background-color: #d4848c !important;
 	border: none !important;
-	box-shadow: 0 0 6px rgba(200, 100, 110, 0.5) !important;
+	box-shadow: var(--accent-glow) !important;
 }
 
 html body#forums table.forum_index td.unread.tooltip_gold::before,
 html body#forums table.forum_index td.tooltip_gold.unread::before {
 	background: #e3ba65 !important;
 	background-color: #e3ba65 !important;
-	box-shadow: 0 0 6px rgba(227, 186, 101, 0.5) !important;
+	box-shadow: 0 0 0 1px rgba(227, 186, 101, 0.45) !important;
 }
 
 html body#forums table.forum_index td.read::before,
@@ -7640,7 +7719,7 @@ html body#forums .forum_index td.unread_locked::before,
 html body#forums .forum_index td.unread_sticky::before,
 html body#forums .forum_index td.unread_locked_sticky::before {
 	background: #d4848c !important;
-	box-shadow: 0 0 8px rgba(212, 132, 140, 0.4) !important;
+	box-shadow: var(--accent-glow) !important;
 }
 html body#forums .forum_index td.read::before {
 	border-color: #5a6570 !important;
@@ -7663,81 +7742,7 @@ html body#forums a.btn-outline-secondary:not(.hidden):hover {
 	color: #f0f2f4 !important;
 	background: var(--background-emphasis) !important;
 }
-/* Users online box */
-html body#forums .box > .head {
-	color: var(--head-text) !important;
-}
 
-/*
- * Desktop menu height lock — #menu>ul a { height:100% } + flex:1 li was stretching
- * the primary nav into tall empty charcoal columns (see PP index Dark).
- * Same fix as Neo V40 / Synth V40 / MacLite V40.
- */
-@media (min-width: 576px) {
-	html body #header {
-		height: auto !important;
-		min-height: 0 !important;
-		max-height: none !important;
-		opacity: 1 !important;
-		position: relative !important;
-		overflow: visible !important;
-		transform: none !important;
-	}
-	html body #menu,
-	html body #menu > ul {
-		height: 50px !important;
-		min-height: 50px !important;
-		max-height: 50px !important;
-		position: relative !important;
-		top: auto !important;
-		bottom: auto !important;
-		left: auto !important;
-		right: auto !important;
-		display: flex !important;
-		flex-flow: row nowrap !important;
-		align-items: stretch !important;
-		box-sizing: border-box !important;
-	}
-	html body #menu > ul {
-		width: calc(100% - 149px) !important;
-		overflow: hidden !important;
-	}
-	html body #menu > ul > li,
-	html body #menu li {
-		height: 50px !important;
-		min-height: 50px !important;
-		max-height: 50px !important;
-		flex: 1 1 0 !important;
-		box-sizing: border-box !important;
-		padding-top: 0 !important;
-		padding-bottom: 0 !important;
-	}
-	html body #menu > ul > li > a,
-	html body #menu li a,
-	html body #menu a {
-		display: block !important;
-		height: 50px !important;
-		min-height: 50px !important;
-		max-height: 50px !important;
-		line-height: 50px !important;
-		padding-top: 0 !important;
-		padding-bottom: 0 !important;
-		box-sizing: border-box !important;
-		overflow: hidden !important;
-	}
-	/* Username tab closed only — never lock open flyout height */
-	html body #userinfo_username:not(:hover),
-	html body #userinfo_minor:not(:hover) {
-		height: 50px !important;
-		max-height: 50px !important;
-		min-height: 50px !important;
-	}
-	html body #userinfo_username:not(:hover) > li > a,
-	html body #userinfo_username:not(:hover) a.username {
-		line-height: 50px !important;
-		height: 50px !important;
-	}
-}
 
 /*
  * Last-read arrows sitewide (index, forums unread, forum index)
@@ -7791,22 +7796,22 @@ html body#forums .last_read a:hover::before {
 html body#forums .thin > .header h2,
 html body#forums .header h2,
 html body#forums h2 {
-	color: #f0f2f4 !important;
-	-webkit-text-fill-color: #f0f2f4 !important;
+	color: var(--text-bright) !important;
+	-webkit-text-fill-color: var(--text-bright) !important;
 	font-weight: 700 !important;
 	font-size: 1.35rem !important;
 	letter-spacing: 0.01em !important;
 }
 html body#forums .header h2 a,
 html body#forums h2 a {
-	color: #d4a0a8 !important;
-	-webkit-text-fill-color: #d4a0a8 !important;
+	color: var(--head-text-soft) !important;
+	-webkit-text-fill-color: var(--head-text-soft) !important;
 	font-weight: 600 !important;
 	text-decoration: none !important;
 }
 html body#forums .header h2 a:hover {
-	color: #f0c0c8 !important;
-	-webkit-text-fill-color: #f0c0c8 !important;
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
 }
 /* Search forums · Catch up · post action pills
  * Exclude .hidden — stock hides the inactive like/heart state that way.
@@ -7819,11 +7824,12 @@ html body#forums a.btn:not(.hidden) {
 	align-items: center !important;
 	padding: 6px 14px !important;
 	margin: 0 4px 6px 0 !important;
-	color: #d4d0d0 !important;
-	-webkit-text-fill-color: #d4d0d0 !important;
-	background: #1a1f28 !important;
-	border: 1px solid #3a424c !important;
+	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
+	background: var(--row-b) !important;
+	border: 1px solid var(--border-accent) !important;
 	border-radius: 999px !important;
+	transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease !important;
 	font-weight: 600 !important;
 	font-size: 12px !important;
 	text-decoration: none !important;
@@ -7870,104 +7876,131 @@ html body#forums .linkbox a:hover,
 html body#forums a.btn:hover {
 	color: #fff !important;
 	-webkit-text-fill-color: #fff !important;
-	border-color: rgba(212, 132, 140, 0.5) !important;
-	background: #222830 !important;
+	border-color: var(--accent-soft) !important;
+	background: var(--row-hover) !important;
 }
-/* Unread topics table */
+/* Forums tables — unified chrome + hierarchy (V48) */
 html body#forums table.forum_index,
 html body#forums table.forum_list,
 html body#forums .forum_index {
-	background: #161b22 !important;
-	border: 1px solid #2a323c !important;
-	border-radius: 8px !important;
+	background: var(--row-a) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 0 0 8px 8px !important;
 	overflow: hidden !important;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
 	border-collapse: separate !important;
 	border-spacing: 0 !important;
 	width: 100% !important;
 }
+html body#forums .forum_list > h3 + table.forum_index {
+	border-top: none !important;
+	border-radius: 0 0 8px 8px !important;
+	margin-top: 0 !important;
+}
+/* Colhead muted meta — brand lives on section h3 */
 html body#forums .forum_index tr.colhead td,
 html body#forums .forum_index tr.colhead_dark td {
-	background: linear-gradient(180deg, #2a323c 0%, #1e242c 100%) !important;
-	color: #d4848c !important;
-	-webkit-text-fill-color: #d4848c !important;
-	font-weight: 700 !important;
+	background: var(--background-accent) !important;
+	background-image: none !important;
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-weight: 600 !important;
 	font-size: 11px !important;
-	letter-spacing: 0.04em !important;
+	letter-spacing: 0.03em !important;
 	text-transform: uppercase !important;
-	padding: 10px 12px !important;
-	border-bottom: 1px solid #3a424c !important;
+	padding: 9px 12px !important;
+	border-bottom: 1px solid var(--border) !important;
 }
 html body#forums .forum_index tr.rowa td,
 html body#forums .forum_index tr.rowb td {
 	padding: 11px 12px !important;
-	border-bottom: 1px solid #1e242c !important;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.28) !important;
 	vertical-align: middle !important;
+	transition: background 0.12s ease !important;
 }
 html body#forums .forum_index tr.rowa td {
-	background: #161b22 !important;
+	background: var(--row-a) !important;
 }
 html body#forums .forum_index tr.rowb td {
-	background: #1a1f28 !important;
+	background: var(--row-b) !important;
 }
 html body#forums .forum_index tr.rowa:hover td,
 html body#forums .forum_index tr.rowb:hover td {
-	background: #222830 !important;
+	background: var(--row-hover) !important;
 }
-/* Forum name column — quieter */
-html body#forums .forum_index td.td_forum,
-html body#forums .forum_index td:first-child {
-	color: #8a9098 !important;
-	-webkit-text-fill-color: #8a9098 !important;
-	font-size: 12px !important;
+/* Index: forum name primary */
+html body#forums .forum_list .forum_index h4 a {
+	color: var(--text-bright) !important;
+	-webkit-text-fill-color: var(--text-bright) !important;
 	font-weight: 600 !important;
 }
-html body#forums .forum_index td.td_forum a {
-	color: #a8b0b8 !important;
-	-webkit-text-fill-color: #a8b0b8 !important;
-	text-decoration: none !important;
+html body#forums .forum_list .forum_index h4 a:hover {
+	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
 }
-/* Thread title — primary */
-html body#forums .forum_index .last_topic,
-html body#forums .forum_index .last_topic a,
-html body#forums .forum_index td.td_topic a,
-html body#forums .forum_index td:nth-child(2) > a {
-	color: #e8ecef !important;
-	-webkit-text-fill-color: #e8ecef !important;
+/* Index: last topic secondary */
+html body#forums .forum_list .forum_index .last_topic,
+html body#forums .forum_list .forum_index .last_topic a {
+	color: var(--text) !important;
+	-webkit-text-fill-color: var(--text) !important;
+	font-weight: 500 !important;
+}
+html body#forums .forum_list .forum_index .last_topic a:hover {
+	color: var(--link-hover) !important;
+	-webkit-text-fill-color: var(--link-hover) !important;
+}
+/* Empty "no topics" cells */
+html body#forums .forum_list .forum_index td:nth-child(2):not(:has(a)) {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+	font-style: italic !important;
+	font-weight: 400 !important;
+}
+/* Thread lists / unread: topic title primary */
+html body#forums .thin > table.forum_index .last_topic a,
+html body#forums .thin > table.forum_index td.td_topic a,
+html body#forums table.forum_index td.td_topic a {
+	color: var(--text-bright) !important;
+	-webkit-text-fill-color: var(--text-bright) !important;
 	font-weight: 600 !important;
 	text-decoration: none !important;
 }
-html body#forums .forum_index .last_topic a:hover,
-html body#forums .forum_index td:nth-child(2) > a:hover {
-	color: #f0c0c8 !important;
-	-webkit-text-fill-color: #f0c0c8 !important;
+html body#forums .thin > table.forum_index .last_topic a:hover,
+html body#forums table.forum_index td.td_topic a:hover {
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
 }
-/* Author / time */
+/* Author / time / counts */
 html body#forums .forum_index .last_poster,
-html body#forums .forum_index .last_poster a,
 html body#forums .forum_index .time {
-	color: #7a828c !important;
-	-webkit-text-fill-color: #7a828c !important;
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
 	font-size: 12px !important;
 	font-weight: 400 !important;
 }
 html body#forums .forum_index .last_poster a {
-	color: #d4848c !important;
-	-webkit-text-fill-color: #d4848c !important;
+	color: var(--head-text) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
 	font-weight: 500 !important;
 }
 html body#forums .forum_index .last_poster a:hover {
-	color: #f0c0c8 !important;
-	-webkit-text-fill-color: #f0c0c8 !important;
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
 }
-/* Replies count */
 html body#forums .forum_index td.td_replies,
-html body#forums .forum_index td.number_column,
-html body#forums .forum_index td:nth-child(4) {
-	color: #c6c9c9 !important;
-	-webkit-text-fill-color: #c6c9c9 !important;
+html body#forums .forum_index td.number_column {
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
 	font-variant-numeric: tabular-nums !important;
 	font-weight: 600 !important;
+}
+/* Status dots — soft ring */
+html body#forums .forum_index td.unread::before,
+html body#forums .forum_index td.unread_locked::before,
+html body#forums .forum_index td.unread_sticky::before,
+html body#forums .forum_index td.unread_locked_sticky::before {
+	background: var(--accent) !important;
+	box-shadow: var(--accent-glow) !important;
 }
 
 /*
@@ -8473,4 +8506,236 @@ html body #noty_bottomRight_layout_container .noty_buttons a:hover {
 		content: none !important;
 	}
 }
-/* PP-DARK-CACHE-V47 — double like hearts fix */
+/* ══════════════════════════════════════════════════════════
+ * PP DARK POLISH V48 — focus, chrome continuity, micro polish
+ * ══════════════════════════════════════════════════════════ */
+
+/* Focus-visible (keyboard) — rose ring, no mouse focus chrome */
+html body a:focus-visible,
+html body button:focus-visible,
+html body input:focus-visible,
+html body select:focus-visible,
+html body textarea:focus-visible,
+html body .btn:focus-visible,
+html body .linkbox a:focus-visible {
+	outline: 2px solid rgba(212, 132, 140, 0.55) !important;
+	outline-offset: 2px !important;
+}
+
+/* Inputs: readable value text + dim placeholders */
+html body input::placeholder,
+html body textarea::placeholder {
+	color: var(--text-weak) !important;
+	opacity: 1 !important;
+}
+html body input[type="text"],
+html body input[type="search"],
+html body input[type="password"],
+html body input[type="email"],
+html body input[type="number"],
+html body input[type="url"],
+html body textarea,
+html body select {
+	color: var(--text) !important;
+	caret-color: var(--accent) !important;
+}
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+	border-color: rgba(212, 132, 140, 0.4) !important;
+	color: var(--text-bright) !important;
+}
+
+/* Menu + searchbars read as one chrome unit */
+html body #menu {
+	border-radius: 6px 6px 0 0 !important;
+	margin-bottom: 0 !important;
+}
+html body #header #searchbars {
+	margin-top: 0 !important;
+}
+
+/* Toolbox / staff report strip (alertbar content) — quiet toolbar, not alarm */
+html body#forums #alerts .alertbar,
+html body #alerts .alertbar {
+	text-align: left !important;
+	font-weight: 500 !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+}
+html body #alerts .alertbar a {
+	color: var(--head-text) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
+}
+html body #alerts .alertbar a:hover {
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
+}
+
+/* Global row hover transition (torrent + forum tables) */
+html body table.torrent_table tr:not(.colhead):not(.colhead_dark) td,
+html body table.forum_index tr:not(.colhead):not(.colhead_dark) td,
+html body table.request_table tr:not(.colhead):not(.colhead_dark) td {
+	transition: background 0.12s ease !important;
+}
+
+/* Sticky / locked status: no extra glow beyond shape */
+html body#forums .forum_index td.read_sticky::before,
+html body#forums .forum_index td.read_locked::before {
+	box-shadow: none !important;
+}
+
+/* Last-read jump: one glyph, soft rose */
+html body .last_read a::before,
+html body .last_read::before,
+html body#forums .last_read a::before,
+html body#forums .last_read::before {
+	content: "\25B8" !important; /* ▸ */
+	color: var(--accent) !important;
+	-webkit-text-fill-color: var(--accent) !important;
+	filter: none !important;
+	opacity: 0.9 !important;
+}
+html body .last_read a:hover::before,
+html body#forums .last_read a:hover::before {
+	color: var(--head-text-bright) !important;
+	-webkit-text-fill-color: var(--head-text-bright) !important;
+	opacity: 1 !important;
+}
+
+/* Structural .forum_list h3 (non-#forums safety) */
+html body .forum_list h3 {
+	color: var(--head-text) !important;
+	text-shadow: none !important;
+}
+
+/* Sitewide colhead: one muted-wine style (not competing gradients) */
+html body .colhead td,
+html body .colhead_dark td,
+html body tr.colhead td,
+html body tr.colhead_dark td {
+	color: var(--head-text) !important;
+	-webkit-text-fill-color: var(--head-text) !important;
+	text-shadow: none !important;
+}
+/* Forums index colhead stays muted meta (override sitewide brand color) */
+html body#forums .forum_index tr.colhead td,
+html body#forums .forum_index tr.colhead_dark td {
+	color: var(--text-weak) !important;
+	-webkit-text-fill-color: var(--text-weak) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * MENU HEIGHT LOCK (desktop) — ported from MacLite V40 / Neo V40
+ * #header is flex-column; without flex:0 0 50px on #menu + max-height,
+ * tab links (height:100%) stretch into tall empty charcoal columns.
+ * MUST stay at absolute EOF so progressive parse / FOUC never paints tall tabs.
+ * ══════════════════════════════════════════════════════════ */
+@media (min-width: 576px) {
+html body #header,
+html body #wrapper #header {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	opacity: 1 !important;
+	position: relative !important;
+	overflow: visible !important;
+	transform: none !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+}
+html body #menu,
+html body #wrapper #header #menu {
+	flex: 0 0 50px !important;
+	flex-grow: 0 !important;
+	flex-shrink: 0 !important;
+	height: 50px !important;
+	min-height: 50px !important;
+	max-height: 50px !important;
+	position: relative !important;
+	top: auto !important;
+	bottom: auto !important;
+	left: auto !important;
+	right: auto !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+html body #menu > ul,
+html body #menu ul {
+	height: 50px !important;
+	min-height: 50px !important;
+	max-height: 50px !important;
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: stretch !important;
+	box-sizing: border-box !important;
+	width: calc(100% - 149px) !important;
+	overflow: hidden !important;
+	position: relative !important;
+	bottom: auto !important;
+	top: auto !important;
+}
+html body #menu > ul > li,
+html body #menu li {
+	height: 50px !important;
+	min-height: 50px !important;
+	max-height: 50px !important;
+	flex: 1 1 0 !important;
+	box-sizing: border-box !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	position: relative !important;
+	bottom: auto !important;
+	top: auto !important;
+}
+html body #menu > ul > li > a,
+html body #menu li a,
+html body #menu a {
+	display: block !important;
+	height: 50px !important;
+	min-height: 50px !important;
+	max-height: 50px !important;
+	line-height: 50px !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+html body #menu > ul > li#nav_staff,
+html body #menu li#nav_staff {
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+	flex: 0 0 auto !important;
+}
+html body #userinfo_username:not(:hover),
+html body #userinfo_minor:not(:hover) {
+	height: 50px !important;
+	max-height: 50px !important;
+	min-height: 50px !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+html body #userinfo_username:not(:hover) > li > a,
+html body #userinfo_username:not(:hover) a.username {
+	line-height: 50px !important;
+	height: 50px !important;
+	max-height: 50px !important;
+	box-sizing: border-box !important;
+}
+html body #searchbars,
+html body #searchbars ul {
+	position: relative !important;
+	bottom: auto !important;
+	height: auto !important;
+	min-height: 0 !important;
+	max-height: none !important;
+}
+html body #searchbars li {
+	height: auto !important;
+	min-height: 0 !important;
+}
+}
+
+/* PP-DARK-CACHE-V52 — structural menu 50px (no height:100%); FOUC veil in loader */
