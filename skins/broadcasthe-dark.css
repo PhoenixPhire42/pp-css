@@ -231,7 +231,7 @@ button:not(.hidden):hover {
 	width: 960px !important;
 	max-width: 100% !important;
 	height: 140px !important;
-	margin: 0 0 10px 7px !important; /* stock #logo,#menu { margin-left: 7px } */
+	margin: 0 0 8px 0 !important; /* flush with header — chips align cleanly */
 	background-color: #020308 !important;
 	background-image:
 		radial-gradient(ellipse 70% 90% at 28% 50%, rgba(94, 200, 232, 0.10), transparent 60%),
@@ -267,21 +267,23 @@ button:not(.hidden):hover {
 }
 
 /*
- * Donation — same glass as account chips, under major (Upload/Invite/Donate).
- * Was floating mid-logo / off the right edge; keep inside logo top-right.
- * #header is position:relative; logo is 140px tall.
+ * Donation — glass pill stacked under #userinfo_major (same right edge).
+ * Screenshot V5 still floated donations on the far right of the banner;
+ * pin under Upload/Invite/Donate, leave stats as a full bar below.
+ * #header is position:relative; logo ~140px tall.
  */
 #donation {
 	position: absolute !important;
 	display: block !important;
 	width: auto !important;
 	min-width: 0 !important;
+	max-width: 110px !important;
 	height: auto !important;
-	/* Under #userinfo_major (≈ top 18px + ~48px chip height) */
-	top: 72px !important;
-	right: 12px !important;
+	/* major chip ~ top 16–18px, height ~50 → sit just under it */
+	top: 58px !important;
+	right: 8px !important;
 	left: auto !important;
-	z-index: 1002 !important;
+	z-index: 1003 !important;
 	font-size: 10.5px !important;
 	text-align: center !important;
 	padding: 0 !important;
@@ -294,8 +296,8 @@ button:not(.hidden):hover {
 	width: auto !important;
 	height: auto !important;
 	margin: 0 !important;
-	padding: 4px 10px !important;
-	background: rgba(8, 12, 18, 0.82) !important;
+	padding: 4px 9px !important;
+	background: rgba(8, 12, 18, 0.88) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: 10px !important;
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
@@ -438,11 +440,14 @@ button:not(.hidden):hover {
 }
 #userinfo_major a { font-weight: 650 !important; }
 
-/* Stats — slim bar under account chips; leave right gap so it doesn’t collide with Donations */
+/*
+ * Stats — bottom of logo, full right edge under the major+donation stack.
+ * top -42 ≈ lower third of 140px logo (userinfo sits just under logo).
+ */
 #userinfo_stats {
 	position: absolute !important;
-	top: -68px !important;
-	right: 118px !important;
+	top: -42px !important;
+	right: 8px !important;
 	z-index: 1001 !important;
 	display: block !important;
 	padding: 4px 10px !important;
@@ -450,7 +455,7 @@ button:not(.hidden):hover {
 	white-space: nowrap !important;
 	text-align: right !important;
 	width: auto !important;
-	max-width: calc(100% - 140px) !important;
+	max-width: calc(100% - 16px) !important;
 	font-size: 10.5px !important;
 }
 #userinfo_stats li {
