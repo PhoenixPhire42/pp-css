@@ -74,26 +74,33 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
 
 ### PTP Cinema Noir — install (passthepopcorn.me)
 
-Greyscale / pure-black. **Self-contained chrome layout** (works alone) or load on **Dark (Default)**.
+Greyscale overlay. **Official stylesheet must be Dark (Default)** (layout base).
 
-**Recommended**
+**Correct**
 
-1. Log in → **Edit** → **Stylesheet**
-2. Official: **Dark (Default)**
-3. Custom CSS: **Append** (not Replace) the URL below
+1. **Edit** → **Stylesheet**
+2. **Official:** `Dark (Default)` — must be `static/styles/dark/style.css`
+3. Then either:
+   - **Monkie:** Custom CSS = **Do not load** (Noir toggle injects overlay), or
+   - **No monkie:** Custom = **Append**:
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
 ```
+
+**Wrong (breaks posters / layout)**
+
+```text
+https://github.com/PhoenixPhire42/pp-css/blob/main/skins/ptp-dark.css
+```
+
+Never set a `github.com/…/blob/…` page as the official stylesheet. Use jsDelivr only for Append.
 
 **Pinned tag**
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/ptp-dark.css
 ```
-
-If you **Replace** the entire stylesheet, V18+ still lays out nav/logo/page column.
-Do **not** use `raw.githubusercontent.com` for the CSS URL.
 
 Logo only:
 
