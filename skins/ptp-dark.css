@@ -1,8 +1,8 @@
 /*
- * PassThePopcorn — Cinema Noir
- * Pure greys + black overlay on official Dark (Default).
- * Base: User → Edit Stylesheet → Dark (Default). Then load this sheet
- * (external/custom CSS field, or paste). Pure CSS — no userscript required.
+ * PassThePopcorn — Cinema Noir (standalone)
+ * Pure greys + black. Includes stock Dark (Default) chrome layout so it works
+ * alone or on top of Dark. Prefer: Official = Dark (Default), then Append this.
+ * Pure CSS — no userscript required.
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
  *
@@ -32,7 +32,7 @@ html {
   --ptp-row-b: #0a0a0a;
   --ptp-radius: 8px;
   /* Imagine noir wordmark (CDN). */
-  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/assets/ptp-logo-noir-header.png");
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png");
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
@@ -677,3 +677,202 @@ html body#login form {
   background: var(--ptp-surface) !important;
   border-color: var(--ptp-border) !important;
 }
+
+/*
+ * ── Standalone layout (stock Dark geometry) ────────────────────────────
+ * Public CDN sheet is often loaded alone (Replace / no Dark base). Without
+ * these rules, BEM chrome collapses to raw UL bullets. Values match
+ * static/styles/dark/style.css — safe when Dark is also present.
+ */
+html body {
+  margin: 0 auto !important;
+  max-width: 1013px !important;
+  font-size: 8pt !important;
+  word-wrap: break-word !important;
+  padding: 0 !important;
+}
+
+/* Top user strip — horizontal, not a bullet list */
+html .user-info-bar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 1% !important;
+  width: 98% !important;
+  height: 25px !important;
+  padding: 0 1px 1px 1px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  border-bottom-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  z-index: 20 !important;
+  list-style: none !important;
+  overflow: visible !important;
+}
+html .user-info-bar__list,
+html .user-info-bar ul {
+  display: inline !important;
+  list-style: none !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+}
+html .user-info-bar__item,
+html .user-info-bar li {
+  position: relative !important;
+  display: inline !important;
+  list-style: none !important;
+  vertical-align: middle !important;
+  margin: 0 1px !important;
+  padding: 0 !important;
+  line-height: 20px !important;
+  float: none !important;
+}
+html .user-info-bar__link {
+  text-decoration: underline !important;
+}
+html .user-info-bar__drop-down-menu {
+  visibility: hidden !important;
+  position: absolute !important;
+  z-index: 30 !important;
+  left: auto !important;
+  right: 0 !important;
+  padding: 10px !important;
+  margin: -10px !important;
+  list-style: none !important;
+  background: transparent !important;
+}
+html .user-info-bar__item--drop-down-menu-opener:hover > .user-info-bar__drop-down-menu {
+  visibility: visible !important;
+  top: 100% !important;
+}
+html .user-info-bar__drop-down-menu__item {
+  display: block !important;
+  float: none !important;
+  list-style: none !important;
+  background: var(--ptp-surface-2) !important;
+}
+html .user-info-bar__drop-down-menu__link {
+  display: block !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  padding: 0.4em 1.5em !important;
+  white-space: nowrap !important;
+  color: var(--ptp-text) !important;
+}
+html .user-info-bar__drop-down-menu__link:hover {
+  background-color: var(--ptp-surface) !important;
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* Main nav pill — horizontal */
+html .main-menu,
+html #header .main-menu {
+  width: 750px !important;
+  height: 28px !important;
+  margin: 5px auto 10px auto !important;
+  font-size: 10pt !important;
+  text-align: left !important;
+  z-index: 7 !important;
+  opacity: 1 !important;
+  border-radius: 10px !important;
+  list-style: none !important;
+  overflow: visible !important;
+}
+html .main-menu__list,
+html .main-menu ul {
+  list-style: none !important;
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+html .main-menu__item,
+html .main-menu li {
+  display: inline !important;
+  list-style: none !important;
+  padding: 5px !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  float: none !important;
+}
+html .main-menu__link {
+  padding: 0.5em !important;
+}
+
+/* Search strip under nav */
+html .search-bar {
+  width: 1013px !important;
+  max-width: 100% !important;
+  padding: 0.6em !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  list-style: none !important;
+}
+html .search-bar__list,
+html .search-bar ul {
+  display: inline !important;
+  list-style: none !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+}
+html .search-bar li {
+  display: inline !important;
+  list-style: none !important;
+}
+
+/* Page column + sidebar */
+html .page__main-content {
+  width: 1013px !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  overflow: auto !important;
+  padding: 15px 19px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  background-color: var(--ptp-bg) !important;
+}
+html .page__title {
+  text-align: center !important;
+}
+html .main-column {
+  margin: 0 255px 10px 0 !important;
+  width: 715px !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+html .sidebar {
+  float: right !important;
+  width: 250px !important;
+}
+html .panel {
+  margin-bottom: 1em !important;
+  border: 1px solid var(--ptp-border) !important;
+}
+html .panel__body {
+  padding: 10px !important;
+}
+html .panel__heading {
+  padding: 4px !important;
+}
+html .panel__heading__toggler {
+  float: right !important;
+  font-size: 0.75em !important;
+}
+html .table {
+  width: 100% !important;
+  margin: 0 0 1em 0 !important;
+  border-collapse: collapse !important;
+}
+html .linkbox {
+  text-align: center !important;
+  margin: 5px 5px 10px 5px !important;
+}
+html .footer,
+html #footer {
+  text-align: center !important;
+  margin-top: 20px !important;
+  clear: both !important;
+}
+
+

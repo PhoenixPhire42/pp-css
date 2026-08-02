@@ -112,10 +112,10 @@ SKINS = {
     },
     "ptp-dark.css": {
         "header": """/*
- * PassThePopcorn — Cinema Noir
- * Pure greys + black overlay on official Dark (Default).
- * Base: User → Edit Stylesheet → Dark (Default). Then load this sheet
- * (external/custom CSS field, or paste). Pure CSS — no userscript required.
+ * PassThePopcorn — Cinema Noir (standalone)
+ * Pure greys + black. Includes stock Dark (Default) chrome layout so it works
+ * alone or on top of Dark. Prefer: Official = Dark (Default), then Append this.
+ * Pure CSS — no userscript required.
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
  *

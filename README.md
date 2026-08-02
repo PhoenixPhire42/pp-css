@@ -74,29 +74,32 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
 
 ### PTP Cinema Noir — install (passthepopcorn.me)
 
-Greyscale / pure-black overlay. **Requires** official **Dark (Default)** base.
+Greyscale / pure-black. **Self-contained chrome layout** (works alone) or load on **Dark (Default)**.
+
+**Recommended**
 
 1. Log in → **Edit** → **Stylesheet**
-2. Official stylesheet: **Dark (Default)**
-3. Load this sheet via custom/external CSS (or paste). Prefer **jsDelivr**:
+2. Official: **Dark (Default)**
+3. Custom CSS: **Append** (not Replace) the URL below
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
 ```
 
-Versioned (recommended after tag):
+**Pinned tag**
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/ptp-dark.css
 ```
 
-Logo asset (if you only need the wordmark):
+If you **Replace** the entire stylesheet, V18+ still lays out nav/logo/page column.
+Do **not** use `raw.githubusercontent.com` for the CSS URL.
+
+Logo only:
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png
 ```
-
-Stock owns geometry (logo 700×124, page 1013px). This sheet is palette + logo only.
 
 ### Orpheus Matrix — install (orpheus.network)
 
