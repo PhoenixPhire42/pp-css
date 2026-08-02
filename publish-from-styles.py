@@ -112,14 +112,16 @@ SKINS = {
     },
     "ptp-dark.css": {
         "header": """/*
- * PassThePopcorn — Cinema Noir (standalone)
- * Pure greys + black. Includes stock Dark (Default) chrome layout so it works
- * alone or on top of Dark. Prefer: Official = Dark (Default), then Append this.
- * Pure CSS — no userscript required.
+ * PassThePopcorn — Cinema Noir
+ * Pure greys + black. RECOMMENDED: Official stylesheet = Dark (Default), then
+ * Append this URL (or use monkie Noir). Pure CSS — no userscript required.
+ *
+ * This public build includes a layout fallback so Replace mode still works.
+ * Best results: keep Dark (Default) as the official site stylesheet.
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
  *
- * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). raw.githubusercontent.com is text/plain.
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
 """,
@@ -130,6 +132,8 @@ SKINS = {
             "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
             "/skins/assets/ptp-logo-noir-header.png"
         ),
+        # Append layout fallback (for Replace / no Dark base)
+        "append_layout": "ptp-dark-layout.css",
     },
 }
 
@@ -220,6 +224,7 @@ def build_one(
     header: str,
     rewrite_skin_attr: str | None = None,
     logo_cdn: str | None = None,
+    append_src: Path | None = None,
 ) -> None:
     css = src.read_text(encoding="utf-8")
     css = rewrite_header(css, header)
@@ -228,6 +233,14 @@ def build_one(
     if rewrite_skin_attr:
         css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
     css = rewrite_logo_cdn(css, logo_cdn)
+    if append_src and append_src.is_file():
+        extra = append_src.read_text(encoding="utf-8")
+        # Drop nested file header; keep body
+        extra = re.sub(r"^/\*.*?\*/\s*", "", extra, count=1, flags=re.S)
+        if rewrite_skin_attr:
+            extra = rewrite_monkies_skin_attr(extra, rewrite_skin_attr)
+        extra = rewrite_logo_cdn(extra, logo_cdn)
+        css = css.rstrip() + "\n\n/* ── layout fallback (no Dark base) ── */\n" + extra
     open_b, close_b = css.count("{"), css.count("}")
     if open_b != close_b:
         raise SystemExit(f"brace mismatch in {src.name}: {{ {open_b} }} {close_b}")
@@ -256,12 +269,15 @@ def main() -> None:
         if not src.is_file():
             print(f"  skip missing {src}")
             continue
+        append_name = meta.get("append_layout")
+        append_src = (styles / append_name) if append_name else None
         build_one(
             src,
             HERE / "skins" / name,
             meta["header"],
             rewrite_skin_attr=meta.get("rewrite_skin_attr"),
             logo_cdn=meta.get("logo_cdn"),
+            append_src=append_src,
         )
 
     print("Done. Commit, tag, push — see README.md for jsDelivr URLs.")
