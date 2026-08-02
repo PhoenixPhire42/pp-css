@@ -267,22 +267,21 @@ button:not(.hidden):hover {
 }
 
 /*
- * Donation — stock darknround: top 75px, right -30px (on logo).
- * Glass chip polish only; keep stock anchor so chips don't collide.
+ * Donation — compact pill, far top-right (clears wordmark + account chips).
  */
 #donation {
 	position: absolute !important;
-	display: inline !important;
+	display: block !important;
 	width: auto !important;
 	min-width: 0 !important;
 	height: auto !important;
-	top: 75px !important;
-	right: -30px !important;
+	top: 6px !important;
+	right: 8px !important;
 	left: auto !important;
 	z-index: 1002 !important;
-	font-size: 10.5px !important;
+	font-size: 10px !important;
 	text-align: center !important;
-	padding: 0.4em 0 !important;
+	padding: 0 !important;
 	pointer-events: auto !important;
 	color: var(--btn-text-dim) !important;
 }
@@ -291,11 +290,11 @@ button:not(.hidden):hover {
 	width: auto !important;
 	height: auto !important;
 	margin: 0 !important;
-	padding: 5px 10px !important;
-	background: rgba(10, 14, 22, 0.72) !important;
+	padding: 3px 9px !important;
+	background: rgba(8, 12, 18, 0.78) !important;
 	border: 1px solid var(--btn-border) !important;
 	border-radius: 999px !important;
-	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	overflow: hidden !important;
@@ -322,11 +321,11 @@ button:not(.hidden):hover {
 #donation a,
 #DonInfo a {
 	color: var(--btn-accent-soft) !important;
-	font-weight: 700 !important;
-	font-size: 10.5px !important;
+	font-weight: 650 !important;
+	font-size: 10px !important;
 	text-decoration: none !important;
-	text-shadow: 0 0 12px rgba(94, 200, 232, 0.35) !important;
-	letter-spacing: 0.02em !important;
+	text-shadow: none !important;
+	letter-spacing: 0.01em !important;
 }
 #donation a:hover,
 #DonInfo a:hover {
@@ -334,12 +333,13 @@ button:not(.hidden):hover {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Userinfo (absolute chips like stock BTN)
+ * Userinfo chips — compact top-right cluster (clear wordmark)
+ * Ambient glass was wider than stock; stock anchors left them on the logo.
  * ══════════════════════════════════════════════════════════ */
 #userinfo {
 	position: relative !important;
 	color: var(--btn-text-dim) !important;
-	font-size: 12px !important;
+	font-size: 11px !important;
 }
 #userinfo ul {
 	list-style: none !important;
@@ -348,13 +348,13 @@ button:not(.hidden):hover {
 }
 #userinfo li {
 	display: inline !important;
-	margin: 0 0.15em !important;
-	line-height: 1.4 !important;
+	margin: 0 !important;
+	line-height: 1.25 !important;
 	vertical-align: middle !important;
-	padding: 2px !important;
+	padding: 0 !important;
 }
 #userinfo a { color: var(--btn-text) !important; }
-#userinfo a:hover { color: var(--btn-accent) !important; }
+#userinfo a:hover { color: var(--btn-accent-soft) !important; }
 #userinfo .username {
 	font-weight: 700 !important;
 	color: var(--btn-accent) !important;
@@ -364,80 +364,101 @@ button:not(.hidden):hover {
 	font-variant-numeric: tabular-nums;
 }
 
+/* Shared compact glass for account chips */
+#userinfo_username,
+#userinfo_major,
+#userinfo_stats {
+	background: rgba(8, 12, 18, 0.82) !important;
+	border: 1px solid var(--btn-border) !important;
+	border-radius: 10px !important;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	text-shadow: none !important;
+	font-size: 11px !important;
+	line-height: 1.3 !important;
+	box-sizing: border-box !important;
+}
+
 /*
- * Account chips — stock darknround anchors (absolute over logo)
- *   username: top -145 right 160
- *   major:    top -145 right 65
- *   stats:    top -50  right 65
+ * Top-right stack over dark sky of logo (not over BroadcasTheNet wordmark).
+ * username | major side-by-side; stats full width under them.
  */
 #userinfo_username {
 	position: absolute !important;
-	top: -145px !important;
-	right: 160px !important;
+	top: -132px !important;
+	right: 108px !important;
 	z-index: 1001 !important;
 	display: block !important;
-	padding: 6px 12px !important;
-	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 1.25em !important;
-	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+	padding: 4px 8px !important;
+	min-width: 0 !important;
+	max-width: 120px !important;
 	color: var(--btn-accent) !important;
-	text-shadow: 1px 1px 1px #111 !important;
 }
 #userinfo_username li {
 	display: block !important;
 	text-align: right !important;
-	padding: 0 25px 0 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	line-height: 1.3 !important;
+}
+#userinfo_username .username {
+	font-size: 11.5px !important;
+	letter-spacing: 0.01em !important;
 }
 
 #userinfo_major {
 	position: absolute !important;
-	top: -145px !important;
-	right: 65px !important;
+	top: -132px !important;
+	right: 8px !important;
 	z-index: 1001 !important;
 	display: block !important;
-	padding: 6px 12px !important;
-	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 1.25em !important;
-	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+	padding: 4px 8px !important;
+	min-width: 0 !important;
+	max-width: 92px !important;
 	color: var(--btn-accent) !important;
-	text-shadow: 1px 1px 1px #111 !important;
 }
 #userinfo_major li {
 	display: block !important;
 	text-align: left !important;
-	padding: 0 0 0 25px !important;
+	padding: 0 !important;
+	margin: 0 !important;
 	white-space: nowrap !important;
+	line-height: 1.3 !important;
 }
-#userinfo_major a { font-weight: 700 !important; }
+#userinfo_major a { font-weight: 650 !important; }
 
+/* Stats — single slim bar under the account chips, still clear of wordmark */
 #userinfo_stats {
 	position: absolute !important;
-	top: -50px !important;
-	right: 65px !important;
+	top: -68px !important;
+	right: 8px !important;
 	z-index: 1001 !important;
-	display: inline !important;
-	padding: 6px 12px !important;
-	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 1.25em !important;
-	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
+	display: block !important;
+	padding: 4px 10px !important;
 	color: var(--btn-text-dim) !important;
 	white-space: nowrap !important;
-	text-align: left !important;
+	text-align: right !important;
 	width: auto !important;
-	text-shadow: 1px 1px 1px #111 !important;
+	max-width: calc(100% - 24px) !important;
+	font-size: 10.5px !important;
 }
 #userinfo_stats li {
 	display: inline !important;
-	margin: 0 0.1em !important;
+	margin: 0 0.35em 0 0 !important;
+	padding: 0 !important;
+}
+#userinfo_stats li:last-child {
+	margin-right: 0 !important;
+}
+#userinfo_stats a {
+	color: var(--btn-accent) !important;
+}
+#userinfo_stats .stat,
+#userinfo_stats #pointsStats,
+#userinfo_stats #toplumens {
+	font-weight: 600 !important;
+	color: var(--btn-text) !important;
 }
 
 #userinfo_minor {
@@ -451,6 +472,7 @@ button:not(.hidden):hover {
 	z-index: -1 !important;
 	list-style: none !important;
 	padding: 2px 5px !important;
+	pointer-events: none !important;
 }
 
 /* brackets helpers */
