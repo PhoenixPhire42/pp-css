@@ -32,7 +32,7 @@ html {
   --ptp-row-b: #0a0a0a;
   --ptp-radius: 8px;
   /* Imagine noir wordmark (CDN). */
-  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png");
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/assets/ptp-logo-noir-header.png");
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
@@ -174,6 +174,19 @@ html .tabs__panel {
   background: var(--ptp-surface) !important;
   color: var(--ptp-text) !important;
   border-color: var(--ptp-border) !important;
+}
+
+/* Kill stock blackgrad.png on panel heads */
+html .panel__heading,
+html .forum-post__heading {
+  background: var(--ptp-surface-2) !important;
+  background-image: none !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border-soft) !important;
+}
+html .panel__heading__title {
+  color: var(--ptp-accent-soft) !important;
+  font-weight: 650 !important;
 }
 
 html a {
@@ -349,12 +362,33 @@ html .important_text {
 }
 html .torrent_green,
 html span.green,
-html .important_text_green,
+html .important_text_green {
+  color: #c0c0c0 !important;
+}
+/* Stock ratio ladder is rainbow orange/green — flatten to silver scale */
+html .ratio-00,
+html .ratio-01,
+html .ratio-02,
+html .ratio-03 {
+  color: #6a6a6a !important;
+}
+html .ratio-04,
+html .ratio-05,
+html .ratio-06 {
+  color: #8a8a8a !important;
+}
+html .ratio-07,
+html .ratio-08,
+html .ratio-09 {
+  color: #a8a8a8 !important;
+}
 html .ratio-10,
-html [class*="ratio-"],
+html .ratio-20,
+html .ratio-50,
+html .ratio-infinite,
 html #stats_ratio .user-info-bar__text,
 html #stats_ratio span {
-  color: #c0c0c0 !important;
+  color: #d0d0d0 !important;
 }
 html .freeleech,
 html .torrent_label.tl_free,
@@ -503,6 +537,89 @@ html .save_message {
   color: var(--ptp-text) !important;
 }
 
+/* Stock “collection updates” gold bar → silver */
+html .alert-bar {
+  background-color: #2a2a2a !important;
+  border: 1px solid #4a4a4a !important;
+  color: var(--ptp-text) !important;
+}
+html .alert-bar__link {
+  color: var(--ptp-accent-hot) !important;
+}
+html .alert--warning {
+  background: #1c1c1c !important;
+  border-color: #4a4a4a !important;
+  color: var(--ptp-text) !important;
+}
+html .alert--error {
+  background: #1a1a1a !important;
+  border-color: #555555 !important;
+  color: #d8d8d8 !important;
+}
+html .alert__link,
+html .alert--error .alert__link {
+  color: var(--ptp-accent-soft) !important;
+}
+
+/* Unread inbox / staff / sticky — no red/yellow */
+html .table > tbody > tr.inbox-message--unread > td,
+html tr.inbox-message--unread > td {
+  background-color: #1e1e1e !important;
+  box-shadow: inset 3px 0 0 #888888 !important;
+}
+html .forum-post {
+  background-color: var(--ptp-surface) !important;
+  border-color: var(--ptp-border) !important;
+}
+html .forum-post--highlight {
+  border-color: #6a6a6a !important;
+}
+html .forum-post--unread {
+  border-color: #555555 !important;
+}
+html .forum-post--sticky {
+  border-color: #888888 !important;
+}
+html .forum-post__id--staff-post {
+  color: #d0d0d0 !important;
+}
+
+/* Tabs */
+html .simple-tabs__link,
+html .tabs__bar__link {
+  color: var(--ptp-text-dim) !important;
+}
+html .simple-tabs__link--active,
+html .tabs__bar__link.is-active,
+html .tabs__bar__link--active {
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* Search autocomplete dropdown */
+html .search-bar__results {
+  border-color: var(--ptp-border) !important;
+  background: var(--ptp-bg) !important;
+}
+html .search-bar__results__list-item {
+  background: var(--ptp-bg) !important;
+  border-color: var(--ptp-border) !important;
+}
+html .search-bar__results__list-item--is-highlighted {
+  background: #2a2a2a !important;
+}
+html .search-bar__results__link,
+html .search-bar__results__link:hover {
+  color: var(--ptp-text-dim) !important;
+}
+html .search-bar__results__list-item--is-highlighted > .search-bar__results__link {
+  color: var(--ptp-accent-hot) !important;
+}
+html .search-bar__search-field__input {
+  background-color: var(--ptp-bg) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+}
+
 html ::selection {
   background: rgba(255, 255, 255, 0.22) !important;
   color: #ffffff !important;
@@ -540,10 +657,12 @@ html #monkies-ptp-theme-pill {
   color: #d0d0d0 !important;
 }
 
-/* Soft greyscale on poster thumbs (optional noir cast — light) */
+/* Soft greyscale cast on poster thumbs (light — keeps color readable) */
 html .coverview img,
-html .js-movie-tooltip-triggerer img {
-  filter: grayscale(0.35) contrast(1.05) !important;
+html .js-movie-tooltip-triggerer img,
+html .basic-movie-list__movie__cover-link img,
+html .small-cover-movie-list__movie__link img {
+  filter: grayscale(0.22) contrast(1.04) !important;
 }
 
 /* Login */
