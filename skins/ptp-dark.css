@@ -539,14 +539,52 @@ html .save_message {
   color: var(--ptp-text) !important;
 }
 
-/* Stock “collection updates” gold bar → silver */
+/* Collection updates bar — stock geometry (400px, margin 5px auto) + silver fill */
 html .alert-bar {
+  display: block !important;
+  width: 400px !important;
+  max-width: calc(100% - 16px) !important;
+  margin: 5px auto !important;
+  padding: 0.2em !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  border-radius: 4px !important;
   background-color: #2a2a2a !important;
   border: 1px solid #4a4a4a !important;
   color: var(--ptp-text) !important;
+  float: none !important;
 }
 html .alert-bar__link {
   color: var(--ptp-accent-hot) !important;
+}
+
+/* Main menu stock geometry (750×28, centered) — avoid drift from recolor only */
+html .main-menu,
+html #header .main-menu {
+  width: 750px !important;
+  max-width: 100% !important;
+  height: 28px !important;
+  margin: 5px auto 10px auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  border-radius: 10px !important;
+  opacity: 1 !important;
+}
+html .main-menu__list {
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+html .search-bar {
+  width: 1013px !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  margin-top: 0 !important;
+  padding: 0.6em !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
 }
 html .alert--warning {
   background: #1c1c1c !important;
@@ -665,6 +703,72 @@ html .js-movie-tooltip-triggerer img,
 html .basic-movie-list__movie__cover-link img,
 html .small-cover-movie-list__movie__link img {
   filter: grayscale(0.22) contrast(1.04) !important;
+}
+
+/* Title vs director — title bright, director muted */
+html .basic-movie-list__movie__title-row {
+  font-weight: 700 !important;
+  color: #888888 !important;
+}
+html .basic-movie-list__movie__title-row > a:first-of-type,
+html .basic-movie-list__movie__title-row > a[href*="torrents.php"] {
+  color: #f2f2f2 !important;
+  font-weight: 700 !important;
+}
+html .basic-movie-list__movie__title-row > a:first-of-type:hover,
+html .basic-movie-list__movie__title-row > a[href*="torrents.php"]:hover {
+  color: #ffffff !important;
+}
+html .basic-movie-list__movie__title-row > a:not(:first-of-type),
+html .basic-movie-list__movie__title-row a[href*="artist.php"] {
+  color: #8a8a8a !important;
+  font-weight: 500 !important;
+}
+html .basic-movie-list__movie__title-row a[href*="artist.php"]:hover {
+  color: #c0c0c0 !important;
+}
+html .cover-movie-list__movie__title,
+html .cover-movie-list__movie__title a,
+html .small-cover-movie-list__movie__title a,
+html .huge-movie-list__movie__title,
+html .huge-movie-list__movie__title a,
+html #content .header h2,
+html #content .header h2 a {
+  color: #f2f2f2 !important;
+  font-weight: 700 !important;
+}
+html .huge-movie-list__movie__director-list a,
+html .movie_info a[href*="artist.php"],
+html .panel__body a[href*="artist.php"] {
+  color: #8a8a8a !important;
+  font-weight: 500 !important;
+}
+
+/* Torrent status — stock classes; keep distinct from generic grey links */
+html a.torrent-info-link--user-snatched,
+html .torrent-info-link--user-snatched {
+  color: #c8c8c8 !important; /* bright silver — snatched */
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-seeding,
+html .torrent-info-link--user-seeding {
+  color: #e0e0e0 !important;
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-downloaded,
+html .torrent-info-link--user-downloaded {
+  color: #a8a8a8 !important;
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-leeching,
+html .torrent-info-link--user-leeching {
+  color: #666666 !important;
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-uploaded,
+html .torrent-info-link--user-uploaded {
+  color: #f0f0f0 !important;
+  font-weight: 700 !important;
 }
 
 /* Login */

@@ -91,12 +91,89 @@ html .search-bar {
   filter: none !important;
 }
 
-/* Main menu: recolor + full opacity (stock is 0.75); keep width/height/margin */
+/*
+ * Main menu — stock Dark geometry (dark/style.css):
+ *   width:750px; height:28px; margin:5px auto 10px; text-align:left;
+ *   border-radius:10px; opacity was 0.75 — we keep full opacity for neon.
+ * box-sizing:border-box so 1px neon edge doesn't grow the box past 750.
+ */
 html .main-menu,
 html #header .main-menu {
+  width: 750px !important;
+  max-width: 100% !important;
+  height: 28px !important;
+  margin: 5px auto 10px auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
   opacity: 1 !important;
+  text-align: left !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(94, 231, 255, 0.16) !important;
+  box-shadow: inset 0 0 0 1px rgba(94, 231, 255, 0.06) !important;
+  z-index: 7 !important;
+  font-size: 10pt !important;
+}
+html .main-menu__list {
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  list-style: none !important;
+}
+html .main-menu__item {
+  display: inline !important;
+  padding: 5px !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  list-style: none !important;
+}
+html .main-menu__link {
+  padding: 0.5em !important;
+}
+
+/* Alert — stock: width 400px; margin 5px auto; padding 0.2em; text-align center */
+html .alert-bar {
+  display: block !important;
+  width: 400px !important;
+  max-width: calc(100% - 16px) !important;
+  margin: 5px auto !important;
+  padding: 0.2em !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  border-radius: 4px !important;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 45, 149, 0.22),
+    rgba(94, 231, 255, 0.14)
+  ) !important;
+  border: 1px solid rgba(94, 231, 255, 0.32) !important;
+  color: var(--ptp-text) !important;
+  float: none !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+}
+html .alert-bar__link {
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* Search strip — stock: width 1013px; margin 0 auto; padding 0.6em; text-align center */
+html .search-bar {
+  width: 1013px !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  margin-top: 0 !important;
+  padding: 0.6em !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom: none !important;
+  background-color: var(--ptp-bg-elev) !important;
+  background-image: none !important;
 }
 
 /*
@@ -544,15 +621,7 @@ html .save_message {
   color: var(--ptp-text) !important;
 }
 
-/* Stock “collection updates” gold bar → silver */
-html .alert-bar {
-  background-color: #2a2a2a !important;
-  border: 1px solid #4a4a4a !important;
-  color: var(--ptp-text) !important;
-}
-html .alert-bar__link {
-  color: var(--ptp-accent-hot) !important;
-}
+/* .alert-bar geometry + neon fill set above (stock 400× centered) */
 html .alert--warning {
   background: #1c1c1c !important;
   border-color: #4a4a4a !important;
@@ -697,11 +766,6 @@ html body {
   background-attachment: fixed !important;
 }
 
-html .main-menu {
-  box-shadow: 0 0 0 1px rgba(94, 231, 255, 0.12), 0 0 24px rgba(94, 231, 255, 0.06) !important;
-  border: 1px solid rgba(94, 231, 255, 0.14) !important;
-}
-
 html .main-menu__link:hover,
 html .user-info-bar__link:hover {
   color: var(--ptp-accent-hot) !important;
@@ -720,15 +784,6 @@ html a:hover,
 html a:focus {
   color: var(--ptp-accent-hot) !important;
   text-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
-}
-
-html .alert-bar {
-  background: linear-gradient(90deg, rgba(255, 45, 149, 0.2), rgba(94, 231, 255, 0.12)) !important;
-  border: 1px solid rgba(94, 231, 255, 0.35) !important;
-  color: var(--ptp-text) !important;
-}
-html .alert-bar__link {
-  color: var(--ptp-accent-hot) !important;
 }
 
 /* Ratio ladder: amber → cyan (wet street → neon) */
@@ -797,6 +852,115 @@ html .coverview img,
 html .js-movie-tooltip-triggerer img,
 html .basic-movie-list__movie__cover-link img {
   filter: saturate(0.85) contrast(1.06) brightness(0.96) !important;
+}
+
+/*
+ * Title vs director contrast (browse / search / cover lists)
+ * Stock uses bold title row; both were same cyan via global `a` color.
+ * Title = hot cyan-white; director/artist = muted cool grey-blue.
+ */
+html .basic-movie-list__movie__title-row {
+  font-weight: 700 !important;
+  color: var(--ptp-text) !important;
+}
+/* First link in title row = film name */
+html .basic-movie-list__movie__title-row > a:first-of-type,
+html .basic-movie-list__movie__title-row > a[href*="torrents.php"] {
+  color: #eaf9ff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 18px rgba(94, 231, 255, 0.12) !important;
+}
+html .basic-movie-list__movie__title-row > a:first-of-type:hover,
+html .basic-movie-list__movie__title-row > a[href*="torrents.php"]:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 14px var(--ptp-glow-cyan) !important;
+}
+/* Later links in the row = directors / “by …” */
+html .basic-movie-list__movie__title-row > a:not(:first-of-type),
+html .basic-movie-list__movie__title-row > a[href*="artist.php"],
+html .basic-movie-list__movie__title-row a[href*="artist.php"] {
+  color: #7d93a8 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+html .basic-movie-list__movie__title-row > a:not(:first-of-type):hover,
+html .basic-movie-list__movie__title-row a[href*="artist.php"]:hover {
+  color: #b0c4d4 !important;
+}
+
+/* Cover / small-cover titles */
+html .cover-movie-list__movie__title,
+html .cover-movie-list__movie__title a,
+html .small-cover-movie-list__movie__title,
+html .small-cover-movie-list__movie__title a,
+html .huge-movie-list__movie__title,
+html .huge-movie-list__movie__title a {
+  color: #eaf9ff !important;
+  font-weight: 700 !important;
+}
+html .huge-movie-list__movie__director-list,
+html .huge-movie-list__movie__director-list a {
+  color: #7d93a8 !important;
+  font-weight: 500 !important;
+}
+
+/* Group page title (h2) vs people links in Movie Info */
+html #content .header h2,
+html #content .header h2 a,
+html .page__title,
+html .page__title a {
+  color: #eaf9ff !important;
+  font-weight: 700 !important;
+}
+html .movie_info a[href*="artist.php"],
+html .panel__body a[href*="artist.php"],
+html #content .sidebar a[href*="artist.php"] {
+  color: #8aa0b4 !important;
+  font-weight: 500 !important;
+}
+html .movie_info a[href*="artist.php"]:hover,
+html .panel__body a[href*="artist.php"]:hover {
+  color: #c5d6e6 !important;
+}
+
+/* “by” plain text between title and director */
+html .basic-movie-list__movie__title-row {
+  color: #6a7e90 !important;
+}
+
+/*
+ * Torrent status (stock Dark uses these classes — our global `a` washed them out).
+ * Snatched = distinct amber (not default cyan) so “H.265 / MKV / …” you own stands out.
+ */
+html a.torrent-info-link--user-snatched,
+html .torrent-info-link--user-snatched {
+  color: #ffb060 !important; /* amber — snatched */
+  font-weight: 700 !important;
+  text-shadow: 0 0 12px rgba(255, 154, 60, 0.25) !important;
+}
+html a.torrent-info-link--user-snatched:hover,
+html .torrent-info-link--user-snatched:hover {
+  color: #ffd090 !important;
+}
+html a.torrent-info-link--user-seeding,
+html .torrent-info-link--user-seeding {
+  color: #ff9a3c !important; /* gold — currently seeding */
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-downloaded,
+html .torrent-info-link--user-downloaded {
+  color: #5ed9a0 !important; /* green — downloaded */
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-leeching,
+html .torrent-info-link--user-leeching {
+  color: #ff4d6d !important; /* red-pink — leeching */
+  font-weight: 700 !important;
+}
+html a.torrent-info-link--user-uploaded,
+html .torrent-info-link--user-uploaded {
+  color: #ff2d95 !important; /* magenta — your upload */
+  font-weight: 700 !important;
 }
 
 html .tags a,

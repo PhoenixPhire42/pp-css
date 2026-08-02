@@ -9,7 +9,7 @@
 | phoenix-maclite | `skins/phoenix-maclite.css` | Phoenix MacLite | Apple-inspired light UI (SF blue + soft grey) |
 | orpheus-matrix | `skins/orpheus-matrix.css` | Orpheus Matrix | OPS green-on-black standalone |
 | redacted-synth | `skins/redacted-synth.css` | Redacted Synth | RED synthwave magenta/violet/cyan standalone |
-| broadcasthe-dark | `skins/broadcasthe-dark.css` | BTN Dark Ambient | BroadcasTheNet void + teal aurora + Imagine logo |
+| broadcasthe-dark | `skins/broadcasthe-dark.css` | BTN Dark Ambient | Overlay on darknround; void + teal aurora + Imagine logo |
 | ptp-dark | `skins/ptp-dark.css` | PTP Cinema Noir | PassThePopcorn greyscale on Dark (Default); logo in `skins/assets/ptp-logo-noir-header.png` |
 | ptp-runner | `skins/ptp-runner.css` | PTP Blade Runner | Cyan/magenta/amber neon on Dark; logo `skins/assets/ptp-logo-runner-header.jpg` |
 | thelounge-matrix | `skins/thelounge-matrix.css` | The Lounge Matrix | IRC client Custom Stylesheet |

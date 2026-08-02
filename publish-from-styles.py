@@ -100,15 +100,22 @@ SKINS = {
     "broadcasthe-dark.css": {
         "header": """/*
  * BroadcasTheNet — Dark Ambient
- * Deep void + indigo/teal aurora for broadcasthe.net (BTN).
- * STANDALONE skin with Imagine-generated ambient logo banner.
+ * Overlay on official darknround (layout geometry from stock).
+ * Deep void + indigo/teal aurora + Imagine logo banner.
  * Pure CSS — no userscript required.
+ *
+ * Best: Stylesheet = darknround, then External Append this URL.
+ * If External replaces maincss, geometry is re-asserted so layout still holds.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
 """,
+        "logo_cdn": (
+            "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
+            "/skins/assets/btn-logo-ambient-header.jpg"
+        ),
     },
     "ptp-dark.css": {
         "header": """/*

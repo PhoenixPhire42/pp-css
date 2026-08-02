@@ -4435,85 +4435,10 @@ body#upload a[href*="photobucket"] {
 }
 
 
-/* DNU list — hidden unless html[data-monkies-dnu="show"] (pill / menu toggle)
- * RED markup: centered wrapper div > #dnu_header + intro <p>s + #dnulist
- */
-html[data-monkies-dnu="hide"] body#upload .dnu_list,
-html[data-monkies-dnu="hide"] body#upload .dnu_list.box,
-html[data-monkies-dnu="hide"] body#upload .dnu_list.box.pad,
-html[data-monkies-dnu="hide"] body#upload #dnulist,
-html[data-monkies-dnu="hide"] body#upload #dnu_header,
-html[data-monkies-dnu="hide"] body#upload #showdnu,
-html[data-monkies-dnu="hide"] body#upload h3#dnu_header,
-html[data-monkies-dnu="hide"] body#upload .box:has(#dnulist),
-html[data-monkies-dnu="hide"] body#upload .box:has(#dnu_header),
-html[data-monkies-dnu="hide"] body#upload .box:has(h3#dnu_header),
-html[data-monkies-dnu="hide"] body#upload table#dnulist,
-html[data-monkies-dnu="hide"] body#upload #dnulist_box,
-html[data-monkies-dnu="hide"] body#upload .dnu_box,
-html[data-monkies-dnu="hide"] body#upload #content > div:has(#dnu_header),
-html[data-monkies-dnu="hide"] body#upload #content > div:has(#dnulist),
-html[data-monkies-dnu="hide"] body#upload #content > div:has(> #dnu_header) {
-	display: none !important;
-	visibility: hidden !important;
-	height: 0 !important;
-	max-height: 0 !important;
-	overflow: hidden !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	border: 0 !important;
-}
 
 /* When shown: ensure RED wrapper + table visible */
-html[data-monkies-dnu="show"] body#upload #content > div:has(#dnulist),
-html[data-monkies-dnu="show"] body#upload #content > div:has(#dnu_header) {
-	display: block !important;
-	visibility: visible !important;
-	height: auto !important;
-	max-height: none !important;
-	overflow: visible !important;
-}
 
 /* When shown: restore normal box look (undo forced-hide inline remnants) */
-html[data-monkies-dnu="show"] body#upload .dnu_list,
-html[data-monkies-dnu="show"] body#upload .dnu_list.box.pad {
-	display: block !important;
-	visibility: visible !important;
-	height: auto !important;
-	max-height: none !important;
-	overflow: visible !important;
-	margin: 0 0 16px !important;
-	padding: 12px !important;
-	border: 1px solid var(--border) !important;
-	background: var(--background-accent) !important;
-	border-radius: 4px !important;
-}
-html[data-monkies-dnu="show"] body#upload #dnu_header,
-html[data-monkies-dnu="show"] body#upload h3#dnu_header {
-	display: block !important;
-	visibility: visible !important;
-	height: auto !important;
-	margin: 0 0 8px !important;
-	padding: 0 !important;
-	color: var(--head-text) !important;
-}
-html[data-monkies-dnu="show"] body#upload #showdnu {
-	display: inline !important;
-	visibility: visible !important;
-	height: auto !important;
-}
-html[data-monkies-dnu="show"] body#upload table#dnulist {
-	display: table !important;
-	visibility: visible !important;
-	height: auto !important;
-	max-height: none !important;
-	width: 100% !important;
-	margin-top: 8px !important;
-}
-html[data-monkies-dnu="show"] body#upload table#dnulist.hidden {
-	/* force open even if site left class=hidden */
-	display: table !important;
-}
 
 /* Upload form (create_form / slices) */
 body#upload form.create_form,

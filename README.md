@@ -38,7 +38,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
-| **BTN Dark Ambient** | BroadcasTheNet void + teal aurora (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
+| **BTN Dark Ambient** | BroadcasTheNet void + teal on **darknround** (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
 | **PTP Cinema Noir** | PassThePopcorn greyscale on Dark (Default) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css` |
 | **PTP Blade Runner** | PassThePopcorn cyan/magenta/amber neon on Dark | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-runner.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
@@ -154,19 +154,22 @@ https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/redacted-synt
 
 Self-contained synthwave theme (no monkie userscript). If the site also loads a stock skin, disable or set it to a minimal base so it doesn’t fight the standalone sheet.
 
-### BroadcasTheNet Modern Dark — install (broadcasthe.net)
+### BroadcasTheNet Dark Ambient — install (broadcasthe.net)
 
-BTN swaps out the main skin for **External CSS only**, so this sheet is a **full standalone** theme (layout + chrome + colors).
+**Overlay on official darknround** (same model as PTP Noir on Dark Default).  
+Stock owns geometry (`#wrapper` 980, logo 960×140, menu pull-up, chips); this sheet is palette, aurora body, Imagine logo, glass chrome.
 
 1. Log in → **Edit** (user settings) → stylesheet / external CSS  
-2. Stylesheet base can stay **darknround** (BTN still replaces maincss)  
-3. Set **External stylesheet URL** to **jsDelivr only**:
+2. **Stylesheet:** `darknround` (required base)  
+3. **External stylesheet URL** — jsDelivr only (prefer Append if the site offers it):
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
 ```
 
 4. Save → hard-refresh (⌘⇧R)
+
+If External **replaces** maincss, the sheet still re-asserts darknround sizes so layout holds — but keeping **darknround** loaded is best.
 
 **Do not use `raw.githubusercontent.com`.** GitHub serves that as `text/plain` with `X-Content-Type-Options: nosniff`, so the browser refuses the CSS and you get a white/unstyled page.
 

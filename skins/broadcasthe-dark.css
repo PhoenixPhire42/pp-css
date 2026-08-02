@@ -1,8 +1,11 @@
 /*
  * BroadcasTheNet — Dark Ambient
- * Deep void + indigo/teal aurora for broadcasthe.net (BTN).
- * STANDALONE skin with Imagine-generated ambient logo banner.
+ * Overlay on official darknround (layout geometry from stock).
+ * Deep void + indigo/teal aurora + Imagine logo banner.
  * Pure CSS — no userscript required.
+ *
+ * Best: Stylesheet = darknround, then External Append this URL.
+ * If External replaces maincss, geometry is re-asserted so layout still holds.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
  * Use jsDelivr (Content-Type: text/css):
@@ -41,18 +44,12 @@
 	--btn-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(94, 200, 232, 0.04);
 	--btn-shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.4);
 	--btn-width: 980px;
-	--btn-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@btn-ambient-v2/skins/assets/btn-logo-ambient-header.jpg");
+	--btn-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/btn-logo-ambient-header.jpg");
 }
 
 /* ══════════════════════════════════════════════════════════
- * Reset / base (stock global.css is minimal; we own chrome)
+ * Base — colors / aurora only (darknround owns font-size 8pt shell)
  * ══════════════════════════════════════════════════════════ */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
 html {
 	color-scheme: dark;
 	width: 100%;
@@ -64,11 +61,12 @@ body {
 	margin: 0 !important;
 	padding: 0 !important;
 	font-family: var(--btn-font) !important;
-	font-size: 13px !important;
-	line-height: 1.55 !important;
+	/* Keep readable; stock is 8pt — slight bump is intentional polish */
+	font-size: 12px !important;
+	line-height: 1.5 !important;
 	color: var(--btn-text) !important;
 	background-color: var(--btn-bg) !important;
-	/* layered ambient aurora + soft void */
+	/* layered ambient aurora — replaces darknround shadow.png body bg */
 	background-image:
 		radial-gradient(900px 420px at 18% -6%, rgba(94, 200, 232, 0.11), transparent 58%),
 		radial-gradient(780px 380px at 92% 4%, rgba(110, 90, 210, 0.12), transparent 55%),
@@ -177,60 +175,63 @@ button:not(.hidden):hover {
 .r20, .r50, .r99 { color: var(--btn-ok) !important; }
 
 /* ══════════════════════════════════════════════════════════
- * Shell
+ * Shell — stock darknround sizes, ambient surfaces
  * ══════════════════════════════════════════════════════════ */
 #wrapper {
-	width: var(--btn-width) !important;
+	width: 980px !important;
 	max-width: calc(100vw - 16px) !important;
-	margin: 10px auto 28px !important;
-	padding: 10px 12px 22px !important;
+	margin: 5px auto !important;
+	padding: 0 5px !important;
+	/* recolor stock t2.png shell */
 	background:
-		linear-gradient(165deg, rgba(16, 22, 36, 0.72) 0%, rgba(8, 10, 16, 0.88) 55%, rgba(10, 12, 20, 0.92) 100%) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 18px !important;
+		linear-gradient(165deg, rgba(16, 22, 36, 0.88) 0%, rgba(8, 10, 16, 0.94) 55%, rgba(10, 12, 20, 0.96) 100%) !important;
+	border: 4px solid #0c1018 !important;
+	border-radius: 0.75em !important;
 	box-shadow:
 		var(--btn-shadow),
 		inset 0 1px 0 rgba(160, 200, 255, 0.05) !important;
-	backdrop-filter: blur(10px) saturate(1.1);
-	-webkit-backdrop-filter: blur(10px) saturate(1.1);
 }
 
 #header {
-	width: 100% !important;
-	max-width: 960px !important;
+	width: 960px !important;
+	max-width: 100% !important;
 	margin: 0 auto !important;
 	padding: 0 !important;
 	position: relative !important;
-	min-height: 160px !important;
+	/* stock: no min-height — chips sit absolute over logo */
+	min-height: 0 !important;
 }
 
 #content {
-	width: 100% !important;
-	max-width: 960px !important;
-	margin: 12px auto 0 !important;
+	width: 960px !important;
+	max-width: 100% !important;
+	margin: 10px auto !important;
 	overflow: hidden !important;
 	position: relative !important;
 }
 
 #footer {
-	width: 100% !important;
-	max-width: 960px !important;
-	margin: 28px auto 0 !important;
-	padding: 16px 8px 8px !important;
+	width: 960px !important;
+	max-width: 100% !important;
+	margin: 40px auto 0 !important;
+	padding: 1em 0 !important;
 	text-align: center !important;
 	color: var(--btn-text-mute) !important;
-	font-size: 11.5px !important;
+	font-size: 11px !important;
 	border-top: 1px solid var(--btn-border) !important;
 }
 #footer a { color: var(--btn-text-dim) !important; }
 #footer a:hover { color: var(--btn-accent) !important; }
 
-/* Logo banner — Imagine dark-ambient rebrand */
+/*
+ * Logo banner — stock 960×140 geometry; Imagine ambient art.
+ * darknround uses head.png; we swap image only.
+ */
 #logo {
 	width: 960px !important;
 	max-width: 100% !important;
-	height: 150px !important;
-	margin: 0 auto 12px !important;
+	height: 140px !important;
+	margin: 0 0 10px 7px !important; /* stock #logo,#menu { margin-left: 7px } */
 	background-color: #020308 !important;
 	background-image:
 		radial-gradient(ellipse 70% 90% at 28% 50%, rgba(94, 200, 232, 0.10), transparent 60%),
@@ -239,7 +240,7 @@ button:not(.hidden):hover {
 	background-repeat: no-repeat !important;
 	background-position: center center, center center, center center !important;
 	background-size: cover, cover, cover !important;
-	border-radius: var(--btn-radius) !important;
+	border-radius: var(--btn-radius-sm) !important;
 	border: 1px solid var(--btn-border) !important;
 	box-shadow:
 		0 0 40px rgba(94, 200, 232, 0.08),
@@ -257,31 +258,33 @@ button:not(.hidden):hover {
 }
 #logo a {
 	display: block !important;
-	width: 100% !important;
-	height: 150px !important;
+	width: 960px !important;
+	max-width: 100% !important;
+	height: 140px !important;
 	border: none !important;
 	position: relative !important;
 	z-index: 1 !important;
 }
 
 /*
- * Donation — left side of logo ONLY.
- * Never share the top-right chip column with username/major (they collide).
+ * Donation — stock darknround: top 75px, right -30px (on logo).
+ * Glass chip polish only; keep stock anchor so chips don't collide.
  */
 #donation {
 	position: absolute !important;
-	display: block !important;
+	display: inline !important;
 	width: auto !important;
 	min-width: 0 !important;
 	height: auto !important;
-	top: 12px !important;
-	left: 14px !important;
-	right: auto !important;
-	z-index: 20 !important;
+	top: 75px !important;
+	right: -30px !important;
+	left: auto !important;
+	z-index: 1002 !important;
 	font-size: 10.5px !important;
 	text-align: center !important;
-	padding: 0 !important;
+	padding: 0.4em 0 !important;
 	pointer-events: auto !important;
+	color: var(--btn-text-dim) !important;
 }
 #donation > div {
 	position: relative !important;
@@ -361,85 +364,93 @@ button:not(.hidden):hover {
 	font-variant-numeric: tabular-nums;
 }
 
-/* Account chips — exclusive top-right of logo (donation is top-left) */
+/*
+ * Account chips — stock darknround anchors (absolute over logo)
+ *   username: top -145 right 160
+ *   major:    top -145 right 65
+ *   stats:    top -50  right 65
+ */
 #userinfo_username {
 	position: absolute !important;
-	top: -148px !important;
-	right: 124px !important;
-	z-index: 30 !important;
+	top: -145px !important;
+	right: 160px !important;
+	z-index: 1001 !important;
 	display: block !important;
-	padding: 7px 12px !important;
+	padding: 6px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 14px !important;
+	border-radius: 1.25em !important;
 	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-accent) !important;
+	text-shadow: 1px 1px 1px #111 !important;
 }
 #userinfo_username li {
 	display: block !important;
 	text-align: right !important;
-	padding: 1px 6px 1px 0 !important;
+	padding: 0 25px 0 0 !important;
 }
 
 #userinfo_major {
 	position: absolute !important;
-	top: -148px !important;
-	right: 12px !important;
-	z-index: 30 !important;
+	top: -145px !important;
+	right: 65px !important;
+	z-index: 1001 !important;
 	display: block !important;
-	padding: 7px 12px !important;
-	min-width: 100px !important;
+	padding: 6px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 14px !important;
+	border-radius: 1.25em !important;
 	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-accent) !important;
+	text-shadow: 1px 1px 1px #111 !important;
 }
 #userinfo_major li {
 	display: block !important;
 	text-align: left !important;
-	padding: 1px 0 1px 6px !important;
+	padding: 0 0 0 25px !important;
 	white-space: nowrap !important;
 }
 #userinfo_major a { font-weight: 700 !important; }
 
-/* Stats — bottom-right of logo */
 #userinfo_stats {
 	position: absolute !important;
-	top: -42px !important;
-	right: 12px !important;
-	z-index: 25 !important;
-	display: inline-block !important;
+	top: -50px !important;
+	right: 65px !important;
+	z-index: 1001 !important;
+	display: inline !important;
 	padding: 6px 12px !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: 14px !important;
+	border-radius: 1.25em !important;
 	box-shadow: var(--btn-shadow-soft), inset 0 1px 0 rgba(160, 200, 255, 0.06) !important;
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
 	color: var(--btn-text-dim) !important;
 	white-space: nowrap !important;
+	text-align: left !important;
+	width: auto !important;
+	text-shadow: 1px 1px 1px #111 !important;
 }
 #userinfo_stats li {
 	display: inline !important;
-	margin: 0 0.35em !important;
+	margin: 0 0.1em !important;
 }
 
 #userinfo_minor {
 	position: absolute !important;
-	top: -118px !important;
+	top: -119px !important;
 	left: 50% !important;
-	margin-left: -480px !important;
-	width: 960px !important;
+	margin-left: -492px !important;
+	width: 975px !important;
 	text-align: right !important;
-	font-size: 11px !important;
-	z-index: 1 !important;
+	font-size: 8pt !important;
+	z-index: -1 !important;
 	list-style: none !important;
-	padding: 0 !important;
+	padding: 2px 5px !important;
 }
 
 /* brackets helpers */
@@ -454,27 +465,29 @@ button:not(.hidden):hover {
  * "#menu ul.potato-menu-group" or the root bar becomes a dropdown.
  * Submenu hide/show is in global.css (visibility/opacity + :hover).
  * ══════════════════════════════════════════════════════════ */
+/* Stock #menu: 960 wide, margin-top -26px, line-height 30, padding 2px */
 #menu {
 	width: 960px !important;
 	max-width: 100% !important;
-	margin: -6px auto 0 !important;
-	padding: 4px 8px !important;
+	margin: -26px 0 0 7px !important;
+	padding: 2px !important;
 	text-align: center !important;
 	background: var(--btn-surface) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: var(--btn-radius) !important;
+	border-radius: 0.875em !important;
 	box-shadow:
 		var(--btn-shadow-soft),
 		inset 0 1px 0 rgba(160, 200, 255, 0.05),
 		0 0 24px rgba(94, 200, 232, 0.04) !important;
 	backdrop-filter: blur(14px) saturate(1.15);
 	-webkit-backdrop-filter: blur(14px) saturate(1.15);
-	font-size: 13px !important;
+	font-size: 1em !important;
 	line-height: 30px !important;
 	list-style: none !important;
 	position: relative !important;
 	z-index: 100 !important;
 	overflow: visible !important;
+	text-shadow: 1px 1px 1px #111 !important;
 }
 
 /* Root bar only */
@@ -519,16 +532,17 @@ ul.potato-menu > li.potato-menu-item {
 	border: none !important;
 }
 
+/* Stock potato top links: height/line-height 30, padding 0 20px */
 ul.potato-menu > li.potato-menu-item > a {
 	display: block !important;
-	padding: 0 14px !important;
-	height: 34px !important;
-	line-height: 34px !important;
+	padding: 0 20px !important;
+	height: 30px !important;
+	line-height: 30px !important;
 	overflow: hidden !important;
 	white-space: nowrap !important;
-	color: var(--btn-text-dim) !important;
+	color: var(--btn-text) !important;
 	font-weight: 700 !important;
-	font-size: 12.5px !important;
+	font-size: inherit !important;
 	border-radius: var(--btn-radius-sm) !important;
 	outline: 0 !important;
 	vertical-align: middle !important;
@@ -545,9 +559,10 @@ ul.potato-menu > li.potato-menu-hover > a {
 
 /* Nested dropdown panels ONLY (not #menu1 itself) */
 ul.potato-menu > li > ul.potato-menu-group,
+/* Nested dropdown panels ONLY (not #menu1). Stock width 160. */
 ul.potato-menu ul.potato-menu-group {
 	margin: 0 !important;
-	padding: 8px !important;
+	padding: 0 !important;
 	position: absolute !important;
 	z-index: 1000 !important;
 	left: 0 !important;
@@ -558,7 +573,7 @@ ul.potato-menu ul.potato-menu-group {
 	box-shadow: var(--btn-shadow), 0 0 28px rgba(94, 200, 232, 0.08) !important;
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
-	width: 190px !important;
+	width: 160px !important;
 	text-align: left !important;
 	list-style: none !important;
 	/* reinforce global.css hide; hover reveals */
@@ -585,14 +600,14 @@ ul.potato-menu ul.potato-menu-group > li.potato-menu-item {
 
 ul.potato-menu ul.potato-menu-group > li.potato-menu-item > a {
 	display: block !important;
-	width: auto !important;
+	width: 140px !important;
 	height: auto !important;
 	line-height: 1.35 !important;
-	padding: 8px 10px !important;
+	padding: 0 10px !important;
 	color: var(--btn-text-dim) !important;
 	font-weight: 600 !important;
-	font-size: 12px !important;
-	border-radius: 5px !important;
+	font-size: inherit !important;
+	border-radius: 0 !important;
 	overflow: visible !important;
 	background: transparent !important;
 }
@@ -605,11 +620,12 @@ ul.potato-menu ul.potato-menu-group > li.potato-menu-item > a:hover {
 /* ══════════════════════════════════════════════════════════
  * Search bars (inline row under nav)
  * ══════════════════════════════════════════════════════════ */
+/* Stock searchbars: 945 wide */
 #searchbars {
-	width: 960px !important;
+	width: 945px !important;
 	max-width: 100% !important;
-	margin: 8px auto 4px !important;
-	padding: 8px 4px !important;
+	margin: 0 auto !important;
+	padding: 4px 0 !important;
 	text-align: center !important;
 	position: relative !important;
 	z-index: 50 !important;
@@ -730,26 +746,50 @@ div.head,
 	border: none !important;
 }
 
-/* Home layout helpers */
+/*
+ * Columns — stock darknround:
+ *   .main_column 590 float left (default pages)
+ *   home: .main_column float right, .sidebar float left
+ *   #content .home .main_column 590
+ */
 .main_column {
 	float: left !important;
-	width: 640px !important;
+	width: 590px !important;
 	max-width: 100% !important;
+	margin: 0 0 10px 0 !important;
 }
+/* Stock default: sidebar right 250 */
 .sidebar {
 	float: right !important;
-	width: 300px !important;
+	width: 250px !important;
 	max-width: 100% !important;
+	height: 100% !important;
 }
-#content .home .main_column { width: 640px !important; }
-#content .home .sidebar { width: 300px !important; }
+/* Home index: stock flips — sidebar left, main right */
+.home .main_column {
+	float: right !important;
+	margin: 0 0 10px 0 !important;
+}
+.home .sidebar {
+	float: left !important;
+}
+#content .home .main_column { width: 590px !important; }
+#content .home .sidebar { width: auto !important; }
+/* Stock home heads sit absolute over boxes (margin-top -22) */
 #content .home .box {
-	margin: 12px 5px 10px !important;
+	margin: 42px 5px 10px !important;
 }
 #content .home .head {
-	position: static !important;
-	margin-top: 0 !important;
-	width: auto !important;
+	position: absolute !important;
+	margin-top: -22px !important;
+	border: 1px solid var(--btn-border) !important;
+	border-radius: 6px 6px 0 0 !important;
+}
+#content .home .main_column .head {
+	width: 570px !important;
+}
+#content .home .sidebar .head {
+	width: 230px !important;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1102,43 +1142,43 @@ hr {
 	color: var(--btn-text);
 }
 
-/* Slightly tighter search row under nav */
-#searchbars {
-	margin-top: 6px !important;
-	margin-bottom: 2px !important;
-}
-
-/* Menu sit closer to logo, less gap to content */
-#menu {
-	margin-top: -4px !important;
-}
-#content {
-	margin-top: 10px !important;
-}
-
-/* Responsive-ish */
+/* Responsive-ish — only when viewport is under stock 980 shell */
 @media (max-width: 1000px) {
 	#wrapper {
 		width: auto !important;
 		margin: 4px !important;
+		padding: 0 4px !important;
 	}
-	#header, #content, #footer, #menu, #logo {
+	#header, #content, #footer, #menu, #logo, #searchbars {
 		width: 100% !important;
 		max-width: 100% !important;
+		margin-left: 0 !important;
 	}
+	#logo a { width: 100% !important; }
+	#menu { margin-top: -12px !important; }
 	#userinfo_username,
 	#userinfo_major,
-	#userinfo_stats {
+	#userinfo_stats,
+	#donation {
 		position: static !important;
 		display: block !important;
 		margin: 6px 0 !important;
 		right: auto !important;
 		top: auto !important;
+		left: auto !important;
 	}
-	#header { min-height: 0 !important; }
 	.main_column,
-	.sidebar {
+	.sidebar,
+	.home .main_column,
+	.home .sidebar {
 		float: none !important;
 		width: 100% !important;
 	}
+	#content .home .main_column .head,
+	#content .home .sidebar .head {
+		position: static !important;
+		margin-top: 0 !important;
+		width: auto !important;
+	}
+	#content .home .box { margin: 12px 5px 10px !important; }
 }
