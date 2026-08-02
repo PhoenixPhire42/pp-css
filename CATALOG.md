@@ -10,6 +10,7 @@
 | orpheus-matrix | `skins/orpheus-matrix.css` | Orpheus Matrix | OPS green-on-black standalone |
 | redacted-synth | `skins/redacted-synth.css` | Redacted Synth | RED synthwave magenta/violet/cyan standalone |
 | broadcasthe-dark | `skins/broadcasthe-dark.css` | BTN Dark Ambient | BroadcasTheNet void + teal aurora + Imagine logo |
+| ptp-dark | `skins/ptp-dark.css` | PTP Cinema Noir | PassThePopcorn greyscale on Dark (Default); logo in `skins/assets/ptp-logo-noir-header.png` |
 | thelounge-matrix | `skins/thelounge-matrix.css` | The Lounge Matrix | IRC client Custom Stylesheet |
 
 Add a row when you ship a new skin. Keep ids stable for URL permanence.

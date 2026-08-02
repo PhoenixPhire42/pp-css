@@ -1,11 +1,13 @@
 # Phoenix Project (PP) skins
 
-Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, BroadcasTheNet (BTN), and related clients.
+Pure CSS themes for phoenixproject.app, Orpheus Network, Redacted, BroadcasTheNet (BTN),
+PassThePopcorn, and related clients.
 
 - No userscript required  
 - Install via the site’s **External stylesheet URL** (or Custom Stylesheet paste)  
 - PP base stylesheet: **ApolloStage** (recommended for PP skins)  
-- OPS Matrix and RED Synth are **self-contained** (no stock skin required)
+- OPS Matrix and RED Synth are **self-contained** (no stock skin required)  
+- **PTP Cinema Noir** overlays official **Dark (Default)** only
 
 Also includes a **The Lounge** Matrix theme (paste into Custom Stylesheet).
 
@@ -37,6 +39,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **BTN Dark Ambient** | BroadcasTheNet void + teal aurora (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
+| **PTP Cinema Noir** | PassThePopcorn greyscale on Dark (Default) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -68,6 +71,32 @@ Prefer a version tag when available:
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
 ```
+
+### PTP Cinema Noir — install (passthepopcorn.me)
+
+Greyscale / pure-black overlay. **Requires** official **Dark (Default)** base.
+
+1. Log in → **Edit** → **Stylesheet**
+2. Official stylesheet: **Dark (Default)**
+3. Load this sheet via custom/external CSS (or paste). Prefer **jsDelivr**:
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
+```
+
+Versioned (recommended after tag):
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/ptp-dark.css
+```
+
+Logo asset (if you only need the wordmark):
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png
+```
+
+Stock owns geometry (logo 700×124, page 1013px). This sheet is palette + logo only.
 
 ### Orpheus Matrix — install (orpheus.network)
 

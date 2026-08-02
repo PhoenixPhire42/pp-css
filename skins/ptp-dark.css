@@ -1,0 +1,560 @@
+/*
+ * PassThePopcorn — Cinema Noir
+ * Pure greys + black overlay on official Dark (Default).
+ * Base: User → Edit Stylesheet → Dark (Default). Then load this sheet
+ * (external/custom CSS field, or paste). Pure CSS — no userscript required.
+ *
+ * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
+ *
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). raw.githubusercontent.com is text/plain.
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
+ */
+html {
+  color-scheme: dark;
+  --ptp-bg: #050505;
+  --ptp-bg-elev: #0c0c0c;
+  --ptp-surface: #121212;
+  --ptp-surface-2: #1a1a1a;
+  --ptp-border: #2a2a2a;
+  --ptp-border-soft: rgba(255, 255, 255, 0.08);
+  --ptp-text: #e6e6e6;
+  --ptp-text-dim: #9a9a9a;
+  --ptp-text-mute: #666666;
+  --ptp-accent: #c8c8c8;
+  --ptp-accent-hot: #f0f0f0;
+  --ptp-accent-soft: #d8d8d8;
+  --ptp-link: #b0b0b0;
+  --ptp-link-hover: #f2f2f2;
+  --ptp-ok: #a8a8a8;
+  --ptp-warn: #b8b8b8;
+  --ptp-danger: #8a8a8a;
+  --ptp-row-a: #101010;
+  --ptp-row-b: #0a0a0a;
+  --ptp-radius: 8px;
+  /* Imagine noir wordmark (CDN). */
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png");
+}
+
+/* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
+html,
+html body {
+  background: var(--ptp-bg) !important;
+  background-image: none !important;
+  color: var(--ptp-text) !important;
+}
+
+html #wrapper {
+  background: transparent !important;
+  color: var(--ptp-text) !important;
+}
+
+html #content,
+html .page__main-content,
+html #page,
+html #maincontent,
+html .thin {
+  background: transparent !important;
+  color: var(--ptp-text) !important;
+}
+
+html .main_column,
+html .sidebar {
+  background: transparent !important;
+  color: var(--ptp-text) !important;
+}
+
+/*
+ * BEM chrome — recolor only.
+ * Dark (Default) owns geometry:
+ *   .site-logo / .site-logo__link → 700×124, top:20px, margin 0 auto 20px
+ *   .main-menu → 750×28, margin 5px auto 10px
+ *   .page__main-content → width 1013px
+ *   body → max-width 1013px
+ */
+html .header,
+html .user-info-bar,
+html .main-menu,
+html .search-bar {
+  background-color: var(--ptp-bg-elev) !important;
+  background-image: none !important; /* kill stock blackgrad.png */
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Main menu: recolor + full opacity (stock is 0.75); keep width/height/margin */
+html .main-menu,
+html #header .main-menu {
+  background-color: var(--ptp-bg-elev) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+/*
+ * Logo — same element + box as Dark (Default):
+ *   .site-logo { top:20px; width:700px; height:124px; margin:0 auto 20px;
+ *                background: url(images/logo-new.png) top center no-repeat }
+ *   .site-logo__link { width:700px; height:124px; margin-top:8px }
+ * Only the background image is swapped (Imagine noir wordmark).
+ */
+html .site-logo,
+html #header .site-logo,
+html div.site-logo {
+  position: relative !important;
+  top: 20px !important;
+  width: 700px !important;
+  height: 124px !important;
+  max-width: 700px !important;
+  margin: 0 auto 20px auto !important;
+  padding: 0 !important;
+  /* paint on parent like stock dark/style.css (not a second wider plate) */
+  background-color: transparent !important;
+  background-image: var(--ptp-logo) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  text-align: center !important;
+}
+
+html .site-logo::before,
+html .site-logo::after,
+html .site-logo__link::before,
+html .site-logo__link::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+/* Hit target only — same 700×124 as stock; no second background plate */
+html .site-logo__link,
+html a.site-logo__link,
+html #header a.site-logo__link {
+  display: block !important;
+  width: 700px !important;
+  height: 124px !important;
+  max-width: 700px !important;
+  margin-top: 8px !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  color: transparent !important;
+  background: transparent !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  border-radius: 0 !important;
+}
+
+html .main-menu__link,
+html .user-info-bar__link,
+html .tabs__bar__link,
+html .search-bar a {
+  color: var(--ptp-accent) !important;
+  text-shadow: none !important;
+  background-image: none !important;
+}
+html .main-menu__link:hover,
+html .user-info-bar__link:hover {
+  color: var(--ptp-accent-hot) !important;
+}
+
+html .panel,
+html .panel__body,
+html .tabs__panel {
+  background: var(--ptp-surface) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html a {
+  color: var(--ptp-link) !important;
+  text-decoration: none !important;
+}
+html a:hover,
+html a:focus {
+  color: var(--ptp-link-hover) !important;
+}
+html a:visited {
+  color: #888888 !important;
+}
+
+/* ── Header / menu / userinfo ─────────────────────────── */
+html #header,
+html #menu,
+html #menu > ul,
+html #menu li,
+html #userinfo,
+html #userinfo_username,
+html #userinfo_minor,
+html #userinfo_major,
+html #userinfo_stats,
+html #searchbars,
+html #searchbars > ul,
+html #searchbars li,
+html #alerts,
+html .alertbar {
+  background-color: var(--ptp-bg-elev) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+html #header {
+  border-bottom: 1px solid var(--ptp-border-soft) !important;
+}
+
+/* Text links only — never bare #header a (logo link) */
+html #menu a,
+html #userinfo a,
+html #userinfo_major a,
+html #userinfo_stats a,
+html #header .main-menu a,
+html #header .user-info-bar a {
+  color: var(--ptp-accent) !important;
+  background-color: transparent !important;
+  text-shadow: none !important;
+}
+html #menu a:hover,
+html #userinfo a:hover,
+html #header .user-info-bar a:hover {
+  color: var(--ptp-accent-hot) !important;
+}
+
+html #menu ul ul,
+html #menu li ul {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55) !important;
+}
+html #menu ul ul a {
+  color: var(--ptp-text) !important;
+}
+html #menu ul ul a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--ptp-accent-hot) !important;
+}
+
+html #logo,
+html #logo a {
+  background-color: transparent !important;
+  filter: none !important;
+}
+
+html #extra1,
+html #extra2,
+html #extra3,
+html #extra4,
+html #extra5,
+html #extra6 {
+  opacity: 0.2 !important;
+  filter: grayscale(1) !important;
+}
+
+/* ── Boxes / panels ───────────────────────────────────── */
+html .box,
+html .head,
+html .colhead,
+html .colhead_dark,
+html .box > .head,
+html .pad,
+html .body,
+html .sidebar .box,
+html .main_column .box {
+  background: var(--ptp-surface) !important;
+  background-image: none !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+  box-shadow: none !important;
+}
+
+html .head,
+html .box > .head,
+html .colhead,
+html .colhead_dark {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border-soft) !important;
+  font-weight: 650 !important;
+}
+
+html .box {
+  border-radius: var(--ptp-radius) !important;
+  border: 1px solid var(--ptp-border) !important;
+  overflow: hidden;
+}
+
+/* ── Tables ───────────────────────────────────────────── */
+html table,
+html table.torrent_table,
+html table.forum_index,
+html table.request_table,
+html table.collage_table,
+html table.border,
+html .torrent_table {
+  background: var(--ptp-surface) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html tr.colhead,
+html tr.colhead_dark,
+html .colhead td,
+html .colhead th,
+html th {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html tr.rowa,
+html tr.rowa td {
+  background: var(--ptp-row-a) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+}
+html tr.rowb,
+html tr.rowb td {
+  background: var(--ptp-row-b) !important;
+  color: var(--ptp-text) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html tr.rowa:hover td,
+html tr.rowb:hover td,
+html table.torrent_table tr:hover > td {
+  background: #1e1e1e !important;
+}
+
+html td,
+html th {
+  border-color: var(--ptp-border) !important;
+}
+
+html .torrent_red,
+html span.red,
+html .important_text {
+  color: #bbbbbb !important;
+}
+html .torrent_green,
+html span.green,
+html .important_text_green,
+html .ratio-10,
+html [class*="ratio-"],
+html #stats_ratio .user-info-bar__text,
+html #stats_ratio span {
+  color: #c0c0c0 !important;
+}
+html .freeleech,
+html .torrent_label.tl_free,
+html span.freeleech {
+  color: var(--ptp-ok) !important;
+}
+
+/* ── Forms ────────────────────────────────────────────── */
+html input[type="text"],
+html input[type="password"],
+html input[type="search"],
+html input[type="email"],
+html input[type="number"],
+html input[type="url"],
+html input:not([type]),
+html select,
+html textarea {
+  background: var(--ptp-bg) !important;
+  color: var(--ptp-text) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+html input:focus,
+html select:focus,
+html textarea:focus {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  outline: none !important;
+}
+html input::placeholder,
+html textarea::placeholder {
+  color: var(--ptp-text-mute) !important;
+}
+
+html button,
+html input[type="submit"],
+html input[type="button"],
+html .button,
+html a.brackets {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 6px !important;
+  text-shadow: none !important;
+}
+html button:hover,
+html input[type="submit"]:hover,
+html input[type="button"]:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* ── Page chrome ──────────────────────────────────────── */
+html h1,
+html h2,
+html h3,
+html h4,
+html .header h2,
+html #content h2 {
+  color: var(--ptp-accent-soft) !important;
+  text-shadow: none !important;
+}
+
+html .linkbox,
+html .linkbox a {
+  color: var(--ptp-link) !important;
+}
+html .linkbox a:hover {
+  color: var(--ptp-link-hover) !important;
+}
+
+html .tags a,
+html .torrent_tags a,
+html #torrent_tags a,
+html a[href*="taglist="] {
+  color: var(--ptp-text-dim) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--ptp-border-soft) !important;
+  border-radius: 999px !important;
+  padding: 1px 8px !important;
+  margin: 1px 2px !important;
+  display: inline-block !important;
+}
+html .tags a:hover,
+html .torrent_tags a:hover {
+  color: var(--ptp-accent-hot) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+html .header,
+html #content .header {
+  background: transparent !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html #footer,
+html #foot {
+  background: var(--ptp-bg-elev) !important;
+  color: var(--ptp-text-mute) !important;
+  border-top: 1px solid var(--ptp-border-soft) !important;
+}
+
+html .box_image,
+html .box_albumart,
+html .cover_art,
+html .sidebar img {
+  background: var(--ptp-bg) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html .box_image img,
+html .cover_art img,
+html .sidebar .box img {
+  border-radius: 6px !important;
+  max-width: 100% !important;
+}
+
+html .rating,
+html .ratings,
+html .movie_info {
+  color: var(--ptp-text-dim) !important;
+}
+
+html .spoiler,
+html .hidden,
+html blockquote,
+html .bbcode blockquote {
+  background: var(--ptp-bg) !important;
+  border-color: var(--ptp-border) !important;
+  color: var(--ptp-text-dim) !important;
+}
+
+html .forum_post,
+html .post_container,
+html .body .post {
+  background: var(--ptp-surface) !important;
+  border-color: var(--ptp-border) !important;
+}
+
+html .alertbar,
+html .alert,
+html .error_message,
+html .save_message {
+  background: var(--ptp-surface-2) !important;
+  border: 1px solid var(--ptp-border) !important;
+  color: var(--ptp-text) !important;
+}
+
+html ::selection {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+html ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+html ::-webkit-scrollbar-track {
+  background: var(--ptp-bg);
+}
+html ::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 6px;
+}
+html ::-webkit-scrollbar-thumb:hover {
+  background: #484848;
+}
+
+/* Taste? + Cinema pill — greyscale */
+html #monkies-ptp-taste-btn {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: linear-gradient(180deg, #2a2a2a, #121212) !important;
+  color: #e0e0e0 !important;
+}
+html #monkies-ptp-taste-panel {
+  background: rgba(10, 10, 10, 0.97) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: var(--ptp-text) !important;
+}
+html #monkies-ptp-theme-pill {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: rgba(12, 12, 12, 0.94) !important;
+  color: #d0d0d0 !important;
+}
+
+/* Soft greyscale on poster thumbs (optional noir cast — light) */
+html .coverview img,
+html .js-movie-tooltip-triggerer img {
+  filter: grayscale(0.35) contrast(1.05) !important;
+}
+
+/* Login */
+html body#login,
+html body#login #wrapper,
+html body#login #content {
+  background: var(--ptp-bg) !important;
+  color: var(--ptp-text) !important;
+}
+html body#login .box,
+html body#login form {
+  background: var(--ptp-surface) !important;
+  border-color: var(--ptp-border) !important;
+}

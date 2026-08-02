@@ -110,6 +110,27 @@ SKINS = {
  */
 """,
     },
+    "ptp-dark.css": {
+        "header": """/*
+ * PassThePopcorn — Cinema Noir
+ * Pure greys + black overlay on official Dark (Default).
+ * Base: User → Edit Stylesheet → Dark (Default). Then load this sheet
+ * (external/custom CSS field, or paste). Pure CSS — no userscript required.
+ *
+ * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
+ *
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). raw.githubusercontent.com is text/plain.
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
+ */
+""",
+        # Monkie gates on html[data-monkies-ptp-skin="dark"]; ungate for public.
+        "rewrite_skin_attr": "dark",
+        # Swap monkie-dev asset URLs for public CDN.
+        "logo_cdn": (
+            "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
+            "/skins/assets/ptp-logo-noir-header.png"
+        ),
+    },
 }
 
 
@@ -173,13 +194,40 @@ def rewrite_monkies_skin_attr(css: str, skin: str) -> str:
     return pat.sub("html", css)
 
 
-def build_one(src: Path, dest: Path, header: str, rewrite_skin_attr: str | None = None) -> None:
+def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
+    """Replace monkie-dev :8000 / relative asset logo urls with public CDN."""
+    if not logo_cdn:
+        return css
+    # --ptp-logo: url("http://127.0.0.1:8000/styles/assets/ptp-logo-noir-header.png?v=16");
+    css = re.sub(
+        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/ptp-logo-noir-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        f'url("{logo_cdn}")',
+        css,
+        flags=re.I,
+    )
+    css = re.sub(
+        r'url\(\s*["\']?(?:\.\./)*styles/assets/ptp-logo-noir-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        f'url("{logo_cdn}")',
+        css,
+        flags=re.I,
+    )
+    return css
+
+
+def build_one(
+    src: Path,
+    dest: Path,
+    header: str,
+    rewrite_skin_attr: str | None = None,
+    logo_cdn: str | None = None,
+) -> None:
     css = src.read_text(encoding="utf-8")
     css = rewrite_header(css, header)
     css = soft_clean(css)
     css = strip_internal_dnu_attr_rules(css)
     if rewrite_skin_attr:
         css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
+    css = rewrite_logo_cdn(css, logo_cdn)
     open_b, close_b = css.count("{"), css.count("}")
     if open_b != close_b:
         raise SystemExit(f"brace mismatch in {src.name}: {{ {open_b} }} {close_b}")
@@ -213,6 +261,7 @@ def main() -> None:
             HERE / "skins" / name,
             meta["header"],
             rewrite_skin_attr=meta.get("rewrite_skin_attr"),
+            logo_cdn=meta.get("logo_cdn"),
         )
 
     print("Done. Commit, tag, push — see README.md for jsDelivr URLs.")
