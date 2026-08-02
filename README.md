@@ -40,6 +40,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **BTN Dark Ambient** | BroadcasTheNet void + teal aurora (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
 | **PTP Cinema Noir** | PassThePopcorn greyscale on Dark (Default) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css` |
+| **PTP Blade Runner** | PassThePopcorn cyan/magenta/amber neon on Dark | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-runner.css` |
 | **The Lounge Matrix** | Matrix theme for The Lounge IRC | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css` |
 
 Example:
@@ -72,40 +73,35 @@ Prefer a version tag when available:
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
 ```
 
-### PTP Cinema Noir — install (passthepopcorn.me)
+### PTP skins — Noir & Blade Runner (passthepopcorn.me)
 
-Greyscale overlay. **Official stylesheet must be Dark (Default)** (layout base).
+Both are **overlays**. **Official stylesheet must be Dark (Default)** (`static/styles/dark/style.css`).
 
-**Correct**
+**Monkie (recommended)**  
+Custom CSS = **Do not load**. Fixed pill cycles: **Noir → Runner → Stock**.
 
-1. **Edit** → **Stylesheet**
-2. **Official:** `Dark (Default)` — must be `static/styles/dark/style.css`
-3. Then either:
-   - **Monkie:** Custom CSS = **Do not load** (Noir toggle injects overlay), or
-   - **No monkie:** Custom = **Append**:
+**No monkie — Append one of:**
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
 ```
 
-**Wrong (breaks posters / layout)**
-
 ```text
-https://github.com/PhoenixPhire42/pp-css/blob/main/skins/ptp-dark.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
 ```
 
-Never set a `github.com/…/blob/…` page as the official stylesheet. Use jsDelivr only for Append.
+**Wrong:** `github.com/…/blob/…` as official stylesheet (breaks layout).
 
-**Pinned tag**
+| Skin | Look |
+|------|------|
+| Noir | Pure greys + silver wordmark |
+| Runner | Void black, cyan/magenta/amber neon, rain ambient |
 
-```text
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@ptp-noir-v1/skins/ptp-dark.css
-```
-
-Logo only:
+Logos:
 
 ```text
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg
 ```
 
 ### Orpheus Matrix — install (orpheus.network)

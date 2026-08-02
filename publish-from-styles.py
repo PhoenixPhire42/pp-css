@@ -125,14 +125,31 @@ SKINS = {
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
 """,
-        # Monkie gates on html[data-monkies-ptp-skin="dark"]; ungate for public.
         "rewrite_skin_attr": "dark",
-        # Swap monkie-dev asset URLs for public CDN.
         "logo_cdn": (
             "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
             "/skins/assets/ptp-logo-noir-header.png"
         ),
-        # Append layout fallback (for Replace / no Dark base)
+        "append_layout": "ptp-dark-layout.css",
+    },
+    "ptp-runner.css": {
+        "header": """/*
+ * PassThePopcorn — Blade Runner
+ * Wet neon noir: void black, cyan, magenta, amber (2049-inspired).
+ * RECOMMENDED: Official stylesheet = Dark (Default), then Append this URL
+ * (or monkie pill → Runner). Pure CSS — no userscript required.
+ *
+ * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
+ *
+ * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
+ */
+""",
+        "rewrite_skin_attr": "runner",
+        "logo_cdn": (
+            "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
+            "/skins/assets/ptp-logo-runner-header.jpg"
+        ),
         "append_layout": "ptp-dark-layout.css",
     },
 }
@@ -202,15 +219,14 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     """Replace monkie-dev :8000 / relative asset logo urls with public CDN."""
     if not logo_cdn:
         return css
-    # --ptp-logo: url("http://127.0.0.1:8000/styles/assets/ptp-logo-noir-header.png?v=16");
     css = re.sub(
-        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/ptp-logo-noir-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/ptp-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
         f'url("{logo_cdn}")',
         css,
         flags=re.I,
     )
     css = re.sub(
-        r'url\(\s*["\']?(?:\.\./)*styles/assets/ptp-logo-noir-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        r'url\(\s*["\']?(?:\.\./)*styles/assets/ptp-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
         f'url("{logo_cdn}")',
         css,
         flags=re.I,
@@ -237,8 +253,14 @@ def build_one(
         extra = append_src.read_text(encoding="utf-8")
         # Drop nested file header; keep body
         extra = re.sub(r"^/\*.*?\*/\s*", "", extra, count=1, flags=re.S)
-        if rewrite_skin_attr:
-            extra = rewrite_monkies_skin_attr(extra, rewrite_skin_attr)
+        # Ungate all monkie skin attrs for public layout fallback
+        extra = re.sub(
+            r'html\[data-monkies-ptp-skin\s*=\s*["\'](?:dark|runner)["\']\]',
+            "html",
+            extra,
+            flags=re.I,
+        )
+        extra = re.sub(r"html\s*,\s*html", "html", extra)
         extra = rewrite_logo_cdn(extra, logo_cdn)
         css = css.rstrip() + "\n\n/* ── layout fallback (no Dark base) ── */\n" + extra
     open_b, close_b = css.count("{"), css.count("}")

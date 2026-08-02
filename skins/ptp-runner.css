@@ -1,40 +1,45 @@
 /*
- * PassThePopcorn — Cinema Noir
- * Pure greys + black. RECOMMENDED: Official stylesheet = Dark (Default), then
- * Append this URL (or use monkie Noir). Pure CSS — no userscript required.
+ * PassThePopcorn — Blade Runner
+ * Wet neon noir: void black, cyan, magenta, amber (2049-inspired).
+ * RECOMMENDED: Official stylesheet = Dark (Default), then Append this URL
+ * (or monkie pill → Runner). Pure CSS — no userscript required.
  *
- * This public build includes a layout fallback so Replace mode still works.
- * Best results: keep Dark (Default) as the official site stylesheet.
+ * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
  *
- * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
- *
- * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
- *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
+ * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
 html {
   color-scheme: dark;
-  --ptp-bg: #050505;
-  --ptp-bg-elev: #0c0c0c;
-  --ptp-surface: #121212;
-  --ptp-surface-2: #1a1a1a;
-  --ptp-border: #2a2a2a;
-  --ptp-border-soft: rgba(255, 255, 255, 0.08);
-  --ptp-text: #e6e6e6;
-  --ptp-text-dim: #9a9a9a;
-  --ptp-text-mute: #666666;
-  --ptp-accent: #c8c8c8;
-  --ptp-accent-hot: #f0f0f0;
-  --ptp-accent-soft: #d8d8d8;
-  --ptp-link: #b0b0b0;
-  --ptp-link-hover: #f2f2f2;
-  --ptp-ok: #a8a8a8;
-  --ptp-warn: #b8b8b8;
-  --ptp-danger: #8a8a8a;
-  --ptp-row-a: #101010;
-  --ptp-row-b: #0a0a0a;
+  /* void + cool underglow */
+  --ptp-bg: #04060c;
+  --ptp-bg-elev: #0a0e18;
+  --ptp-surface: #0e1420;
+  --ptp-surface-2: #141c2c;
+  --ptp-border: #1e2a3c;
+  --ptp-border-soft: rgba(94, 231, 255, 0.12);
+  --ptp-text: #d8e6f0;
+  --ptp-text-dim: #7a90a8;
+  --ptp-text-mute: #4a5c70;
+  /* neon triad: cyan / magenta / amber */
+  --ptp-accent: #5ee7ff;
+  --ptp-accent-hot: #9af3ff;
+  --ptp-accent-soft: #3ab8d4;
+  --ptp-magenta: #ff2d95;
+  --ptp-magenta-soft: #c41e72;
+  --ptp-amber: #ff9a3c;
+  --ptp-link: #6ed4e8;
+  --ptp-link-hover: #b8f4ff;
+  --ptp-ok: #5ed9a0;
+  --ptp-warn: #ff9a3c;
+  --ptp-danger: #ff4d6d;
+  --ptp-row-a: #0c121c;
+  --ptp-row-b: #080c14;
   --ptp-radius: 8px;
-  /* Public CDN wordmark */
-  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noir-header.png");
+  --ptp-glow-cyan: rgba(94, 231, 255, 0.22);
+  --ptp-glow-magenta: rgba(255, 45, 149, 0.18);
+  /* monkie-dev / CDN wordmark */
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg");
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
@@ -678,6 +683,133 @@ html body#login .box,
 html body#login form {
   background: var(--ptp-surface) !important;
   border-color: var(--ptp-border) !important;
+}
+
+
+/* ── Blade Runner ambient (lightweight, Brave-safe) ───── */
+html body {
+  background-color: var(--ptp-bg) !important;
+  background-image:
+    radial-gradient(900px 380px at 12% -8%, rgba(94, 231, 255, 0.07), transparent 55%),
+    radial-gradient(700px 320px at 92% 0%, rgba(255, 45, 149, 0.06), transparent 50%),
+    radial-gradient(600px 400px at 50% 110%, rgba(255, 154, 60, 0.04), transparent 55%),
+    linear-gradient(180deg, #060a12 0%, #04060c 45%, #050810 100%) !important;
+  background-attachment: fixed !important;
+}
+
+html .main-menu {
+  box-shadow: 0 0 0 1px rgba(94, 231, 255, 0.12), 0 0 24px rgba(94, 231, 255, 0.06) !important;
+  border: 1px solid rgba(94, 231, 255, 0.14) !important;
+}
+
+html .main-menu__link:hover,
+html .user-info-bar__link:hover {
+  color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 12px var(--ptp-glow-cyan) !important;
+}
+
+html .panel__heading,
+html .head,
+html .colhead,
+html .forum-post__heading {
+  border-bottom-color: rgba(94, 231, 255, 0.18) !important;
+  color: var(--ptp-accent) !important;
+}
+
+html a:hover,
+html a:focus {
+  color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
+}
+
+html .alert-bar {
+  background: linear-gradient(90deg, rgba(255, 45, 149, 0.2), rgba(94, 231, 255, 0.12)) !important;
+  border: 1px solid rgba(94, 231, 255, 0.35) !important;
+  color: var(--ptp-text) !important;
+}
+html .alert-bar__link {
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* Ratio ladder: amber → cyan (wet street → neon) */
+html .ratio-00,
+html .ratio-01,
+html .ratio-02,
+html .ratio-03 {
+  color: #c45a6a !important;
+}
+html .ratio-04,
+html .ratio-05,
+html .ratio-06 {
+  color: var(--ptp-amber) !important;
+}
+html .ratio-07,
+html .ratio-08,
+html .ratio-09 {
+  color: #8ad4e0 !important;
+}
+html .ratio-10,
+html .ratio-20,
+html .ratio-50,
+html .ratio-infinite,
+html #stats_ratio .user-info-bar__text,
+html #stats_ratio span {
+  color: var(--ptp-accent) !important;
+  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
+}
+
+html .freeleech,
+html .torrent_label.tl_free,
+html span.freeleech {
+  color: var(--ptp-ok) !important;
+}
+
+html input:focus,
+html select:focus,
+html textarea:focus {
+  border-color: rgba(94, 231, 255, 0.45) !important;
+  box-shadow: 0 0 0 1px rgba(94, 231, 255, 0.2), 0 0 16px rgba(94, 231, 255, 0.1) !important;
+}
+
+html ::selection {
+  background: rgba(94, 231, 255, 0.28) !important;
+  color: #041018 !important;
+}
+
+html ::-webkit-scrollbar-thumb {
+  background: #1a3048 !important;
+}
+html ::-webkit-scrollbar-thumb:hover {
+  background: #2a5070 !important;
+}
+
+/* Taste / theme pills */
+html #monkies-ptp-taste-btn,
+html #monkies-ptp-theme-pill {
+  border-color: rgba(94, 231, 255, 0.4) !important;
+  background: linear-gradient(180deg, #142030, #0a1018) !important;
+  color: var(--ptp-accent) !important;
+  box-shadow: 0 0 16px rgba(94, 231, 255, 0.12) !important;
+}
+
+/* Soft cyan cast on thumbs — rain-on-glass, not full grey */
+html .coverview img,
+html .js-movie-tooltip-triggerer img,
+html .basic-movie-list__movie__cover-link img {
+  filter: saturate(0.85) contrast(1.06) brightness(0.96) !important;
+}
+
+html .tags a,
+html .torrent_tags a,
+html a[href*="taglist="] {
+  color: var(--ptp-accent-soft) !important;
+  background: rgba(94, 231, 255, 0.06) !important;
+  border-color: rgba(94, 231, 255, 0.18) !important;
+}
+html .tags a:hover {
+  color: var(--ptp-accent-hot) !important;
+  border-color: rgba(255, 45, 149, 0.4) !important;
+  box-shadow: 0 0 12px var(--ptp-glow-magenta) !important;
 }
 
 /* ── layout fallback (no Dark base) ── */
