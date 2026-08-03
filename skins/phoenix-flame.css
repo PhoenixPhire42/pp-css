@@ -8,7 +8,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
  *
- * pp-css-build: 2026-08-03T0433Z src=d2ff107
+ * pp-css-build: 2026-08-03T0441Z src=f21a3dd
  */
 /* pp-css-build: 2026-08-03T0418Z monkie=styles/phoenix-flame.css */
 /*
@@ -3954,6 +3954,50 @@ body#index .sidebar .box .body img,
 body#index .sidebar .box .pad img {
 	max-width: 100% !important;
 	height: auto !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Torrents group — sidebar cover (was crushed to a sliver)
+ * Index/user had width:100%; torrents only had width:auto.
+ * ══════════════════════════════════════════════════════════ */
+html body#torrents .sidebar {
+	min-width: min(280px, 32vw) !important;
+	flex: 1 1 240px !important;
+	max-width: 320px !important;
+	box-sizing: border-box !important;
+}
+html body#torrents .sidebar .box_image,
+html body#torrents .sidebar .box_image .pad,
+html body#torrents .sidebar .box_image .body,
+html body#torrents .sidebar .box_image > div {
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+	text-align: center !important;
+}
+html body#torrents .sidebar .box_image a,
+html body#torrents .sidebar .box_image a.scale_image {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+}
+html body#torrents .sidebar .box_image img,
+html body#torrents .sidebar .box_image a img,
+html body#torrents .sidebar a.scale_image img,
+html body#torrents .sidebar img.scale_image,
+html body#torrents .sidebar .box_image .pad img,
+html body#torrents .sidebar .box_image .body img {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	height: auto !important;
+	max-height: none !important;
+	object-fit: contain !important;
+	margin: 0 auto !important;
+	border-radius: 3px !important;
+	box-sizing: border-box !important;
 }
 
 body#index .sidebar .box .body,
