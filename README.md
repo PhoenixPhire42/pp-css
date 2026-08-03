@@ -51,6 +51,22 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.1.0/skins/phoenix-synth.css
 
 Prefer a **version tag or commit pin** so updates don’t change under people unexpectedly.
 
+
+## Monkie ↔ public sync
+
+**Source of truth:** `-=monkies=-/styles/*.css` (this machine).
+
+```bash
+cd ~/Developer/xrepo/-=monkies=-/pp-skins
+./publish.sh -m "sync skins from monkie"
+# or:
+python3 publish-from-styles.py --styles ../styles
+git add skins && git commit -m "sync" && git push && ./purge-jsdelivr.sh main
+```
+
+Public CSS is monkie CSS after `soft_clean` (private DNU/`monkies-*` attrs stripped, public header).  
+Visual/layout rules (menu lock, toolbox, logos, colors) must match monkie.
+
 ### CDN sync (jsDelivr)
 
 `@main` can lag behind GitHub. This repo keeps it fresh with:

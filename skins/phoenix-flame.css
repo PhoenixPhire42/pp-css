@@ -1,13 +1,14 @@
 /*
  * Phoenix Project — Flame
  * Ember black + phoenix fire accents.
- * STANDALONE pure CSS — do NOT select ApolloStage as main Stylesheet (double layout → tall menu).
+ * STANDALONE pure CSS — do NOT also load ApolloStage (double layout).
  * Site Appearance: leave main Stylesheet minimal/empty if possible; set ONLY
  * External stylesheet URL to this file (jsDelivr). Prefer a version pin.
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
  */
+/* pp-css-build: 2026-08-03T0418Z monkie=styles/phoenix-flame.css */
 /*
  * PP Flame standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
