@@ -33,7 +33,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 |------|------|-----|
 | **Neo Phoenix** | Matrix green-on-black | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-neo.css` |
 | **Dark** | Charcoal + rose-ember | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css` |
-| **Flame** | Ember + fire accents | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css` (if stale, pin `@38542d6` or latest commit; check `flame-build:` in file header) |
+| **Flame** | Ember + fire accents · **standalone** (do not also load ApolloStage) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
 | **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
@@ -50,6 +50,21 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.1.0/skins/phoenix-synth.css
 ```
 
 Prefer a **version tag** so updates don’t change under people unexpectedly.
+
+### Flame — install (standalone)
+
+1. **Edit settings → Site Appearance**
+2. **Stylesheet:** leave as-is only if the site *requires* one; best: pick a minimal base **or** clear external-only if your gazelle allows it.
+3. **Do not** stack ApolloStage + Flame external (both are full skins → broken layout).
+4. **External stylesheet URL** (use the **tag pin**, not bare `@main` — jsDelivr caches `@main` for a long time):
+
+```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
+```
+
+5. Save → hard-refresh. View source: you should see that `phoenix-flame.css` link; optional check the file starts with `flame-build:` / `STANDALONE`.
+
+
 
 ### MacLite — install (phoenixproject.app)
 
