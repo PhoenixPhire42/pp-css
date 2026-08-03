@@ -8,7 +8,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
  *
- * pp-css-build: 2026-08-03T0446Z src=596494f
+ * pp-css-build: 2026-08-03T0454Z src=4da513f
  */
 /* pp-css-build: 2026-08-03T0418Z monkie=styles/phoenix-flame.css */
 /*
@@ -3957,30 +3957,10 @@ body#index .sidebar .box .pad img {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Torrents group — sidebar cover
- * DOM: .box_image > #covers > #cover_div_0.pad > p > img[width=100%]
- * Stock float + width:auto collapsed dead/broken imgs to a text sliver.
+ * Torrents group — sidebar cover only (do NOT reflow .thin / main)
+ * DOM: .box_image > #covers > #cover_div_0.pad > p > img
+ * ptpimg.me is dead → broken-image + alt; size the box, leave float layout.
  * ══════════════════════════════════════════════════════════ */
-html body#torrents #content > .thin {
-	display: flex !important;
-	flex-flow: row wrap !important;
-	align-items: flex-start !important;
-	box-sizing: border-box !important;
-}
-html body#torrents .main_column {
-	flex: 3 1 0 !important;
-	min-width: 0 !important;
-	box-sizing: border-box !important;
-}
-html body#torrents .sidebar {
-	float: none !important;
-	min-width: min(280px, 32vw) !important;
-	flex: 1 1 240px !important;
-	max-width: 320px !important;
-	width: auto !important;
-	box-sizing: border-box !important;
-	overflow: visible !important;
-}
 html body#torrents .sidebar .box_image,
 html body#torrents .sidebar .box_image.box_albumart,
 html body#torrents .sidebar .box_image.box_image_albumart {
@@ -3990,53 +3970,36 @@ html body#torrents .sidebar .box_image.box_image_albumart {
 	overflow: visible !important;
 	text-align: center !important;
 }
-/* Real Gazelle wrapper on PP group pages */
 html body#torrents .sidebar #covers,
 html body#torrents .sidebar #covers .pad,
 html body#torrents .sidebar #covers p,
-html body#torrents .sidebar [id^="cover_div_"],
-html body#torrents .sidebar .box_image .pad,
-html body#torrents .sidebar .box_image .body,
-html body#torrents .sidebar .box_image > div:not(.head) {
+html body#torrents .sidebar [id^="cover_div_"] {
 	display: block !important;
 	width: 100% !important;
 	max-width: 100% !important;
 	margin: 0 !important;
 	padding: 8px !important;
 	box-sizing: border-box !important;
-	overflow: visible !important;
 	text-align: center !important;
 	float: none !important;
-}
-html body#torrents .sidebar .box_image a,
-html body#torrents .sidebar .box_image a.scale_image {
-	display: block !important;
-	width: 100% !important;
-	max-width: 100% !important;
-	box-sizing: border-box !important;
 }
 html body#torrents .sidebar #covers img,
 html body#torrents .sidebar .box_image img,
 html body#torrents .sidebar .box_image a img,
-html body#torrents .sidebar a.scale_image img,
-html body#torrents .sidebar img.scale_image,
-html body#torrents .sidebar .box_image .pad img,
-html body#torrents .sidebar .box_image .body img {
+html body#torrents .sidebar .box_image .pad img {
 	display: block !important;
 	width: 100% !important;
 	max-width: 100% !important;
 	height: auto !important;
-	max-height: min(480px, 70vh) !important;
-	min-height: 140px !important; /* dead hosts (ptpimg) show alt, not a 20px sliver */
+	max-height: min(420px, 65vh) !important;
+	min-height: 120px !important;
 	object-fit: contain !important;
 	margin: 0 auto !important;
 	border-radius: 3px !important;
 	box-sizing: border-box !important;
-	/* readable alt text when image fails (ptpimg.me offline) */
 	color: #e8c4a8 !important;
 	font: 600 12px/1.35 system-ui, sans-serif !important;
 	background: rgba(20, 10, 6, 0.85) !important;
-	padding: 10px 8px !important;
 }
 
 body#index .sidebar .box .body,
