@@ -69,7 +69,7 @@ if n == 0:
     )
 p.write_text(t2, encoding="utf-8")
 PY
-  else:
+  else
     python3 - "$f" "$STAMP" "$SHA_SHORT" <<'PY'
 import sys
 from pathlib import Path

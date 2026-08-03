@@ -7,6 +7,8 @@
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
+ *
+ * pp-css-build: 2026-08-03T0428Z src=da475ef
  */
 /* pp-css-build: 2026-08-03T0418Z monkie=styles/phoenix-flame.css */
 /*
@@ -7873,10 +7875,14 @@ html body .alertbar {
 }
 
 /* ══════════════════════════════════════════════════════════
- * FINAL: public menu lock (same idea as monkie PP_MENU_LOCK)
- * Prevents tall “column” nav when ApolloStage is also loaded
- * or when structural flex grows. Always last.
- * pp-css-menu-lock: V1
+ * FINAL: monkie PP_MENU_LOCK V59 baked into public Flame
+ * Full parity with monkies-dev-loader PP_MENU_LOCK_CSS:
+ *  - 50px bar (no tall columns)
+ *  - dropdowns display:none by default
+ *  - open only on :hover / :focus-within
+ *  - html body prefix beats ApolloStage if stacked
+ * Always last.
+ * pp-css-menu-lock: V59
  * ══════════════════════════════════════════════════════════ */
 @media (min-width: 576px) {
 html body #header,
@@ -7886,100 +7892,162 @@ html body #wrapper #header {
 	max-height: none !important;
 	overflow: visible !important;
 }
+
+/* pp-menu V59 polish */
+
 html body #main_site_menu,
 html body #menu,
 html body #wrapper #header #menu,
 html body #header #menu,
 html body #main_site_menu #menu {
-	height: 50px !important;
-	max-height: 50px !important;
-	min-height: 0 !important;
-	overflow: visible !important;
-	box-sizing: border-box !important;
-	flex: 0 0 50px !important;
-	flex-grow: 0 !important;
-	flex-shrink: 0 !important;
-	position: relative !important;
-	z-index: 100 !important;
+	height:50px!important;
+	max-height:50px!important;
+	min-height:0!important;
+	overflow:visible!important;
+	box-sizing:border-box!important;
+	flex:0 0 50px!important;
+	flex-grow:0!important;
+	flex-shrink:0!important;
+	position:relative!important;
+	z-index:100!important;
 }
-html body #menu > ul,
-html body #menu > ul.main_site_menu_inner,
-html body #wrapper #header #menu > ul {
-	height: 50px !important;
-	max-height: 50px !important;
-	min-height: 0 !important;
-	overflow: visible !important;
-	display: flex !important;
-	flex-flow: row nowrap !important;
-	align-items: stretch !important;
-	box-sizing: border-box !important;
-	width: 100% !important;
-	position: relative !important;
-	z-index: 100 !important;
+
+html body #menu>ul,
+html body #menu>ul.main_site_menu_inner {
+	height:50px!important;
+	max-height:50px!important;
+	min-height:0!important;
+	overflow:visible!important;
+	display:flex!important;
+	flex-flow:row nowrap!important;
+	align-items:stretch!important;
+	box-sizing:border-box!important;
+	width:100%!important;
+	position:relative!important;
+	z-index:100!important;
 }
-html body #menu > ul > li,
-html body #wrapper #header #menu > ul > li {
-	height: 50px !important;
-	max-height: 50px !important;
-	min-height: 0 !important;
-	overflow: visible !important;
-	flex: 1 1 0 !important;
-	box-sizing: border-box !important;
-	position: relative !important;
-	width: auto !important;
-	z-index: 1 !important;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
+
+html body #menu>ul>li {
+	height:50px!important;
+	max-height:50px!important;
+	min-height:0!important;
+	overflow:visible!important;
+	flex:1 1 0!important;
+	box-sizing:border-box!important;
+	position:relative!important;
+	width:auto!important;
+	z-index:1!important;
 }
-html body #menu > ul > li:hover,
-html body #menu > ul > li:focus-within {
-	z-index: 300 !important;
+
+html body #menu>ul>li:hover,
+html body #menu>ul>li:focus-within {
+	z-index:300!important;
 }
-html body #menu > ul > li > a,
-html body #menu li a,
-html body #menu a {
-	display: block !important;
-	height: 50px !important;
-	max-height: 50px !important;
-	min-height: 0 !important;
-	line-height: 50px !important;
-	overflow: hidden !important;
-	box-sizing: border-box !important;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
+
+html body #menu>ul>li>a {
+	display:block!important;
+	height:50px!important;
+	max-height:50px!important;
+	min-height:0!important;
+	line-height:50px!important;
+	overflow:hidden!important;
+	box-sizing:border-box!important;
+	padding-top:0!important;
+	padding-bottom:0!important;
 }
-/* Dropdowns stay normal height */
-html body #menu > ul > li > ul,
+
+html body #menu>ul>li>ul,
 html body #menu #torrent_reviews,
 html body #menu ul ul {
-	position: absolute !important;
-	top: 100% !important;
-	left: 0 !important;
-	bottom: auto !important;
-	z-index: 1000 !important;
-	height: auto !important;
-	max-height: min(70vh, 480px) !important;
-	min-height: 0 !important;
-	width: max-content !important;
-	min-width: max(100%, 12rem) !important;
+	position:absolute!important;
+	top:100%!important;
+	left:0!important;
+	bottom:auto!important;
+	z-index:1000!important;
+	display:none!important;
+	flex-direction:column!important;
+	height:auto!important;
+	max-height:min(70vh,480px)!important;
+	min-height:0!important;
+	width:max-content!important;
+	min-width:max(100%,12rem)!important;
+	margin:0!important;
+	padding:4px 0!important;
+	overflow:auto!important;
+	list-style:none!important;
+	background:#1a0c08!important;
+	border:1px solid rgba(255,106,26,0.45)!important;
+	border-radius:0 0 10px 10px!important;
+	box-shadow:0 16px 40px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04)!important;
 }
-html body #menu > ul > li > ul > li,
-html body #menu #torrent_reviews > li {
-	height: auto !important;
-	max-height: none !important;
-	min-height: 0 !important;
-	flex: 0 0 auto !important;
-	width: 100% !important;
+
+html body #menu>ul>li:hover>ul,
+html body #menu>ul>li:focus-within>ul,
+html body #menu>ul>li:hover>#torrent_reviews,
+html body #menu>ul>li:focus-within>#torrent_reviews {
+	display:flex!important;
+	visibility:visible!important;
+	opacity:1!important;
+	pointer-events:auto!important;
 }
-html body #menu > ul > li > ul > li > a,
-html body #menu #torrent_reviews > li > a {
-	height: auto !important;
-	max-height: none !important;
-	min-height: 36px !important;
-	line-height: 1.35 !important;
-	padding: 10px 16px !important;
-	overflow: visible !important;
-	white-space: nowrap !important;
-	text-align: left !important;
+
+html body #menu>ul>li:hover>a,
+html body #menu>ul>li:focus-within>a {
+	color:#fff!important;
+	background-color:rgba(255,255,255,.08)!important;
+}
+
+html body #menu>ul>li>ul>li,
+html body #menu #torrent_reviews>li {
+	height:auto!important;
+	max-height:none!important;
+	min-height:0!important;
+	flex:0 0 auto!important;
+	width:100%!important;
+	overflow:visible!important;
+	background:transparent!important;
+	border:none!important;
+}
+
+html body #menu>ul>li>ul>li+li,
+html body #menu #torrent_reviews>li+li {
+	border-top:1px solid rgba(255,255,255,.05)!important;
+}
+
+html body #menu>ul>li>ul>li>a,
+html body #menu #torrent_reviews>li>a {
+	display:block!important;
+	height:auto!important;
+	max-height:none!important;
+	min-height:36px!important;
+	line-height:1.35!important;
+	padding:10px 16px!important;
+	overflow:visible!important;
+	white-space:nowrap!important;
+	text-align:left!important;
+	font-size:13px!important;
+	font-weight:500!important;
+	color:#e4e6e8!important;
+	background:transparent!important;
+	border:none!important;
+	border-left:3px solid transparent!important;
+	box-sizing:border-box!important;
+}
+
+html body #menu>ul>li>ul>li>a:hover,
+html body #menu #torrent_reviews>li>a:hover {
+	background:rgba(255,140,40,.18)!important;
+	color:#fff!important;
+	border-left-color:rgba(255,140,40,.65)!important;
+}
+
+html body #menu>ul>li>ul>li.selected>a,
+html body #menu>ul>li>ul>li.active>a,
+html body #menu #torrent_reviews>li.selected>a,
+html body #menu #torrent_reviews>li.active>a {
+	background:rgba(255,120,30,.14)!important;
+	color:#fff!important;
+	border-left:3px solid #ff8a30!important;
+	border-bottom:none!important;
 }
 }
