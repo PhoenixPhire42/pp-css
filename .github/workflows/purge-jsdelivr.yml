@@ -1,0 +1,71 @@
+# Keep jsDelivr @main in sync with this repo after every push.
+# Purge API: https://www.jsdelivr.com/documentation#id-purge
+name: Purge jsDelivr CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skins/**"
+      - "README.md"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Ref to purge (main, tag, or sha)"
+        required: false
+        default: "main"
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Purge all skin assets on jsDelivr
+        env:
+          REF: ${{ github.event.inputs.ref || 'main' }}
+          OWNER: PhoenixPhire42
+          REPO: pp-css
+        run: |
+          set -euo pipefail
+          mapfile -t PATHS < <(
+            find skins -type f \( -name '*.css' -o -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o -name '*.webp' \) \
+              | sort
+          )
+          echo "Purging ${#PATHS[@]} path(s) for @${REF}"
+          ok=0
+          fail=0
+          for rel in "${PATHS[@]}"; do
+            url="https://purge.jsdelivr.net/gh/${OWNER}/${REPO}@${REF}/${rel}"
+            code=$(curl -sS -o /tmp/purge.json -w "%{http_code}" --max-time 45 "$url" || echo "000")
+            if [[ "$code" == "200" ]]; then
+              ok=$((ok + 1))
+              echo "ok  $rel"
+            else
+              fail=$((fail + 1))
+              echo "FAIL $rel http=$code"
+              head -c 200 /tmp/purge.json || true
+              echo
+            fi
+            sleep 0.2
+          done
+          # Also purge bare main package root hints
+          for rel in skins skins/assets; do
+            curl -sS -o /dev/null -w "root $rel %{http_code}\n" \
+              "https://purge.jsdelivr.net/gh/${OWNER}/${REPO}@${REF}/${rel}" || true
+          done
+          echo "summary ok=$ok fail=$fail"
+          # Don't fail the workflow on throttle — next push will retry
+          if [[ "$fail" -gt 5 ]]; then
+            echo "::warning::Many purges failed; use commit pins if @main is stale"
+          fi
+
+      - name: Print install URLs
+        run: |
+          SHA="${{ github.sha }}"
+          SHORT="${SHA:0:7}"
+          echo "Commit pin (immutable):"
+          echo "  https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@${SHORT}/skins/phoenix-flame.css"
+          echo "Main (purged):"
+          echo "  https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css"

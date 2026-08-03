@@ -49,7 +49,29 @@ Example:
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.1.0/skins/phoenix-synth.css
 ```
 
-Prefer a **version tag** so updates don’t change under people unexpectedly.
+Prefer a **version tag or commit pin** so updates don’t change under people unexpectedly.
+
+### CDN sync (jsDelivr)
+
+`@main` can lag behind GitHub. This repo keeps it fresh with:
+
+| Tool | What |
+|------|------|
+| **GitHub Action** `.github/workflows/purge-jsdelivr.yml` | Purges all `skins/**` on every push to `main` |
+| **`./purge-jsdelivr.sh [ref]`** | Manual purge (`main`, a tag, or sha) |
+| **`./publish.sh`** | Build from monkie `styles/` → commit → push → purge |
+
+After a publish, install URLs:
+
+```text
+# best — immutable commit pin (from publish.sh output)
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@<sha>/skins/phoenix-flame.css
+
+# main — after Action/purge (may take 1–2 min)
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
+```
+
+Verify freshness: open the CSS URL and look for `pp-css-build:` / `flame-build:` near the top.
 
 ### Flame — install (standalone)
 
