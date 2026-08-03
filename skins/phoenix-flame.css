@@ -8,7 +8,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
  *
- * pp-css-build: 2026-08-03T0454Z src=4da513f
+ * pp-css-build: 2026-08-03T0459Z src=46e8fd8
  */
 /* pp-css-build: 2026-08-03T0418Z monkie=styles/phoenix-flame.css */
 /*
@@ -3957,10 +3957,86 @@ body#index .sidebar .box .pad img {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Torrents group — sidebar cover only (do NOT reflow .thin / main)
- * DOM: .box_image > #covers > #cover_div_0.pad > p > img
- * ptpimg.me is dead → broken-image + alt; size the box, leave float layout.
+ * Torrents group page — Apollostage-like float layout
+ *
+ * REDStage base sets .thin:last-child { display:flex } + flex on
+ * .main_column/.sidebar + width:100% children. That crushes the
+ * group page into a narrow right column (torrent links stack).
+ * Stock Apollostage uses float:right sidebar + BFC main — restore.
+ *
+ * Cover DOM: .box_image > #covers > #cover_div_0.pad > img
  * ══════════════════════════════════════════════════════════ */
+@media (min-width: 576px) {
+	html body#torrents #content > .thin,
+	html body#torrents .thin {
+		display: block !important;
+		flex-wrap: unset !important;
+		flex-direction: unset !important;
+		align-items: unset !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	/* Full-width chrome above the two-column body */
+	html body#torrents .thin > h2,
+	html body#torrents .thin > .header,
+	html body#torrents .thin > .linkbox,
+	html body#torrents #content > .thin > h2,
+	html body#torrents #content > .thin > .header,
+	html body#torrents #content > .thin > .linkbox {
+		display: block !important;
+		float: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: none !important;
+		box-sizing: border-box !important;
+		clear: both !important;
+	}
+	/* Classic Gazelle: sidebar floats right; main fills the rest */
+	html body#torrents .sidebar {
+		float: right !important;
+		width: 260px !important;
+		max-width: 32% !important;
+		min-width: 200px !important;
+		margin: 0 0 12px 16px !important;
+		flex: none !important;
+		order: 0 !important;
+		box-sizing: border-box !important;
+		overflow: visible !important;
+		position: relative !important;
+	}
+	html body#torrents .main_column {
+		display: block !important;
+		float: none !important;
+		width: auto !important;
+		max-width: none !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+		flex: none !important;
+		order: 0 !important;
+		/* New BFC so main expands beside the floated sidebar */
+		overflow: hidden !important;
+		box-sizing: border-box !important;
+	}
+	html body#torrents .main_column .box,
+	html body#torrents .main_column table,
+	html body#torrents .main_column .torrent_table {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+	html body#torrents .main_column .torrent_table td,
+	html body#torrents .main_column .torrent_table .td_info {
+		white-space: normal !important;
+		word-break: normal !important;
+	}
+	html body#torrents .main_column .torrent_table .torrent_links_block,
+	html body#torrents .main_column .group_torrent td:first-child > span {
+		white-space: nowrap !important;
+	}
+}
+/* Cover box fills sidebar width (dead ptpimg → alt / broken icon) */
 html body#torrents .sidebar .box_image,
 html body#torrents .sidebar .box_image.box_albumart,
 html body#torrents .sidebar .box_image.box_image_albumart {
@@ -3992,7 +4068,7 @@ html body#torrents .sidebar .box_image .pad img {
 	max-width: 100% !important;
 	height: auto !important;
 	max-height: min(420px, 65vh) !important;
-	min-height: 120px !important;
+	min-height: 100px !important;
 	object-fit: contain !important;
 	margin: 0 auto !important;
 	border-radius: 3px !important;
