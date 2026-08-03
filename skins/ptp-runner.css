@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-03T0459Z src=46e8fd8 */
+/* pp-css-build: 2026-08-03T1649Z src=570a6ea */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -930,38 +930,130 @@ html .basic-movie-list__movie__title-row {
 }
 
 /*
- * Torrent status (stock Dark uses these classes — our global `a` washed them out).
- * Snatched = distinct amber (not default cyan) so “H.265 / MKV / …” you own stands out.
+ * Torrent status (stock Dark uses these classes — our global `a` / `a:visited`
+ * washed them out to cyan/grey). Snatched = amber + SNATCHED pill so you own
+ * “H.265 / MKV / …” lines stand out on group pages + lists.
  */
 html a.torrent-info-link--user-snatched,
-html .torrent-info-link--user-snatched {
+html a.torrent-info-link--user-snatched:link,
+html a.torrent-info-link--user-snatched:visited,
+html a.torrent-info-link--user-snatched:active,
+html .torrent-info-link--user-snatched,
+html span.torrent-info-link--user-snatched,
+html td .torrent-info-link--user-snatched {
   color: #ffb060 !important; /* amber — snatched */
+  -webkit-text-fill-color: #ffb060 !important;
   font-weight: 700 !important;
-  text-shadow: 0 0 12px rgba(255, 154, 60, 0.25) !important;
+  text-shadow: 0 0 14px rgba(255, 154, 60, 0.35) !important;
 }
 html a.torrent-info-link--user-snatched:hover,
+html a.torrent-info-link--user-snatched:focus,
 html .torrent-info-link--user-snatched:hover {
   color: #ffd090 !important;
+  -webkit-text-fill-color: #ffd090 !important;
 }
+
+/* SNATCHED badge (runner) — after format string */
+html a.torrent-info-link--user-snatched::after,
+html .torrent-info-link--user-snatched::after {
+  content: "SNATCHED" !important;
+  display: inline-block !important;
+  margin-left: 0.55em !important;
+  padding: 1px 7px 2px !important;
+  border-radius: 999px !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.25 !important;
+  vertical-align: middle !important;
+  text-transform: uppercase !important;
+  text-shadow: none !important;
+  color: #1a0e04 !important;
+  -webkit-text-fill-color: #1a0e04 !important;
+  background: linear-gradient(180deg, #ffd090 0%, #ff9a3c 100%) !important;
+  border: 1px solid rgba(255, 180, 80, 0.75) !important;
+  box-shadow: 0 0 12px rgba(255, 154, 60, 0.35) !important;
+  white-space: nowrap !important;
+}
+
+/* Row wash + left rail when the torrent link is snatched */
+html tr:has(> td a.torrent-info-link--user-snatched) > td,
+html tr:has(.torrent-info-link--user-snatched) > td {
+  background-color: rgba(255, 154, 60, 0.06) !important;
+}
+html tr:has(> td a.torrent-info-link--user-snatched) > td:first-child,
+html tr:has(.torrent-info-link--user-snatched) > td:first-child {
+  box-shadow: inset 3px 0 0 #ff9a3c !important;
+}
+
+/* Green check / icons inside snatched link → amber */
+html a.torrent-info-link--user-snatched img,
+html .torrent-info-link--user-snatched img,
+html a.torrent-info-link--user-snatched svg,
+html .torrent-info-link--user-snatched svg {
+  filter: sepia(1) saturate(6) hue-rotate(-15deg) brightness(1.05) !important;
+  opacity: 1 !important;
+}
+
 html a.torrent-info-link--user-seeding,
+html a.torrent-info-link--user-seeding:link,
+html a.torrent-info-link--user-seeding:visited,
 html .torrent-info-link--user-seeding {
   color: #ff9a3c !important; /* gold — currently seeding */
+  -webkit-text-fill-color: #ff9a3c !important;
   font-weight: 700 !important;
 }
+html a.torrent-info-link--user-seeding::after,
+html .torrent-info-link--user-seeding::after {
+  content: "SEEDING" !important;
+  display: inline-block !important;
+  margin-left: 0.55em !important;
+  padding: 1px 7px 2px !important;
+  border-radius: 999px !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.25 !important;
+  vertical-align: middle !important;
+  text-transform: uppercase !important;
+  text-shadow: none !important;
+  color: #140a02 !important;
+  -webkit-text-fill-color: #140a02 !important;
+  background: linear-gradient(180deg, #ffc070 0%, #e07020 100%) !important;
+  border: 1px solid rgba(255, 154, 60, 0.7) !important;
+  box-shadow: 0 0 10px rgba(255, 154, 60, 0.28) !important;
+  white-space: nowrap !important;
+}
+
 html a.torrent-info-link--user-downloaded,
+html a.torrent-info-link--user-downloaded:visited,
 html .torrent-info-link--user-downloaded {
   color: #5ed9a0 !important; /* green — downloaded */
+  -webkit-text-fill-color: #5ed9a0 !important;
   font-weight: 700 !important;
 }
 html a.torrent-info-link--user-leeching,
+html a.torrent-info-link--user-leeching:visited,
 html .torrent-info-link--user-leeching {
   color: #ff4d6d !important; /* red-pink — leeching */
+  -webkit-text-fill-color: #ff4d6d !important;
   font-weight: 700 !important;
 }
 html a.torrent-info-link--user-uploaded,
+html a.torrent-info-link--user-uploaded:visited,
 html .torrent-info-link--user-uploaded {
   color: #ff2d95 !important; /* magenta — your upload */
+  -webkit-text-fill-color: #ff2d95 !important;
   font-weight: 700 !important;
+}
+
+/* Prefer SEEDING badge when both snatch + seed classes exist */
+html a.torrent-info-link--user-snatched.torrent-info-link--user-seeding::after,
+html .torrent-info-link--user-snatched.torrent-info-link--user-seeding::after {
+  content: "SEEDING" !important;
+  color: #140a02 !important;
+  -webkit-text-fill-color: #140a02 !important;
+  background: linear-gradient(180deg, #ffc070 0%, #e07020 100%) !important;
 }
 
 html .tags a,
