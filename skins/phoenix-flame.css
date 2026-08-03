@@ -4698,6 +4698,19 @@ html body .linkbox > strong {
 }
 
 /* Header action columns (Add version · Edit group · …) — clearer on ember ground */
+html body .thin > .header .linkbox,
+html body #content .header .linkbox,
+html body .header .linkbox,
+html body#torrents .thin > .linkbox,
+html body#torrents .thin .linkbox {
+	text-align: left !important;
+	width: auto !important;
+	max-width: none !important;
+	flex: 1 1 auto !important;
+	align-self: center !important;
+	margin-top: 6px !important;
+	line-height: 1.55 !important;
+}
 html body .thin > .header .linkbox a,
 html body .thin > .header .linkbox a:link,
 html body .thin > .header .linkbox a:visited,
@@ -4706,16 +4719,34 @@ html body #content .header .linkbox a:link,
 html body #content .header .linkbox a:visited,
 html body .header .linkbox a.brackets,
 html body .header .linkbox a.brackets:link,
-html body .header .linkbox a.brackets:visited {
+html body .header .linkbox a.brackets:visited,
+html body#torrents .thin > .header .linkbox a,
+html body#torrents .thin > .header .linkbox a:link,
+html body#torrents .thin > .header .linkbox a:visited,
+html body#torrents .thin .linkbox a,
+html body#torrents .thin .linkbox a:link,
+html body#torrents .thin .linkbox a:visited,
+html body#torrents .linkbox a.brackets,
+html body#torrents .linkbox a.brackets:link,
+html body#torrents .linkbox a.brackets:visited {
 	color: #e8c4a8 !important;
 	-webkit-text-fill-color: #e8c4a8 !important;
 	opacity: 1 !important;
 	text-shadow: none !important;
 	font-weight: 500 !important;
+	font-size: 13px !important;
+	line-height: 1.55 !important;
+	padding: 2px 6px !important;
+	margin: 0 2px 0 0 !important;
+	vertical-align: middle !important;
+	display: inline !important;
 }
 html body .thin > .header .linkbox a:hover,
 html body #content .header .linkbox a:hover,
-html body .header .linkbox a.brackets:hover {
+html body .header .linkbox a.brackets:hover,
+html body#torrents .thin > .header .linkbox a:hover,
+html body#torrents .thin .linkbox a:hover,
+html body#torrents .linkbox a.brackets:hover {
 	color: #ffc060 !important;
 	-webkit-text-fill-color: #ffc060 !important;
 }
@@ -7779,3 +7810,61 @@ html body #maincontent .pwrecover .auth_form .submit {
 	}
 }
 
+/* ══════════════════════════════════════════════════════════
+ * FINAL: group action columns + toolbox (must beat structural base)
+ * Cache: flame-ui-2026-08-03c
+ * ══════════════════════════════════════════════════════════ */
+html body#torrents .thin > .header,
+html body .thin > .header {
+	align-items: flex-start !important;
+}
+html body#torrents .thin > .header .linkbox,
+html body .thin > .header .linkbox,
+html body #content .header .linkbox {
+	text-align: left !important;
+	width: auto !important;
+	max-width: none !important;
+	flex: 1 1 auto !important;
+	align-self: center !important;
+	margin: 6px 0 0 !important;
+	line-height: 1.55 !important;
+	float: none !important;
+}
+html body#torrents .thin > .header .linkbox a,
+html body#torrents .thin > .header .linkbox a:link,
+html body#torrents .thin > .header .linkbox a:visited,
+html body .thin > .header .linkbox a,
+html body .thin > .header .linkbox a:link,
+html body .thin > .header .linkbox a:visited,
+html body #content .header .linkbox a,
+html body #content .header .linkbox a:link,
+html body #content .header .linkbox a:visited,
+html body#torrents .linkbox a.brackets,
+html body#torrents .linkbox a.brackets:link,
+html body#torrents .linkbox a.brackets:visited {
+	color: #e8c4a8 !important;
+	-webkit-text-fill-color: #e8c4a8 !important;
+	opacity: 1 !important;
+	filter: none !important;
+	font-weight: 500 !important;
+	font-size: 13px !important;
+	line-height: 1.55 !important;
+	padding: 2px 6px !important;
+	text-shadow: none !important;
+}
+html body#torrents .thin > .header .linkbox a:hover,
+html body .thin > .header .linkbox a:hover,
+html body #content .header .linkbox a:hover,
+html body#torrents .linkbox a.brackets:hover {
+	color: #ffc060 !important;
+	-webkit-text-fill-color: #ffc060 !important;
+}
+html body #alerts .alertbar,
+html body .alertbar.blend,
+html body .alertbar {
+	background: linear-gradient(180deg, #2a1410 0%, #1a0c08 48%, #120806 100%) !important;
+	background-color: #1a0c08 !important;
+	border: 1px solid rgba(255, 106, 26, 0.5) !important;
+	color: #ffe8d8 !important;
+	-webkit-text-fill-color: #ffe8d8 !important;
+}
