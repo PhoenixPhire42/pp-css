@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -161,7 +162,45 @@ SKINS = {
         ),
         "append_layout": "ptp-dark-layout.css",
     },
+    "thelounge-matrix.css": {
+        "header": """/*
+ * The Lounge — Matrix Theme
+ * Green-on-black terminal palette for The Lounge IRC client.
+ *
+ * Install: Settings → Advanced → Custom Stylesheet (paste contents),
+ * or load via URL if your Lounge host supports external theme CSS.
+ *
+ * CDN:
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/thelounge-matrix.css
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/thelounge-matrix.css
+ *
+ * Failsafe: add ?nocss to the Lounge URL if something breaks.
+ * Source: monkie styles/thelounge-matrix.css → PhoenixPhire42/pp-css
+ */
+""",
+    },
 }
+
+
+def public_source_names() -> list[str]:
+    """CSS basenames under monkie styles/ that feed public skins."""
+    names: set[str] = set(SKINS.keys())
+    for meta in SKINS.values():
+        append = meta.get("append_layout")
+        if append:
+            names.add(str(append))
+    return sorted(names)
+
+
+def is_public_trigger_path(rel: str) -> bool:
+    """True if a monkie-repo-relative path should auto-publish to pp-css."""
+    rel = rel.replace("\\", "/").lstrip("./")
+    if rel.startswith("styles/assets/"):
+        return True
+    if rel.startswith("styles/") and rel.count("/") == 1:
+        base = rel[len("styles/") :]
+        return base in set(public_source_names())
+    return False
 
 
 def strip_internal_dnu_attr_rules(css: str) -> str:
@@ -243,6 +282,57 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     return css
 
 
+_ASSET_NAME_RE = re.compile(
+    r"(?:styles/)?assets/([A-Za-z0-9._@+-]+\.(?:png|jpe?g|svg|webp|gif|ico))",
+    re.I,
+)
+
+
+def collect_asset_names(styles: Path) -> set[str]:
+    """Asset basenames referenced by public skin sources (or already in pub)."""
+    names: set[str] = set()
+    for name in public_source_names():
+        src = styles / name
+        if not src.is_file():
+            continue
+        try:
+            text = src.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            continue
+        for m in _ASSET_NAME_RE.finditer(text):
+            names.add(m.group(1))
+    # Always keep logos already published under skins/assets
+    dest = HERE / "skins" / "assets"
+    if dest.is_dir():
+        for p in dest.iterdir():
+            if p.is_file() and not p.name.startswith("."):
+                names.add(p.name)
+    return names
+
+
+def sync_assets(styles: Path) -> int:
+    """Copy monkie styles/assets → skins/assets for public-referenced logos."""
+    src_dir = styles / "assets"
+    dest_dir = HERE / "skins" / "assets"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    if not src_dir.is_dir():
+        return 0
+    copied = 0
+    for name in sorted(collect_asset_names(styles)):
+        src = src_dir / name
+        if not src.is_file():
+            continue
+        dest = dest_dir / name
+        if dest.is_file() and dest.stat().st_size == src.stat().st_size:
+            # same size: still copy if monkie is newer
+            if src.stat().st_mtime <= dest.stat().st_mtime:
+                continue
+        shutil.copy2(src, dest)
+        copied += 1
+        print(f"  assets/{name}  ({dest.stat().st_size} bytes)")
+    return copied
+
+
 def build_one(
     src: Path,
     dest: Path,
@@ -288,13 +378,36 @@ def main() -> None:
         default=HERE.parent / "styles",
         help="Path to source styles directory",
     )
+    ap.add_argument(
+        "--list-sources",
+        action="store_true",
+        help="Print monkie styles/ basenames that map to public skins (for hooks)",
+    )
+    ap.add_argument(
+        "--check-path",
+        metavar="REL",
+        help="Exit 0 if monkie-relative path should trigger auto-publish",
+    )
     args = ap.parse_args()
+
+    if args.list_sources:
+        for n in public_source_names():
+            print(n)
+        print("styles/assets/*")
+        return
+
+    if args.check_path is not None:
+        sys.exit(0 if is_public_trigger_path(args.check_path) else 1)
+
     styles: Path = args.styles
     if not styles.is_dir():
         print(f"styles dir not found: {styles}", file=sys.stderr)
         sys.exit(1)
 
     print(f"Publishing skins from {styles}")
+    n_assets = sync_assets(styles)
+    if n_assets:
+        print(f"  synced {n_assets} asset file(s)")
     for name, meta in SKINS.items():
         src = styles / name
         if not src.is_file():

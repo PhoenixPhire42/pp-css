@@ -54,18 +54,41 @@ Prefer a **version tag or commit pin** so updates don’t change under people un
 
 ## Monkie ↔ public sync
 
-**Source of truth:** `-=monkies=-/styles/*.css` (this machine).
+**Source of truth:** monkie `styles/*.css` (+ `styles/assets/`).  
+**Every public skin** is rebuilt from monkie on publish — not Flame-only.
+
+### Automatic (preferred)
+
+Monkie **post-commit** hook (after `./scripts/install-git-hooks` in monkie):
+
+1. You edit monkie `styles/phoenix-*.css` (or any mapped skin) / assets  
+2. `git commit` in monkie  
+3. Hook runs `./publish.sh` here → soft_clean all skins → commit → push → purge jsDelivr  
+
+Skip once: `SKIP_PP_PUBLISH=1 git commit …`  
+Manual anytime (from monkie root): `./scripts/sync-pp-pub.sh`
+
+### Manual
 
 ```bash
+# from monkie root
+./scripts/sync-pp-pub.sh -m "sync skins from monkie"
+
+# or from this repo
 cd ~/Developer/xrepo/-=monkies=-/pp-skins
 ./publish.sh -m "sync skins from monkie"
-# or:
+# or build only:
 python3 publish-from-styles.py --styles ../styles
-git add skins && git commit -m "sync" && git push && ./purge-jsdelivr.sh main
 ```
 
-Public CSS is monkie CSS after `soft_clean` (private DNU/`monkies-*` attrs stripped, public header).  
+Public CSS is monkie CSS after `soft_clean` (private DNU/`monkies-*` attrs stripped, public header) + asset copy.  
 Visual/layout rules (menu lock, toolbox, logos, colors) must match monkie.
+
+List monkie files that trigger auto-publish:
+
+```bash
+python3 publish-from-styles.py --list-sources
+```
 
 ### CDN sync (jsDelivr)
 

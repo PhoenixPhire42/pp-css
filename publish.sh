@@ -92,6 +92,7 @@ fi
 
 if [[ "$DO_COMMIT" -eq 1 ]]; then
   git add skins/ README.md CATALOG.md publish-from-styles.py purge-jsdelivr.sh publish.sh 2>/dev/null || true
+  git add skins/ skins/assets/ 2>/dev/null || true
   git add skins/
   if git diff --cached --quiet; then
     echo "ok: nothing to commit (working tree clean after publish)"
