@@ -11,7 +11,7 @@
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
-/* pp-css-build: 2026-08-04T2029Z src=86bdc94 */
+/* pp-css-build: 2026-08-04T2031Z src=d436b9b */
 /* ══════════════════════════════════════════════════════════
  * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
@@ -1186,9 +1186,12 @@ hr {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Snatched — purple + badge (V7)
+ * Snatched — purple + badge (V8)
  * Stock BTN: .snatched on format line / row; optional .tl_snatched
  * Ambient table a { color: text !important } flattened stock color.
+ * V7: a.snatched / .snatched a / badge on classed node.
+ * V8: when only tr/td has .snatched, force purple on child <a>
+ *     + "Snatched" pill on format link (not [DL] download).
  * ══════════════════════════════════════════════════════════ */
 
 /* Text / links you've snatched (beat table a) */
@@ -1203,9 +1206,23 @@ html body .snatched {
 	color: var(--btn-snatched) !important;
 	font-weight: 650 !important;
 }
+/* V8 — row/cell class only: format + DL links still flattened by table a */
+html body table tr.snatched a,
+html body table tr.snatched_torrent a,
+html body table tr.snatched_group a,
+html body table tr.rowa.snatched a,
+html body table tr.rowb.snatched a,
+html body table td.snatched a {
+	color: var(--btn-snatched) !important;
+	font-weight: 650 !important;
+}
 html body table a.snatched:hover,
 html body table .snatched a:hover,
-html body #content a.snatched:hover {
+html body #content a.snatched:hover,
+html body table tr.snatched a:hover,
+html body table tr.snatched_torrent a:hover,
+html body table tr.snatched_group a:hover,
+html body table td.snatched a:hover {
 	color: #ddd6fe !important;
 }
 
@@ -1267,6 +1284,42 @@ html body a.snatched::after {
 /* Avoid double badge if stock label already there */
 html body span.snatched:has(.tl_snatched)::after,
 html body a.snatched:has(.tl_snatched)::after {
+	content: none;
+}
+
+/* V8 — badge on format link when only the row/cell is marked snatched
+ * (skip [DL] download + action=download; skip if a already has ::after via .snatched) */
+html body table tr.snatched a[href*="torrents.php?id="]::after,
+html body table tr.snatched_torrent a[href*="torrents.php?id="]::after,
+html body table tr.snatched_group a[href*="torrents.php?id="]::after,
+html body table td.snatched a[href*="torrents.php?id="]::after {
+	content: "Snatched";
+	display: inline-flex;
+	align-items: center;
+	margin-left: 0.45em;
+	padding: 1px 7px;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	line-height: 1.25;
+	color: var(--btn-snatched-hot);
+	background: rgba(124, 58, 237, 0.2);
+	border: 1px solid var(--btn-snatched-border);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+/* No double pill when format link itself is .snatched (already has badge) */
+html body table tr.snatched a.snatched[href*="torrents.php?id="]::after,
+html body table tr.snatched_torrent a.snatched[href*="torrents.php?id="]::after,
+html body table td.snatched a.snatched[href*="torrents.php?id="]::after {
+	/* keep single badge from a.snatched::after — same content is fine; one rule wins */
+	content: "Snatched";
+}
+html body table tr.snatched a.snatched:has(.tl_snatched)::after,
+html body table tr.snatched a[href*="torrents.php?id="]:has(.tl_snatched)::after,
+html body table tr.snatched_torrent a[href*="torrents.php?id="]:has(.tl_snatched)::after,
+html body table td.snatched a[href*="torrents.php?id="]:has(.tl_snatched)::after {
 	content: none;
 }
 
