@@ -6,7 +6,7 @@
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-neo.css
  */
-/* pp-css-build: 2026-08-04T2046Z src=c36b76e */
+/* pp-css-build: 2026-08-04T2114Z src=621215c */
 /*
  * PP Neo standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
@@ -1275,7 +1275,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 #menu>ul {
     display: flex;
     flex-flow: row nowrap;
-    font-size: 13px;
+    font-size: 14.5px;
     overflow: hidden;
     width: calc(100% - 149px)
 }
@@ -1301,7 +1301,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 
 #userinfo_username #nav_userinfo>a {
     display: block;
-    font-size: 13px;
+    font-size: 14.5px;
     line-height: 50px;
     overflow: hidden;
     text-align: center;
@@ -1322,13 +1322,13 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 }
 
 #userinfo_major {
-    font-size: 13px;
+    font-size: 14.5px;
     right: 41px;
     top: -53px
 }
 
 #userinfo_stats {
-    font-size: 13px;
+    font-size: 14.5px;
     top: -31px
 }
 
@@ -1397,7 +1397,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 
     #menu>ul>#nav_staff {
         display: inline;
-        font-size: 13px;
+        font-size: 14.5px;
         position: absolute;
         right: 8px;
         top: 29px
@@ -7258,6 +7258,241 @@ html body #menu li.active a {
 	}
 }
 
+
+
+/* ══════════════════════════════════════════════════════════
+ * Heywood / ▾ flyout — opaque Matrix card (fix transparent list)
+ * Desktop lock forces max-height:50px on the closed rail; on :hover
+ * the shell must grow and paint a solid card under the links
+ * (same pattern as Dark V46 / MacLite V53, Neo green palette).
+ * ══════════════════════════════════════════════════════════ */
+@media (min-width: 576px) {
+	/* Closed rail cells stay 50px (already set above). Open = grow + card. */
+	html body #header #userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
+	html body #userinfo_username:hover,
+	html body #userinfo_minor:hover {
+		height: auto !important;
+		max-height: none !important;
+		min-height: 50px !important;
+		overflow: visible !important;
+		/* transparent shell — ::after paints the opaque card below the rail */
+		background: transparent !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+		filter: none !important;
+		padding: 54px 0 8px !important;
+		width: 176px !important;
+		min-width: 176px !important;
+		max-width: 176px !important;
+		right: 0 !important;
+		z-index: 1000 !important;
+		border: none !important;
+		border-radius: 0 !important;
+		display: block !important;
+	}
+	html body #header #userinfo_username:hover,
+	html body #userinfo_username:hover {
+		z-index: 1002 !important;
+	}
+	html body #header #userinfo_minor:hover,
+	html body #userinfo_minor:hover {
+		z-index: 1001 !important;
+	}
+	/* Opaque Matrix card under the rail */
+	html body #header #userinfo_username:hover::after,
+	html body #header #userinfo_minor:hover::after,
+	html body #userinfo_username:hover::after,
+	html body #userinfo_minor:hover::after {
+		content: "" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 54px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		border-radius: 10px !important;
+		border: 1px solid rgba(0, 255, 65, 0.28) !important;
+		background: #0a140c !important;
+		background-color: #0a140c !important;
+		background-image: none !important;
+		box-shadow:
+			0 12px 32px rgba(0, 0, 0, 0.65),
+			0 0 18px rgba(0, 255, 65, 0.12) !important;
+		opacity: 1 !important;
+		z-index: 0 !important;
+		pointer-events: none !important;
+	}
+	/* Closed: no card pseudo */
+	html body #userinfo_username:not(:hover)::after,
+	html body #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+	/* Rows inside the card */
+	html body #userinfo_username:hover > li,
+	html body #userinfo_minor:hover > li {
+		display: list-item !important;
+		float: none !important;
+		clear: both !important;
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		position: relative !important;
+		z-index: 1 !important;
+		background: transparent !important;
+		background-image: none !important;
+		list-style: none !important;
+	}
+	/* Open list links (not the rail Heywood label) */
+	html body #userinfo_minor:hover a,
+	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
+	html body #userinfo_username:hover a:not(.username) {
+		display: block !important;
+		width: 100% !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		line-height: 34px !important;
+		padding: 0 14px !important;
+		margin: 0 !important;
+		text-align: left !important;
+		position: relative !important;
+		z-index: 1 !important;
+		font-size: 13.5px !important;
+		font-weight: 500 !important;
+		color: #d0ffd0 !important;
+		-webkit-text-fill-color: #d0ffd0 !important;
+		background: transparent !important;
+		background-color: transparent !important;
+		text-shadow: none !important;
+		box-sizing: border-box !important;
+		white-space: nowrap !important;
+		opacity: 1 !important;
+	}
+	html body #userinfo_username:hover a:hover,
+	html body #userinfo_minor:hover a:hover {
+		background: rgba(0, 255, 65, 0.14) !important;
+		background-color: rgba(0, 255, 65, 0.14) !important;
+		color: #f0fff0 !important;
+		-webkit-text-fill-color: #f0fff0 !important;
+	}
+	/* Pin Heywood label on the rail while its menu is open */
+	html body #userinfo_username:hover #nav_userinfo,
+	html body #userinfo_username:hover > li#nav_userinfo {
+		position: absolute !important;
+		top: 0 !important;
+		right: 50px !important;
+		left: auto !important;
+		width: 100px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		z-index: 3 !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(
+			180deg,
+			#1a4a28 0%,
+			#0e2818 48%,
+			#06140c 100%
+		) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(0, 255, 65, 0.35),
+			inset 0 -2px 0 rgba(0, 255, 65, 0.55) !important;
+		border: none !important;
+		border-radius: 0 !important;
+	}
+	html body #userinfo_username:hover #nav_userinfo > a,
+	html body #userinfo_username:hover a.username {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		height: 50px !important;
+		line-height: 1 !important;
+		padding: 0 6px !important;
+		margin: 0 !important;
+		text-align: center !important;
+		font-size: 14.5px !important;
+		font-weight: 600 !important;
+		color: #e0ffe0 !important;
+		-webkit-text-fill-color: #e0ffe0 !important;
+		background: transparent !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		white-space: nowrap !important;
+	}
+	/* Pin ▾ rail cell while its list is open */
+	html body #userinfo_minor:hover::before,
+	html body #userinfo_minor:hover:before {
+		content: "\25BE" !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		position: absolute !important;
+		top: 0 !important;
+		right: 0 !important;
+		left: auto !important;
+		width: 50px !important;
+		height: 50px !important;
+		margin: 0 !important;
+		z-index: 3 !important;
+		pointer-events: none !important;
+		color: #d0ffd0 !important;
+		-webkit-text-fill-color: #d0ffd0 !important;
+		background: #0a1c12 !important;
+		background-color: #0a1c12 !important;
+		background-image: linear-gradient(
+			180deg,
+			#143820 0%,
+			#0a1c12 48%,
+			#040e08 100%
+		) !important;
+		border-radius: 0 6px 0 0 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(0, 255, 65, 0.22),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
+		filter: none !important;
+		opacity: 1 !important;
+	}
+	/* When one of the pair is open, keep the other as closed rail cell */
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:not(:hover) {
+		height: 50px !important;
+		max-height: 50px !important;
+		width: 100px !important;
+		right: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		background-image: linear-gradient(
+			180deg,
+			#1a4a28 0%,
+			#0e2818 48%,
+			#06140c 100%
+		) !important;
+		background-color: #0e2818 !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) {
+		height: 50px !important;
+		max-height: 50px !important;
+		width: 50px !important;
+		right: 0 !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		background-image: linear-gradient(
+			180deg,
+			#143820 0%,
+			#0a1c12 48%,
+			#040e08 100%
+		) !important;
+		background-color: #0a1c12 !important;
+	}
+}
+
 /* Username tab — brighter Matrix glow (right end of ramp) */
 html body #userinfo_username,
 html body #userinfo_minor {
@@ -7925,3 +8160,111 @@ html body #maincontent .pwrecover .auth_form .submit {
 	}
 }
 
+
+/* ══════════════════════════════════════════════════════════
+ * Menu text — match stock Apollostage (not REDStage 13px)
+ * Apollostage: #menu>ul / username / major / stats / staff = 14.5px
+ * Dropdown + minor links = 13.5px. Keeps 50px bar + line-height.
+ * ══════════════════════════════════════════════════════════ */
+html body #menu > ul,
+html body #menu > ul.main_site_menu_inner {
+	font-size: 14.5px !important;
+}
+html body #menu > ul > li > a,
+html body #menu li > a,
+html body #menu a {
+	font-size: 14.5px !important;
+	font-weight: 600 !important;
+	text-align: center !important;
+	line-height: 50px !important;
+}
+/* Username end-tab (Heywood) — same as Apollostage */
+html body #userinfo_username #nav_userinfo > a,
+html body #userinfo_username a.username,
+html body #userinfo a.username {
+	font-size: 14.5px !important;
+	font-weight: 600 !important;
+	line-height: 50px !important;
+	text-align: center !important;
+}
+html body #userinfo_major,
+html body #userinfo_stats {
+	font-size: 14.5px !important;
+}
+html body #menu > ul > #nav_staff,
+html body #nav_staff {
+	font-size: 14.5px !important;
+}
+/* Apollostage: flyouts / minor / stats link rows are 13.5px */
+html body #userinfo_major > li > a,
+html body #userinfo_minor > li > a,
+html body #userinfo_stats > li > a,
+html body #menu ul#torrent_reviews > li > a,
+html body #menu > ul > li > ul > li > a,
+html body #menu ul ul a {
+	font-size: 13.5px !important;
+	font-weight: 500 !important;
+	text-align: left !important;
+	line-height: 32px !important;
+}
+/* Searchbars — secondary chrome; body is 12px in Neo base, Apollostage body is 14px.
+ * Use normal line-height + horizontal padding only so 1px border doesn't clip glyphs. */
+html body #searchbars input,
+html body #searchbars .search_form input {
+	font-size: 13px !important;
+	line-height: normal !important;
+	height: 30px !important;
+	padding: 0 8px !important;
+	box-sizing: border-box !important;
+	vertical-align: middle !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+ * EOF — Heywood flyout open: force grow + opaque card (last word)
+ * ══════════════════════════════════════════════════════════ */
+@media (min-width: 576px) {
+	html body #header #userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
+	html body #userinfo_username:hover,
+	html body #userinfo_minor:hover {
+		height: auto !important;
+		max-height: none !important;
+		min-height: 50px !important;
+		overflow: visible !important;
+		padding-top: 54px !important;
+		padding-bottom: 8px !important;
+		z-index: 1000 !important;
+	}
+	html body #userinfo_username:hover::after,
+	html body #userinfo_minor:hover::after,
+	html body #header #userinfo_username:hover::after,
+	html body #header #userinfo_minor:hover::after {
+		content: "" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 54px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		z-index: 0 !important;
+		pointer-events: none !important;
+		border-radius: 10px !important;
+		border: 1px solid rgba(0, 255, 65, 0.28) !important;
+		background: #0a140c !important;
+		background-color: #0a140c !important;
+		opacity: 1 !important;
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65) !important;
+	}
+	html body #userinfo_username:hover > li:not(#nav_userinfo),
+	html body #userinfo_minor:hover > li {
+		position: relative !important;
+		z-index: 1 !important;
+	}
+	html body #userinfo_username:hover a:not(.username),
+	html body #userinfo_minor:hover a {
+		position: relative !important;
+		z-index: 1 !important;
+		opacity: 1 !important;
+	}
+}
