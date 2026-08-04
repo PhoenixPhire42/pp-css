@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-03T1649Z src=570a6ea */
+/* pp-css-build: 2026-08-04T2029Z src=86bdc94 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -39,8 +39,7 @@ html {
   --ptp-radius: 8px;
   --ptp-glow-cyan: rgba(94, 231, 255, 0.22);
   --ptp-glow-magenta: rgba(255, 45, 149, 0.18);
-  /* monkie-dev / CDN wordmark */
-  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg");
+  --ptp-logo: none; /* 1.0.563: logo injected idle via GM (avoid 85KB CSSOM) */
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
