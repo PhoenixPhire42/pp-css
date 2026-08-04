@@ -11,7 +11,6 @@
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
-/* pp-css-build: 2026-08-03T1649Z src=570a6ea */
 /* ══════════════════════════════════════════════════════════
  * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
@@ -38,6 +37,11 @@
 	--btn-ok: #5ed9a0;
 	--btn-warn: #e8c06a;
 	--btn-danger: #e88890;
+	/* Snatched — purple (≠ freeleech green / accent cyan) */
+	--btn-snatched: #c4b5fd;
+	--btn-snatched-hot: #a78bfa;
+	--btn-snatched-bg: rgba(124, 58, 237, 0.16);
+	--btn-snatched-border: rgba(167, 139, 250, 0.42);
 	--btn-radius: 14px;
 	--btn-radius-sm: 8px;
 	--btn-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -1178,6 +1182,91 @@ hr {
 ::selection {
 	background: rgba(94, 200, 232, 0.28);
 	color: var(--btn-text);
+}
+
+/* ══════════════════════════════════════════════════════════
+ * Snatched — purple + badge (V7)
+ * Stock BTN: .snatched on format line / row; optional .tl_snatched
+ * Ambient table a { color: text !important } flattened stock color.
+ * ══════════════════════════════════════════════════════════ */
+
+/* Text / links you've snatched (beat table a) */
+html body table a.snatched,
+html body table .snatched a,
+html body table span.snatched,
+html body table td.snatched,
+html body table .snatched,
+html body #content span.snatched,
+html body #content a.snatched,
+html body .snatched {
+	color: var(--btn-snatched) !important;
+	font-weight: 650 !important;
+}
+html body table a.snatched:hover,
+html body table .snatched a:hover,
+html body #content a.snatched:hover {
+	color: #ddd6fe !important;
+}
+
+/* Row wash + left rail */
+html body tr.snatched td,
+html body tr.snatched_torrent td,
+html body tr.snatched_group td,
+html body tr.rowa.snatched td,
+html body tr.rowb.snatched td {
+	background: var(--btn-snatched-bg) !important;
+}
+html body tr.snatched td:first-child,
+html body tr.snatched_torrent td:first-child,
+html body tr.snatched_group td:first-child {
+	box-shadow: inset 3px 0 0 rgba(167, 139, 250, 0.55) !important;
+}
+
+/* Stock label if present */
+html body .torrent_label.tl_snatched,
+html body .tl_snatched,
+html body strong.torrent_label.tl_snatched {
+	display: inline-flex !important;
+	align-items: center !important;
+	background: linear-gradient(
+		180deg,
+		rgba(243, 232, 255, 0.14),
+		rgba(167, 139, 250, 0.12)
+	) !important;
+	color: var(--btn-snatched-hot) !important;
+	border: 1px solid var(--btn-snatched-border) !important;
+	border-radius: 999px !important;
+	font-weight: 700 !important;
+	font-size: 10.5px !important;
+	padding: 2px 8px !important;
+	margin-inline: 0.35rem !important;
+	vertical-align: middle !important;
+	box-shadow: 0 0 12px rgba(124, 58, 237, 0.15) !important;
+}
+
+/* Badge when only .snatched class (no stock label) */
+html body span.snatched::after,
+html body a.snatched::after {
+	content: "Snatched";
+	display: inline-flex;
+	align-items: center;
+	margin-left: 0.45em;
+	padding: 1px 7px;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	line-height: 1.25;
+	color: var(--btn-snatched-hot);
+	background: rgba(124, 58, 237, 0.2);
+	border: 1px solid var(--btn-snatched-border);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+/* Avoid double badge if stock label already there */
+html body span.snatched:has(.tl_snatched)::after,
+html body a.snatched:has(.tl_snatched)::after {
+	content: none;
 }
 
 /* Responsive-ish — only when viewport is under stock 980 shell */
