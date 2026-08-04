@@ -11,7 +11,7 @@
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
-/* pp-css-build: 2026-08-04T2031Z src=d436b9b */
+/* pp-css-build: 2026-08-04T2046Z src=c36b76e */
 /* ══════════════════════════════════════════════════════════
  * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
@@ -1186,15 +1186,23 @@ hr {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Snatched — purple + badge (V8)
- * Stock BTN: .snatched on format line / row; optional .tl_snatched
- * Ambient table a { color: text !important } flattened stock color.
- * V7: a.snatched / .snatched a / badge on classed node.
- * V8: when only tr/td has .snatched, force purple on child <a>
- *     + "Snatched" pill on format link (not [DL] download).
+ * Snatched / Seeding — BTN real markers (V9)
+ *
+ * Stock series/torrent rows use:
+ *   <a class="tor_highlight_snatch" style="color:#f00" title="Snatched.">…
+ *   <a class="tor_highlight_seed"   style="color:#ff0" title="Seeding!">…
+ * Ambient table a { color: text !important } killed stock red/yellow.
+ * V7–V8 targeted Gazelle .snatched — BTN never emits that class here.
  * ══════════════════════════════════════════════════════════ */
 
-/* Text / links you've snatched (beat table a) */
+/* ——— Snatched (purple) ——— */
+html body table a.tor_highlight_snatch,
+html body table a.tor_highlight_snatch:link,
+html body table a.tor_highlight_snatch:visited,
+html body a.tor_highlight_snatch,
+html body a.tor_highlight_snatch:link,
+html body a.tor_highlight_snatch:visited,
+/* legacy Gazelle-style (if any page still uses it) */
 html body table a.snatched,
 html body table .snatched a,
 html body table span.snatched,
@@ -1206,41 +1214,61 @@ html body .snatched {
 	color: var(--btn-snatched) !important;
 	font-weight: 650 !important;
 }
-/* V8 — row/cell class only: format + DL links still flattened by table a */
-html body table tr.snatched a,
-html body table tr.snatched_torrent a,
-html body table tr.snatched_group a,
-html body table tr.rowa.snatched a,
-html body table tr.rowb.snatched a,
-html body table td.snatched a {
-	color: var(--btn-snatched) !important;
-	font-weight: 650 !important;
+/* format chips inside the snatched link (MKV / H.265 / …) */
+html body table a.tor_highlight_snatch span,
+html body table a.tor_highlight_snatch strong,
+html body table a.tor_highlight_snatch abbr,
+html body a.tor_highlight_snatch span,
+html body a.tor_highlight_snatch strong,
+html body a.tor_highlight_snatch abbr {
+	color: inherit !important;
 }
+html body table a.tor_highlight_snatch:hover,
+html body a.tor_highlight_snatch:hover,
 html body table a.snatched:hover,
-html body table .snatched a:hover,
-html body #content a.snatched:hover,
-html body table tr.snatched a:hover,
-html body table tr.snatched_torrent a:hover,
-html body table tr.snatched_group a:hover,
-html body table td.snatched a:hover {
+html body table .snatched a:hover {
 	color: #ddd6fe !important;
 }
 
-/* Row wash + left rail */
+/* Row wash + left rail when format link is snatched */
+html body tr:has(> td a.tor_highlight_snatch) > td,
+html body tr:has(a.tor_highlight_snatch) > td,
 html body tr.snatched td,
 html body tr.snatched_torrent td,
-html body tr.snatched_group td,
-html body tr.rowa.snatched td,
-html body tr.rowb.snatched td {
+html body tr.snatched_group td {
 	background: var(--btn-snatched-bg) !important;
 }
+html body tr:has(> td a.tor_highlight_snatch) > td:first-child,
+html body tr:has(a.tor_highlight_snatch) > td:first-child,
 html body tr.snatched td:first-child,
 html body tr.snatched_torrent td:first-child,
 html body tr.snatched_group td:first-child {
 	box-shadow: inset 3px 0 0 rgba(167, 139, 250, 0.55) !important;
 }
 
-/* Stock label if present */
+/* Snatched pill on the format link */
+html body table a.tor_highlight_snatch::after,
+html body a.tor_highlight_snatch::after,
+html body span.snatched::after,
+html body a.snatched::after {
+	content: "Snatched";
+	display: inline-flex;
+	align-items: center;
+	margin-left: 0.45em;
+	padding: 1px 7px;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	line-height: 1.25;
+	color: var(--btn-snatched-hot);
+	background: rgba(124, 58, 237, 0.2);
+	border: 1px solid var(--btn-snatched-border);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+/* Stock Gazelle label if present */
 html body .torrent_label.tl_snatched,
 html body .tl_snatched,
 html body strong.torrent_label.tl_snatched {
@@ -1261,39 +1289,44 @@ html body strong.torrent_label.tl_snatched {
 	vertical-align: middle !important;
 	box-shadow: 0 0 12px rgba(124, 58, 237, 0.15) !important;
 }
-
-/* Badge when only .snatched class (no stock label) */
-html body span.snatched::after,
-html body a.snatched::after {
-	content: "Snatched";
-	display: inline-flex;
-	align-items: center;
-	margin-left: 0.45em;
-	padding: 1px 7px;
-	border-radius: 999px;
-	font-size: 10px;
-	font-weight: 700;
-	letter-spacing: 0.02em;
-	line-height: 1.25;
-	color: var(--btn-snatched-hot);
-	background: rgba(124, 58, 237, 0.2);
-	border: 1px solid var(--btn-snatched-border);
-	vertical-align: middle;
-	white-space: nowrap;
-}
-/* Avoid double badge if stock label already there */
 html body span.snatched:has(.tl_snatched)::after,
 html body a.snatched:has(.tl_snatched)::after {
 	content: none;
 }
 
-/* V8 — badge on format link when only the row/cell is marked snatched
- * (skip [DL] download + action=download; skip if a already has ::after via .snatched) */
-html body table tr.snatched a[href*="torrents.php?id="]::after,
-html body table tr.snatched_torrent a[href*="torrents.php?id="]::after,
-html body table tr.snatched_group a[href*="torrents.php?id="]::after,
-html body table td.snatched a[href*="torrents.php?id="]::after {
-	content: "Snatched";
+/* ——— Seeding (mint — so table a !important does not flatten stock yellow) ——— */
+html body table a.tor_highlight_seed,
+html body table a.tor_highlight_seed:link,
+html body table a.tor_highlight_seed:visited,
+html body a.tor_highlight_seed,
+html body a.tor_highlight_seed:link,
+html body a.tor_highlight_seed:visited {
+	color: var(--btn-ok) !important;
+	font-weight: 650 !important;
+}
+html body table a.tor_highlight_seed span,
+html body table a.tor_highlight_seed strong,
+html body table a.tor_highlight_seed abbr,
+html body a.tor_highlight_seed span,
+html body a.tor_highlight_seed strong,
+html body a.tor_highlight_seed abbr {
+	color: inherit !important;
+}
+html body table a.tor_highlight_seed:hover,
+html body a.tor_highlight_seed:hover {
+	color: #8af0c0 !important;
+}
+html body tr:has(> td a.tor_highlight_seed) > td,
+html body tr:has(a.tor_highlight_seed) > td {
+	background: rgba(94, 217, 160, 0.1) !important;
+}
+html body tr:has(> td a.tor_highlight_seed) > td:first-child,
+html body tr:has(a.tor_highlight_seed) > td:first-child {
+	box-shadow: inset 3px 0 0 rgba(94, 217, 160, 0.55) !important;
+}
+html body table a.tor_highlight_seed::after,
+html body a.tor_highlight_seed::after {
+	content: "Seeding";
 	display: inline-flex;
 	align-items: center;
 	margin-left: 0.45em;
@@ -1303,24 +1336,19 @@ html body table td.snatched a[href*="torrents.php?id="]::after {
 	font-weight: 700;
 	letter-spacing: 0.02em;
 	line-height: 1.25;
-	color: var(--btn-snatched-hot);
-	background: rgba(124, 58, 237, 0.2);
-	border: 1px solid var(--btn-snatched-border);
+	color: #8af0c0;
+	background: rgba(94, 217, 160, 0.16);
+	border: 1px solid rgba(94, 217, 160, 0.4);
 	vertical-align: middle;
 	white-space: nowrap;
 }
-/* No double pill when format link itself is .snatched (already has badge) */
-html body table tr.snatched a.snatched[href*="torrents.php?id="]::after,
-html body table tr.snatched_torrent a.snatched[href*="torrents.php?id="]::after,
-html body table td.snatched a.snatched[href*="torrents.php?id="]::after {
-	/* keep single badge from a.snatched::after — same content is fine; one rule wins */
-	content: "Snatched";
-}
-html body table tr.snatched a.snatched:has(.tl_snatched)::after,
-html body table tr.snatched a[href*="torrents.php?id="]:has(.tl_snatched)::after,
-html body table tr.snatched_torrent a[href*="torrents.php?id="]:has(.tl_snatched)::after,
-html body table td.snatched a[href*="torrents.php?id="]:has(.tl_snatched)::after {
-	content: none;
+/* Prefer Seeding pill when both (shouldn't happen, but seed wins) */
+html body table a.tor_highlight_snatch.tor_highlight_seed::after,
+html body a.tor_highlight_snatch.tor_highlight_seed::after {
+	content: "Seeding";
+	color: #8af0c0;
+	background: rgba(94, 217, 160, 0.16);
+	border-color: rgba(94, 217, 160, 0.4);
 }
 
 /* Responsive-ish — only when viewport is under stock 980 shell */
