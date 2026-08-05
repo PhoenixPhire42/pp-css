@@ -6,8 +6,8 @@
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-neo.css
  */
-/* pp-css-build: 2026-08-05T0027Z src=4c6c8d9 */
-/* NEO_CACHE_V47 */
+/* pp-css-build: 2026-08-05T0036Z src=301c2b5 */
+/* NEO_CACHE_V48 */
 /*
  * PP Neo standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
@@ -1292,9 +1292,8 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     text-align: center
 }
 
-#nav_index {
-    display: none
-}
+/* #nav_index: Apollostage home tab — V48 desktop lock */
+
 
 #userinfo_minor:hover a, #userinfo_username:hover a {
     display: block
@@ -7163,10 +7162,11 @@ html body #menu li.active a {
 }
 
 /*
- * Desktop menu height lock — #menu>ul a { height:100% } + flex:1 li was stretching
- * the primary nav into tall empty green columns (see PP index Neo).
- * Keep the Matrix green ramp; force a normal ~50px tab bar on desktop.
- * Apollostage: leave 149px for Heywood(100)+▾(50); Staff is NOT a flex tab.
+ * Desktop menu height lock + Apollostage chrome (V48)
+ * · 50px tab bar; leave 149px for Heywood+▾
+ * · #menu/#menu>ul stay static so #nav_staff abspos uses #header (stock top:29px)
+ * · li:not(#nav_staff) position:relative for Torrents submenu
+ * · Kill mobile chrome that shows as grey squares when global.css was deferred
  */
 @media (min-width: 576px) {
 	html body #header {
@@ -7180,12 +7180,55 @@ html body #menu li.active a {
 		display: flex !important;
 		flex-direction: column !important;
 	}
-	/* menu shell stays in flow; only the UL is a positioning root for submenus */
+
+	/* Stock global.css desktop hide — grey squares = mobile toggles/checkboxes */
+	html body #header input[type="checkbox"],
+	html body #header input[type="checkbox"] + label,
+	html body input#mobile_main_menu,
+	html body input.mobile_main_menu,
+	html body .hiden_mobile_menu,
+	html body .hide-input,
+	html body .mobile_header,
+	html body .main_mobile_menu_toggle,
+	html body .main_mobile_menu_toggle .spinner,
+	html body #header .spinner,
+	html body form#extra-hidden,
+	html body #extracb1,
+	html body #extracb2,
+	html body #extracb3,
+	html body #extracb4,
+	html body #extracb5 {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		width: 0 !important;
+		height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		pointer-events: none !important;
+		position: absolute !important;
+		left: -9999px !important;
+	}
+	html body #extra1,
+	html body #extra2,
+	html body #extra3,
+	html body #extra4,
+	html body #extra5,
+	html body #extra6 {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		width: 0 !important;
+		height: 0 !important;
+	}
+
+	/* #menu static — Staff positions against #header like stock Apollostage */
 	html body #menu {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		position: relative !important;
+		position: static !important;
 		top: auto !important;
 		bottom: auto !important;
 		left: auto !important;
@@ -7199,12 +7242,12 @@ html body #menu li.active a {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		position: relative !important;
+		/* static so #nav_staff containing block = #header (Apollostage) */
+		position: static !important;
 		display: flex !important;
 		flex-flow: row nowrap !important;
 		align-items: stretch !important;
 		box-sizing: border-box !important;
-		/* Apollostage: room for 100px username + 50px chevron */
 		width: calc(100% - 149px) !important;
 		overflow: visible !important;
 		margin: 0 !important;
@@ -7219,6 +7262,7 @@ html body #menu li.active a {
 		box-sizing: border-box !important;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
+		/* relative for #torrent_reviews dropdown only */
 		position: relative !important;
 	}
 	html body #menu > ul > li:not(#nav_staff) > a,
@@ -7233,13 +7277,39 @@ html body #menu li.active a {
 		box-sizing: border-box !important;
 		overflow: hidden !important;
 	}
-	/* Nested Torrents submenu — not height-locked tabs */
+	/* Home icon tab — Apollostage shows #nav_index as 50px FA home */
+	html body #menu > ul > li#nav_index,
+	html body #nav_index {
+		display: block !important;
+		max-width: 50px !important;
+		width: 50px !important;
+		flex: 0 0 50px !important;
+	}
+	html body #nav_index > a {
+		font-size: 0 !important;
+		line-height: 50px !important;
+		text-align: center !important;
+	}
+	html body #nav_index > a::before {
+		content: "\f015" !important;
+		font-family: "Font Awesome 6 Sharp", "Font Awesome 6 Free", "Font Awesome 5 Free", FontAwesome !important;
+		font-weight: 900 !important;
+		font-size: 14px !important;
+		line-height: 50px !important;
+		color: #d0ffd0 !important;
+		-webkit-text-fill-color: #d0ffd0 !important;
+	}
+	/* Nested Torrents submenu */
 	html body #menu > ul > li > ul,
 	html body #menu #torrent_reviews {
 		height: auto !important;
 		max-height: min(70vh, 480px) !important;
 		min-height: 0 !important;
 		flex: none !important;
+		position: absolute !important;
+		top: 100% !important;
+		left: 0 !important;
+		z-index: 1000 !important;
 	}
 	/* Closed rail tabs only — open state grows in end-cap */
 	html body #userinfo_username:not(:hover),
@@ -7300,8 +7370,9 @@ html body #menu li.active a {
 		overflow: visible !important;
 		z-index: 950 !important;
 	}
+	/* #main_site_menu static — Staff CB is #header (see Staff block) */
 	html body #main_site_menu {
-		position: relative !important;
+		position: static !important;
 		overflow: visible !important;
 		z-index: 100 !important;
 	}
@@ -7360,19 +7431,21 @@ html body #menu li.active a {
 		line-height: 1.25 !important;
 	}
 
-	/* ── Staff: Apollostage absolute text link (NOT a menu tab) ──
+	/* ── Staff: exact Apollostage (absolute text, header CB) ──
 	 * Stock: position:absolute; right:8px; top:29px relative to #header.
-	 * Height-lock makes #menu position:relative, so top:29px would trap
-	 * Staff mid-rail. Pull up into logo row (~ -52px from menu top ≈
-	 * stock 29px from header top with default logo padding).
+	 * #menu / #menu>ul / #main_site_menu stay static so CB = #header.
 	 */
+	html body #main_site_menu {
+		position: static !important;
+		overflow: visible !important;
+	}
 	html body #menu > ul > li#nav_staff,
 	html body #menu ul li#nav_staff,
 	html body #menu li#nav_staff,
 	html body #main_site_menu li#nav_staff,
 	html body #header #menu li#nav_staff {
 		position: absolute !important;
-		top: -52px !important;
+		top: 29px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
