@@ -6,8 +6,8 @@
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-neo.css
  */
-/* pp-css-build: 2026-08-04T2358Z src=487e08d */
-/* NEO_CACHE_V45 */
+/* pp-css-build: 2026-08-05T0020Z src=936e0e7 */
+/* NEO_CACHE_V46 */
 /*
  * PP Neo standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
@@ -1392,72 +1392,10 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
         vertical-align: top
     }
 
+    /* Staff + Heywood/▾ layout owned by EOF V46 Apollostage end-cap.
+     * Keep only non-layout chrome hints here so base pink/mauve cannot fight. */
     #nav_staff {
         font-weight: 400
-    }
-
-    #menu>ul>#nav_staff {
-        display: inline;
-        font-size: 14.5px;
-        position: absolute;
-        right: 8px;
-        top: 29px
-    }
-
-    #menu>ul>#nav_staff>a {
-        line-height: 1.6;
-        padding: 0
-    }
-
-    #menu>ul>#nav_staff>a:hover {
-        background-color: transparent;
-        color: #7cff9a
-    }
-
-    #userinfo_minor:before {
-        background: none no-repeat;
-        filter: brightness(200%);
-        background-size: 28px;
-        background-position: 50%;
-        display: block;
-        height: 50px;
-        line-height: 50px;
-        width: 50px
-    }
-
-    #userinfo_minor a, #userinfo_username a {
-        display: none;
-        line-height: 32px;
-        padding: 0 8px;
-        width: 150px
-    }
-
-    #userinfo_minor:hover:before {
-        margin-left: 100px
-    }
-
-    #userinfo_minor {
-        background-color: #5c6086;
-        border-radius: 0 5px 0 0;
-        right: 0
-    }
-
-    #userinfo_minor, #userinfo_username {
-        position: absolute;
-        z-index: 900
-    }
-
-    #userinfo_minor:hover, #userinfo_username:hover {
-        z-index: 800
-    }
-
-    #userinfo_username:hover {
-        border-radius: 0 10px 0 0;
-        right: 0
-    }
-
-    #userinfo_minor:hover, #userinfo_username:hover {
-        background-color: #6c6584
     }
 
     .settings_sidebar {
@@ -4341,16 +4279,7 @@ html body #userinfo_minor {
 		inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
 }
 
-html body #userinfo_username:hover {
-	background: #161a20 !important;
-	background-color: #161a20 !important;
-	background-image: linear-gradient(180deg, #242a32 0%, #161a20 48%, #0c1014 100%) !important;
-}
-html body #userinfo_minor:hover {
-	background: #101418 !important;
-	background-color: #101418 !important;
-	background-image: linear-gradient(180deg, #1c2228 0%, #101418 48%, #080a0c 100%) !important;
-}
+/* Open flyout solid fill owned by EOF V46 Apollostage end-cap (not here). */
 
 html body #userinfo_username a,
 html body #userinfo_minor a,
@@ -7193,6 +7122,7 @@ html body #menu li.active a {
  * Desktop menu height lock — #menu>ul a { height:100% } + flex:1 li was stretching
  * the primary nav into tall empty green columns (see PP index Neo).
  * Keep the Matrix green ramp; force a normal ~50px tab bar on desktop.
+ * Apollostage: leave 149px for Heywood(100)+▾(50); Staff is NOT a flex tab.
  */
 @media (min-width: 576px) {
 	html body #header {
@@ -7203,9 +7133,11 @@ html body #menu li.active a {
 		position: relative !important;
 		overflow: visible !important;
 		transform: none !important;
+		display: flex !important;
+		flex-direction: column !important;
 	}
-	html body #menu,
-	html body #menu > ul {
+	/* menu shell stays in flow; only the UL is a positioning root for submenus */
+	html body #menu {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
@@ -7214,17 +7146,28 @@ html body #menu li.active a {
 		bottom: auto !important;
 		left: auto !important;
 		right: auto !important;
+		overflow: visible !important;
+		box-sizing: border-box !important;
+		z-index: 100 !important;
+	}
+	html body #menu > ul,
+	html body #menu > ul.main_site_menu_inner {
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		position: relative !important;
 		display: flex !important;
 		flex-flow: row nowrap !important;
 		align-items: stretch !important;
 		box-sizing: border-box !important;
-	}
-	html body #menu > ul {
+		/* Apollostage: room for 100px username + 50px chevron */
 		width: calc(100% - 149px) !important;
-		overflow: hidden !important;
+		overflow: visible !important;
+		margin: 0 !important;
+		padding: 0 !important;
 	}
-	html body #menu > ul > li,
-	html body #menu li {
+	html body #menu > ul > li:not(#nav_staff),
+	html body #menu > ul.main_site_menu_inner > li:not(#nav_staff) {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
@@ -7232,10 +7175,10 @@ html body #menu li.active a {
 		box-sizing: border-box !important;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
+		position: relative !important;
 	}
-	html body #menu > ul > li > a,
-	html body #menu li a,
-	html body #menu a {
+	html body #menu > ul > li:not(#nav_staff) > a,
+	html body #menu > ul.main_site_menu_inner > li:not(#nav_staff) > a {
 		display: block !important;
 		height: 50px !important;
 		min-height: 50px !important;
@@ -7246,45 +7189,77 @@ html body #menu li.active a {
 		box-sizing: border-box !important;
 		overflow: hidden !important;
 	}
-	/* Username tab in header — match menu row height */
-	html body #userinfo_username,
-	html body #userinfo_minor {
+	/* Nested Torrents submenu — not height-locked tabs */
+	html body #menu > ul > li > ul,
+	html body #menu #torrent_reviews {
+		height: auto !important;
+		max-height: min(70vh, 480px) !important;
+		min-height: 0 !important;
+		flex: none !important;
+	}
+	/* Closed rail tabs only — open state grows in end-cap */
+	html body #userinfo_username:not(:hover),
+	html body #userinfo_minor:not(:hover) {
 		height: 50px !important;
 		max-height: 50px !important;
 	}
-	html body #userinfo_username > li > a,
-	html body #userinfo_username a.username {
+	html body #userinfo_username:not(:hover) > li > a,
+	html body #userinfo_username:not(:hover) a.username {
 		line-height: 50px !important;
 		height: 50px !important;
 	}
 }
 
 
-
-
 /* ══════════════════════════════════════════════════════════
- * Heywood + chevron end-cap (V45 — Apollostage/MacLite/Dark V46 port, Neo green)
- * Closed: 100px Heywood + 50px ▾ on the menu rail.
- * Open: transparent shell; Matrix card via ::after BELOW the rail
- * so tabs stay put and the list is one continuous panel
- * (no orphan Better/Posts/Upvotes card).
+ * Apollostage header chrome (V46 — live apollostage/style.css)
+ * Structure matches stock PP Apollostage; Matrix green paint only.
+ *
+ * Layout (desktop):
+ *   · #userinfo collapses (all abs kids) → shares menu baseline
+ *   · #menu>ul width calc(100%-149px) leaves Heywood+▾ rail
+ *   · #userinfo_username 100px @ right:50px · #userinfo_minor 50px @ right:0
+ *   · #nav_staff pulled out of tab bar → top-right text (logo row)
+ *   · major top:-53px · stats top:-31px (logo row)
+ * Open: solid panel expand (stock Apollostage), not transparent card.
  * ══════════════════════════════════════════════════════════ */
 @media (min-width: 576px) {
-	/* #userinfo collapses — absolute children share the menu baseline */
-	html body #userinfo {
+	/* ── Anchors ───────────────────────────────────────── */
+	html body #header,
+	html body #wrapper #header {
+		position: relative !important;
+	}
+	html body #userinfo,
+	html body .user_mobile_menu_toggle#userinfo {
 		position: relative !important;
 		display: block !important;
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		overflow: visible !important;
+		z-index: 950 !important;
+		float: none !important;
+		width: auto !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		box-shadow: none !important;
+	}
+	html body .menu_container {
+		position: relative !important;
 		height: 0 !important;
 		min-height: 0 !important;
 		margin: 0 !important;
 		padding: 0 !important;
 		overflow: visible !important;
 		z-index: 950 !important;
-		float: none !important;
 	}
-	html body #menu > ul {
-		width: calc(100% - 150px) !important;
-		overflow: hidden !important;
+	html body #main_site_menu {
+		position: relative !important;
+		overflow: visible !important;
+		z-index: 100 !important;
 	}
 
 	html body #userinfo li::marker,
@@ -7294,66 +7269,185 @@ html body #menu li.active a {
 		display: none !important;
 	}
 
+	/* ── Logo row: major / stats (Apollostage offsets) ── */
+	html body #userinfo_major,
+	html body #userinfo_stats {
+		display: flex !important;
+		flex-flow: row nowrap !important;
+		position: absolute !important;
+		right: 8px !important;
+		left: auto !important;
+		z-index: 40 !important;
+		background: transparent !important;
+		background-image: none !important;
+		box-shadow: none !important;
+		border: none !important;
+		height: auto !important;
+		max-height: none !important;
+		width: auto !important;
+		overflow: visible !important;
+	}
+	html body #userinfo_major {
+		font-size: 14.5px !important;
+		right: 41px !important;
+		top: -53px !important;
+	}
+	html body #userinfo_stats {
+		font-size: 14.5px !important;
+		top: -31px !important;
+		right: 8px !important;
+	}
+	html body #userinfo_major > li,
+	html body #userinfo_stats > li {
+		margin-left: 8px !important;
+		display: list-item !important;
+		float: none !important;
+		width: auto !important;
+		height: auto !important;
+		background: transparent !important;
+	}
+	html body #userinfo_major a,
+	html body #userinfo_stats a,
+	html body #userinfo_stats span {
+		color: var(--text) !important;
+		-webkit-text-fill-color: var(--text) !important;
+		background: transparent !important;
+		font-size: 14.5px !important;
+		line-height: 1.25 !important;
+	}
+
+	/* ── Staff: Apollostage absolute text link (NOT a menu tab) ──
+	 * Stock: position:absolute; right:8px; top:29px relative to #header.
+	 * Height-lock makes #menu position:relative, so top:29px would trap
+	 * Staff mid-rail. Pull up into logo row (~ -52px from menu top ≈
+	 * stock 29px from header top with default logo padding).
+	 */
+	html body #menu > ul > li#nav_staff,
+	html body #menu ul li#nav_staff,
+	html body #menu li#nav_staff,
+	html body #main_site_menu li#nav_staff,
+	html body #header #menu li#nav_staff {
+		position: absolute !important;
+		top: -52px !important;
+		right: 8px !important;
+		left: auto !important;
+		bottom: auto !important;
+		float: none !important;
+		display: inline !important;
+		width: auto !important;
+		min-width: 0 !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		flex: 0 0 auto !important;
+		background: transparent !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		border-right: none !important;
+		box-shadow: none !important;
+		filter: none !important;
+		opacity: 1 !important;
+		z-index: 45 !important;
+		list-style: none !important;
+		line-height: 1.25 !important;
+		font-size: 13.5px !important;
+		font-weight: 400 !important;
+	}
+	html body #menu > ul > li#nav_staff > a,
+	html body #menu li#nav_staff a,
+	html body #main_site_menu li#nav_staff a,
+	html body #header a[href="staff.php"],
+	html body #header a[title="Staff"] {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		width: auto !important;
+		color: var(--text-dimmed) !important;
+		-webkit-text-fill-color: var(--text-dimmed) !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+		font-size: 13.5px !important;
+		font-weight: 400 !important;
+		text-align: right !important;
+		overflow: visible !important;
+	}
+	html body #menu li#nav_staff a:hover,
+	html body #header a[href="staff.php"]:hover {
+		color: var(--link-hover) !important;
+		-webkit-text-fill-color: var(--link-hover) !important;
+		background: transparent !important;
+	}
+
+	/* ── Closed rail: Heywood 100px + ▾ 50px (Apollostage) ── */
 	html body #userinfo_username,
 	html body #userinfo_minor {
 		position: absolute !important;
-		top: 0 !important; /* same band as #menu (userinfo height:0) */
+		top: 0 !important;
 		bottom: auto !important;
 		left: auto !important;
-		right: 0 !important;
-		height: 50px !important;
-		min-height: 50px !important;
-		max-height: 50px !important;
 		margin: 0 !important;
 		padding: 0 !important;
 		list-style: none !important;
 		box-sizing: border-box !important;
-		overflow: hidden !important;
 		display: block !important;
 		float: none !important;
-		flex-direction: unset !important;
-		flex-wrap: nowrap !important;
-		column-count: auto !important;
-		columns: auto !important;
 		z-index: 960 !important;
-		background: #0e2818 !important;
-		background-color: #0e2818 !important;
-		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
 		border: none !important;
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.06),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 		filter: none !important;
+		/* closed defaults — open overrides below */
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		overflow: hidden !important;
 	}
-	/* Heywood — left of the 50px chevron */
 	html body #userinfo_username {
 		right: 50px !important;
 		width: 100px !important;
 		border-radius: 0 !important;
 		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
 		z-index: 961 !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 	}
-	/* Chevron end-cap */
 	html body #userinfo_minor {
 		right: 0 !important;
 		width: 50px !important;
-		border-radius: 0 6px 0 0 !important;
+		border-radius: 0 5px 0 0 !important;
+		z-index: 962 !important;
 		background: #0a1c12 !important;
 		background-color: #0a1c12 !important;
 		background-image: linear-gradient(180deg, #143820 0%, #0a1c12 48%, #040c06 100%) !important;
-		z-index: 962 !important;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.05),
+			inset 0 -1px 0 rgba(0, 0, 0, 0.5) !important;
 	}
 
 	/* Closed: only Heywood label */
 	html body #userinfo_username:not(:hover) > li:not(#nav_userinfo),
-	html body #userinfo_username:not(:hover) a:not(.username) {
+	html body #userinfo_username:not(:hover) a:not(.username),
+	html body #userinfo_username:not(:hover) #nav_userclass,
+	html body #userinfo_username:not(:hover) #nav_useredit,
+	html body #userinfo_username:not(:hover) #nav_logout {
 		display: none !important;
 	}
 	html body #userinfo_username:not(:hover) #nav_userinfo,
 	html body #userinfo_username:not(:hover) > li#nav_userinfo {
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
+		display: block !important;
 		height: 50px !important;
 		width: 100% !important;
 		margin: 0 !important;
@@ -7365,18 +7459,17 @@ html body #menu li.active a {
 	}
 	html body #userinfo_username a.username,
 	html body #userinfo_username #nav_userinfo > a {
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-		width: 100% !important;
+		display: block !important;
+		width: 100px !important;
+		max-width: 100% !important;
 		height: 50px !important;
-		line-height: 1 !important;
+		line-height: 50px !important;
 		padding: 0 6px !important;
 		margin: 0 !important;
 		box-sizing: border-box !important;
 		text-align: center !important;
-		font-size: 13px !important;
-		font-weight: 700 !important;
+		font-size: 14.5px !important;
+		font-weight: 600 !important;
 		color: #e0ffe0 !important;
 		-webkit-text-fill-color: #e0ffe0 !important;
 		background: transparent !important;
@@ -7385,26 +7478,21 @@ html body #menu li.active a {
 		text-overflow: ellipsis !important;
 		white-space: nowrap !important;
 	}
-	/* Closed chevron glyph */
+
+	/* Closed chevron glyph (stock uses tiny PNG; unicode ▾ is clearer) */
 	html body #userinfo_minor::before,
 	html body #userinfo_minor:before {
 		content: "\25BE" !important;
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-		position: static !important;
+		display: block !important;
 		width: 50px !important;
 		height: 50px !important;
-		max-width: 50px !important;
-		max-height: 50px !important;
+		line-height: 50px !important;
 		margin: 0 !important;
-		margin-left: 0 !important;
 		padding: 0 !important;
 		box-sizing: border-box !important;
 		font-size: 16px !important;
 		font-weight: 700 !important;
-		line-height: 1 !important;
-		letter-spacing: 0 !important;
+		text-align: center !important;
 		color: #d0ffd0 !important;
 		-webkit-text-fill-color: #d0ffd0 !important;
 		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
@@ -7415,207 +7503,148 @@ html body #menu li.active a {
 		visibility: visible !important;
 		pointer-events: none !important;
 	}
-	/* Closed: hide Inbox… list */
+	/* Closed: hide Inbox…Upvotes */
 	html body #userinfo_minor:not(:hover) > li,
 	html body #userinfo_minor:not(:hover) a {
 		display: none !important;
 	}
-	/* Closed: no card pseudo */
-	html body #userinfo_username:not(:hover)::after,
-	html body #userinfo_minor:not(:hover)::after {
+	/* Kill any leftover card pseudo from V44/V45 */
+	html body #userinfo_username::after,
+	html body #userinfo_minor::after {
 		display: none !important;
 		content: none !important;
 	}
 
-	/*
-	 * OPEN — pure dropdown BELOW the rail.
-	 * Shell is transparent (tabs stay grey); ::after paints one white card.
-	 */
-	html body #header #userinfo_username:hover,
-	html body #header #userinfo_minor:hover,
+	/* ── OPEN — solid Apollostage expand (not transparent shell) ── */
 	html body #userinfo_username:hover,
 	html body #userinfo_minor:hover {
 		right: 0 !important;
-		width: 176px !important;
-		min-width: 176px !important;
-		max-width: 176px !important;
+		width: 166px !important;
+		min-width: 166px !important;
+		max-width: 200px !important;
 		height: auto !important;
 		max-height: none !important;
 		min-height: 50px !important;
-		padding: 54px 0 8px !important;
 		overflow: visible !important;
-		border: none !important;
-		border-radius: 0 !important;
-		background: transparent !important;
-		background-color: transparent !important;
-		background-image: none !important;
-		box-shadow: none !important;
-		filter: none !important;
 		z-index: 1000 !important;
-		/* single column — kill any flex-wrap / float multi-card leaks */
 		display: block !important;
-		flex-wrap: nowrap !important;
-		column-count: 1 !important;
-		columns: auto !important;
+		border-radius: 0 5px 8px 8px !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: none !important;
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 12px rgba(0, 255, 65, 0.1) !important;
+		border: 1px solid rgba(0, 255, 65, 0.22) !important;
+		border-top: none !important;
 	}
-	html body #header #userinfo_username:hover,
 	html body #userinfo_username:hover {
 		z-index: 1002 !important;
+		/* stock slides over chevron: right:0, wider panel */
+		background: #12301a !important;
+		background-color: #12301a !important;
 	}
-	html body #header #userinfo_minor:hover,
 	html body #userinfo_minor:hover {
 		z-index: 1001 !important;
+		background: #0c2414 !important;
+		background-color: #0c2414 !important;
 	}
-	/* One continuous charcoal card under the rail */
-	html body #header #userinfo_username:hover::after,
-	html body #header #userinfo_minor:hover::after,
-	html body #userinfo_username:hover::after,
-	html body #userinfo_minor:hover::after {
-		content: "" !important;
-		display: block !important;
-		position: absolute !important;
-		top: 54px !important;
-		left: 0 !important;
-		right: 0 !important;
-		bottom: 0 !important;
-		border-radius: 10px !important;
-		border: 1px solid rgba(0, 255, 65, 0.28) !important;
-		background: #0a140c !important;
-		background-color: #0a140c !important;
-		background-image: none !important;
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 18px rgba(0, 255, 65, 0.12) !important;
-		z-index: 0 !important;
-		pointer-events: none !important;
-	}
-	/* Keep ▾ pinned in the rail cell while list is open below */
-	html body #header #userinfo_minor:hover::before,
-	html body #header #userinfo_minor:hover:before,
-	html body #userinfo_minor:hover::before,
-	html body #userinfo_minor:hover:before {
-		content: "\25BE" !important;
-		display: flex !important;
-		position: absolute !important;
-		top: 0 !important;
-		right: 0 !important;
-		left: auto !important;
-		width: 50px !important;
-		height: 50px !important;
-		margin: 0 !important;
-		margin-left: 0 !important;
-		z-index: 3 !important;
-		pointer-events: none !important;
-		color: #d0ffd0 !important;
-		-webkit-text-fill-color: #d0ffd0 !important;
-		background: #0a1c12 !important;
-		background-image: linear-gradient(180deg, #143820 0%, #0a1c12 48%, #040c06 100%) !important;
-		border-radius: 0 6px 0 0 !important;
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.05),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
-		filter: none !important;
-	}
-	/* Rows — single vertical stack inside the card */
-	html body #header #userinfo_username:hover > li,
-	html body #header #userinfo_minor:hover > li,
+	/* Open: show all rows */
 	html body #userinfo_username:hover > li,
 	html body #userinfo_minor:hover > li {
 		display: list-item !important;
 		float: none !important;
 		clear: both !important;
 		width: 100% !important;
-		max-width: 100% !important;
 		margin: 0 !important;
 		padding: 0 !important;
 		position: relative !important;
-		z-index: 1 !important;
 		background: transparent !important;
-		background-image: none !important;
 		border: none !important;
-		border-radius: 0 !important;
 		box-shadow: none !important;
 		list-style: none !important;
-		flex: none !important;
 	}
-	/* Open links (menu rows — not the rail Heywood label) */
-	html body #header #userinfo_minor:hover a,
-	html body #header #userinfo_username:hover > li:not(#nav_userinfo) a,
-	html body #header #userinfo_username:hover a:not(.username),
+	/* Hide class label in open username menu */
+	html body #userinfo_username:hover #nav_userclass,
+	html body #userinfo_username:hover .userclass {
+		display: none !important;
+	}
+	/* Open links — Apollostage 150px / 32px line */
 	html body #userinfo_minor:hover a,
 	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
 	html body #userinfo_username:hover a:not(.username) {
 		display: block !important;
-		width: 100% !important;
+		width: 150px !important;
+		max-width: 100% !important;
 		height: auto !important;
 		min-height: 0 !important;
 		max-height: none !important;
-		line-height: 34px !important;
-		padding: 0 14px !important;
+		line-height: 32px !important;
+		padding: 0 8px !important;
 		margin: 0 !important;
 		text-align: left !important;
-		position: relative !important;
-		z-index: 1 !important;
+		font-size: 13.5px !important;
+		font-weight: 500 !important;
 		color: #d0ffd0 !important;
 		-webkit-text-fill-color: #d0ffd0 !important;
 		background: transparent !important;
 		text-shadow: none !important;
 		box-sizing: border-box !important;
 		border: none !important;
-		border-radius: 0 !important;
-		box-shadow: none !important;
 		white-space: nowrap !important;
 	}
-	html body #header #userinfo_username:hover a:hover,
-	html body #header #userinfo_minor:hover a:hover,
 	html body #userinfo_username:hover a:hover,
 	html body #userinfo_minor:hover a:hover {
-		background: rgba(0, 255, 65, 0.14) !important;
+		background: rgba(0, 255, 65, 0.18) !important;
 		color: #f0fff0 !important;
 		-webkit-text-fill-color: #f0fff0 !important;
 	}
-
-	/* Pin Heywood rail label while its own menu is open (Settings/Logout below) */
+	/* Keep Heywood label as rail cell while Settings/Logout open below */
 	html body #userinfo_username:hover #nav_userinfo,
 	html body #userinfo_username:hover > li#nav_userinfo {
-		position: absolute !important;
-		top: 0 !important;
-		right: 50px !important;
-		left: auto !important;
-		width: 100px !important;
+		display: block !important;
+		width: 100% !important;
 		height: 50px !important;
 		margin: 0 !important;
 		padding: 0 !important;
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
-		z-index: 3 !important;
 		background: #0e2818 !important;
 		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
-		border: none !important;
-		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
-		border-radius: 0 !important;
-		box-shadow:
-			inset 0 1px 0 rgba(255, 255, 255, 0.06),
-			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+		border-bottom: 1px solid rgba(0, 255, 65, 0.15) !important;
 		box-sizing: border-box !important;
 	}
 	html body #userinfo_username:hover #nav_userinfo > a,
 	html body #userinfo_username:hover a.username {
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
+		display: block !important;
 		width: 100% !important;
-		height: 100% !important;
-		line-height: 1 !important;
+		height: 50px !important;
+		line-height: 50px !important;
 		padding: 0 6px !important;
 		text-align: center !important;
-		font-size: 13px !important;
-		font-weight: 700 !important;
+		font-size: 14.5px !important;
+		font-weight: 600 !important;
 		color: #e0ffe0 !important;
 		-webkit-text-fill-color: #e0ffe0 !important;
 		background: transparent !important;
 	}
+	/* Open ▾: chevron stays on top row; stock slides ::before with margin-left */
+	html body #userinfo_minor:hover::before,
+	html body #userinfo_minor:hover:before {
+		content: "\25BE" !important;
+		display: block !important;
+		width: 50px !important;
+		height: 50px !important;
+		line-height: 50px !important;
+		margin: 0 0 0 auto !important;
+		margin-left: auto !important;
+		text-align: center !important;
+		color: #d0ffd0 !important;
+		-webkit-text-fill-color: #d0ffd0 !important;
+		background: #0a1c12 !important;
+		background-image: linear-gradient(180deg, #143820 0%, #0a1c12 48%, #040c06 100%) !important;
+		border-radius: 0 5px 0 0 !important;
+		box-shadow: inset 0 -1px 0 rgba(0, 255, 65, 0.12) !important;
+		filter: none !important;
+	}
 
-	/* When ▼ open: Heywood stays closed 100px rail cell (do not expand username) */
+	/* When ▼ open: keep Heywood closed 100px rail (stock: username stays put) */
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username,
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover {
 		visibility: visible !important;
@@ -7629,6 +7658,7 @@ html body #menu li.active a {
 		padding: 0 !important;
 		overflow: hidden !important;
 		border-radius: 0 !important;
+		border: none !important;
 		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
 		z-index: 1003 !important;
 		background: #0e2818 !important;
@@ -7639,47 +7669,30 @@ html body #menu li.active a {
 			inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
 	}
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a:not(.username),
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a:not(.username),
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo ~ li,
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username > li:not(#nav_userinfo) {
 		display: none !important;
 	}
 	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a.username,
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo > a,
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover a.username,
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo > a {
-		display: flex !important;
-		align-items: center !important;
-		justify-content: center !important;
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo > a {
+		display: block !important;
 		width: 100% !important;
-		height: 100% !important;
-		line-height: 1 !important;
-		padding: 0 6px !important;
+		height: 50px !important;
+		line-height: 50px !important;
 		text-align: center !important;
-		font-size: 13px !important;
-		font-weight: 700 !important;
+		font-size: 14.5px !important;
+		font-weight: 600 !important;
 		color: #e0ffe0 !important;
 		-webkit-text-fill-color: #e0ffe0 !important;
 		background: transparent !important;
 	}
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo,
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover #nav_userinfo {
-		display: flex !important;
-		position: static !important;
-		align-items: center !important;
-		justify-content: center !important;
-		height: 100% !important;
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo {
+		display: block !important;
+		height: 50px !important;
 		width: 100% !important;
-		right: auto !important;
 		border: none !important;
 		background: transparent !important;
-		background-image: none !important;
 		box-shadow: none !important;
-	}
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username::after,
-	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover::after {
-		display: none !important;
-		content: none !important;
 	}
 
 	/* When Heywood open: keep ▼ as closed rail cell */
@@ -7693,7 +7706,8 @@ html body #menu li.active a {
 		max-height: 50px !important;
 		padding: 0 !important;
 		overflow: hidden !important;
-		border-radius: 0 6px 0 0 !important;
+		border-radius: 0 5px 0 0 !important;
+		border: none !important;
 		z-index: 1003 !important;
 		background: #0a1c12 !important;
 		background-image: linear-gradient(180deg, #143820 0%, #0a1c12 48%, #040c06 100%) !important;
@@ -7704,9 +7718,5 @@ html body #menu li.active a {
 	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) a,
 	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) > li {
 		display: none !important;
-	}
-	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::after {
-		display: none !important;
-		content: none !important;
 	}
 }
