@@ -12,7 +12,7 @@
  * Failsafe: add ?nocss to the Lounge URL if something breaks.
  * Source: monkie styles/thelounge-matrix.css → PhoenixPhire42/pp-css
  */
-/* pp-css-build: 2026-08-05T0333Z src=a089b8e */
+/* pp-css-build: 2026-08-05T2339Z src=047ee70 */
 /* ── Core tokens ─────────────────────────────────────────── */
 :root {
 	--matrix-green: #00ff41;
@@ -566,7 +566,7 @@ kbd {
 /* Optional: pin a specific nick to a calm color regardless of hash */
 #chat .msg .user[data-name="bighope" i],
 #chat .userlist .names .user[data-name="bighope" i] {
-	color: #a8c49a !important; /* soft sage-green, matrix-adjacent */
+	color: #a86a6a !important; /* dull muted red */
 	text-shadow: 0 0 2px rgb(0 0 0 / 40%);
 }
 
