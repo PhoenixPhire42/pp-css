@@ -294,7 +294,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 @media(min-width:575px){.thin:last-child>:not(.two_columns){margin:4px}
 #nav_donate .tooltip:after{color:red;content:"\2764\FE0F";font-size:75%;vertical-align:top}
 #nav_staff{font-weight:400}
-#menu>ul>#nav_staff{display:inline;font-size:13px;position:absolute;right:8px;top:29px}
+#menu>ul>#nav_staff{display:inline;font-size:13px;position:absolute;right:8px;top:-31px}
 #menu>ul>#nav_staff>a{line-height:1.6;padding:0}
 #menu>ul>#nav_staff>a:hover{background-color:transparent;color:#ff6bcb}
 #userinfo_minor:before{background:none no-repeat;filter:brightness(200%);background-size:28px;background-position:50%;display:block;height:50px;line-height:50px;width:50px}
