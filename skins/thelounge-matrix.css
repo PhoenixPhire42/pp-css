@@ -12,7 +12,7 @@
  * Failsafe: add ?nocss to the Lounge URL if something breaks.
  * Source: monkie styles/thelounge-matrix.css → PhoenixPhire42/pp-css
  */
-/* pp-css-build: 2026-08-06T0218Z src=d1f57fd */
+/* pp-css-build: 2026-08-06T2252Z src=3cd3a51 */
 /* ── Core tokens ─────────────────────────────────────────── */
 :root {
 	--matrix-green: #00ff41;
@@ -901,3 +901,95 @@ body::after {
 	display: none !important;
 }
 */
+
+/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (thelounge) — do not edit in skin; edit styles/mobile/thelounge.css then re-run append-mobile-public.py === */
+/* ============================================================
+ * Public The Lounge Matrix — mobile appendix
+ * Used by: thelounge-matrix.css
+ * ============================================================ */
+
+html,
+body,
+#viewport {
+	max-width: 100% !important;
+	overflow-x: clip !important;
+}
+
+img,
+video,
+svg {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+/* Phones: The Lounge already has sidebar drawer; keep chat usable */
+@media (max-width: 768px) {
+	#viewport {
+		padding-left: env(safe-area-inset-left, 0px) !important;
+		padding-right: env(safe-area-inset-right, 0px) !important;
+	}
+
+	#sidebar {
+		max-width: min(280px, 86vw) !important;
+		box-sizing: border-box !important;
+	}
+
+	#chat,
+	#windows,
+	#footer,
+	.chat,
+	.window {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Message input: avoid iOS zoom */
+	#form,
+	#form input,
+	#form textarea,
+	.input,
+	#input {
+		font-size: 16px !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Long nicks / URLs wrap */
+	.msg,
+	.content,
+	.chat .msg .content {
+		overflow-wrap: anywhere !important;
+		word-break: break-word !important;
+	}
+
+	/* Touch targets for channel list */
+	.channel-list-item,
+	#footer button {
+		min-height: 40px !important;
+		padding-top: 8px !important;
+		padding-bottom: 8px !important;
+	}
+}
+
+@media (max-width: 480px) {
+	#sidebar {
+		max-width: min(100vw, 100%) !important;
+	}
+
+	/* Condensed chrome on small screens */
+	#header,
+	#footer {
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+/* === MONKIES-PUBLIC-MOBILE v1 END === */

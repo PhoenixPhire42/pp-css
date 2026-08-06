@@ -8878,3 +8878,204 @@ html body #torrent_details .important_text_alt {
 	-webkit-text-fill-color: #34c759 !important;
 	font-weight: 700 !important;
 }
+
+/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
+/* pp-css-build: 2026-08-06T2252Z src=3cd3a51 */
+/* ============================================================
+ * Public Gazelle skins — mobile appendix
+ * Used by: phoenix-*, orpheus-matrix, redacted-synth
+ * Appended by styles/append-mobile-public.py (idempotent).
+ * ============================================================ */
+
+/* Never let monkie chrome force horizontal scroll */
+html,
+body {
+	max-width: 100% !important;
+	overflow-x: clip !important;
+}
+
+img,
+video,
+svg,
+iframe,
+embed,
+object {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+/* Tables / torrent lists — swipe instead of page-wide blowout */
+.thin,
+#content,
+#wrapper,
+#maincontent {
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+table,
+.torrent_table,
+#torrent_table,
+.box > table,
+table.layout {
+	max-width: 100% !important;
+}
+
+/* Scroll wrapper when stock tables are wider than the phone */
+@media (max-width: 820px) {
+	html body {
+		padding-left: env(safe-area-inset-left, 0px) !important;
+		padding-right: env(safe-area-inset-right, 0px) !important;
+	}
+
+	html body #wrapper,
+	html body #content,
+	html body #maincontent,
+	html body .thin,
+	html body #footer {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		box-sizing: border-box !important;
+		padding-left: max(6px, env(safe-area-inset-left, 0px)) !important;
+		padding-right: max(6px, env(safe-area-inset-right, 0px)) !important;
+	}
+
+	/* Header / menu: stay usable under monkie desktop locks */
+	html body #header,
+	html body #wrapper #header,
+	html body #main_site_menu {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		overflow-x: auto !important;
+		overflow-y: visible !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+
+	html body #logo,
+	html body #header #logo,
+	html body #logo a,
+	html body #logo a img {
+		max-width: min(220px, 55vw) !important;
+		width: auto !important;
+		height: auto !important;
+		background-size: contain !important;
+	}
+
+	/* Two-column layouts stack */
+	html body .main_column,
+	html body .sidebar,
+	html body .two_columns .main_column,
+	html body .two_columns .sidebar,
+	html body #content .main_column,
+	html body #content .sidebar {
+		float: none !important;
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 0 12px !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Wide tables: allow horizontal pan inside content */
+	html body .box,
+	html body .thin,
+	html body #content {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+
+	html body table {
+		font-size: 12px !important;
+	}
+
+	/* Touch-friendlier linkboxes / pills */
+	html body .linkbox a,
+	html body .brackets,
+	html body a.brackets {
+		padding: 4px 8px !important;
+		line-height: 1.5 !important;
+	}
+
+	/* Forms fill width */
+	html body input[type="text"],
+	html body input[type="password"],
+	html body input[type="email"],
+	html body input[type="search"],
+	html body input.inputtext,
+	html body select,
+	html body textarea {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		font-size: 16px !important; /* iOS: no focus zoom */
+	}
+
+	/* Cover / group art shouldn't dominate phone width */
+	html body .box_image img,
+	html body .sidebar img,
+	html body #cover img,
+	html body .cover img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	/* Monkie theme pill (if present) */
+	html body [id$="-theme-pill"],
+	html body [id*="monkies"][id*="pill"],
+	html body #monkies-pp-theme-pill,
+	html body #monkies-ops-theme-pill,
+	html body #monkies-red-theme-pill {
+		right: max(8px, env(safe-area-inset-right, 0px)) !important;
+		top: max(8px, env(safe-area-inset-top, 0px)) !important;
+		left: auto !important;
+		max-width: calc(100vw - 24px) !important;
+		z-index: 2147483000 !important;
+	}
+}
+
+@media (max-width: 520px) {
+	html body #userinfo,
+	html body #userinfo_username,
+	html body #userinfo_minor,
+	html body #userinfo_major,
+	html body #userinfo_stats,
+	html body #searchbars {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Tighter vertical rhythm on phones */
+	html body .header h2,
+	html body .thin > .header h2 {
+		font-size: 1.05em !important;
+		line-height: 1.3 !important;
+		word-break: break-word !important;
+	}
+
+	html body .auth_form input.inputtext,
+	html body .auth_form input[type="text"],
+	html body .auth_form input[type="password"],
+	html body .auth_form input[type="email"] {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 1 1 100% !important;
+	}
+
+	html body .auth_form label {
+		text-align: left !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html body *,
+	html body *::before,
+	html body *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+/* === MONKIES-PUBLIC-MOBILE v1 END === */
