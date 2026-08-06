@@ -6056,7 +6056,9 @@ html body #menu li.active a {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		position: static !important;
+		/* relative so #nav_staff can leave the tab strip */
+/* pp-css-build: 2026-08-06T0208Z src=bfc34aa */
+		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
 		left: auto !important;
@@ -6070,7 +6072,7 @@ html body #menu li.active a {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		position: static !important;
+		position: relative !important;
 		display: flex !important;
 		flex-flow: row nowrap !important;
 		align-items: stretch !important;
@@ -6238,26 +6240,40 @@ html body #menu li.active a {
 		position: static !important;
 		overflow: visible !important;
 	}
+	/*
+	 * Staff (Apollostage): plain text in the logo/stats band ABOVE the tab rail.
+	 * Must leave flex flow so it never sits as a dark tab between Wiki and Heywood.
+	 * right: 8px of #header (not mid-gap of menu→Heywood).
+	 */
+	html body #header {
+		position: relative !important;
+	}
 	html body #menu > ul > li#nav_staff,
 	html body #menu ul li#nav_staff,
 	html body #menu li#nav_staff,
 	html body #main_site_menu li#nav_staff,
-	html body #header #menu li#nav_staff {
+	html body #header #menu li#nav_staff,
+	html body #header li#nav_staff {
 		position: absolute !important;
-		top: 29px !important;
+		/* Stats row band (userinfo_stats ~ top: -31px) — not inside the 50px tab strip */
+		top: -31px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
 		float: none !important;
-		display: inline !important;
+		display: block !important;
 		width: auto !important;
 		min-width: 0 !important;
+		max-width: none !important;
 		height: auto !important;
 		min-height: 0 !important;
 		max-height: none !important;
 		margin: 0 !important;
 		padding: 0 !important;
-		flex: 0 0 auto !important;
+		/* take no flex slot on the tab rail */
+		flex: 0 0 0 !important;
+		order: 99 !important;
+		align-self: auto !important;
 		background: transparent !important;
 		background-color: transparent !important;
 		background-image: none !important;
@@ -6266,11 +6282,13 @@ html body #menu li.active a {
 		box-shadow: none !important;
 		filter: none !important;
 		opacity: 1 !important;
-		z-index: 45 !important;
+		z-index: 200 !important;
 		list-style: none !important;
 		line-height: 1.25 !important;
 		font-size: 13.5px !important;
 		font-weight: 400 !important;
+		pointer-events: auto !important;
+		overflow: visible !important;
 	}
 	html body #menu > ul > li#nav_staff > a,
 	html body #menu li#nav_staff a,
@@ -6286,8 +6304,8 @@ html body #menu li.active a {
 		padding: 0 !important;
 		margin: 0 !important;
 		width: auto !important;
-		color: var(--text-dimmed) !important;
-		-webkit-text-fill-color: var(--text-dimmed) !important;
+		color: var(--text-dimmed, #8aba8a) !important;
+		-webkit-text-fill-color: var(--text-dimmed, #8aba8a) !important;
 		background: transparent !important;
 		background-image: none !important;
 		border: none !important;
@@ -6297,11 +6315,12 @@ html body #menu li.active a {
 		font-weight: 400 !important;
 		text-align: right !important;
 		overflow: visible !important;
+		white-space: nowrap !important;
 	}
 	html body #menu li#nav_staff a:hover,
 	html body #header a[href="staff.php"]:hover {
-		color: var(--link-hover) !important;
-		-webkit-text-fill-color: var(--link-hover) !important;
+		color: var(--link-hover, #7cff9a) !important;
+		-webkit-text-fill-color: var(--link-hover, #7cff9a) !important;
 		background: transparent !important;
 	}
 	html body #userinfo_username,
