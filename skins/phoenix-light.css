@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-07T0310Z src=5949523 */
+/* pp-css-build: 2026-08-07T0331Z src=3f3bb0d */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7642,25 +7642,34 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 	background-image: linear-gradient(180deg, #1a8cff 0%, #0077ed 100%) !important;
 }
 
-/* === pp-staff-pub-appendix v2 ===
- * Staff with monkie OFF (and ON after reparent).
- * Do NOT change #menu position (static broke Apollostage scale → “everything big”).
- * Only reserve major right slot + park menu-Staff at major band.
+/* === pp-staff-pub-appendix v3 (Apollostage reference) ===
+ * Stock Apollostage (static/styles/apollostage/style.css @min-width 480px):
+ *   #userinfo_major { right: 41px; top: -53px; }
+ *   #userinfo_stats { top: -31px; }
+ *   #menu > ul > #nav_staff { position: absolute; right: 8px; top: 29px; }
+ * Staff lives on the MENU strip (top:29px), NOT major band (-53) or stats (-31).
+ * major right:41px leaves room for Staff at right:8px.
+ * Do NOT force #menu position:static (broke Apollostage scale → “everything big”).
+ * styles/_ref-apollostage.css is the offline SoT snapshot.
  */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header {
 		position: relative !important;
 	}
-	/* Keep menu relative (original Apollostage/neo) — do not force static */
+
+	/* Apollostage major / stats bands */
 	html body #userinfo_major {
-		/* leave room for abs Staff at right:8px */
-		right: 4.5rem !important;
+		font-size: 14.5px !important;
+		right: 41px !important;
+		top: -53px !important;
 	}
-	html body #userinfo_major:has(#nav_staff) {
-		right: 8px !important;
+	html body #userinfo_stats {
+		font-size: 14.5px !important;
+		top: -31px !important;
 	}
-	/* Monkie reparented: flow after Donate */
+
+	/* If monkie reparented Staff into major, flow like other major links */
 	html body #userinfo_major li#nav_staff,
 	html body #userinfo_major > li#nav_staff,
 	html body ul#userinfo_major li#nav_staff {
@@ -7687,6 +7696,10 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		overflow: visible !important;
 		z-index: auto !important;
 	}
+	html body #userinfo_major:has(#nav_staff) {
+		/* Staff already in-flow — no need for 41px reserve */
+		right: 8px !important;
+	}
 	html body #userinfo_major li#nav_staff a,
 	html body #userinfo_major #nav_staff a {
 		display: inline !important;
@@ -7698,19 +7711,24 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		background: transparent !important;
 		white-space: nowrap !important;
 		text-align: left !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
 	}
-	/* Pub / monkie-off: still under #menu */
+
+	/* Apollostage: Staff still under #menu (pub / monkie-off / tools-only) */
 	html body #menu > ul > li#nav_staff,
+	html body #menu > ul > #nav_staff,
 	html body #menu li#nav_staff,
-	html body #header #menu li#nav_staff {
+	html body #header #menu li#nav_staff,
+	html body #main_site_menu li#nav_staff {
 		position: absolute !important;
-		top: -53px !important;
+		top: 29px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
 		float: none !important;
-		display: block !important;
-		width: max-content !important;
+		display: inline !important;
+		width: auto !important;
 		max-width: 4.5rem !important;
 		height: auto !important;
 		margin: 0 !important;
@@ -7727,6 +7745,7 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		z-index: 250 !important;
 		pointer-events: auto !important;
 	}
+	html body #menu > ul > #nav_staff > a,
 	html body #menu li#nav_staff a,
 	html body #header #menu li#nav_staff a {
 		display: inline !important;
@@ -7736,7 +7755,10 @@ html body #maincontent .pwrecover .auth_form .submit:hover {
 		padding: 0 !important;
 		margin: 0 !important;
 		background: transparent !important;
+		background-color: transparent !important;
 		white-space: nowrap !important;
 		text-align: right !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
 	}
 }
