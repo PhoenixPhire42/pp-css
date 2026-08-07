@@ -3432,7 +3432,7 @@ body#torrents .sidebar .box_image a{color:var(--cyan, #7af0ff) !important;-webki
 body#torrents .sidebar .box_image a:hover{opacity:1 !important;text-decoration:underline !important;text-shadow:0 0 10px rgba(122, 240, 255, 0.35);}
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
-/* pp-css-build: 2026-08-07T0155Z src=3517ff8 */
+/* pp-css-build: 2026-08-07T0200Z src=fd922b8 */
 /* ============================================================
  * Public Gazelle skins — mobile appendix
  * Used by: phoenix-*, orpheus-matrix, redacted-synth

@@ -18,7 +18,7 @@ body {
     box-sizing: border-box;
     color: #efe6ff;
     font-size: 12px;
-    line-height: 1.6;
+    line-height: 1.45;
     margin: 0 8px
 }
 code, pre {
@@ -580,25 +580,36 @@ pre {
     margin-bottom: 0;
     margin-top: 16px
 }
+/* Index / collage thumbs — classic density (not full-res huge) */
+/* pp-css-build: 2026-08-07T0200Z src=fd922b8 */
 ul.collage_images {
     margin: 0;
-    width: 100%
+    width: 100%;
+    font-size: 0;
+    line-height: 0
 }
 ul.collage_images li {
-    display: block;
+    display: inline-block;
+    float: left;
     height: auto;
     overflow: hidden;
     position: relative;
-    width: 20%
+    width: 20%;
+    max-width: 120px;
+    vertical-align: top;
+    box-sizing: border-box
 }
 ul.collage_images li a, ul.collage_images li a img {
     height: 100%;
     position: absolute;
-    width: 100%
+    width: 100%;
+    max-width: none;
+    object-fit: cover
 }
 ul.collage_images li:before {
     content: "";
-    float: left;
+    display: block;
+    float: none;
     padding-top: 100%
 }
 ul.collage_images li a {
@@ -612,7 +623,9 @@ ul.collage_images li a>span {
     margin: 6px;
     position: absolute;
     top: 0;
-    width: auto
+    width: auto;
+    font-size: 12px;
+    line-height: 1.3
 }
 .recent {
     table-layout: fixed
@@ -3249,12 +3262,26 @@ body#index .box .head:has(+ * img),
 body#index table.recent .colhead td {
 	color: var(--head-text) !important;
 }
+/* Cap index thumbs — height:auto alone shows full-res covers */
 body#index #latest_uploads img,
 body#index .latest_uploads img,
-body#index table.recent img {
-	border-radius: 2px;
-	max-width: 100% !important;
+body#index table.recent img,
+body#index ul.collage_images img,
+html body#index #latest_uploads img,
+html body#index .latest_uploads img,
+html body#index ul.collage_images img {
+	border-radius: 2px !important;
+	max-width: 120px !important;
+	max-height: 120px !important;
+	width: auto !important;
 	height: auto !important;
+	object-fit: cover !important;
+	vertical-align: middle !important;
+}
+body#index #latest_uploads ul.collage_images,
+body#index .latest_uploads ul.collage_images,
+html body#index #latest_uploads ul.collage_images {
+	max-width: 600px !important;
 }
 body#index .sidebar .box_image img,
 body#index .sidebar .box_image_album img,
@@ -7027,7 +7054,6 @@ html body #userinfo_major a:hover {
  * Do NOT change #menu position (static broke Apollostage scale → “everything big”).
  * Only reserve major right slot + park menu-Staff at major band.
  */
-/* pp-css-build: 2026-08-07T0155Z src=3517ff8 */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header {

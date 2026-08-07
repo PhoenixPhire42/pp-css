@@ -18,7 +18,8 @@ body {
     box-sizing: border-box;
     color: #c8ffc8;
     font-size: 12px;
-    line-height: 1.6;
+    line-height: 1.45; /* was 1.6 — denser, closer to stock Apollostage */
+/* pp-css-build: 2026-08-07T0200Z src=fd922b8 */
     margin: 0 8px
 }
 code, pre {
@@ -580,25 +581,35 @@ pre {
     margin-bottom: 0;
     margin-top: 16px
 }
+/* Index / collage thumbs — classic Apollostage density (not full-res huge) */
 ul.collage_images {
     margin: 0;
-    width: 100%
+    width: 100%;
+    font-size: 0; /* kill inline-block gaps */
+    line-height: 0
 }
 ul.collage_images li {
-    display: block;
+    display: inline-block;
+    float: left;
     height: auto;
     overflow: hidden;
     position: relative;
-    width: 20%
+    width: 20%;
+    max-width: 120px; /* was free-expanding → “everything big” covers */
+    vertical-align: top;
+    box-sizing: border-box
 }
 ul.collage_images li a, ul.collage_images li a img {
     height: 100%;
     position: absolute;
-    width: 100%
+    width: 100%;
+    max-width: none;
+    object-fit: cover
 }
 ul.collage_images li:before {
     content: "";
-    float: left;
+    display: block;
+    float: none;
     padding-top: 100%
 }
 ul.collage_images li a {
@@ -612,7 +623,9 @@ ul.collage_images li a>span {
     margin: 6px;
     position: absolute;
     top: 0;
-    width: auto
+    width: auto;
+    font-size: 12px;
+    line-height: 1.3
 }
 .recent {
     table-layout: fixed
@@ -3157,12 +3170,26 @@ body#index .box .head:has(+ * img),
 body#index table.recent .colhead td {
 	color: var(--head-text) !important;
 }
+/* Cap index thumbs — height:auto alone shows full-res covers (~300–500px) */
 body#index #latest_uploads img,
 body#index .latest_uploads img,
-body#index table.recent img {
-	border-radius: 2px;
-	max-width: 100% !important;
+body#index table.recent img,
+body#index ul.collage_images img,
+html body#index #latest_uploads img,
+html body#index .latest_uploads img,
+html body#index ul.collage_images img {
+	border-radius: 2px !important;
+	max-width: 120px !important;
+	max-height: 120px !important;
+	width: auto !important;
 	height: auto !important;
+	object-fit: cover !important;
+	vertical-align: middle !important;
+}
+body#index #latest_uploads ul.collage_images,
+body#index .latest_uploads ul.collage_images,
+html body#index #latest_uploads ul.collage_images {
+	max-width: 600px !important; /* 5×120 */
 }
 body#index .sidebar .box_image img,
 body#index .sidebar .box_image_album img,
@@ -6057,7 +6084,6 @@ html body #menu li.active a {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		/* relative so dropdowns + Staff abs share menu geometry (original neo) */
-/* pp-css-build: 2026-08-07T0155Z src=3517ff8 */
 		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
