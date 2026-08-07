@@ -6057,7 +6057,7 @@ html body #menu li.active a {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		/* relative so #nav_staff can leave the tab strip */
-/* pp-css-build: 2026-08-07T0407Z src=28a9c27 */
+/* pp-css-build: 2026-08-07T0414Z src=c01ecae */
 		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
@@ -7314,3 +7314,138 @@ html body #torrent_details img[alt*="Freeleech" i] {
   max-height: 16px !important;
 }
 /* === torrent badges Apollo-like END === */
+
+/* === user profile polish: heads + quiet links + avatar fit === */
+/* 1) Stronger box heads */
+html body#user .box > .head,
+html body#user .box > .colhead_dark,
+html body#user .main_column > .box > .head,
+html body#user .sidebar .box > .head,
+html body#user .box_image_avatar > .head,
+html body#user .box_image_avatar > .colhead_dark {
+  background: #0a1a0e !important;
+  background-color: #0a1a0e !important;
+  background-image: linear-gradient(180deg, rgba(0, 255, 65, 0.07), transparent) !important;
+  color: #c8ffc8 !important;
+  -webkit-text-fill-color: #c8ffc8 !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.02em !important;
+  border-bottom: 1px solid rgba(0, 255, 65, 0.28) !important;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.35) !important;
+  padding: 9px 12px !important;
+  text-shadow: none !important;
+}
+html body#user .box > .head a,
+html body#user .main_column > .box > .head a {
+  color: #9dffb0 !important;
+  font-weight: 600 !important;
+}
+html body#user .box > .head a:hover {
+  color: #fff !important;
+}
+
+/* 2) Quieter secondary links — Hide / settings strip / brackets */
+html body#user .box > .head a.brackets,
+html body#user .main_column > .box > .head a.brackets,
+html body#user .box .head .brackets,
+html body#user a.brackets[href*="hide"],
+html body#user .linkbox a,
+html body#user .header .linkbox a,
+html body#user #content > .linkbox a,
+html body#user .thin > .linkbox a,
+html body#user .user_commstats a.brackets,
+html body#user .box_userinfo_community .brackets,
+html body#user .box_userinfo_personal .brackets {
+  color: #5a8a5a !important;
+  -webkit-text-fill-color: #5a8a5a !important;
+  font-weight: 500 !important;
+  opacity: 0.9 !important;
+  text-shadow: none !important;
+}
+html body#user .box > .head a.brackets:hover,
+html body#user .linkbox a:hover,
+html body#user .header .linkbox a:hover,
+html body#user .thin > .linkbox a:hover {
+  color: #9dffb0 !important;
+  -webkit-text-fill-color: #9dffb0 !important;
+  opacity: 1 !important;
+}
+/* profile subnav under title (Settings Friends …) */
+html body#user .header .linkbox,
+html body#user .thin > .linkbox:not(.pagination) {
+  opacity: 0.92 !important;
+}
+html body#user .header .linkbox a,
+html body#user .thin > .linkbox:not(.pagination) a {
+  color: #5a8a5a !important;
+  -webkit-text-fill-color: #5a8a5a !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+html body#user .header .linkbox a:hover,
+html body#user .thin > .linkbox:not(.pagination) a:hover {
+  color: #b8ffb8 !important;
+  -webkit-text-fill-color: #b8ffb8 !important;
+}
+
+/* 3) Avatar box hugs the image — not a full-width empty rectangle */
+html body#user .sidebar .box_image_avatar,
+html body#user .box_image_avatar {
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+html body#user .box_image_avatar > .head,
+html body#user .box_image_avatar > .colhead_dark {
+  width: auto !important;
+  min-width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+}
+html body#user .box_image_avatar > div,
+html body#user .box_image_avatar [align="center"],
+html body#user .box_image_avatar .pad,
+html body#user .box_image_avatar .body {
+  width: auto !important;
+  max-width: 100% !important;
+  padding: 6px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  line-height: 0 !important;
+  box-sizing: border-box !important;
+}
+html body#user .avatar_container,
+html body#user .box_image_avatar .avatar_container {
+  width: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  overflow: hidden !important;
+}
+html body#user .box_image_avatar img,
+html body#user .avatar_container img,
+html body#user .sidebar .box_image_avatar img {
+  display: block !important;
+  width: auto !important;
+  max-width: min(280px, 100%) !important;
+  height: auto !important;
+  max-height: min(320px, 70vh) !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+  border-radius: 4px !important;
+}
+html body#user .box_image_avatar img.double_avatar,
+html body#user img.double_avatar {
+  width: auto !important;
+  max-width: min(280px, 100%) !important;
+  height: auto !important;
+  max-height: min(320px, 70vh) !important;
+  object-fit: contain !important;
+}
+/* === user profile polish END === */
