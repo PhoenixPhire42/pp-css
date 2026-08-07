@@ -742,7 +742,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-07T2104Z src=4c8dfc4 */
+/* pp-css-build: 2026-08-07T2124Z src=616d4f9 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -1134,7 +1134,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 }
 #menu {
     border-radius: 5px 5px 0 0;
-    overflow: hidden
+    overflow: visible
 }
 @media(min-width:575px) {
     .thin:last-child>:not(.two_columns) {
@@ -1149,36 +1149,44 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
     #nav_staff {
         font-weight: 400
     }
+    /* Staff CB = full-width #menu (not short ul). was right:152px + relative ul → lost */
     #menu {
-        overflow: visible
-    }
-    #menu>ul {
         position: relative;
         overflow: visible
     }
-    #menu>ul>#nav_staff {
+    #menu>ul {
+        position: static;
+        overflow: visible
+    }
+    #menu>ul>#nav_staff,
+    #menu>ul>li#nav_staff {
         display: block;
-        font-size: 13px;
+        font-size: 14.5px;
         position: absolute;
-        top: -45px;
-        right: 152px;
-        z-index: 40;
+        top: -53px;
+        right: 8px;
+        left: auto;
+        z-index: 250;
         height: auto;
         width: auto;
+        max-width: 4.5rem;
         background: transparent !important;
-        flex: 0 0 auto;
+        flex: 0 0 0;
         list-style: none;
         margin: 0;
         padding: 0
     }
-    #menu>ul>#nav_staff>a {
+    #menu>ul>#nav_staff>a,
+    #menu>ul>li#nav_staff>a {
         display: inline;
-        line-height: 1.6;
+        line-height: 1.25;
         height: auto;
-        padding: 0 2px;
-        white-space: nowrap
+        padding: 0;
+        white-space: nowrap;
+        color: #c8ffc8
     }
-    #menu>ul>#nav_staff>a:hover {
+    #menu>ul>#nav_staff>a:hover,
+    #menu>ul>li#nav_staff>a:hover {
         background-color: transparent;
         color: #7cff9a
     }
@@ -2482,7 +2490,8 @@ body {
 	border: 1px solid var(--border) !important;
 	border-bottom: none !important;
 	border-radius: 6px 6px 0 0 !important;
-	overflow: hidden !important;
+	/* visible — hidden clips #nav_staff (abs top:-53px on major band) */
+	overflow: visible !important;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(0, 255, 65, 0.06);
 }
 #menu ul,
@@ -7934,6 +7943,125 @@ body#user #userform fieldset {
 	padding: 4px 0 !important;
 }
 /* === settings Apollo spacing END === */
+
+
+/* === OPS Staff Apollo band (CSS-only, no monkie reparent) BEGIN ===
+ * mods=min has no Staff JS. Must work with stock #nav_staff still in #menu.
+ * Never #menu overflow:hidden — clips abs top:-53px Staff.
+ * CB must be full-width #menu, not short #menu>ul (calc 100%-150px).
+ * ============================================================ */
+@media (min-width: 576px) {
+	html body #header,
+	html body #wrapper #header {
+		position: relative !important;
+		overflow: visible !important;
+	}
+	html body #menu,
+	html body #header #menu {
+		position: relative !important;
+		overflow: visible !important;
+	}
+	html body #menu > ul,
+	html body #header #menu > ul {
+		position: static !important;
+		overflow: visible !important;
+	}
+	html body #userinfo_major {
+		right: 41px !important;
+		top: -53px !important;
+		font-size: 14.5px !important;
+	}
+	html body #userinfo_stats {
+		top: -31px !important;
+		font-size: 14.5px !important;
+	}
+	/* Menu-resident Staff — after Donate on major band */
+	html body #menu > ul > li#nav_staff,
+	html body #menu > ul > #nav_staff,
+	html body #menu li#nav_staff,
+	html body #header #menu li#nav_staff {
+		position: absolute !important;
+		top: -53px !important;
+		right: 8px !important;
+		left: auto !important;
+		bottom: auto !important;
+		float: none !important;
+		display: block !important;
+		width: auto !important;
+		max-width: 4.5rem !important;
+		height: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		flex: 0 0 0 !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		overflow: visible !important;
+		z-index: 250 !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		pointer-events: auto !important;
+	}
+	html body #menu > ul > #nav_staff > a,
+	html body #menu li#nav_staff > a,
+	html body #header #menu li#nav_staff > a {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		white-space: nowrap !important;
+		text-align: right !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		color: var(--link, #00ff41) !important;
+		-webkit-text-fill-color: var(--link, #00ff41) !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+	html body #menu li#nav_staff > a:hover,
+	html body #header #menu li#nav_staff > a:hover {
+		color: var(--link-hover, #9dffb0) !important;
+		-webkit-text-fill-color: var(--link-hover, #9dffb0) !important;
+		background: transparent !important;
+	}
+	/* Reparented (if monkie staff mod on) — flow after Donate */
+	html body #userinfo_major li#nav_staff,
+	html body #userinfo_major > li#nav_staff {
+		position: static !important;
+		top: auto !important;
+		right: auto !important;
+		left: auto !important;
+		float: none !important;
+		display: list-item !important;
+		margin: 0 0 0 8px !important;
+		max-width: none !important;
+		width: auto !important;
+		height: auto !important;
+		flex: 0 0 auto !important;
+		background: transparent !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		z-index: auto !important;
+	}
+	html body #userinfo_major:has(#nav_staff) {
+		right: 8px !important;
+	}
+	html body #userinfo_major li#nav_staff > a {
+		display: inline !important;
+		position: static !important;
+		color: var(--link, #00ff41) !important;
+		-webkit-text-fill-color: var(--link, #00ff41) !important;
+	}
+}
+/* === OPS Staff Apollo band END === */
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
 /* ============================================================
