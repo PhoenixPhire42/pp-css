@@ -293,9 +293,11 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 #menu{border-radius:5px 5px 0 0;overflow:hidden}
 @media(min-width:575px){.thin:last-child>:not(.two_columns){margin:4px}
 #nav_donate .tooltip:after{color:red;content:"\2764\FE0F";font-size:75%;vertical-align:top}
+/* Staff — Apollo SS (match Neo PP): major-band top -53px right 8px, not stats -31px */
+/* pp-css-build: 2026-08-07T1646Z src=debce3b */
 #nav_staff{font-weight:400}
-#menu>ul>#nav_staff{display:inline;font-size:13px;position:absolute;right:8px;top:-31px}
-#menu>ul>#nav_staff>a{line-height:1.6;padding:0}
+#menu>ul>#nav_staff{display:inline;font-size:14.5px;position:absolute;right:8px;top:-53px}
+#menu>ul>#nav_staff>a{line-height:1.25;padding:0}
 #menu>ul>#nav_staff>a:hover{background-color:transparent;color:#ff6bcb}
 #userinfo_minor:before{background:none no-repeat;filter:brightness(200%);background-size:28px;background-position:50%;display:block;height:50px;line-height:50px;width:50px}
 #userinfo_minor a, #userinfo_username a{display:none;line-height:32px;padding:0 8px;width:150px}
@@ -1124,14 +1126,16 @@ rgba(5, 217, 232, 0.06)) !important;box-shadow:inset 3px 0 0 #ff6bcb !important;
 html body #nav_staff > a,
 html body #menu > ul > #nav_staff > a{color:var(--text-dimmed) !important;background:transparent !important;}
 html body #nav_staff > a:hover{color:var(--link-hover) !important;background:transparent !important;}
+/* Reparented Staff in major band — Apollo SS / Neo PP (static after Donate) */
 html body #userinfo_major #nav_staff,
-html body #userinfo_major > li#nav_staff{display:inline !important;float:none !important;position:static !important;top:auto !important;right:auto !important;left:auto !important;bottom:auto !important;margin:0 0 0 0.55em !important;padding:0 !important;border:none !important;border-right:none !important;background:transparent !important;background-color:transparent !important;background-image:none !important;box-shadow:none !important;filter:none !important;overflow:visible !important;list-style:none !important;vertical-align:baseline !important;}
+html body #userinfo_major > li#nav_staff{display:list-item !important;float:none !important;position:static !important;top:auto !important;right:auto !important;left:auto !important;bottom:auto !important;margin:0 0 0 8px !important;padding:0 !important;border:none !important;border-right:none !important;background:transparent !important;background-color:transparent !important;background-image:none !important;box-shadow:none !important;filter:none !important;overflow:visible !important;list-style:none !important;vertical-align:baseline !important;font-size:14.5px !important;font-weight:400 !important;line-height:1.25 !important;z-index:auto !important;opacity:1 !important;visibility:visible !important;}
+html body #userinfo_major:has(#nav_staff){right:8px !important;}
 html body #userinfo_major #nav_staff > a,
-html body #userinfo_major > li#nav_staff > a{display:inline !important;float:none !important;position:static !important;color:var(--text-dimmed) !important;background:transparent !important;background-color:transparent !important;background-image:none !important;box-shadow:none !important;border:none !important;filter:none !important;text-shadow:none !important;padding:0 !important;margin:0 !important;line-height:inherit !important;font-size:inherit !important;font-weight:inherit !important;}
+html body #userinfo_major > li#nav_staff > a{display:inline !important;float:none !important;position:static !important;color:var(--text-dimmed) !important;background:transparent !important;background-color:transparent !important;background-image:none !important;box-shadow:none !important;border:none !important;filter:none !important;text-shadow:none !important;padding:0 !important;margin:0 !important;line-height:1.25 !important;font-size:14.5px !important;font-weight:400 !important;white-space:nowrap !important;}
 html body #userinfo_major #nav_staff.brackets::before,
 html body #userinfo_major > li#nav_staff.brackets::before{content:none !important;}
 html body #userinfo_major #nav_donate + #nav_staff,
-html body #userinfo_major #nav_donate + li#nav_staff{margin-left:0.65em !important;}
+html body #userinfo_major #nav_donate + li#nav_staff{margin-left:8px !important;}
 html body #userinfo_major #nav_staff > a:hover,
 html body #userinfo_major > li#nav_staff > a:hover{color:#fff !important;background:transparent !important;background-image:none !important;}
 html body #menu,
@@ -3432,7 +3436,6 @@ body#torrents .sidebar .box_image a{color:var(--cyan, #7af0ff) !important;-webki
 body#torrents .sidebar .box_image a:hover{opacity:1 !important;text-decoration:underline !important;text-shadow:0 0 10px rgba(122, 240, 255, 0.35);}
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
-/* pp-css-build: 2026-08-07T0421Z src=f4be1b9 */
 /* ============================================================
  * Public Gazelle skins — mobile appendix
  * Used by: phoenix-*, orpheus-matrix, redacted-synth
@@ -3625,3 +3628,161 @@ body {
 	}
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
+
+/* === pp-staff-pub-appendix v5 (Apollo SS + no ghost) — Red Synth parity with Neo PP ===
+ * Visual SoT: styles/_ref-apollostage-header-staff.jpg
+ *   Staff AFTER Donate on top-right line; tabs clean.
+ *
+ * BUG v4: selector `html body #header li#nav_staff` also matched Staff
+ * reparented into #userinfo_major (major lives under #header) → abs top:-53px
+ * right:8px overlaid "Invite (∞)" (ghost Staff in stats line).
+ *
+ * Fix: absolute rules ONLY under #menu / #main_site_menu — never bare #header li.
+ * Reparented #userinfo_major #nav_staff: static only, higher/equal specificity after.
+ */
+@media (min-width: 576px) {
+	html body #header,
+	html body #wrapper #header {
+		position: relative !important;
+		overflow: visible !important;
+	}
+	html body #menu,
+	html body #header #menu,
+	html body #main_site_menu {
+		overflow: visible !important;
+	}
+	html body #menu > ul,
+	html body #menu > ul.main_site_menu_inner {
+		overflow: visible !important;
+		position: relative !important;
+	}
+
+	html body #userinfo_major {
+		font-size: 14.5px !important;
+		right: 41px !important;
+		top: -53px !important;
+	}
+	html body #userinfo_stats {
+		font-size: 14.5px !important;
+		top: -31px !important;
+	}
+
+	/* Reparented Staff — flow after Donate (Apollo SS) */
+	html body #userinfo_major li#nav_staff,
+	html body #userinfo_major > li#nav_staff,
+	html body ul#userinfo_major > li#nav_staff {
+		position: static !important;
+		display: list-item !important;
+		float: none !important;
+		top: auto !important;
+		right: auto !important;
+		left: auto !important;
+		bottom: auto !important;
+		width: auto !important;
+		max-width: none !important;
+		height: auto !important;
+		margin: 0 0 0 8px !important;
+		padding: 0 !important;
+		flex: 0 0 auto !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		overflow: visible !important;
+		z-index: auto !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		transform: none !important;
+	}
+	html body #userinfo_major:has(#nav_staff) {
+		right: 8px !important;
+	}
+	html body #userinfo_major li#nav_staff > a,
+	html body #userinfo_major #nav_staff a {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		white-space: nowrap !important;
+		text-align: left !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+
+	/*
+	 * Menu-resident only (pub / before reparent).
+	 * Do NOT use #header li#nav_staff — matches major after reparent → ghost.
+	 */
+	html body #menu > ul > li#nav_staff,
+	html body #menu > ul > #nav_staff,
+	html body #menu li#nav_staff,
+	html body #header #menu li#nav_staff,
+	html body #main_site_menu #menu li#nav_staff,
+	html body #main_site_menu li#nav_staff {
+		position: absolute !important;
+		top: -53px !important;
+		right: 8px !important;
+		left: auto !important;
+		bottom: auto !important;
+		float: none !important;
+		display: block !important;
+		width: auto !important;
+		max-width: 4.5rem !important;
+		height: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		flex: 0 0 0 !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		overflow: visible !important;
+		z-index: 250 !important;
+		pointer-events: auto !important;
+	}
+	html body #menu > ul > #nav_staff > a,
+	html body #menu li#nav_staff > a,
+	html body #header #menu li#nav_staff > a,
+	html body #main_site_menu li#nav_staff > a {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		white-space: nowrap !important;
+		text-align: right !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+	}
+
+	/* When Staff already reparented, never show a menu ghost (none left under #menu) */
+}
+
+/* staff-ghost-kill: reparented Staff must never stay absolute */
+@media (min-width: 576px) {
+html body #userinfo_major li#nav_staff,
+html body #userinfo_major > li#nav_staff {
+position: static !important;
+top: auto !important;
+right: auto !important;
+left: auto !important;
+float: none !important;
+display: list-item !important;
+opacity: 1 !important;
+visibility: visible !important;
+z-index: auto !important;
+}
+}
