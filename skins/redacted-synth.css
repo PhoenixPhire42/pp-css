@@ -270,7 +270,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 #logo a{background:none}
 #logo>a{background-size:200px;display:block;height:100%;margin-top:0}
 }
-#menu>ul{display:flex;flex-flow:row nowrap;font-size:13px;overflow:hidden;width:calc(100% - 149px)}
+#menu>ul{display:flex;flex-flow:row nowrap;font-size:13px;overflow:visible;width:calc(100% - 149px);position:static}
 #menu>ul li{flex:1 1 auto}
 #menu>ul a{display:block;height:100%;line-height:50px;text-align:center}
 #nav_index{display:none}
@@ -290,11 +290,11 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 #menu li:nth-child(8){background-color:#c77dff}
 #menu li:nth-child(9){background-color:#8d6a87}
 #userinfo_username{background-color:#6c6584;right:50px}
-#menu{border-radius:5px 5px 0 0;overflow:hidden}
+#menu{border-radius:5px 5px 0 0;overflow:visible}
 @media(min-width:575px){.thin:last-child>:not(.two_columns){margin:4px}
 #nav_donate .tooltip:after{color:red;content:"\2764\FE0F";font-size:75%;vertical-align:top}
 /* Staff — Apollo SS (match Neo PP): major-band top -53px right 8px, not stats -31px */
-/* pp-css-build: 2026-08-07T1719Z src=832eee3 */
+/* pp-css-build: 2026-08-07T1726Z src=121bdf7 */
 #nav_staff{font-weight:400}
 #menu>ul>#nav_staff{display:inline;font-size:14.5px;position:absolute;right:8px;top:-53px}
 #menu>ul>#nav_staff>a{line-height:1.25;padding:0}
@@ -3629,16 +3629,64 @@ body {
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
 
-/* === pp-staff-pub-appendix v5 (Apollo SS + no ghost) — Red Synth parity with Neo PP ===
- * Visual SoT: styles/_ref-apollostage-header-staff.jpg
- *   Staff AFTER Donate on top-right line; tabs clean.
+
+/* === red-staff-cb-lock (Neo v6) — full-width #menu CB; short ul must not be positioned === */
+@media (min-width: 576px) {
+  html body #menu,
+  html body #header #menu,
+  html body #main_site_menu {
+    position: relative !important;
+    overflow: visible !important;
+  }
+  html body #menu > ul,
+  html body #menu > ul.main_site_menu_inner,
+  html body #menu ul {
+    position: static !important;
+    overflow: visible !important;
+  }
+  /* Menu-resident Staff — major band after Donate (header-right) */
+  html body #menu > ul > li#nav_staff,
+  html body #menu > ul > #nav_staff,
+  html body #menu li#nav_staff {
+    position: absolute !important;
+    top: -53px !important;
+    right: 8px !important;
+    left: auto !important;
+    z-index: 250 !important;
+    display: block !important;
+    float: none !important;
+    width: auto !important;
+    max-width: 4.5rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    list-style: none !important;
+    font-size: 14.5px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+  }
+  html body #userinfo_major {
+    right: 41px !important;
+    top: -53px !important;
+    font-size: 14.5px !important;
+  }
+  html body #userinfo_stats {
+    top: -31px !important;
+    font-size: 14.5px !important;
+  }
+}
+
+/* === pp-staff-pub-appendix v6 (Apollo stock CB + no Invite ghost) — Red Synth / Neo PP parity ===
+ * Visual SoT: Apollostage stock + styles/_ref-apollostage-header-staff.jpg
  *
- * BUG v4: selector `html body #header li#nav_staff` also matched Staff
- * reparented into #userinfo_major (major lives under #header) → abs top:-53px
- * right:8px overlaid "Invite (∞)" (ghost Staff in stats line).
+ * BUG (v5): #menu>ul { position:relative } + Staff right:8px → CB is the SHORT
+ * tab strip (calc(100%-149px)), so Staff lands on Invite instead of after Donate.
  *
- * Fix: absolute rules ONLY under #menu / #main_site_menu — never bare #header li.
- * Reparented #userinfo_major #nav_staff: static only, higher/equal specificity after.
+ * Fix: #menu is full-width position:relative CB; #menu>ul is position:static.
+ * Menu-resident Staff: abs top:-53px right:8px (major band, header-right).
+ * Reparented Staff: static after Donate; major right:8px only when :has(#nav_staff).
+ * Never bare `html body #header li#nav_staff` (matches reparented major under header).
  */
 @media (min-width: 576px) {
 	html body #header,
@@ -3649,12 +3697,13 @@ body {
 	html body #menu,
 	html body #header #menu,
 	html body #main_site_menu {
+		position: relative !important;
 		overflow: visible !important;
 	}
 	html body #menu > ul,
 	html body #menu > ul.main_site_menu_inner {
 		overflow: visible !important;
-		position: relative !important;
+		position: static !important;
 	}
 
 	html body #userinfo_major {
@@ -3667,7 +3716,7 @@ body {
 		top: -31px !important;
 	}
 
-	/* Reparented Staff — flow after Donate (Apollo SS) */
+	/* Reparented Staff — flow after Donate */
 	html body #userinfo_major li#nav_staff,
 	html body #userinfo_major > li#nav_staff,
 	html body ul#userinfo_major > li#nav_staff {
@@ -3717,10 +3766,7 @@ body {
 		visibility: visible !important;
 	}
 
-	/*
-	 * Menu-resident only (pub / before reparent).
-	 * Do NOT use #header li#nav_staff — matches major after reparent → ghost.
-	 */
+	/* Menu-resident only — CB is full-width #menu, not short ul */
 	html body #menu > ul > li#nav_staff,
 	html body #menu > ul > #nav_staff,
 	html body #menu li#nav_staff,
@@ -3767,8 +3813,6 @@ body {
 		font-size: 14.5px !important;
 		font-weight: 400 !important;
 	}
-
-	/* When Staff already reparented, never show a menu ghost (none left under #menu) */
 }
 
 /* staff-ghost-kill: reparented Staff must never stay absolute */
@@ -3786,3 +3830,5 @@ visibility: visible !important;
 z-index: auto !important;
 }
 }
+
+
