@@ -356,14 +356,14 @@ def sync_assets(styles: Path) -> int:
     return copied
 
 
-def build_one(
+def render_public_css(
     src: Path,
-    dest: Path,
     header: str,
     rewrite_skin_attr: str | None = None,
     logo_cdn: str | None = None,
     append_src: Path | None = None,
-) -> None:
+) -> str:
+    """Build public CSS bytes from monkie SoT (no write). Same transforms as publish."""
     css = src.read_text(encoding="utf-8")
     css = rewrite_header(css, header)
     css = soft_clean(css)
@@ -388,9 +388,103 @@ def build_one(
     open_b, close_b = css.count("{"), css.count("}")
     if open_b != close_b:
         raise SystemExit(f"brace mismatch in {src.name}: {{ {open_b} }} {close_b}")
+    return css
+
+
+def build_one(
+    src: Path,
+    dest: Path,
+    header: str,
+    rewrite_skin_attr: str | None = None,
+    logo_cdn: str | None = None,
+    append_src: Path | None = None,
+) -> None:
+    css = render_public_css(
+        src,
+        header,
+        rewrite_skin_attr=rewrite_skin_attr,
+        logo_cdn=logo_cdn,
+        append_src=append_src,
+    )
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(css, encoding="utf-8")
     print(f"  {dest.relative_to(HERE)}  ({dest.stat().st_size} bytes)")
+
+
+_BUILD_STAMP_RE = re.compile(
+    r"(?m)^[ \t]*/\*[ \t]*pp-css-build:.*?[ \t]*\*/[ \t]*\n?"
+    r"|^[ \t]*\*[ \t]*pp-css-build:.*\n?",
+)
+
+
+def normalize_pub_css(css: str) -> str:
+    """Strip publish.sh build stamps so content compares equal across rebuilds."""
+    return _BUILD_STAMP_RE.sub("", css)
+
+
+def check_drift(styles: Path, quiet: bool = False) -> list[str]:
+    """
+    Compare monkie styles/ → expected public skins vs pp-skins/skins/*.css.
+    Returns list of drifted skin basenames (empty = in sync).
+    Ignores pp-css-build stamps injected by publish.sh after the pure build.
+    """
+    drifted: list[str] = []
+    missing_src: list[str] = []
+    missing_pub: list[str] = []
+    ok_n = 0
+
+    for name, meta in SKINS.items():
+        src = styles / name
+        dest = HERE / "skins" / name
+        if not src.is_file():
+            missing_src.append(name)
+            continue
+        if not dest.is_file():
+            missing_pub.append(name)
+            drifted.append(name)
+            continue
+        append_name = meta.get("append_layout")
+        append_src = (styles / append_name) if append_name else None
+        expected = normalize_pub_css(
+            render_public_css(
+                src,
+                meta["header"],
+                rewrite_skin_attr=meta.get("rewrite_skin_attr"),
+                logo_cdn=meta.get("logo_cdn"),
+                append_src=append_src,
+            )
+        )
+        actual = normalize_pub_css(dest.read_text(encoding="utf-8"))
+        if expected != actual:
+            drifted.append(name)
+            if not quiet:
+                exp_n, act_n = len(expected), len(actual)
+                print(
+                    f"  ✗ {name}  expected={exp_n}b  published={act_n}b  Δ={act_n - exp_n:+d}",
+                    file=sys.stderr,
+                )
+        else:
+            ok_n += 1
+            if not quiet:
+                print(f"  ✓ {name}  ({len(actual)}b)")
+
+    if not quiet:
+        if missing_src:
+            print(
+                f"  ⚠ monkie styles missing: {', '.join(missing_src)}",
+                file=sys.stderr,
+            )
+        if missing_pub:
+            print(
+                f"  ⚠ published skins missing: {', '.join(missing_pub)}",
+                file=sys.stderr,
+            )
+        print(
+            f"  summary: {ok_n} ok, {len(drifted)} drifted, "
+            f"{len(missing_src)} src-missing",
+            file=sys.stderr if drifted else sys.stdout,
+        )
+    return drifted
 
 
 def main() -> None:
@@ -411,6 +505,20 @@ def main() -> None:
         metavar="REL",
         help="Exit 0 if monkie-relative path should trigger auto-publish",
     )
+    ap.add_argument(
+        "--check",
+        action="store_true",
+        help=(
+            "Drift check only: rebuild from monkie styles/ in memory and compare "
+            "to pp-skins/skins/*.css. Exit 0 if in sync, 1 if any skin drifted. "
+            "Does not write or push."
+        ),
+    )
+    ap.add_argument(
+        "--quiet",
+        action="store_true",
+        help="With --check: only print drifted basenames (one per line)",
+    )
     args = ap.parse_args()
 
     if args.list_sources:
@@ -426,6 +534,25 @@ def main() -> None:
     if not styles.is_dir():
         print(f"styles dir not found: {styles}", file=sys.stderr)
         sys.exit(1)
+
+    if args.check:
+        if not args.quiet:
+            print(f"Checking pub drift vs monkie SoT: {styles}")
+        drifted = check_drift(styles, quiet=args.quiet)
+        if args.quiet:
+            for name in drifted:
+                print(name)
+        if drifted:
+            if not args.quiet:
+                print(
+                    "DRIFT: pub skins out of date. Fix:\n"
+                    "  ./scripts/sync-pp-pub.sh -m \"sync from monkie\"",
+                    file=sys.stderr,
+                )
+            sys.exit(1)
+        if not args.quiet:
+            print("OK: pub skins match monkie styles/ (no drift)")
+        sys.exit(0)
 
     print(f"Publishing skins from {styles}")
     n_assets = sync_assets(styles)
