@@ -6056,9 +6056,13 @@ html body #menu li.active a {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		/* relative so #nav_staff can leave the tab strip */
-/* pp-css-build: 2026-08-06T2252Z src=3cd3a51 */
-		position: relative !important;
+		/*
+		 * STATIC (not relative): so #nav_staff absolute parks vs #header,
+		 * not vs the menu strip (width calc(100%-149px)). Menu-relative
+		 * right:8px was landing Staff mid-header → “InviteStaff” with monkie off.
+		 */
+/* pp-css-build: 2026-08-07T0147Z src=7653e93 */
+		position: static !important;
 		top: auto !important;
 		bottom: auto !important;
 		left: auto !important;
@@ -6072,7 +6076,8 @@ html body #menu li.active a {
 		height: 50px !important;
 		min-height: 50px !important;
 		max-height: 50px !important;
-		position: relative !important;
+		/* static: Staff escapes to #header; tabs still flex */
+		position: static !important;
 		display: flex !important;
 		flex-flow: row nowrap !important;
 		align-items: stretch !important;
@@ -6091,6 +6096,7 @@ html body #menu li.active a {
 		box-sizing: border-box !important;
 		padding-top: 0 !important;
 		padding-bottom: 0 !important;
+		/* relative: dropdown menus still anchor to each tab */
 		position: relative !important;
 	}
 	html body #menu > ul > li:not(#nav_staff) > a,
@@ -6222,8 +6228,14 @@ html body #menu li.active a {
 	}
 	html body #userinfo_major {
 		font-size: 14.5px !important;
-		right: 41px !important;
+		/*
+		 * Reserve a right-edge slot for abs Staff (pub / monkie-off).
+		 * ~4.5rem ≈ “Staff” + gap so major never runs under the link.
+		 * When monkie reparents Staff into major, :has() drops this to 8px.
+		 */
+		right: 4.5rem !important;
 		top: -53px !important;
+		max-width: min(70vw, 42rem) !important;
 	}
 	html body #userinfo_stats {
 		font-size: 14.5px !important;
@@ -6253,15 +6265,17 @@ html body #menu li.active a {
 		overflow: visible !important;
 	}
 	/*
-	 * Staff (Apollostage): reparent into #userinfo_major after Donate (JS).
-	 * When still under #menu, abs-pos on the major-links band — NEVER use
-	 * `#header li#nav_staff` (that also hits reparented Staff and yanks it
-	 * off-screen with top:-31px relative to #userinfo_major).
+	 * Staff — works WITH or WITHOUT monkie:
+	 *  • Pub / monkie-off: still under #menu; abs vs #header into reserved
+	 *    right slot (major has right:4.5rem). Never mid-stats, never InviteStaff.
+	 *  • Monkie on: JS reparents into #userinfo_major after Donate; static flow.
+	 * NEVER use bare `#header li#nav_staff` (hits reparented Staff + top:-31px).
 	 */
-	html body #header {
+	html body #header,
+	html body #wrapper #header {
 		position: relative !important;
 	}
-	/* Reparented: flow next to Upload · Invite · Donate */
+	/* Reparented (monkie): flow next to Upload · Invite · Donate */
 	html body #userinfo_major li#nav_staff,
 	html body #userinfo_major > li#nav_staff,
 	html body ul#userinfo_major li#nav_staff {
@@ -6333,27 +6347,30 @@ html body #menu li.active a {
 		-webkit-text-fill-color: var(--link-hover, #7cff9a) !important;
 		background: transparent !important;
 	}
-	/* Major already holds Staff — no right-gap reserved for abs Staff */
+	/* Monkie reparented: major can use full right edge */
 	html body #userinfo_major:has(#nav_staff) {
 		right: 8px !important;
+		max-width: none !important;
 	}
-	/* Fallback only while still a #menu tab (before reparent / no JS) */
+	/*
+	 * Pub / monkie-off: Staff still a #menu li — park in reserved major-band slot.
+	 * Containing block = #header (menu/ul are static). Same top as #userinfo_major.
+	 */
 	html body #menu > ul > li#nav_staff,
 	html body #menu ul li#nav_staff,
 	html body #menu li#nav_staff,
 	html body #main_site_menu #menu li#nav_staff,
 	html body #header #menu li#nav_staff {
 		position: absolute !important;
-		/* Major-links band (userinfo_major ~ top: -53px), not stats / not mid-rail */
 		top: -53px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
 		float: none !important;
 		display: block !important;
-		width: auto !important;
+		width: max-content !important;
 		min-width: 0 !important;
-		max-width: none !important;
+		max-width: 4.5rem !important;
 		height: auto !important;
 		min-height: 0 !important;
 		max-height: none !important;
@@ -6370,7 +6387,7 @@ html body #menu li.active a {
 		box-shadow: none !important;
 		filter: none !important;
 		opacity: 1 !important;
-		z-index: 200 !important;
+		z-index: 250 !important;
 		list-style: none !important;
 		line-height: 1.25 !important;
 		font-size: 14.5px !important;
