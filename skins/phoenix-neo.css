@@ -6057,7 +6057,7 @@ html body #menu li.active a {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		/* relative so #nav_staff can leave the tab strip */
-/* pp-css-build: 2026-08-07T1646Z src=debce3b */
+/* pp-css-build: 2026-08-07T1704Z src=7c41631 */
 		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
@@ -7489,6 +7489,34 @@ html body #torrent_details img[alt*="Freeleech" i] {
   max-width: 16px !important;
   max-height: 16px !important;
 }
+
+/* Apollo-like: one New only — keep title .tl_new / .torrent_label.tl_new;
+ * hide stock .torrent_info "New!" (unread) which doubles the pill. */
+html body .torrent_info > strong.new,
+html body .torrent_info > .new,
+html body .group_info > strong.new,
+html body .group_info > .new,
+html body .torrent_table .torrent_info strong.new,
+html body .torrent_table .torrent_info .new,
+html body#torrents .torrent_info > strong.new,
+html body#torrents .torrent_info > .new {
+  display: none !important;
+  visibility: hidden !important;
+  font-size: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+html body .torrent_info > strong.new::before,
+html body .torrent_info > .new::before,
+html body .group_info > strong.new::before,
+html body .group_info > .new::before {
+  content: none !important;
+  display: none !important;
+}
+
 /* === torrent badges Apollo-like END === */
 
 /* === user profile polish: heads + quiet links + avatar fit === */
