@@ -715,8 +715,26 @@ ul.collage_images li a>span {
 #inbox .manage_form .box {
     padding: 0
 }
+/* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
+/* pp-css-build: 2026-08-07T1932Z src=3db4135 */
 #inbox .unreadpm {
-    background: rgba(0, 255, 65, .25)
+    background: rgba(58, 239, 200, .14)
+}
+#inbox tr.unreadpm td,
+#inbox .unreadpm td {
+    background: rgba(58, 239, 200, .12) !important;
+    box-shadow: inset 3px 0 0 #3aefc8 !important;
+    font-weight: 600 !important
+}
+#inbox tr.unreadpm a,
+#inbox .unreadpm a {
+    color: #9dffd8 !important;
+    -webkit-text-fill-color: #9dffd8 !important;
+    text-shadow: 0 0 8px rgba(58, 239, 200, .35)
+}
+#inbox tr.unreadpm:hover td,
+#inbox .unreadpm:hover td {
+    background: rgba(58, 239, 200, .2) !important
 }
 #wiki .navigation_list {
     margin: 0;
@@ -6057,7 +6075,6 @@ html body #menu li.active a {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		/* relative so #nav_staff can leave the tab strip */
-/* pp-css-build: 2026-08-07T1806Z src=6c1c231 */
 		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
@@ -6646,6 +6663,52 @@ html body #menu li.active a {
 		content: none !important;
 	}
 }
+
+
+/* === inbox unread (mint-cyan) BEGIN ===
+ * New/unread PMs: cooler mint vs matrix green so rows scan as "new"
+ * without leaving the neo palette. Gazelle marks tr.unreadpm.
+ * ============================================================ */
+body#inbox tr.unreadpm td,
+body#inbox .unreadpm td,
+body#inbox tr.unread td,
+body#staffpm tr.unreadpm td,
+body#staffpm .unreadpm td {
+	background: rgba(58, 239, 200, 0.12) !important;
+	background-color: rgba(58, 239, 200, 0.12) !important;
+	box-shadow: inset 3px 0 0 #3aefc8 !important;
+	color: #d8fff0 !important;
+	font-weight: 600 !important;
+}
+body#inbox tr.unreadpm:hover td,
+body#inbox .unreadpm:hover td,
+body#staffpm tr.unreadpm:hover td {
+	background: rgba(58, 239, 200, 0.2) !important;
+	background-color: rgba(58, 239, 200, 0.2) !important;
+}
+body#inbox tr.unreadpm a,
+body#inbox .unreadpm a,
+body#inbox tr.unreadpm td a,
+body#staffpm tr.unreadpm a {
+	color: #9dffd8 !important;
+	-webkit-text-fill-color: #9dffd8 !important;
+	font-weight: 700 !important;
+	text-shadow: 0 0 10px rgba(58, 239, 200, 0.4) !important;
+}
+body#inbox tr.unreadpm a:hover,
+body#inbox .unreadpm a:hover {
+	color: #e8fff8 !important;
+	-webkit-text-fill-color: #e8fff8 !important;
+	text-shadow: 0 0 14px rgba(58, 239, 200, 0.55) !important;
+}
+body#inbox tr.unreadpm .time,
+body#inbox .unreadpm .time,
+body#inbox tr.unreadpm span.time {
+	color: #7dffd0 !important;
+	-webkit-text-fill-color: #7dffd0 !important;
+	font-weight: 600 !important;
+}
+/* === inbox unread (mint-cyan) END === */
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
 /* ============================================================
