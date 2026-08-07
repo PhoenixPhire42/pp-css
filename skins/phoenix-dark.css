@@ -591,7 +591,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-07T0331Z src=3f3bb0d */
+/* pp-css-build: 2026-08-07T0345Z src=8891bc1 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7847,19 +7847,37 @@ html body #main_site_menu {
 	contain: none !important;
 }
 
-/* === pp-staff-pub-appendix v3 (Apollostage reference) ===
- * Stock Apollostage (static/styles/apollostage/style.css @min-width 480px):
- *   #userinfo_major { right: 41px; top: -53px; }
- *   #userinfo_stats { top: -31px; }
- *   #menu > ul > #nav_staff { position: absolute; right: 8px; top: 29px; }
- * Staff lives on the MENU strip (top:29px), NOT major band (-53) or stats (-31).
- * major right:41px leaves room for Staff at right:8px.
+/* === pp-staff-pub-appendix v4 (Apollostage VISUAL SoT) ===
+ * Visual reference (not bare stock top:-53px alone):
+ *   styles/_ref-apollostage-header-staff.jpg
+ *   Staff on TOP-RIGHT header line AFTER Donate (100%) ❤️ — same band as
+ *   Upload Bonus / Invite / Donate. Menu tabs CLEAN (no Staff under Wiki/Heywood).
+ *
+ * CSS strategy:
+ *   #userinfo_major { top: -53px; right: 41px }  — major band; 41px reserves Staff slot
+ *   #userinfo_stats { top: -31px }
+ *   Menu-resident #nav_staff: absolute top: -53px right: 8px (UP into major band,
+ *     NOT top:-53px on the tab strip — that sat under Wiki)
+ *   Reparented #userinfo_major #nav_staff: static flow after Donate
+ *
  * Do NOT force #menu position:static (broke Apollostage scale → “everything big”).
- * styles/_ref-apollostage.css is the offline SoT snapshot.
+ * Offline CSS dump: styles/_ref-apollostage.css (rules alone mislead; prefer the SS).
  */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header {
+		position: relative !important;
+		overflow: visible !important;
+	}
+	/* Menu must not clip abs Staff rising into major band */
+	html body #menu,
+	html body #header #menu,
+	html body #main_site_menu {
+		overflow: visible !important;
+	}
+	html body #menu > ul,
+	html body #menu > ul.main_site_menu_inner {
+		overflow: visible !important;
 		position: relative !important;
 	}
 
@@ -7874,7 +7892,7 @@ html body #main_site_menu {
 		top: -31px !important;
 	}
 
-	/* If monkie reparented Staff into major, flow like other major links */
+	/* Monkie reparented: flow after Donate (matches SS “Donate … Staff”) */
 	html body #userinfo_major li#nav_staff,
 	html body #userinfo_major > li#nav_staff,
 	html body ul#userinfo_major li#nav_staff {
@@ -7902,7 +7920,6 @@ html body #main_site_menu {
 		z-index: auto !important;
 	}
 	html body #userinfo_major:has(#nav_staff) {
-		/* Staff already in-flow — no need for 41px reserve */
 		right: 8px !important;
 	}
 	html body #userinfo_major li#nav_staff a,
@@ -7920,19 +7937,24 @@ html body #main_site_menu {
 		font-weight: 400 !important;
 	}
 
-	/* Apollostage: Staff still under #menu (pub / monkie-off / tools-only) */
+	/*
+	 * Pub / monkie-off: Staff still under #menu in DOM.
+	 * top: -53px (not 29px) lifts it into the major/header band next to Donate —
+	 * same look as styles/_ref-apollostage-header-staff.jpg
+	 */
 	html body #menu > ul > li#nav_staff,
 	html body #menu > ul > #nav_staff,
 	html body #menu li#nav_staff,
 	html body #header #menu li#nav_staff,
-	html body #main_site_menu li#nav_staff {
+	html body #main_site_menu li#nav_staff,
+	html body #header li#nav_staff {
 		position: absolute !important;
-		top: 29px !important;
+		top: -53px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
 		float: none !important;
-		display: inline !important;
+		display: block !important;
 		width: auto !important;
 		max-width: 4.5rem !important;
 		height: auto !important;
@@ -7952,7 +7974,8 @@ html body #main_site_menu {
 	}
 	html body #menu > ul > #nav_staff > a,
 	html body #menu li#nav_staff a,
-	html body #header #menu li#nav_staff a {
+	html body #header #menu li#nav_staff a,
+	html body #header li#nav_staff a {
 		display: inline !important;
 		position: static !important;
 		height: auto !important;
@@ -7967,7 +7990,6 @@ html body #main_site_menu {
 		font-weight: 400 !important;
 	}
 }
-
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
 /* ============================================================
  * Public Gazelle skins — mobile appendix
