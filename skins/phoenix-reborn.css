@@ -5618,41 +5618,26 @@ html #searchbars > ul > li:hover {
 	background-color: #22181c !important;
 }
 
-/* === pp-staff-pub-appendix v1 ===
- * Staff works with monkie OFF (pub CSS only) and WITH monkie reparent.
- * - Menu/ul static so abs Staff parks vs #header (not the tab-strip width).
- * - Major reserves right:4.5rem; Staff at right:8px major band (top:-53px).
- * - :has(#nav_staff) when monkie reparents → major right:8px, Staff static in-flow.
- * Source: monkie styles — keep in sync across all phoenix-*.css.
+/* === pp-staff-pub-appendix v2 ===
+ * Staff with monkie OFF (and ON after reparent).
+ * Do NOT change #menu position (static broke Apollostage scale → “everything big”).
+ * Only reserve major right slot + park menu-Staff at major band.
  */
-/* pp-css-build: 2026-08-07T0150Z src=a63c6d2 */
+/* pp-css-build: 2026-08-07T0155Z src=3517ff8 */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header {
 		position: relative !important;
 	}
-	html body #menu {
-		position: static !important;
-		overflow: visible !important;
-	}
-	html body #menu > ul,
-	html body #menu > ul.main_site_menu_inner {
-		position: static !important;
-		overflow: visible !important;
-	}
-	html body #menu > ul > li:not(#nav_staff),
-	html body #menu > ul.main_site_menu_inner > li:not(#nav_staff) {
-		position: relative !important;
-	}
+	/* Keep menu relative (original Apollostage/neo) — do not force static */
 	html body #userinfo_major {
+		/* leave room for abs Staff at right:8px */
 		right: 4.5rem !important;
-		top: -53px !important;
 	}
-	html body #userinfo_stats {
-		top: -31px !important;
+	html body #userinfo_major:has(#nav_staff) {
 		right: 8px !important;
 	}
-	/* Monkie reparented into major after Donate */
+	/* Monkie reparented: flow after Donate */
 	html body #userinfo_major li#nav_staff,
 	html body #userinfo_major > li#nav_staff,
 	html body ul#userinfo_major li#nav_staff {
@@ -5679,7 +5664,6 @@ html #searchbars > ul > li:hover {
 		overflow: visible !important;
 		z-index: auto !important;
 	}
-	html body #userinfo_major li#nav_staff > a,
 	html body #userinfo_major li#nav_staff a,
 	html body #userinfo_major #nav_staff a {
 		display: inline !important;
@@ -5688,20 +5672,13 @@ html #searchbars > ul > li:hover {
 		line-height: 1.25 !important;
 		padding: 0 !important;
 		margin: 0 !important;
-		width: auto !important;
 		background: transparent !important;
 		white-space: nowrap !important;
 		text-align: left !important;
 	}
-	html body #userinfo_major:has(#nav_staff) {
-		right: 8px !important;
-		max-width: none !important;
-	}
-	/* Pub / monkie-off: still under #menu — park in reserved header slot */
+	/* Pub / monkie-off: still under #menu */
 	html body #menu > ul > li#nav_staff,
-	html body #menu ul li#nav_staff,
 	html body #menu li#nav_staff,
-	html body #main_site_menu #menu li#nav_staff,
 	html body #header #menu li#nav_staff {
 		position: absolute !important;
 		top: -53px !important;
@@ -5713,7 +5690,6 @@ html #searchbars > ul > li:hover {
 		width: max-content !important;
 		max-width: 4.5rem !important;
 		height: auto !important;
-		min-height: 0 !important;
 		margin: 0 !important;
 		padding: 0 !important;
 		flex: 0 0 0 !important;
@@ -5728,7 +5704,6 @@ html #searchbars > ul > li:hover {
 		z-index: 250 !important;
 		pointer-events: auto !important;
 	}
-	html body #menu > ul > li#nav_staff > a,
 	html body #menu li#nav_staff a,
 	html body #header #menu li#nav_staff a {
 		display: inline !important;
@@ -5737,7 +5712,6 @@ html #searchbars > ul > li:hover {
 		line-height: 1.25 !important;
 		padding: 0 !important;
 		margin: 0 !important;
-		width: auto !important;
 		background: transparent !important;
 		white-space: nowrap !important;
 		text-align: right !important;

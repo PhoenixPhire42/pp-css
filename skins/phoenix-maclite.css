@@ -8879,46 +8879,122 @@ html body #torrent_details .important_text_alt {
 	font-weight: 700 !important;
 }
 
+/* === pp-staff-pub-appendix v2 ===
+ * Staff with monkie OFF (and ON after reparent).
+ * Do NOT change #menu position (static broke Apollostage scale → “everything big”).
+ * Only reserve major right slot + park menu-Staff at major band.
+ */
+/* pp-css-build: 2026-08-07T0155Z src=3517ff8 */
+@media (min-width: 576px) {
+	html body #header,
+	html body #wrapper #header {
+		position: relative !important;
+	}
+	/* Keep menu relative (original Apollostage/neo) — do not force static */
+	html body #userinfo_major {
+		/* leave room for abs Staff at right:8px */
+		right: 4.5rem !important;
+	}
+	html body #userinfo_major:has(#nav_staff) {
+		right: 8px !important;
+	}
+	/* Monkie reparented: flow after Donate */
+	html body #userinfo_major li#nav_staff,
+	html body #userinfo_major > li#nav_staff,
+	html body ul#userinfo_major li#nav_staff {
+		position: static !important;
+		display: list-item !important;
+		float: none !important;
+		top: auto !important;
+		right: auto !important;
+		left: auto !important;
+		bottom: auto !important;
+		width: auto !important;
+		max-width: none !important;
+		height: auto !important;
+		margin: 0 0 0 8px !important;
+		padding: 0 !important;
+		flex: 0 0 auto !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		overflow: visible !important;
+		z-index: auto !important;
+	}
+	html body #userinfo_major li#nav_staff a,
+	html body #userinfo_major #nav_staff a {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		white-space: nowrap !important;
+		text-align: left !important;
+	}
+	/* Pub / monkie-off: still under #menu */
+	html body #menu > ul > li#nav_staff,
+	html body #menu li#nav_staff,
+	html body #header #menu li#nav_staff {
+		position: absolute !important;
+		top: -53px !important;
+		right: 8px !important;
+		left: auto !important;
+		bottom: auto !important;
+		float: none !important;
+		display: block !important;
+		width: max-content !important;
+		max-width: 4.5rem !important;
+		height: auto !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		flex: 0 0 0 !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		overflow: visible !important;
+		z-index: 250 !important;
+		pointer-events: auto !important;
+	}
+	html body #menu li#nav_staff a,
+	html body #header #menu li#nav_staff a {
+		display: inline !important;
+		position: static !important;
+		height: auto !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+		white-space: nowrap !important;
+		text-align: right !important;
+	}
+}
+
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
-/* pp-css-build: 2026-08-07T0150Z src=a63c6d2 */
 /* ============================================================
  * Public Gazelle skins — mobile appendix
  * Used by: phoenix-*, orpheus-matrix, redacted-synth
  * Appended by styles/append-mobile-public.py (idempotent).
+ *
+ * IMPORTANT: Rules that change size (font 16px, height:auto on imgs,
+ * stacked columns) MUST stay inside max-width media queries.
+ * Global height:auto on all imgs blew up Neo logos/header (“everything big”).
  * ============================================================ */
 
-/* Never let monkie chrome force horizontal scroll */
+/* Desktop-safe overflow only — no height rewrites */
 html,
 body {
 	max-width: 100% !important;
 	overflow-x: clip !important;
-}
-
-img,
-video,
-svg,
-iframe,
-embed,
-object {
-	max-width: 100% !important;
-	height: auto !important;
-}
-
-/* Tables / torrent lists — swipe instead of page-wide blowout */
-.thin,
-#content,
-#wrapper,
-#maincontent {
-	max-width: 100% !important;
-	box-sizing: border-box !important;
-}
-
-table,
-.torrent_table,
-#torrent_table,
-.box > table,
-table.layout {
-	max-width: 100% !important;
 }
 
 /* Scroll wrapper when stock tables are wider than the phone */
@@ -8942,7 +9018,28 @@ table.layout {
 		padding-right: max(6px, env(safe-area-inset-right, 0px)) !important;
 	}
 
-	/* Header / menu: stay usable under monkie desktop locks */
+	/* Media only on small screens — never force desktop logo/header huge */
+	html body img,
+	html body video,
+	html body svg,
+	html body iframe,
+	html body embed,
+	html body object {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	/* Keep header logos from exploding even with height:auto */
+	html body #logo img,
+	html body #header #logo img,
+	html body #logo a img {
+		max-width: min(220px, 55vw) !important;
+		max-height: 64px !important;
+		width: auto !important;
+		height: auto !important;
+		object-fit: contain !important;
+	}
+
 	html body #header,
 	html body #wrapper #header,
 	html body #main_site_menu {
@@ -8956,8 +9053,7 @@ table.layout {
 
 	html body #logo,
 	html body #header #logo,
-	html body #logo a,
-	html body #logo a img {
+	html body #logo a {
 		max-width: min(220px, 55vw) !important;
 		width: auto !important;
 		height: auto !important;
@@ -8979,7 +9075,6 @@ table.layout {
 		box-sizing: border-box !important;
 	}
 
-	/* Wide tables: allow horizontal pan inside content */
 	html body .box,
 	html body .thin,
 	html body #content {
@@ -8987,11 +9082,13 @@ table.layout {
 		-webkit-overflow-scrolling: touch !important;
 	}
 
-	html body table {
+	html body table,
+	html body .torrent_table,
+	html body #torrent_table {
+		max-width: 100% !important;
 		font-size: 12px !important;
 	}
 
-	/* Touch-friendlier linkboxes / pills */
 	html body .linkbox a,
 	html body .brackets,
 	html body a.brackets {
@@ -8999,7 +9096,6 @@ table.layout {
 		line-height: 1.5 !important;
 	}
 
-	/* Forms fill width */
 	html body input[type="text"],
 	html body input[type="password"],
 	html body input[type="email"],
@@ -9009,10 +9105,9 @@ table.layout {
 	html body textarea {
 		max-width: 100% !important;
 		box-sizing: border-box !important;
-		font-size: 16px !important; /* iOS: no focus zoom */
+		font-size: 16px !important; /* iOS: no focus zoom — phone only */
 	}
 
-	/* Cover / group art shouldn't dominate phone width */
 	html body .box_image img,
 	html body .sidebar img,
 	html body #cover img,
@@ -9021,7 +9116,6 @@ table.layout {
 		height: auto !important;
 	}
 
-	/* Monkie theme pill (if present) */
 	html body [id$="-theme-pill"],
 	html body [id*="monkies"][id*="pill"],
 	html body #monkies-pp-theme-pill,
@@ -9046,7 +9140,6 @@ table.layout {
 		box-sizing: border-box !important;
 	}
 
-	/* Tighter vertical rhythm on phones */
 	html body .header h2,
 	html body .thin > .header h2 {
 		font-size: 1.05em !important;
@@ -9079,128 +9172,3 @@ table.layout {
 	}
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
-
-/* === pp-staff-pub-appendix v1 ===
- * Staff works with monkie OFF (pub CSS only) and WITH monkie reparent.
- * - Menu/ul static so abs Staff parks vs #header (not the tab-strip width).
- * - Major reserves right:4.5rem; Staff at right:8px major band (top:-53px).
- * - :has(#nav_staff) when monkie reparents → major right:8px, Staff static in-flow.
- * Source: monkie styles — keep in sync across all phoenix-*.css.
- */
-@media (min-width: 576px) {
-	html body #header,
-	html body #wrapper #header {
-		position: relative !important;
-	}
-	html body #menu {
-		position: static !important;
-		overflow: visible !important;
-	}
-	html body #menu > ul,
-	html body #menu > ul.main_site_menu_inner {
-		position: static !important;
-		overflow: visible !important;
-	}
-	html body #menu > ul > li:not(#nav_staff),
-	html body #menu > ul.main_site_menu_inner > li:not(#nav_staff) {
-		position: relative !important;
-	}
-	html body #userinfo_major {
-		right: 4.5rem !important;
-		top: -53px !important;
-	}
-	html body #userinfo_stats {
-		top: -31px !important;
-		right: 8px !important;
-	}
-	/* Monkie reparented into major after Donate */
-	html body #userinfo_major li#nav_staff,
-	html body #userinfo_major > li#nav_staff,
-	html body ul#userinfo_major li#nav_staff {
-		position: static !important;
-		display: list-item !important;
-		float: none !important;
-		top: auto !important;
-		right: auto !important;
-		left: auto !important;
-		bottom: auto !important;
-		width: auto !important;
-		max-width: none !important;
-		height: auto !important;
-		margin: 0 0 0 8px !important;
-		padding: 0 !important;
-		flex: 0 0 auto !important;
-		background: transparent !important;
-		border: none !important;
-		box-shadow: none !important;
-		list-style: none !important;
-		font-size: 14.5px !important;
-		font-weight: 400 !important;
-		line-height: 1.25 !important;
-		overflow: visible !important;
-		z-index: auto !important;
-	}
-	html body #userinfo_major li#nav_staff > a,
-	html body #userinfo_major li#nav_staff a,
-	html body #userinfo_major #nav_staff a {
-		display: inline !important;
-		position: static !important;
-		height: auto !important;
-		line-height: 1.25 !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		width: auto !important;
-		background: transparent !important;
-		white-space: nowrap !important;
-		text-align: left !important;
-	}
-	html body #userinfo_major:has(#nav_staff) {
-		right: 8px !important;
-		max-width: none !important;
-	}
-	/* Pub / monkie-off: still under #menu — park in reserved header slot */
-	html body #menu > ul > li#nav_staff,
-	html body #menu ul li#nav_staff,
-	html body #menu li#nav_staff,
-	html body #main_site_menu #menu li#nav_staff,
-	html body #header #menu li#nav_staff {
-		position: absolute !important;
-		top: -53px !important;
-		right: 8px !important;
-		left: auto !important;
-		bottom: auto !important;
-		float: none !important;
-		display: block !important;
-		width: max-content !important;
-		max-width: 4.5rem !important;
-		height: auto !important;
-		min-height: 0 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-		flex: 0 0 0 !important;
-		background: transparent !important;
-		border: none !important;
-		box-shadow: none !important;
-		list-style: none !important;
-		font-size: 14.5px !important;
-		font-weight: 400 !important;
-		line-height: 1.25 !important;
-		overflow: visible !important;
-		z-index: 250 !important;
-		pointer-events: auto !important;
-	}
-	html body #menu > ul > li#nav_staff > a,
-	html body #menu li#nav_staff a,
-	html body #header #menu li#nav_staff a {
-		display: inline !important;
-		position: static !important;
-		height: auto !important;
-		line-height: 1.25 !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		width: auto !important;
-		background: transparent !important;
-		white-space: nowrap !important;
-		text-align: right !important;
-	}
-}
