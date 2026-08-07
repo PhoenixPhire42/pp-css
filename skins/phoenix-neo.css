@@ -6057,7 +6057,7 @@ html body #menu li.active a {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		/* relative so #nav_staff can leave the tab strip */
-/* pp-css-build: 2026-08-07T0247Z src=67b1688 */
+/* pp-css-build: 2026-08-07T0256Z src=79552eb */
 		position: relative !important;
 		top: auto !important;
 		bottom: auto !important;
@@ -6255,8 +6255,8 @@ html body #menu li.active a {
 	html body #header #menu li#nav_staff,
 	html body #header li#nav_staff {
 		position: absolute !important;
-		/* Stats row band (userinfo_stats ~ top: -31px) — not inside the 50px tab strip */
-		top: -31px !important;
+		/* Major band (userinfo_major ~ top: -53px) — NOT stats -31px (was mid-Ratio) */
+		top: -53px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
@@ -6264,7 +6264,7 @@ html body #menu li.active a {
 		display: block !important;
 		width: auto !important;
 		min-width: 0 !important;
-		max-width: none !important;
+		max-width: 4rem !important;
 		height: auto !important;
 		min-height: 0 !important;
 		max-height: none !important;
@@ -6282,10 +6282,10 @@ html body #menu li.active a {
 		box-shadow: none !important;
 		filter: none !important;
 		opacity: 1 !important;
-		z-index: 200 !important;
+		z-index: 250 !important;
 		list-style: none !important;
 		line-height: 1.25 !important;
-		font-size: 13.5px !important;
+		font-size: 14.5px !important;
 		font-weight: 400 !important;
 		pointer-events: auto !important;
 		overflow: visible !important;
@@ -6311,7 +6311,7 @@ html body #menu li.active a {
 		border: none !important;
 		box-shadow: none !important;
 		text-shadow: none !important;
-		font-size: 13.5px !important;
+		font-size: 14.5px !important;
 		font-weight: 400 !important;
 		text-align: right !important;
 		overflow: visible !important;
@@ -6829,7 +6829,7 @@ body {
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
 
-/* === monkie-pub-parity v2 BEGIN — monkie MENU_LOCK + FOUC baked in for pub parity === */
+/* === monkie-pub-parity v3 BEGIN — menu lock + Staff major-band + 90/100 thumbs + profile 100 === */
 @media (min-width: 576px) {
 /* pp-menu V62 Staff reparent + major-band fallback */#header{position:relative!important;overflow:visible!important}#main_site_menu,#menu,#wrapper #header #menu,#header #menu,#main_site_menu #menu{height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;box-sizing:border-box!important;flex:0 0 50px!important;position:relative!important;z-index:100!important}#menu>ul,#menu>ul.main_site_menu_inner{height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;display:flex!important;flex-flow:row nowrap!important;align-items:stretch!important;box-sizing:border-box!important;width:calc(100% - 149px)!important;position:relative!important;z-index:100!important;margin:0!important;padding:0!important}#menu>ul>li:not(#nav_staff){height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;flex:1 1 0!important;box-sizing:border-box!important;position:relative!important;width:auto!important;z-index:1!important}#menu>ul>li:not(#nav_staff):hover,#menu>ul>li:not(#nav_staff):focus-within{z-index:300!important}#menu>ul>li:not(#nav_staff)>a{display:block!important;height:50px!important;max-height:50px!important;min-height:0!important;line-height:50px!important;overflow:hidden!important;box-sizing:border-box!important;padding-top:0!important;padding-bottom:0!important}#menu>ul>li#nav_index{flex:0 0 50px!important;max-width:50px!important;width:50px!important}#userinfo_major li#nav_staff,#userinfo_major>li#nav_staff{position:static!important;display:list-item!important;float:none!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;flex:0 0 auto!important;margin:0 0 0 8px!important;padding:0!important;background:transparent!important;background-image:none!important;border:none!important;box-shadow:none!important;list-style:none!important;font-size:14.5px!important;font-weight:400!important;line-height:1.25!important;z-index:auto!important;overflow:visible!important}#userinfo_major li#nav_staff>a,#userinfo_major #nav_staff a{display:inline!important;position:static!important;height:auto!important;line-height:1.25!important;padding:0!important;margin:0!important;width:auto!important;background:transparent!important;background-image:none!important;box-shadow:none!important;text-align:left!important;overflow:visible!important;white-space:nowrap!important;font-size:14.5px!important}#userinfo_major:has(#nav_staff){right:8px!important}#menu>ul>li#nav_staff,#header #menu li#nav_staff,#main_site_menu #menu li#nav_staff{position:absolute!important;top:-53px!important;right:8px!important;left:auto!important;bottom:auto!important;float:none!important;display:block!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;flex:0 0 0!important;z-index:200!important;margin:0!important;padding:0!important;background:transparent!important;background-image:none!important;border:none!important;box-shadow:none!important;list-style:none!important;font-size:14.5px!important;font-weight:400!important;line-height:1.25!important;overflow:visible!important}#menu>ul>li#nav_staff>a,#header #menu li#nav_staff a{display:inline!important;position:static!important;height:auto!important;line-height:1.25!important;padding:0!important;margin:0!important;width:auto!important;background:transparent!important;background-image:none!important;box-shadow:none!important;text-align:right!important;overflow:visible!important}#menu>ul>li>ul,#menu #torrent_reviews,#menu ul ul{position:absolute!important;top:100%!important;left:0!important;bottom:auto!important;z-index:1000!important;display:none!important;flex-direction:column!important;height:auto!important;max-height:min(70vh,480px)!important;min-height:0!important;width:max-content!important;min-width:max(100%,12rem)!important;margin:0!important;padding:4px 0!important;overflow:auto!important;list-style:none!important;background:#0a140c!important;border:1px solid #1a4d1a!important;border-radius:0 0 10px 10px!important;box-shadow:0 16px 40px rgba(0,0,0,.65)!important}#menu>ul>li:hover>ul,#menu>ul>li:focus-within>ul,#menu>ul>li:hover>#torrent_reviews,#menu>ul>li:focus-within>#torrent_reviews{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}#menu>ul>li:hover>a,#menu>ul>li:focus-within>a{color:#fff!important;background-color:rgba(255,255,255,.08)!important}#menu>ul>li>ul>li,#menu #torrent_reviews>li{height:auto!important;max-height:none!important;min-height:0!important;flex:0 0 auto!important;width:100%!important;overflow:visible!important;background:transparent!important;border:none!important}#menu>ul>li>ul>li+li,#menu #torrent_reviews>li+li{border-top:1px solid rgba(255,255,255,.05)!important}#menu>ul>li>ul>li>a,#menu #torrent_reviews>li>a{display:block!important;height:auto!important;max-height:none!important;min-height:36px!important;line-height:1.35!important;padding:10px 16px!important;overflow:visible!important;white-space:nowrap!important;text-align:left!important;font-size:13px!important;font-weight:500!important;color:#c8ffc8!important;background:transparent!important;border:none!important;border-left:3px solid transparent!important;box-sizing:border-box!important}#menu>ul>li>ul>li>a:hover,#menu #torrent_reviews>li>a:hover{background:rgba(0,255,65,.14)!important;color:#fff!important;border-left-color:rgba(0,255,65,.55)!important}@media (min-width:576px){#header input[type=checkbox],#header input[type=checkbox]+label,input#mobile_main_menu,.hiden_mobile_menu,.hide-input,.mobile_header,.main_mobile_menu_toggle,#header .spinner,form#extra-hidden{display:none!important;visibility:hidden!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important;left:-9999px!important}#extra1,#extra2,#extra3,#extra4,#extra5,#extra6{display:none!important;opacity:0!important;pointer-events:none!important}}
 }
@@ -6918,4 +6918,45 @@ html body#index ul.collage_images li a img {
   width: 100px !important;
   height: 100px !important;
 }
-/* === monkie-pub-parity v2 END === */
+
+/* profile Recent Uploads / Snatches — same 100px cap (was fluid 20% cells = huge on wide) */
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td,
+html body#user table.recent tr:not(.colhead) > td {
+  width: 100px !important;
+  max-width: 100px !important;
+  padding: 3px !important;
+  box-sizing: border-box !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td:before {
+  display: none !important;
+  padding-top: 0 !important;
+  content: none !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a,
+html body#user table.recent tr:not(.colhead) > td > a {
+  position: static !important;
+  display: block !important;
+  width: 100px !important;
+  height: 100px !important;
+  left: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+}
+html body#user table.recent tr:not(.colhead):not(.colhead_dark) > td > a img,
+html body#user table.recent tr:not(.colhead) img,
+html body#user table.recent img {
+  position: static !important;
+  width: 100px !important;
+  height: 100px !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* === monkie-pub-parity v3 END === */
