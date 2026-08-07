@@ -716,7 +716,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-07T1936Z src=d5f3c8c */
+/* pp-css-build: 2026-08-07T2104Z src=4c8dfc4 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -769,9 +769,12 @@ ul.collage_images li a>span {
     background-color: transparent;
     width: calc(100% - 248px)
 }
+/* Apollo parity: 14px section links (was 12 — felt cramped vs stock Coffee) */
 #userform #settings_sections h2 {
-    font-size: 12px;
-    line-height: 1.6
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0
 }
 #userform #settings_sections h2 a:hover {
     color: #7cff9a
@@ -6721,6 +6724,118 @@ body#inbox tr.unreadpm span.time {
 	font-weight: 600 !important;
 }
 /* === inbox unread (mint-cyan) END === */
+
+
+/* === settings Apollo spacing BEGIN ===
+ * Stock ApolloStage Coffee: roomier sections rail + form type.
+ * Matrix/Neo had 12px section links and ul flush to the box edge.
+ * ============================================================ */
+body#user #userform #settings_sections,
+html body#user #settings_sections.box,
+html body#user #settings_sections.box2 {
+	padding: 0 !important;
+	overflow: hidden !important;
+}
+body#user #userform #settings_sections > .head,
+html body#user #settings_sections > .head {
+	padding: 12px 14px !important;
+	font-size: 14px !important;
+	line-height: 1.4 !important;
+	font-weight: 600 !important;
+}
+/* Sections list — Apollo-like inset (was flush to border) */
+body#user #userform #settings_sections > ul.nobullet,
+html body#user #settings_sections > ul.nobullet,
+body#user #settings_sections ul.nobullet {
+	margin: 0 !important;
+	padding: 10px 14px 14px !important;
+	list-style: none !important;
+	box-sizing: border-box !important;
+}
+body#user #settings_sections ul.nobullet > li {
+	margin: 0 0 2px !important;
+	padding: 0 !important;
+}
+body#user #userform #settings_sections h2,
+body#user #settings_sections h2 {
+	font-size: 14px !important;
+	line-height: 1.55 !important;
+	margin: 0 !important;
+	padding: 5px 0 !important;
+	font-weight: 600 !important;
+}
+body#user #userform #settings_sections h2 a,
+body#user #settings_sections h2 a {
+	display: block !important;
+	padding: 2px 4px !important;
+	border-radius: 3px !important;
+	color: var(--link, #00ff41) !important;
+	-webkit-text-fill-color: var(--link, #00ff41) !important;
+	text-decoration: none !important;
+}
+body#user #userform #settings_sections h2 a:hover,
+body#user #settings_sections h2 a:hover {
+	color: var(--link-hover, #9dffb0) !important;
+	-webkit-text-fill-color: var(--link-hover, #9dffb0) !important;
+	background: rgba(0, 255, 65, 0.08) !important;
+}
+body#user #userform #settings_sections input[type="text"],
+body#user #userform #settings_sections input[type="search"],
+body#user #settings_sections input {
+	margin: 10px 0 4px !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	font-size: 14px !important;
+	padding: 6px 10px !important;
+}
+body#user #userform #settings_sections input[type="submit"],
+body#user #settings_sections input[type="submit"] {
+	margin-top: 8px !important;
+	font-size: 13px !important;
+	padding: 6px 14px !important;
+}
+/* Main settings form — Apollo control size + cell breathing room */
+body#user #userform button,
+body#user #userform input,
+body#user #userform select,
+body#user #userform textarea {
+	font-size: 14px !important;
+}
+body#user #userform table td,
+body#user form.edit_form table td {
+	padding: 8px 12px !important;
+	vertical-align: top !important;
+}
+body#user #userform table td.label,
+body#user form.edit_form table td.label {
+	padding: 10px 14px 8px 12px !important;
+	width: 180px !important;
+	text-align: right !important;
+	color: var(--text-dimmed, #8fbf8f) !important;
+	font-weight: 600 !important;
+	line-height: 1.45 !important;
+}
+/* Section band headers inside the form (Site Appearance, Navigation, …) */
+body#user #userform tr.colhead td,
+body#user #userform tr.colhead_dark td,
+body#user form.edit_form tr.colhead td,
+body#user form.edit_form tr.colhead_dark td {
+	padding: 10px 14px !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.01em !important;
+	line-height: 1.4 !important;
+}
+/* Checkbox / radio stacks under labels — room from table edge */
+body#user #userform table td:not(.label) {
+	padding-right: 16px !important;
+}
+body#user #userform .option_group,
+body#user #userform fieldset {
+	padding: 4px 0 !important;
+}
+/* === settings Apollo spacing END === */
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
 /* ============================================================
