@@ -716,15 +716,19 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-07T1932Z src=3db4135 */
+/* pp-css-build: 2026-08-07T1936Z src=d5f3c8c */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
 #inbox tr.unreadpm td,
 #inbox .unreadpm td {
     background: rgba(58, 239, 200, .12) !important;
-    box-shadow: inset 3px 0 0 #3aefc8 !important;
     font-weight: 600 !important
+}
+/* Left accent only on first cell — box-shadow on every td draws column dividers */
+#inbox tr.unreadpm td:first-child,
+#inbox .unreadpm td:first-child {
+    box-shadow: inset 3px 0 0 #3aefc8 !important
 }
 #inbox tr.unreadpm a,
 #inbox .unreadpm a {
@@ -6676,9 +6680,17 @@ body#staffpm tr.unreadpm td,
 body#staffpm .unreadpm td {
 	background: rgba(58, 239, 200, 0.12) !important;
 	background-color: rgba(58, 239, 200, 0.12) !important;
-	box-shadow: inset 3px 0 0 #3aefc8 !important;
+	box-shadow: none !important;
 	color: #d8fff0 !important;
 	font-weight: 600 !important;
+}
+/* Single left rail — not on every column (was drawing vertical lines) */
+body#inbox tr.unreadpm td:first-child,
+body#inbox .unreadpm td:first-child,
+body#inbox tr.unread td:first-child,
+body#staffpm tr.unreadpm td:first-child,
+body#staffpm .unreadpm td:first-child {
+	box-shadow: inset 3px 0 0 #3aefc8 !important;
 }
 body#inbox tr.unreadpm:hover td,
 body#inbox .unreadpm:hover td,
