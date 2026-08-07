@@ -76,6 +76,29 @@ SKINS = {
  */
 """,
     },
+    "phoenix-reborn.css": {
+        "header": """/*
+ * Phoenix Project — Reborn
+ * Warm dark rose/gold chrome (Apollostage-based).
+ * External stylesheet URL. Pure CSS — no userscript required.
+ * Built from monkie styles/phoenix-reborn.css (same SoT as monkie).
+ *
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-reborn.css
+ */
+""",
+        # Monkie gates polish on html[data-monkies-phoenix-skin="reborn"]; drop for public.
+        "rewrite_skin_attr": "reborn",
+    },
+    "phoenix-light.css": {
+        "header": """/*
+ * Phoenix Project — Light (legacy MacLite sibling)
+ * Light UI chrome. Prefer phoenix-maclite.css for new installs.
+ * Pure CSS — no userscript required. Built from monkie styles/phoenix-light.css.
+ *
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-light.css
+ */
+""",
+    },
     "orpheus-matrix.css": {
         "header": """/*
  * Orpheus Network — Matrix
