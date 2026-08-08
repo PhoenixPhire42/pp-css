@@ -2847,6 +2847,13 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
 /* ══════════════════════════════════════════════════════════
  * THEME OVERLAY — colors, logos, kill-switches, page polish
  * ══════════════════════════════════════════════════════════ */
+
+/* Monkie-hosted logos (stock /static/… 404 when stock deferred / external-only) */
+:root {
+	--monkies-red-logo-header: url(assets/redacted-logo-sprite-dark.png);
+	--monkies-red-logo-login: url(assets/redacted-logo-dark-half.png);
+}
+
 :root {
 	--background: #0e1114;
 	--background-accent: #1b2426;
@@ -6954,10 +6961,10 @@ html body #maincontent #logo {
 	float: none !important;
 	overflow: visible !important;
 	background-color: transparent !important;
-	background-image: url(/static/styles/public/images/red-login.png) !important;
+	background-image: var(--monkies-red-logo-login) !important;
 	background-repeat: no-repeat !important;
 	background-position: top center !important;
-	background-size: auto 134px !important;
+	background-size: contain !important;
 	filter: none !important;
 	opacity: 1 !important;
 	visibility: visible !important;
@@ -7169,7 +7176,7 @@ html body#index #header #logo a {
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(/static/styles/assets/logo/logo-sprite-dark.png) !important;
+	background-image: var(--monkies-red-logo-header) !important;
 	background-repeat: no-repeat !important;
 	background-position: 0 0 !important;
 	/* sprite is 2× wide (normal + hover); show left half at 40px tall */
@@ -7188,7 +7195,7 @@ html body#index #header #logo a {
 html body #header #logo a:hover,
 html body #header #logo > a:hover {
 	background-position: 100% 0 !important;
-	background-image: url(/static/styles/assets/logo/logo-sprite-dark.png) !important;
+	background-image: var(--monkies-red-logo-header) !important;
 	filter: none !important;
 	opacity: 1 !important;
 }
@@ -7224,3 +7231,24 @@ html #monkies-label-collage-tray {
 	box-sizing: border-box !important;
 	padding: 6px 12px !important;
 }
+
+/* === red-dark monkie logo fortify BEGIN ===
+ * Paint header mark from monkie assets; hide any stock <img>.
+ */
+html body #header #logo a img,
+html body #header #logo > a img,
+html body #header #logo img {
+	display: none !important;
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
+	opacity: 0 !important;
+}
+html body #header #logo > a,
+html body #header #logo a {
+	background-image: var(--monkies-red-logo-header) !important;
+	background-repeat: no-repeat !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+/* === red-dark monkie logo fortify END === */
