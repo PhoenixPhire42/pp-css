@@ -130,6 +130,19 @@ SKINS = {
         "source": "orpheus-neo.css",
         "rewrite_skin_attr": "neo",
     },
+    "redacted-dark.css": {
+        "header": """/*
+ * Redacted — Dark
+ * Charcoal standalone theme for redacted.sh (recolored REDStage-Sunset structure).
+ * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
+ * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-dark.css
+ */
+""",
+        # Monkie gates polish on html[data-monkies-redacted-skin="dark"]; drop for public.
+        "rewrite_skin_attr": "dark",
+    },
     "redacted-synth.css": {
         "header": """/*
  * Redacted — Synth
