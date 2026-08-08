@@ -1,12 +1,14 @@
 /*
- * Orpheus Network — Neo (legacy filename: orpheus-matrix.css)
+ * Orpheus Network — Neo
  * ops-skin: neo · ops_neo_cache · OPS_NEO_CACHE_V77
- * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V77
- * Prefer skins/orpheus-neo.css — this file is a permanent alias for old pins.
+ * (legacy alias: matrix / ops-skin: matrix still accepted by monkie)
  * Green-on-black terminal palette (OPS / orpheus.network).
+ * Public mirage/login uses embedded neo logo (orpheus-logo-neo-public-trans).
+ * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
+ * Use as an external stylesheet URL on Orpheus (or paste where custom CSS is allowed).
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
- * Canonical: https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
+ * Legacy: skins/orpheus-matrix.css (same sheet)
  */
 :root {
     --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

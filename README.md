@@ -36,7 +36,8 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Flame** | Ember + fire accents · **standalone** (do not also load ApolloStage) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
-| **Orpheus Matrix** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
+| **Orpheus Neo** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css` |
+| **Orpheus Neo (legacy filename)** | same sheet as Neo | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Synth** | RED synthwave magenta / violet / cyan | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css` |
 | **BTN Dark Ambient** | BroadcasTheNet void + teal on **darknround** (Imagine logo) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/broadcasthe-dark.css` |
 | **PTP Cinema Noir** | PassThePopcorn greyscale on Dark (Default) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css` |
@@ -180,12 +181,16 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-noi
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg
 ```
 
-### Orpheus Matrix — install (orpheus.network)
+### Orpheus Neo — install (orpheus.network)
 
 1. Log in → **Edit** (user settings) → appearance / stylesheet
 2. Set **External stylesheet URL** (or equivalent custom CSS URL field) to:
 
 ```text
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/orpheus-neo.css
+
+Legacy alias (same sheet):
+
 https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/orpheus-matrix.css
 ```
 
@@ -194,13 +199,13 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/orpheus-matrix.css
 Or use a versioned tag (recommended once tagged):
 
 ```text
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
 ```
 
 Raw GitHub (if jsDelivr lags):
 
 ```text
-https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/orpheus-matrix.css
+https://raw.githubusercontent.com/PhoenixPhire42/pp-css/main/skins/orpheus-neo.css
 ```
 
 Self-contained: no monkie userscript, no stock Apollostage dependency.
@@ -278,7 +283,7 @@ skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css
 skins/phoenix-maclite.css
-skins/orpheus-matrix.css
+skins/orpheus-neo.css
 skins/redacted-synth.css
 skins/broadcasthe-dark.css
 skins/thelounge-matrix.css

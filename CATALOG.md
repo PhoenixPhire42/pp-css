@@ -7,7 +7,8 @@
 | phoenix-neo | `skins/phoenix-neo.css` | Neo Phoenix | Matrix green |
 | phoenix-synth | `skins/phoenix-synth.css` | Phoenix Synth | 80s synthwave magenta/violet/cyan |
 | phoenix-maclite | `skins/phoenix-maclite.css` | Phoenix MacLite | Apple-inspired light UI (SF blue + soft grey) |
-| orpheus-matrix | `skins/orpheus-matrix.css` | Orpheus Matrix | OPS green-on-black standalone |
+| orpheus-neo | `skins/orpheus-neo.css` | Orpheus Neo | OPS green-on-black standalone |
+| orpheus-matrix | `skins/orpheus-matrix.css` | Orpheus Neo (legacy filename) | same as orpheus-neo |
 | redacted-synth | `skins/redacted-synth.css` | Redacted Synth | RED synthwave magenta/violet/cyan standalone |
 | broadcasthe-dark | `skins/broadcasthe-dark.css` | BTN Dark Ambient | Overlay on darknround; void + teal aurora + Imagine logo |
 | ptp-dark | `skins/ptp-dark.css` | PTP Cinema Noir | PassThePopcorn greyscale on Dark (Default); logo in `skins/assets/ptp-logo-noir-header.png` |

@@ -99,18 +99,36 @@ SKINS = {
  */
 """,
     },
-    "orpheus-matrix.css": {
+    "orpheus-neo.css": {
         "header": """/*
- * Orpheus Network — Matrix (neo)
- * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V76
+ * Orpheus Network — Neo
+ * ops-skin: neo · ops_neo_cache · OPS_NEO_CACHE_V77
+ * (legacy alias: matrix / ops-skin: matrix still accepted by monkie)
  * Green-on-black terminal palette (OPS / orpheus.network).
  * Public mirage/login uses embedded neo logo (orpheus-logo-neo-public-trans).
  * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
  * Use as an external stylesheet URL on Orpheus (or paste where custom CSS is allowed).
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
+ * Legacy: skins/orpheus-matrix.css (same sheet)
  */
 """,
+        "rewrite_skin_attr": "neo",
+    },
+    "orpheus-matrix.css": {
+        "header": """/*
+ * Orpheus Network — Neo (legacy filename: orpheus-matrix.css)
+ * ops-skin: neo · ops_neo_cache · OPS_NEO_CACHE_V77
+ * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V77
+ * Prefer skins/orpheus-neo.css — this file is a permanent alias for old pins.
+ * Green-on-black terminal palette (OPS / orpheus.network).
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css
+ * Canonical: https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
+ */
+""",
+        "source": "orpheus-neo.css",
+        "rewrite_skin_attr": "neo",
     },
     "redacted-synth.css": {
         "header": """/*
@@ -214,6 +232,11 @@ def public_source_names() -> list[str]:
         append = meta.get("append_layout")
         if append:
             names.add(str(append))
+        src = meta.get("source")
+        if src:
+            names.add(str(src))
+    # alias skins may not exist as monkie files; still map sources
+    names.add("orpheus-neo.css")
     return sorted(names)
 
 
@@ -372,6 +395,9 @@ def render_public_css(
     css = strip_internal_dnu_attr_rules(css)
     if rewrite_skin_attr:
         css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
+        # OPS Neo also keeps matrix as legacy data-skin value
+        if rewrite_skin_attr == "neo":
+            css = rewrite_monkies_skin_attr(css, "matrix")
     css = rewrite_logo_cdn(css, logo_cdn)
     if append_src and append_src.is_file():
         extra = append_src.read_text(encoding="utf-8")
@@ -436,7 +462,7 @@ def check_drift(styles: Path, quiet: bool = False) -> list[str]:
     ok_n = 0
 
     for name, meta in SKINS.items():
-        src = styles / name
+        src = styles / (meta.get("source") or name)
         dest = HERE / "skins" / name
         if not src.is_file():
             missing_src.append(name)
@@ -561,7 +587,7 @@ def main() -> None:
     if n_assets:
         print(f"  synced {n_assets} asset file(s)")
     for name, meta in SKINS.items():
-        src = styles / name
+        src = styles / (meta.get("source") or name)
         if not src.is_file():
             print(f"  skip missing {src}")
             continue
