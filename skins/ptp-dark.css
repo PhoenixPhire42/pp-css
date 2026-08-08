@@ -11,7 +11,6 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-07T2124Z src=616d4f9 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -793,7 +792,7 @@ html body#login form {
  * ============================================================ */
 
 /* Both Cinema Noir + Blade Runner share data-monkies-ptp-skin */
-html[data-monkies-ptp-skin] {
+html {
 	overflow-x: clip;
 }
 
@@ -802,21 +801,21 @@ html[data-monkies-ptp-skin] {
  * Blanket max-width:100% on img collapses table cover column (0×0): stock
  * wants 117px thumbs; cell is content-sized; max-width:100% → circular 0.
  */
-html[data-monkies-ptp-skin] img:not(.basic-movie-list__movie__cover),
-html[data-monkies-ptp-skin] video,
-html[data-monkies-ptp-skin] svg {
+html img:not(.basic-movie-list__movie__cover),
+html video,
+html svg {
 	max-width: 100% !important;
 	height: auto !important;
 }
 
 /* Restore stock Dark browse thumbs (basic list / cover column) */
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover,
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link img {
+html .basic-movie-list__movie__cover,
+html .basic-movie-list__movie__cover-link img {
 	max-width: none !important;
 	width: 117px !important;
 	height: auto !important;
 }
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link {
+html .basic-movie-list__movie__cover-link {
 	width: 117px !important;
 	display: block !important;
 }
@@ -825,20 +824,20 @@ html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link {
  * Pinwheel policy: off-screen cover rows skip layout/paint until scrolled near.
  * Does not change visible size; reduces main-thread cost of 50× full posters.
  */
-html[data-monkies-ptp-skin] .basic-movie-list__details-row,
-html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
+html .basic-movie-list__details-row,
+html table.torrent_table tbody > tr {
 	content-visibility: auto;
 	contain-intrinsic-size: auto 48px;
 }
 
 @media (max-width: 1040px) {
 	/* Page shell: stock 1013 / 750 / 400 boxes → fluid */
-	html[data-monkies-ptp-skin] #wrapper,
-	html[data-monkies-ptp-skin] #content,
-	html[data-monkies-ptp-skin] #header,
-	html[data-monkies-ptp-skin] #footer,
-	html[data-monkies-ptp-skin] .wrapper,
-	html[data-monkies-ptp-skin] body > #wrapper {
+	html #wrapper,
+	html #content,
+	html #header,
+	html #footer,
+	html .wrapper,
+	html body > #wrapper {
 		width: 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
@@ -850,9 +849,9 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 	}
 
 	/* Logo: stock 700×124 collapses */
-	html[data-monkies-ptp-skin] .site-logo,
-	html[data-monkies-ptp-skin] #header .site-logo,
-	html[data-monkies-ptp-skin] div.site-logo {
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
 		width: min(700px, 100%) !important;
 		max-width: 100% !important;
 		height: auto !important;
@@ -864,9 +863,9 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 		background-position: center center !important;
 	}
 
-	html[data-monkies-ptp-skin] .site-logo__link,
-	html[data-monkies-ptp-skin] a.site-logo__link,
-	html[data-monkies-ptp-skin] #header a.site-logo__link {
+	html .site-logo__link,
+	html a.site-logo__link,
+	html #header a.site-logo__link {
 		width: 100% !important;
 		max-width: 100% !important;
 		height: auto !important;
@@ -876,53 +875,53 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 	}
 
 	/* Nav / search bars fluid */
-	html[data-monkies-ptp-skin] .main-menu,
-	html[data-monkies-ptp-skin] .user-info-bar,
-	html[data-monkies-ptp-skin] .search-bar,
-	html[data-monkies-ptp-skin] .tabs__bar,
-	html[data-monkies-ptp-skin] #nav,
-	html[data-monkies-ptp-skin] .page__main {
+	html .main-menu,
+	html .user-info-bar,
+	html .search-bar,
+	html .tabs__bar,
+	html #nav,
+	html .page__main {
 		width: 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
 		box-sizing: border-box !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-menu,
-	html[data-monkies-ptp-skin] .tabs__bar {
+	html .main-menu,
+	html .tabs__bar {
 		overflow-x: auto !important;
 		-webkit-overflow-scrolling: touch !important;
 		flex-wrap: nowrap !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-column,
-	html[data-monkies-ptp-skin] .sidebar,
-	html[data-monkies-ptp-skin] .page__sidebar,
-	html[data-monkies-ptp-skin] .page__content {
+	html .main-column,
+	html .sidebar,
+	html .page__sidebar,
+	html .page__content {
 		float: none !important;
 		width: 100% !important;
 		max-width: 100% !important;
 		display: block !important;
 	}
 
-	html[data-monkies-ptp-skin] table {
+	html table {
 		font-size: 12px !important;
 		max-width: 100% !important;
 	}
 
-	html[data-monkies-ptp-skin] .box,
-	html[data-monkies-ptp-skin] .panel,
-	html[data-monkies-ptp-skin] .torrent-info {
+	html .box,
+	html .panel,
+	html .torrent-info {
 		overflow-x: auto !important;
 		-webkit-overflow-scrolling: touch !important;
 	}
 
-	html[data-monkies-ptp-skin] input[type="text"],
-	html[data-monkies-ptp-skin] input[type="password"],
-	html[data-monkies-ptp-skin] input[type="search"],
-	html[data-monkies-ptp-skin] input[type="email"],
-	html[data-monkies-ptp-skin] select,
-	html[data-monkies-ptp-skin] textarea {
+	html input[type="text"],
+	html input[type="password"],
+	html input[type="search"],
+	html input[type="email"],
+	html select,
+	html textarea {
 		max-width: 100% !important;
 		box-sizing: border-box !important;
 		font-size: 16px !important;
@@ -930,24 +929,24 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 }
 
 @media (max-width: 600px) {
-	html[data-monkies-ptp-skin] .site-logo,
-	html[data-monkies-ptp-skin] #header .site-logo,
-	html[data-monkies-ptp-skin] div.site-logo {
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
 		min-height: 56px !important;
 		top: 6px !important;
 		margin-bottom: 8px !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-menu__link,
-	html[data-monkies-ptp-skin] .user-info-bar__link,
-	html[data-monkies-ptp-skin] .tabs__bar__link {
+	html .main-menu__link,
+	html .user-info-bar__link,
+	html .tabs__bar__link {
 		padding: 8px 10px !important;
 		font-size: 13px !important;
 		white-space: nowrap !important;
 	}
 
-	html[data-monkies-ptp-skin] body#login .box,
-	html[data-monkies-ptp-skin] body#login form {
+	html body#login .box,
+	html body#login form {
 		width: 100% !important;
 		max-width: 100% !important;
 		box-sizing: border-box !important;
@@ -955,9 +954,9 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html[data-monkies-ptp-skin] *,
-	html[data-monkies-ptp-skin] *::before,
-	html[data-monkies-ptp-skin] *::after {
+	html *,
+	html *::before,
+	html *::after {
 		animation-duration: 0.01ms !important;
 		transition-duration: 0.01ms !important;
 	}

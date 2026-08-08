@@ -9,7 +9,6 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-07T2124Z src=616d4f9 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -39,7 +38,7 @@ html {
   --ptp-radius: 8px;
   --ptp-glow-cyan: rgba(94, 231, 255, 0.22);
   --ptp-glow-magenta: rgba(255, 45, 149, 0.18);
-  --ptp-logo: none; /* 1.0.563: logo injected idle via GM (avoid 85KB CSSOM) */
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg"); /* 1.0.563: logo injected idle via GM (avoid 85KB CSSOM) */
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
@@ -1076,7 +1075,7 @@ html .tags a:hover {
  * ============================================================ */
 
 /* Both Cinema Noir + Blade Runner share data-monkies-ptp-skin */
-html[data-monkies-ptp-skin] {
+html {
 	overflow-x: clip;
 }
 
@@ -1085,21 +1084,21 @@ html[data-monkies-ptp-skin] {
  * Blanket max-width:100% on img collapses table cover column (0×0): stock
  * wants 117px thumbs; cell is content-sized; max-width:100% → circular 0.
  */
-html[data-monkies-ptp-skin] img:not(.basic-movie-list__movie__cover),
-html[data-monkies-ptp-skin] video,
-html[data-monkies-ptp-skin] svg {
+html img:not(.basic-movie-list__movie__cover),
+html video,
+html svg {
 	max-width: 100% !important;
 	height: auto !important;
 }
 
 /* Restore stock Dark browse thumbs (basic list / cover column) */
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover,
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link img {
+html .basic-movie-list__movie__cover,
+html .basic-movie-list__movie__cover-link img {
 	max-width: none !important;
 	width: 117px !important;
 	height: auto !important;
 }
-html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link {
+html .basic-movie-list__movie__cover-link {
 	width: 117px !important;
 	display: block !important;
 }
@@ -1108,20 +1107,20 @@ html[data-monkies-ptp-skin] .basic-movie-list__movie__cover-link {
  * Pinwheel policy: off-screen cover rows skip layout/paint until scrolled near.
  * Does not change visible size; reduces main-thread cost of 50× full posters.
  */
-html[data-monkies-ptp-skin] .basic-movie-list__details-row,
-html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
+html .basic-movie-list__details-row,
+html table.torrent_table tbody > tr {
 	content-visibility: auto;
 	contain-intrinsic-size: auto 48px;
 }
 
 @media (max-width: 1040px) {
 	/* Page shell: stock 1013 / 750 / 400 boxes → fluid */
-	html[data-monkies-ptp-skin] #wrapper,
-	html[data-monkies-ptp-skin] #content,
-	html[data-monkies-ptp-skin] #header,
-	html[data-monkies-ptp-skin] #footer,
-	html[data-monkies-ptp-skin] .wrapper,
-	html[data-monkies-ptp-skin] body > #wrapper {
+	html #wrapper,
+	html #content,
+	html #header,
+	html #footer,
+	html .wrapper,
+	html body > #wrapper {
 		width: 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
@@ -1133,9 +1132,9 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 	}
 
 	/* Logo: stock 700×124 collapses */
-	html[data-monkies-ptp-skin] .site-logo,
-	html[data-monkies-ptp-skin] #header .site-logo,
-	html[data-monkies-ptp-skin] div.site-logo {
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
 		width: min(700px, 100%) !important;
 		max-width: 100% !important;
 		height: auto !important;
@@ -1147,9 +1146,9 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 		background-position: center center !important;
 	}
 
-	html[data-monkies-ptp-skin] .site-logo__link,
-	html[data-monkies-ptp-skin] a.site-logo__link,
-	html[data-monkies-ptp-skin] #header a.site-logo__link {
+	html .site-logo__link,
+	html a.site-logo__link,
+	html #header a.site-logo__link {
 		width: 100% !important;
 		max-width: 100% !important;
 		height: auto !important;
@@ -1159,53 +1158,53 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 	}
 
 	/* Nav / search bars fluid */
-	html[data-monkies-ptp-skin] .main-menu,
-	html[data-monkies-ptp-skin] .user-info-bar,
-	html[data-monkies-ptp-skin] .search-bar,
-	html[data-monkies-ptp-skin] .tabs__bar,
-	html[data-monkies-ptp-skin] #nav,
-	html[data-monkies-ptp-skin] .page__main {
+	html .main-menu,
+	html .user-info-bar,
+	html .search-bar,
+	html .tabs__bar,
+	html #nav,
+	html .page__main {
 		width: 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
 		box-sizing: border-box !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-menu,
-	html[data-monkies-ptp-skin] .tabs__bar {
+	html .main-menu,
+	html .tabs__bar {
 		overflow-x: auto !important;
 		-webkit-overflow-scrolling: touch !important;
 		flex-wrap: nowrap !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-column,
-	html[data-monkies-ptp-skin] .sidebar,
-	html[data-monkies-ptp-skin] .page__sidebar,
-	html[data-monkies-ptp-skin] .page__content {
+	html .main-column,
+	html .sidebar,
+	html .page__sidebar,
+	html .page__content {
 		float: none !important;
 		width: 100% !important;
 		max-width: 100% !important;
 		display: block !important;
 	}
 
-	html[data-monkies-ptp-skin] table {
+	html table {
 		font-size: 12px !important;
 		max-width: 100% !important;
 	}
 
-	html[data-monkies-ptp-skin] .box,
-	html[data-monkies-ptp-skin] .panel,
-	html[data-monkies-ptp-skin] .torrent-info {
+	html .box,
+	html .panel,
+	html .torrent-info {
 		overflow-x: auto !important;
 		-webkit-overflow-scrolling: touch !important;
 	}
 
-	html[data-monkies-ptp-skin] input[type="text"],
-	html[data-monkies-ptp-skin] input[type="password"],
-	html[data-monkies-ptp-skin] input[type="search"],
-	html[data-monkies-ptp-skin] input[type="email"],
-	html[data-monkies-ptp-skin] select,
-	html[data-monkies-ptp-skin] textarea {
+	html input[type="text"],
+	html input[type="password"],
+	html input[type="search"],
+	html input[type="email"],
+	html select,
+	html textarea {
 		max-width: 100% !important;
 		box-sizing: border-box !important;
 		font-size: 16px !important;
@@ -1213,24 +1212,24 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 }
 
 @media (max-width: 600px) {
-	html[data-monkies-ptp-skin] .site-logo,
-	html[data-monkies-ptp-skin] #header .site-logo,
-	html[data-monkies-ptp-skin] div.site-logo {
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
 		min-height: 56px !important;
 		top: 6px !important;
 		margin-bottom: 8px !important;
 	}
 
-	html[data-monkies-ptp-skin] .main-menu__link,
-	html[data-monkies-ptp-skin] .user-info-bar__link,
-	html[data-monkies-ptp-skin] .tabs__bar__link {
+	html .main-menu__link,
+	html .user-info-bar__link,
+	html .tabs__bar__link {
 		padding: 8px 10px !important;
 		font-size: 13px !important;
 		white-space: nowrap !important;
 	}
 
-	html[data-monkies-ptp-skin] body#login .box,
-	html[data-monkies-ptp-skin] body#login form {
+	html body#login .box,
+	html body#login form {
 		width: 100% !important;
 		max-width: 100% !important;
 		box-sizing: border-box !important;
@@ -1238,14 +1237,111 @@ html[data-monkies-ptp-skin] table.torrent_table tbody > tr {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html[data-monkies-ptp-skin] *,
-	html[data-monkies-ptp-skin] *::before,
-	html[data-monkies-ptp-skin] *::after {
+	html *,
+	html *::before,
+	html *::after {
 		animation-duration: 0.01ms !important;
 		transition-duration: 0.01ms !important;
 	}
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
+
+/* === ptp-runner BEM fortify BEGIN ===
+ * Stock Dark (Default) BEM classes from live PTP (2026) — colors only.
+ * Geometry stays on official dark/style.css.
+ */
+html .user-info-bar__link--highlighted,
+html a.user-info-bar__link--highlighted {
+  color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
+}
+html .user-info-bar__link--important {
+  color: var(--ptp-text) !important;
+  font-weight: 600 !important;
+}
+html .user-info-bar__link--donations-behind,
+html a.user-info-bar__link--donations-behind {
+  color: var(--ptp-amber) !important;
+  text-shadow: 0 0 8px rgba(255, 154, 60, 0.35) !important;
+}
+html .user-info-bar__drop-down-menu,
+html ul.user-info-bar__drop-down-menu {
+  background: var(--ptp-surface) !important;
+  background-color: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: var(--ptp-radius) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 12px var(--ptp-glow-cyan) !important;
+  color: var(--ptp-text) !important;
+  z-index: 1200 !important;
+}
+html .user-info-bar__drop-down-menu__link,
+html a.user-info-bar__drop-down-menu__link {
+  color: var(--ptp-text) !important;
+  background: transparent !important;
+}
+html .user-info-bar__drop-down-menu__link:hover,
+html .user-info-bar__drop-down-menu__item:hover > a {
+  color: var(--ptp-accent-hot) !important;
+  background: rgba(94, 231, 255, 0.1) !important;
+}
+html .user-info-bar__text {
+  color: var(--ptp-text-dim) !important;
+}
+html .alert-bars {
+  background: transparent !important;
+}
+html .panel,
+html .box,
+html .sidebar .panel {
+  background: var(--ptp-surface) !important;
+  background-color: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: var(--ptp-radius) !important;
+  color: var(--ptp-text) !important;
+  box-shadow: none !important;
+}
+html .panel__heading,
+html .panel__heading__title,
+html .panel__heading__title a,
+html .head {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border) !important;
+}
+html .panel__heading__toggler,
+html a.panel__heading__toggler {
+  color: var(--ptp-text-dim) !important;
+}
+html .panel__body,
+html .pad {
+  background: var(--ptp-surface) !important;
+  color: var(--ptp-text) !important;
+}
+html .sidebar-cover-image,
+html img.sidebar-cover-image {
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 16px var(--ptp-glow-magenta) !important;
+}
+html .footer,
+html #footer {
+  background: transparent !important;
+  color: var(--ptp-text-mute) !important;
+  border-top: 1px solid var(--ptp-border) !important;
+}
+html .footer a,
+html .footer__last-activity a {
+  color: var(--ptp-link) !important;
+}
+html .footer a:hover {
+  color: var(--ptp-link-hover) !important;
+}
+/* Staff is a normal main-menu item on modern PTP — ensure visible in neon ramp */
+html #nav_staff .main-menu__link,
+html .main-menu__item#nav_staff .main-menu__link {
+  color: var(--ptp-text) !important;
+}
+/* === ptp-runner BEM fortify END === */
 
 /* ── layout fallback (no Dark base) ── */
 html body ,

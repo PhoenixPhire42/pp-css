@@ -340,6 +340,15 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
         css,
         flags=re.I,
     )
+    # PTP monkie uses --ptp-logo:none + GM inject; public external CSS must paint CDN logo
+    if "ptp-logo" in logo_cdn:
+        css = re.sub(
+            r"(--ptp-logo:\s*)none(\s*;)",
+            rf'\1url("{logo_cdn}")\2',
+            css,
+            count=1,
+            flags=re.I,
+        )
     return css
 
 
@@ -411,6 +420,19 @@ def render_public_css(
         # OPS Neo also keeps matrix as legacy data-skin value
         if rewrite_skin_attr == "neo":
             css = rewrite_monkies_skin_attr(css, "matrix")
+        # PTP layout dual-gates dark|runner — ungate sibling for public
+        if rewrite_skin_attr == "runner":
+            css = rewrite_monkies_skin_attr(css, "dark")
+        if rewrite_skin_attr == "dark":
+            css = rewrite_monkies_skin_attr(css, "runner")
+        # Mobile appendix uses bare html[data-monkies-ptp-skin] (any value)
+        if rewrite_skin_attr in ("runner", "dark"):
+            css = re.sub(
+                r"html\[data-monkies-ptp-skin\]",
+                "html",
+                css,
+                flags=re.I,
+            )
     css = rewrite_logo_cdn(css, logo_cdn)
     if append_src and append_src.is_file():
         extra = append_src.read_text(encoding="utf-8")
