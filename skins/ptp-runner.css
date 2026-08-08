@@ -1609,6 +1609,39 @@ html .torrent_tags a,
 html #torrent_tags a {
   border-radius: 3px !important;
 }
+
+/* Win over layout-fallback capsule inputs (layout had border-radius:10px) */
+html .search-bar__search-field__input,
+html .search-bar input[type="text"],
+html .search-bar input[type="search"],
+html .search-bar input:not([type]) {
+  border-radius: 3px !important;
+  border: 1px solid #2a3544 !important;
+  background: #0a0e14 !important;
+  box-shadow: none !important;
+  max-width: 9em !important;
+  font-size: 0.9em !important;
+  padding: 2px 4px !important;
+}
+html .search-bar {
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+}
+html .main-menu {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+  opacity: 0.95 !important;
+}
+/* Torrent edition blocks flatter */
+html .basic-movie-list__torrent-edition,
+html .basic-movie-list__torrent-edition__main,
+html .movie-page__torrent__panel,
+html .group_torrent,
+html tr.group_torrent td {
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
 /* === ptp-runner stock-soft END === */
 
 /* ── layout fallback (no Dark base) ── */
@@ -1753,8 +1786,8 @@ html .search-bar {
   padding: 0.6em !important;
   margin: 0 auto !important;
   text-align: center !important;
-  border-top-right-radius: 10px !important;
-  border-top-left-radius: 10px !important;
+  border-top-right-radius: 4px !important;
+  border-top-left-radius: 4px !important;
   list-style: none !important;
   white-space: nowrap !important;
   overflow: visible !important;
@@ -1806,8 +1839,8 @@ html .search-bar input:not([type]) {
   width: auto !important;
   max-width: 9em !important;
   font-size: 0.9em !important;
-  border-radius: 10px !important;
-  padding: 2px 3px !important;
+  border-radius: 3px !important; /* stock Dark-like, not capsule pills */
+  padding: 2px 4px !important;
   margin: 0 2px !important;
   vertical-align: middle !important;
 }

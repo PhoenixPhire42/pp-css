@@ -716,7 +716,6 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-07T2124Z src=616d4f9 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -7937,3 +7936,31 @@ html body#user img.double_avatar {
 }
 /* === heywood menu hover fix END === */
 
+/* === pp-neo stock-soft BEGIN ===
+ * Closer to Apollostage default chrome: less glow, flatter boxes.
+ * Matrix green kept for accents/links; header stats stay readable grey-green.
+ */
+html body #header #userinfo_stats,
+html body #userinfo_stats,
+html body #userinfo_stats a,
+html body #userinfo_stats span {
+  text-shadow: none !important;
+}
+html body #header #userinfo_major a,
+html body #userinfo_major a {
+  text-shadow: none !important;
+}
+html body .box,
+html body .box2,
+html body .pad,
+html body .head {
+  box-shadow: none !important;
+}
+/* Soften pure neon on non-hover major chrome */
+html body #userinfo_major a {
+  color: #b8e0b8 !important;
+}
+html body #userinfo_major a:hover {
+  color: #00ff41 !important;
+}
+/* === pp-neo stock-soft END === */
