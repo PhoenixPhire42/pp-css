@@ -1,6 +1,6 @@
 /*
  * Orpheus Network — Matrix (neo)
- * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V75
+ * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V76
  * Green-on-black terminal palette (OPS / orpheus.network).
  * Public mirage/login uses embedded neo logo (orpheus-logo-neo-public-trans).
  * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
@@ -6531,6 +6531,230 @@ body#upload #check {
 	border-color: var(--danger) !important;
 	color: var(--text) !important;
 }
+
+/* === heywood menu hover fix BEGIN ===
+ * Desktop: chevron/username flyout — solid opaque plate (not transparent over cover art).
+ * Ported from phoenix-neo; matrix green plate.
+ */
+@media (min-width: 576px) {
+	html body #searchbars,
+	html body #header #searchbars {
+		z-index: 40 !important;
+		position: relative !important;
+	}
+	html body #userinfo,
+	html body .menu_container {
+		z-index: 950 !important;
+		overflow: visible !important;
+	}
+	/* Hide solid plate when closed */
+	html body #userinfo_username:not(:hover)::after,
+	html body #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+	/* Expand panel; body transparent — plate is ::after */
+	html body #header #userinfo_username:hover,
+	html body #userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
+	html body #userinfo_minor:hover {
+		right: 0 !important;
+		width: 150px !important;
+		min-width: 150px !important;
+		max-width: 150px !important;
+		height: auto !important;
+		max-height: none !important;
+		min-height: 50px !important;
+		padding: 50px 0 6px !important;
+		overflow: visible !important;
+		z-index: 1200 !important;
+		display: block !important;
+		border: none !important;
+		border-radius: 0 !important;
+		background: transparent !important;
+		background-color: transparent !important;
+		background-image: none !important;
+		background-repeat: no-repeat !important;
+		box-shadow: none !important;
+		filter: none !important;
+	}
+	html body #userinfo_username:hover {
+		z-index: 1202 !important;
+	}
+	html body #userinfo_minor:hover {
+		z-index: 1201 !important;
+	}
+	/* Solid dropdown plate under the 50px header strip — OPAQUE */
+	html body #userinfo_username:hover::after,
+	html body #userinfo_minor:hover::after {
+		content: "" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 50px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		z-index: 0 !important;
+		pointer-events: none !important;
+		border-radius: 0 0 10px 10px !important;
+		border: 1px solid rgba(0, 255, 65, 0.28) !important;
+		border-top: 1px solid rgba(0, 255, 65, 0.14) !important;
+		background: #0a1a10 !important;
+		background-color: #0a1a10 !important;
+		background-image: linear-gradient(180deg, #12301a 0%, #0c2014 55%, #08140c 100%) !important;
+		opacity: 1 !important;
+		box-shadow: 0 14px 32px rgba(0, 0, 0, 0.72), 0 0 12px rgba(0, 255, 65, 0.1) !important;
+	}
+	html body #userinfo_username:hover > li,
+	html body #userinfo_minor:hover > li {
+		display: list-item !important;
+		float: none !important;
+		clear: both !important;
+		width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		position: relative !important;
+		z-index: 1 !important;
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		list-style: none !important;
+	}
+	html body #userinfo_username:hover #nav_userclass,
+	html body #userinfo_username:hover .userclass {
+		display: none !important;
+	}
+	/* Keep Heywood label on the rail when username menu opens */
+	html body #userinfo_username:hover #nav_userinfo,
+	html body #userinfo_username:hover > li#nav_userinfo {
+		position: absolute !important;
+		top: 0 !important;
+		right: 50px !important;
+		left: auto !important;
+		width: 100px !important;
+		height: 50px !important;
+		z-index: 3 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
+		border-right: 1px solid rgba(0, 0, 0, 0.35) !important;
+	}
+	html body #userinfo_username:hover #nav_userinfo > a,
+	html body #userinfo_username:hover #nav_userinfo > a.username {
+		display: block !important;
+		width: 100% !important;
+		height: 50px !important;
+		line-height: 50px !important;
+		text-align: center !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		background: transparent !important;
+	}
+	/* Pin chevron glyph on the rail while open */
+	html body #userinfo_minor:hover::before,
+	html body #userinfo_minor:hover:before {
+		content: "\25B4" !important;
+		display: block !important;
+		position: absolute !important;
+		top: 0 !important;
+		right: 0 !important;
+		left: auto !important;
+		width: 50px !important;
+		height: 50px !important;
+		line-height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		z-index: 3 !important;
+		text-align: center !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
+		color: #ffffff !important;
+		-webkit-text-fill-color: #ffffff !important;
+	}
+	html body #userinfo_minor:hover a,
+	html body #userinfo_username:hover > li:not(#nav_userinfo) a,
+	html body #userinfo_username:hover a:not(.username) {
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		line-height: 34px !important;
+		padding: 0 12px !important;
+		margin: 0 !important;
+		text-align: left !important;
+		font-size: 13.5px !important;
+		font-weight: 500 !important;
+		color: #d0ffd0 !important;
+		-webkit-text-fill-color: #d0ffd0 !important;
+		background: transparent !important;
+		text-shadow: none !important;
+		box-sizing: border-box !important;
+		border: none !important;
+		white-space: nowrap !important;
+		position: relative !important;
+		z-index: 1 !important;
+	}
+	html body #userinfo_username:hover a:hover,
+	html body #userinfo_minor:hover a:hover {
+		background: rgba(0, 255, 65, 0.18) !important;
+		color: #f0fff0 !important;
+		-webkit-text-fill-color: #f0fff0 !important;
+	}
+	/* Keep sibling rail chip solid when the other is open */
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username:hover {
+		visibility: visible !important;
+		opacity: 1 !important;
+		pointer-events: auto !important;
+		right: 50px !important;
+		width: 100px !important;
+		min-width: 100px !important;
+		max-width: 100px !important;
+		height: 50px !important;
+		min-height: 50px !important;
+		max-height: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		z-index: 1210 !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
+	}
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username a:not(.username),
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username #nav_userinfo ~ li,
+	html body #userinfo:has(#userinfo_minor:hover) #userinfo_username > li:not(#nav_userinfo) {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) {
+		right: 0 !important;
+		width: 50px !important;
+		min-width: 50px !important;
+		max-width: 50px !important;
+		height: 50px !important;
+		max-height: 50px !important;
+		padding: 0 !important;
+		overflow: hidden !important;
+		z-index: 1210 !important;
+		background: #0e2818 !important;
+		background-color: #0e2818 !important;
+		background-image: linear-gradient(180deg, #1a4a28 0%, #0e2818 48%, #06140c 100%) !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) a,
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover) > li {
+		display: none !important;
+	}
+	html body #userinfo:has(#userinfo_username:hover) #userinfo_minor:not(:hover)::after {
+		display: none !important;
+		content: none !important;
+	}
+}
+/* === heywood menu hover fix END === */
+
 /* ── OPS Matrix public mirage / login (neo logo) ── */
 html:has(#maincontent),
 html:has(#maincontent) body {
