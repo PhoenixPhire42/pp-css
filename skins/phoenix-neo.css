@@ -7964,3 +7964,279 @@ html body #userinfo_major a:hover {
   color: #00ff41 !important;
 }
 /* === pp-neo stock-soft END === */
+
+/* === pp-neo public login fortify BEGIN ===
+ * Live PP login (login.php): #maincontent .maincell #logo + form.auth_form
+ * Hide stock loginlogo.png; paint neo matrix wordmark; matrix form chrome.
+ */
+html:has(#maincontent),
+html:has(#maincontent) body,
+html body:has(#maincontent) {
+	background: #080c08 !important;
+	background-color: #080c08 !important;
+	color: #c8ffc8 !important;
+	color-scheme: dark !important;
+	margin: 0 !important;
+}
+html:has(#maincontent) body::before {
+	content: "" !important;
+	position: fixed !important;
+	inset: 0 !important;
+	pointer-events: none !important;
+	z-index: 0 !important;
+	opacity: 0.035 !important;
+	background-image:
+		linear-gradient(rgba(0, 255, 65, 0.35) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(0, 255, 65, 0.35) 1px, transparent 1px) !important;
+	background-size: 48px 48px !important;
+}
+html body #maincontent {
+	position: relative !important;
+	z-index: 1 !important;
+	display: block !important;
+	width: 100% !important;
+	max-width: none !important;
+	min-height: 94vh !important;
+	margin: 0 auto !important;
+	padding: 24px 16px 48px !important;
+	float: none !important;
+	text-align: center !important;
+	background: transparent !important;
+	background-image: none !important;
+	color: #c8ffc8 !important;
+	box-sizing: border-box !important;
+}
+html body #maincontent .main,
+html body #maincontent .maincell {
+	display: block !important;
+	width: 100% !important;
+	max-width: 480px !important;
+	margin: 0 auto !important;
+	float: none !important;
+	text-align: center !important;
+	background: transparent !important;
+	color: #c8ffc8 !important;
+}
+/* Logo — neo matrix mark, hide stock loginlogo.png */
+html body #maincontent #logo,
+html body #maincontent .maincell #logo {
+	display: block !important;
+	width: min(420px, 88vw) !important;
+	max-width: 420px !important;
+	height: 88px !important;
+	margin: 28px auto 24px !important;
+	padding: 0 !important;
+	float: none !important;
+	text-align: center !important;
+	background: transparent !important;
+	background-image: none !important;
+}
+html body #maincontent #logo a,
+html body #maincontent #logo > a,
+html body #maincontent .maincell #logo a {
+	display: block !important;
+	width: 100% !important;
+	max-width: 420px !important;
+	height: 88px !important;
+	min-height: 88px !important;
+	margin: 0 auto !important;
+	padding: 0 !important;
+	background-color: transparent !important;
+	background-image: url(assets/phoenix-logo-neo-matrix.png) !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: contain !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	color: transparent !important;
+	-webkit-text-fill-color: transparent !important;
+	overflow: hidden !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+html body #maincontent #logo a img,
+html body #maincontent #logo img,
+html body #maincontent #logo a img[src*="loginlogo"],
+html body #maincontent #logo a img[src*="public/images"] {
+	display: none !important;
+	visibility: hidden !important;
+	width: 0 !important;
+	height: 0 !important;
+	opacity: 0 !important;
+	position: absolute !important;
+	pointer-events: none !important;
+}
+/* Auth form panel */
+html body #maincontent .auth,
+html body #maincontent .pwrecover {
+	display: block !important;
+	width: max-content !important;
+	max-width: min(400px, 94vw) !important;
+	margin: 0 auto !important;
+	float: none !important;
+	text-align: left !important;
+	color: #c8ffc8 !important;
+}
+html body #maincontent form.auth_form,
+html body #maincontent form.auth-form,
+html body #maincontent #loginform {
+	display: block !important;
+	width: max-content !important;
+	max-width: min(400px, 94vw) !important;
+	margin: 0 auto !important;
+	padding: 18px 20px 16px !important;
+	background: #0d1a10 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 8px !important;
+	box-shadow: 0 0 28px rgba(0, 255, 65, 0.1) !important;
+	box-sizing: border-box !important;
+	text-align: left !important;
+}
+html body #maincontent .auth_form > div,
+html body #maincontent form.auth_form > div,
+html body #maincontent #loginform > div {
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: center !important;
+	gap: 10px !important;
+	margin: 0 0 12px !important;
+	position: relative !important;
+}
+html body #maincontent .auth_form label,
+html body #maincontent form.auth_form label {
+	flex: 0 0 100px !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	margin: 0 !important;
+	text-align: right !important;
+	font-size: 12px !important;
+	color: #9ccc9c !important;
+}
+html body #maincontent .auth_form input.inputtext,
+html body #maincontent .auth_form input[type="text"],
+html body #maincontent .auth_form input[type="password"],
+html body #maincontent .auth_form input[type="email"],
+html body #maincontent #username,
+html body #maincontent #password,
+html body #maincontent #twofa {
+	flex: 1 1 auto !important;
+	width: 220px !important;
+	max-width: min(220px, 58vw) !important;
+	height: 34px !important;
+	padding: 6px 10px !important;
+	margin: 0 !important;
+	box-sizing: border-box !important;
+	background: #080c08 !important;
+	color: #c8ffc8 !important;
+	border: 1px solid #1a4d1a !important;
+	border-radius: 4px !important;
+	font-size: 13px !important;
+}
+html body #maincontent .auth_form input::placeholder {
+	color: #5a8a5a !important;
+	opacity: 1 !important;
+}
+html body #maincontent .auth_form input:focus,
+html body #maincontent #username:focus,
+html body #maincontent #password:focus,
+html body #maincontent #twofa:focus {
+	border-color: #00ff41 !important;
+	outline: none !important;
+	box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.28) !important;
+}
+html body #maincontent .auth_form input[type="checkbox"],
+html body #maincontent #keeplogged {
+	accent-color: #00ff41 !important;
+	width: auto !important;
+	flex: 0 0 auto !important;
+}
+html body #maincontent #password_toggle,
+html body #maincontent #password-toggle {
+	flex: 0 0 auto !important;
+	cursor: pointer !important;
+	font-size: 16px !important;
+	line-height: 1 !important;
+	user-select: none !important;
+}
+html body #maincontent .auth_form > div:has(input[type="submit"]),
+html body #maincontent .auth_form > div:has(.submit) {
+	justify-content: center !important;
+	padding-left: 0 !important;
+	margin-top: 6px !important;
+}
+html body #maincontent .auth_form input[type="submit"],
+html body #maincontent .auth_form .submit,
+html body #maincontent .main .submit {
+	display: inline-block !important;
+	width: auto !important;
+	min-width: 120px !important;
+	margin: 4px auto 0 !important;
+	padding: 8px 22px !important;
+	background: linear-gradient(180deg, #00ff41, #00b82e) !important;
+	color: #041004 !important;
+	-webkit-text-fill-color: #041004 !important;
+	border: none !important;
+	border-radius: 4px !important;
+	font-weight: 700 !important;
+	font-size: 13px !important;
+	cursor: pointer !important;
+	box-shadow: 0 0 14px rgba(0, 255, 65, 0.25) !important;
+	float: none !important;
+}
+html body #maincontent .auth_form input[type="submit"]:hover,
+html body #maincontent .auth_form .submit:hover {
+	filter: brightness(1.08) !important;
+}
+html body #maincontent .auth_form > a,
+html body #maincontent .auth > a,
+html body #maincontent a[href*="recover"] {
+	display: block !important;
+	text-align: center !important;
+	margin: 14px auto 0 !important;
+	padding: 0 !important;
+	color: #00ff41 !important;
+	font-size: 0.9em !important;
+	float: none !important;
+}
+html body #maincontent .auth_form > a:hover,
+html body #maincontent .auth > a:hover {
+	color: #7aff9a !important;
+	text-decoration: underline !important;
+}
+html body #maincontent .warning-login,
+html body #maincontent .warning,
+html body #maincontent #no-cookies {
+	color: #ffb84d !important;
+	font-weight: 600 !important;
+	text-align: center !important;
+	margin: 12px auto !important;
+}
+html body #maincontent .hidden {
+	display: none !important;
+}
+html body #foot {
+	color: #6a866a !important;
+	text-align: center !important;
+	background: transparent !important;
+}
+html:has(#maincontent) #monkies-dev-alive,
+html:has(#maincontent) #monkies-pp-theme-pill {
+	opacity: 0.35 !important;
+}
+@media (max-width: 480px) {
+	html body #maincontent .auth_form > div {
+		flex-wrap: wrap !important;
+	}
+	html body #maincontent .auth_form label {
+		flex: 0 0 100% !important;
+		width: 100% !important;
+		text-align: left !important;
+	}
+	html body #maincontent .auth_form input.inputtext,
+	html body #maincontent .auth_form input[type="text"],
+	html body #maincontent .auth_form input[type="password"] {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
+/* === pp-neo public login fortify END === */
