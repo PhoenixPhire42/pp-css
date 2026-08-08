@@ -35,7 +35,7 @@ html {
   --ptp-danger: #ff4d6d;
   --ptp-row-a: #0c121c;
   --ptp-row-b: #080c14;
-  --ptp-radius: 8px;
+  --ptp-radius: 3px;
   --ptp-glow-cyan: rgba(94, 231, 255, 0.22);
   --ptp-glow-magenta: rgba(255, 45, 149, 0.18);
   --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg"); /* 1.0.563: logo injected idle via GM (avoid 85KB CSSOM) */
@@ -109,10 +109,11 @@ html #header .main-menu {
   opacity: 1 !important;
   text-align: left !important;
   border-radius: 10px !important;
-  border: 1px solid rgba(94, 231, 255, 0.16) !important;
-  box-shadow: inset 0 0 0 1px rgba(94, 231, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
   z-index: 7 !important;
   font-size: 10pt !important;
+  opacity: 0.92 !important; /* stock Dark menu is slightly translucent */
 }
 html .main-menu__list {
   padding: 5px 0 0 0 !important;
@@ -168,8 +169,8 @@ html .search-bar {
   padding: 0.6em !important;
   box-sizing: border-box !important;
   text-align: center !important;
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
   border-bottom: none !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
@@ -242,13 +243,21 @@ html .main-menu__link,
 html .user-info-bar__link,
 html .tabs__bar__link,
 html .search-bar a {
-  color: var(--ptp-accent) !important;
+  color: #c8d4e0 !important; /* stock Dark-like chrome text */
   text-shadow: none !important;
   background-image: none !important;
+  font-weight: 400 !important;
 }
 html .main-menu__link:hover,
 html .user-info-bar__link:hover {
   color: var(--ptp-accent-hot) !important;
+}
+html .user-info-bar__text {
+  color: #8a9aab !important;
+}
+html .user-info-bar__link--important {
+  color: #dce6f0 !important;
+  font-weight: 600 !important;
 }
 
 html .panel,
@@ -690,9 +699,13 @@ html .search-bar__results__list-item--is-highlighted > .search-bar__results__lin
   color: var(--ptp-accent-hot) !important;
 }
 html .search-bar__search-field__input {
-  background-color: var(--ptp-bg) !important;
+  background-color: #0a0e14 !important;
   color: var(--ptp-text) !important;
-  border-color: var(--ptp-border) !important;
+  border: 1px solid #2a3544 !important;
+  border-radius: 3px !important; /* stock-like, not capsule */
+  box-shadow: none !important;
+  padding: 3px 6px !important;
+  font-size: 8pt !important;
 }
 
 html ::selection {
@@ -759,7 +772,7 @@ html body {
   background-color: var(--ptp-bg) !important;
   background-image:
     radial-gradient(900px 380px at 12% -8%, rgba(94, 231, 255, 0.07), transparent 55%),
-    radial-gradient(700px 320px at 92% 0%, rgba(255, 45, 149, 0.06), transparent 50%),
+    radial-gradient(700px 320px at 92% 0%, rgba(255, 45, 149, 0.02), transparent 50%),
     radial-gradient(600px 400px at 50% 110%, rgba(255, 154, 60, 0.04), transparent 55%),
     linear-gradient(180deg, #060a12 0%, #04060c 45%, #050810 100%) !important;
   background-attachment: fixed !important;
@@ -1262,7 +1275,7 @@ html .user-info-bar__link--important {
 html .user-info-bar__link--donations-behind,
 html a.user-info-bar__link--donations-behind {
   color: var(--ptp-amber) !important;
-  text-shadow: 0 0 8px rgba(255, 154, 60, 0.35) !important;
+  text-shadow: none !important;
 }
 html .user-info-bar__drop-down-menu,
 html ul.user-info-bar__drop-down-menu {
@@ -1270,9 +1283,10 @@ html ul.user-info-bar__drop-down-menu {
   background-color: var(--ptp-surface) !important;
   border: 1px solid var(--ptp-border) !important;
   border-radius: var(--ptp-radius) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 12px var(--ptp-glow-cyan) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55) !important;
   color: var(--ptp-text) !important;
   z-index: 1200 !important;
+  border-radius: 3px !important;
 }
 html .user-info-bar__drop-down-menu__link,
 html a.user-info-bar__drop-down-menu__link {
@@ -1350,9 +1364,9 @@ html .main-menu__item#nav_staff .main-menu__link {
  */
 html body#torrents .page__title,
 html .page__title {
-  color: #eaf9ff !important;
+  color: #e8eef4 !important;
   font-weight: 700 !important;
-  text-shadow: 0 0 14px rgba(94, 231, 255, 0.18) !important;
+  text-shadow: none !important;
 }
 html .page__title a,
 html a.artist-info-link {
@@ -1370,7 +1384,7 @@ html .linkbox__link {
 }
 html a.linkbox__link:hover {
   color: var(--ptp-link-hover) !important;
-  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
+  text-shadow: none !important;
 }
 
 /* Sidebar panels / cover */
@@ -1379,14 +1393,15 @@ html .box_tags,
 html .movie-page__torrent__panel {
   background: var(--ptp-surface) !important;
   border: 1px solid var(--ptp-border) !important;
-  border-radius: var(--ptp-radius) !important;
+  border-radius: 2px !important;
   color: var(--ptp-text) !important;
+  box-shadow: none !important;
 }
 html .sidebar-cover-image,
 html .box_albumart img {
-  border: 1px solid var(--ptp-border) !important;
-  border-radius: 4px !important;
-  box-shadow: 0 0 18px var(--ptp-glow-magenta) !important;
+  border: 1px solid #1e2a3c !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
   max-width: 100% !important;
   height: auto !important;
 }
@@ -1400,11 +1415,12 @@ html table.table--bordered,
 html table.table--striped {
   background: var(--ptp-surface) !important;
   border: 1px solid var(--ptp-border) !important;
-  border-radius: var(--ptp-radius) !important;
+  border-radius: 2px !important; /* flatter — closer to stock Dark tables */
   color: var(--ptp-text) !important;
-  border-collapse: separate !important;
+  border-collapse: collapse !important;
   border-spacing: 0 !important;
-  overflow: hidden !important;
+  overflow: visible !important;
+  box-shadow: none !important;
 }
 html .movie-page__torrent-table th,
 html .movie-page__torrent-table td,
@@ -1492,9 +1508,10 @@ html .forum-post,
 html .forum-post--is-reply {
   background: var(--ptp-surface) !important;
   border: 1px solid var(--ptp-border) !important;
-  border-radius: var(--ptp-radius) !important;
+  border-radius: 2px !important;
   color: var(--ptp-text) !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 8px !important;
+  box-shadow: none !important;
 }
 html .forum-post__heading {
   background: var(--ptp-surface-2) !important;
@@ -1543,6 +1560,56 @@ html pre {
   border-radius: 4px !important;
 }
 /* === ptp-runner movie-page fortify END === */
+
+/* === ptp-runner stock-soft BEGIN ===
+ * Pull geometry/chrome closer to official Dark (Default): flatter surfaces,
+ * muted header links, less neon frame. Palette stays runner on accents only.
+ */
+html .panel,
+html .box,
+html .sidebar .panel {
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+html .panel__heading,
+html .forum-post__heading {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+/* Header chrome: stock Dark greys; cyan reserved for hover / content accents */
+html #header .main-menu a,
+html #header .user-info-bar a {
+  color: #c8d4e0 !important;
+}
+html #header .main-menu a:hover,
+html #header .user-info-bar a:hover {
+  color: #9af3ff !important;
+}
+/* Highlighted / donations keep subtle accent without glow */
+html .user-info-bar__link--highlighted {
+  color: #7ad4ea !important;
+  text-shadow: none !important;
+}
+html .user-info-bar__link--donations-behind {
+  color: #e0a060 !important;
+  text-shadow: none !important;
+}
+/* Content links keep runner cyan (torrent formats etc.) */
+html #content a,
+html .page__main-content a {
+  color: var(--ptp-link) !important;
+}
+html #content a:hover,
+html .page__main-content a:hover {
+  color: var(--ptp-link-hover) !important;
+}
+/* Tag chips: slight radius like stock, not full pills */
+html .tags a,
+html .torrent_tags a,
+html #torrent_tags a {
+  border-radius: 3px !important;
+}
+/* === ptp-runner stock-soft END === */
 
 /* ── layout fallback (no Dark base) ── */
 html body ,
