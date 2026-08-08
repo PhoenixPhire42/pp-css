@@ -101,8 +101,10 @@ SKINS = {
     },
     "orpheus-matrix.css": {
         "header": """/*
- * Orpheus Network — Matrix
+ * Orpheus Network — Matrix (neo)
+ * ops-skin: matrix · ops_matrix_cache · OPS_MATRIX_CACHE_V75
  * Green-on-black terminal palette (OPS / orpheus.network).
+ * Public mirage/login uses embedded neo logo (orpheus-logo-neo-public-trans).
  * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
  * Use as an external stylesheet URL on Orpheus (or paste where custom CSS is allowed).
  *
