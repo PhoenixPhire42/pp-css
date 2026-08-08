@@ -1,6 +1,7 @@
 /*
  * Redacted — Dark
  * Charcoal standalone theme for redacted.sh (recolored REDStage-Sunset structure).
+ * Header logo: Imagine modern dark wordmark (skins/assets/redacted-logo-dark-header.png).
  * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
  * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
  *
@@ -2850,8 +2851,8 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
 
 /* Monkie-hosted logos (stock /static/… 404 when stock deferred / external-only) */
 :root {
-	--monkies-red-logo-header: url(assets/redacted-logo-sprite-dark.png);
-	--monkies-red-logo-login: url(assets/redacted-logo-dark-half.png);
+	--monkies-red-logo-header: url(assets/redacted-logo-dark-header.png);
+	--monkies-red-logo-login: url(assets/redacted-logo-dark-login.png);
 }
 
 :root {
@@ -4330,9 +4331,11 @@ html body #header {
  * links → double wordmarks + crushed layout. */
 html body #header #logo {
 	box-sizing: content-box !important;
-	width: 199px !important;
-	height: 40px !important;
-	padding: 7px 0 0 5px !important;
+	width: 260px !important;
+	min-width: 200px !important;
+	max-width: 300px !important;
+	height: 48px !important;
+	padding: 4px 0 0 4px !important;
 	margin: 0 !important;
 	background: transparent !important;
 	background-color: transparent !important;
@@ -7170,17 +7173,17 @@ html body #header #logo a,
 html body#index #header #logo > a,
 html body#index #header #logo a {
 	display: block !important;
-	width: 199px !important;
-	height: 40px !important;
+	width: 250px !important;
+	height: 46px !important;
 	min-height: 40px !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
 	background-image: var(--monkies-red-logo-header) !important;
 	background-repeat: no-repeat !important;
-	background-position: 0 0 !important;
-	/* sprite is 2× wide (normal + hover); show left half at 40px tall */
-	background-size: 398px 40px !important;
+	background-position: left center !important;
+	/* modern Imagine wordmark — full mark, not stock sprite halves */
+	background-size: contain !important;
 	filter: none !important;
 	opacity: 1 !important;
 	visibility: visible !important;
@@ -7194,9 +7197,10 @@ html body#index #header #logo a {
 }
 html body #header #logo a:hover,
 html body #header #logo > a:hover {
-	background-position: 100% 0 !important;
+	background-position: left center !important;
 	background-image: var(--monkies-red-logo-header) !important;
-	filter: none !important;
+	background-size: contain !important;
+	filter: brightness(1.12) !important;
 	opacity: 1 !important;
 }
 html body #header #logo {
@@ -7233,8 +7237,21 @@ html #monkies-label-collage-tray {
 }
 
 /* === red-dark monkie logo fortify BEGIN ===
- * Paint header mark from monkie assets; hide any stock <img>.
+ * Imagine modern dark wordmark (assets/redacted-logo-dark-header.png).
  */
+html body #wrapper #header #logo,
+html body #header #logo {
+	width: 260px !important;
+	min-width: 200px !important;
+	max-width: 300px !important;
+	height: 48px !important;
+	padding: 4px 0 0 4px !important;
+	background: transparent !important;
+	background-image: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	overflow: visible !important;
+}
 html body #header #logo a img,
 html body #header #logo > a img,
 html body #header #logo img {
@@ -7246,9 +7263,25 @@ html body #header #logo img {
 }
 html body #header #logo > a,
 html body #header #logo a {
+	display: block !important;
+	width: 250px !important;
+	max-width: 100% !important;
+	height: 46px !important;
+	min-height: 46px !important;
+	background-color: transparent !important;
 	background-image: var(--monkies-red-logo-header) !important;
 	background-repeat: no-repeat !important;
+	background-position: left center !important;
+	background-size: contain !important;
 	opacity: 1 !important;
 	visibility: visible !important;
+	filter: none !important;
+}
+html body #header #logo a:hover,
+html body #header #logo > a:hover {
+	background-image: var(--monkies-red-logo-header) !important;
+	background-position: left center !important;
+	background-size: contain !important;
+	filter: brightness(1.12) !important;
 }
 /* === red-dark monkie logo fortify END === */
