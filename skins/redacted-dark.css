@@ -1,7 +1,6 @@
 /*
  * Redacted — Dark
  * Charcoal standalone theme for redacted.sh (recolored REDStage-Sunset structure).
- * Header logo: Imagine modern dark wordmark (skins/assets/redacted-logo-dark-header.png).
  * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
  * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
  *
@@ -1397,10 +1396,13 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 
     #menu>ul>#nav_staff {
         display: inline;
-        font-size: 13px;
+        font-size: 14.5px;
         position: absolute;
         right: 8px;
-        top: -31px
+        top: -53px;
+        padding: 0;
+        max-width: none;
+        white-space: nowrap
     }
 
     #menu>ul>#nav_staff>a {
@@ -7285,3 +7287,147 @@ html body #header #logo > a:hover {
 	filter: brightness(1.12) !important;
 }
 /* === red-dark monkie logo fortify END === */
+
+/* === red-dark staff fortify BEGIN ===
+ * Apollo SS / RED stock: Staff on major band (Upload · Invite · Donate · Staff),
+ * NOT stats row (-31px) and NOT under Wiki as a menu tab.
+ * External-CSS path (no monkie reparent): menu-resident abs top:-53px right:8px.
+ * With monkie staff mod: static after Donate inside #userinfo_major.
+ * Containing block: #menu full-width relative; #menu>ul static (not tab-strip).
+ */
+html body #header {
+	position: relative !important;
+	overflow: visible !important;
+}
+html body #menu,
+html body #wrapper #header #menu {
+	position: relative !important;
+	overflow: visible !important;
+}
+html body #menu > ul,
+html body #header #menu > ul {
+	position: static !important;
+	overflow: visible !important;
+}
+/* Menu-resident Staff — major band (header-right, after Donate) */
+html body #menu > ul > li#nav_staff,
+html body #menu > ul > #nav_staff,
+html body #menu li#nav_staff,
+html body #header #menu > ul > #nav_staff {
+	position: absolute !important;
+	top: -53px !important;
+	right: 8px !important;
+	left: auto !important;
+	bottom: auto !important;
+	z-index: 250 !important;
+	display: block !important;
+	float: none !important;
+	width: auto !important;
+	max-width: none !important;
+	height: auto !important;
+	min-height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	list-style: none !important;
+	font-size: 14.5px !important;
+	font-weight: 400 !important;
+	line-height: 1.25 !important;
+	white-space: nowrap !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+html body #menu > ul > #nav_staff > a,
+html body #menu li#nav_staff > a,
+html body #header #menu > ul > #nav_staff > a {
+	display: inline !important;
+	position: static !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	height: auto !important;
+	line-height: 1.25 !important;
+	white-space: nowrap !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	text-shadow: none !important;
+	font-size: 14.5px !important;
+	font-weight: 400 !important;
+}
+html body #menu > ul > #nav_staff > a:hover,
+html body #menu li#nav_staff > a:hover {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	background: transparent !important;
+	background-image: none !important;
+}
+/* Reserve major-row room for menu-resident Staff (~50px) */
+html body #userinfo_major {
+	right: 50px !important;
+	top: -53px !important;
+	font-size: 14.5px !important;
+}
+html body #userinfo_stats {
+	top: -31px !important;
+	font-size: 14.5px !important;
+}
+/* Reparented Staff (monkie staff mod) — static after Donate */
+html body #userinfo_major #nav_staff,
+html body #userinfo_major > li#nav_staff {
+	display: list-item !important;
+	float: none !important;
+	position: static !important;
+	top: auto !important;
+	right: auto !important;
+	left: auto !important;
+	bottom: auto !important;
+	margin: 0 0 0 8px !important;
+	padding: 0 !important;
+	border: none !important;
+	background: transparent !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	list-style: none !important;
+	font-size: 14.5px !important;
+	font-weight: 400 !important;
+	line-height: 1.25 !important;
+	z-index: auto !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+html body #userinfo_major:has(#nav_staff) {
+	right: 8px !important;
+}
+html body #userinfo_major #nav_staff > a,
+html body #userinfo_major > li#nav_staff > a {
+	display: inline !important;
+	float: none !important;
+	position: static !important;
+	color: var(--text-dimmed) !important;
+	-webkit-text-fill-color: var(--text-dimmed) !important;
+	background: transparent !important;
+	background-image: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	line-height: 1.25 !important;
+	font-size: 14.5px !important;
+	font-weight: 400 !important;
+	white-space: nowrap !important;
+}
+html body #userinfo_major #nav_donate + #nav_staff,
+html body #userinfo_major #nav_donate + li#nav_staff {
+	margin-left: 8px !important;
+}
+html body #userinfo_major #nav_staff > a:hover,
+html body #userinfo_major > li#nav_staff > a:hover {
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	background: transparent !important;
+}
+/* === red-dark staff fortify END === */
