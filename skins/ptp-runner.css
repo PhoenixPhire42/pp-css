@@ -1343,6 +1343,207 @@ html .main-menu__item#nav_staff .main-menu__link {
 }
 /* === ptp-runner BEM fortify END === */
 
+/* === ptp-runner movie-page fortify BEGIN ===
+ * Live PTP group/details BEM (body#torrents) — overlay colors on Dark Default.
+ * Markup: .page__title, .linkbox__link, .movie-page__*, .group_torrent,
+ * .forum-post__*, .basic-movie-list__*, .star-rating, .pagination, tables.
+ */
+html body#torrents .page__title,
+html .page__title {
+  color: #eaf9ff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 14px rgba(94, 231, 255, 0.18) !important;
+}
+html .page__title a,
+html a.artist-info-link {
+  color: var(--ptp-accent) !important;
+}
+html .page__title a:hover,
+html a.artist-info-link:hover {
+  color: var(--ptp-link-hover) !important;
+}
+
+/* Action linkbox under title */
+html .linkbox,
+html .linkbox__link {
+  color: var(--ptp-link) !important;
+}
+html a.linkbox__link:hover {
+  color: var(--ptp-link-hover) !important;
+  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
+}
+
+/* Sidebar panels / cover */
+html .box_albumart,
+html .box_tags,
+html .movie-page__torrent__panel {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: var(--ptp-radius) !important;
+  color: var(--ptp-text) !important;
+}
+html .sidebar-cover-image,
+html .box_albumart img {
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 18px var(--ptp-glow-magenta) !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Torrent format table */
+html .movie-page__torrent-table,
+html table.torrent_table,
+html table.table,
+html table.table--panel-like,
+html table.table--bordered,
+html table.table--striped {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: var(--ptp-radius) !important;
+  color: var(--ptp-text) !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  overflow: hidden !important;
+}
+html .movie-page__torrent-table th,
+html .movie-page__torrent-table td,
+html table.torrent_table th,
+html table.torrent_table td,
+html table.table th,
+html table.table td {
+  border-color: var(--ptp-border) !important;
+  color: var(--ptp-text) !important;
+  background: transparent !important;
+}
+html .group_torrent_header,
+html tr.group_torrent_header,
+html .colhead,
+html .colhead_dark {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border) !important;
+}
+html tr.group_torrent,
+html .group_torrent {
+  background: var(--ptp-row-a) !important;
+}
+html tr.group_torrent:nth-child(even),
+html table.table--striped tr:nth-child(even) td {
+  background: var(--ptp-row-b) !important;
+}
+html tr.group_torrent:hover,
+html tr.group_torrent:hover td {
+  background: rgba(94, 231, 255, 0.06) !important;
+}
+html a.torrent-info-link,
+html .torrent_info_row a {
+  color: var(--ptp-link) !important;
+}
+html a.torrent-info-link:hover {
+  color: var(--ptp-link-hover) !important;
+}
+
+/* Edition headers in torrent list */
+html .basic-movie-list__torrent-edition,
+html .basic-movie-list__torrent-edition__main,
+html .basic-movie-list__torrent-edition__sub {
+  color: var(--ptp-text) !important;
+  background: var(--ptp-surface-2) !important;
+  border-color: var(--ptp-border) !important;
+}
+html .basic-movie-list__torrent__action a {
+  color: var(--ptp-accent) !important;
+}
+
+/* Tabs (Description / Screenshots / etc.) */
+html .tabs__bar,
+html .tabs__bar__link {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-text-dim) !important;
+  border-color: var(--ptp-border) !important;
+}
+html .tabs__bar__link:hover,
+html .tabs__bar__link.is-selected,
+html a.tabs__bar__link.is-selected {
+  color: var(--ptp-accent-hot) !important;
+  border-bottom-color: var(--ptp-accent) !important;
+  box-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
+}
+
+/* Ratings / stars */
+html .star-rating,
+html .star-rating-container,
+html .rating {
+  color: var(--ptp-amber) !important;
+}
+html .star-rating__site,
+html .star-rating__current-user {
+  color: var(--ptp-text) !important;
+}
+html .forum-post__movie-vote {
+  background: var(--ptp-surface-2) !important;
+  border: 1px solid var(--ptp-border) !important;
+  color: var(--ptp-text) !important;
+}
+
+/* Comments / forum posts on group */
+html .forum-post,
+html .forum-post--is-reply {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: var(--ptp-radius) !important;
+  color: var(--ptp-text) !important;
+  margin-bottom: 10px !important;
+}
+html .forum-post__heading {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border) !important;
+}
+html .forum-post__body,
+html .forum-post__preview,
+html .forum-post__textarea {
+  background: var(--ptp-surface) !important;
+  color: var(--ptp-text) !important;
+}
+html .forum-post__avatar__image {
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 4px !important;
+}
+html .forum-post__buttons a,
+html .forum-post__edited {
+  color: var(--ptp-text-dim) !important;
+}
+html .forum-post__buttons a:hover {
+  color: var(--ptp-link-hover) !important;
+}
+
+/* Pagination */
+html .pagination,
+html .pagination a,
+html .pagination--top,
+html .pagination--bottom {
+  color: var(--ptp-link) !important;
+}
+html .pagination a:hover {
+  color: var(--ptp-link-hover) !important;
+}
+
+/* Trailer / misc blocks */
+html .movie-page__trailer,
+html .movie-page__actor-column {
+  color: var(--ptp-text) !important;
+}
+html .preformatted-text--scrolled,
+html pre {
+  background: var(--ptp-bg) !important;
+  border: 1px solid var(--ptp-border) !important;
+  color: var(--ptp-text-dim) !important;
+  border-radius: 4px !important;
+}
+/* === ptp-runner movie-page fortify END === */
+
 /* ── layout fallback (no Dark base) ── */
 html body ,
 html body {
