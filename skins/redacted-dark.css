@@ -6,7 +6,7 @@
  *
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-dark.css
  */
-/* pp-css-build: 2026-08-09T0249Z src=144b168 */
+/* pp-css-build: 2026-08-09T1845Z src=2ffca0f */
 /*
  * Redacted Dark standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
@@ -4406,9 +4406,60 @@ html body #menu > ul a:hover {
 	color: #fff !important;
 }
 
-/* REDStage chevron glyph — desaturate purple assets */
+/*
+ * Username end-cap chevron (meddler ▾).
+ * Stock REDStage base blanks #userinfo_minor:before { content:"" } and relies on
+ * a purple SVG that never paints under monkie. Pure CSS glyph (same as RED Synth).
+ */
 html body #userinfo_minor:before {
-	filter: brightness(1.4) grayscale(1) !important;
+	content: "▾" !important;
+	display: block !important;
+	width: 50px !important;
+	height: 50px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	background: none !important;
+	background-image: none !important;
+	background-size: auto !important;
+	background-position: center !important;
+	filter: none !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	line-height: 50px !important;
+	text-align: center !important;
+	letter-spacing: 0 !important;
+	color: #c8ccd0 !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	opacity: 0.95 !important;
+}
+html body #userinfo_minor:hover:before {
+	content: "▴" !important;
+	width: 50px !important;
+	height: 50px !important;
+	max-width: 50px !important;
+	margin: 0 !important;
+	margin-left: 0 !important;
+	padding: 0 !important;
+	line-height: 48px !important;
+	font-size: 13px !important;
+	background-image: linear-gradient(
+		180deg,
+		#1c2228 0%,
+		#101418 48%,
+		#080a0c 100%
+	) !important;
+	background-color: #101418 !important;
+	background-size: auto !important;
+	background-position: center !important;
+	filter: none !important;
+	border: none !important;
+	border-bottom: 1px solid rgba(192, 64, 64, 0.35) !important;
+	border-radius: 0 5px 0 0 !important;
+	color: #f0f2f4 !important;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
+	box-sizing: border-box !important;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
 
 html body #nav_staff > a,

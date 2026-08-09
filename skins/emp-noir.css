@@ -13,7 +13,7 @@
  * Install: Violentmonkey monkie styles/emp-noir.user.js (or Stylus @import this URL).
  * Emp Settings → Stylesheet = Afterdark only.
  */
-/* pp-css-build: 2026-08-09T0249Z src=144b168 */
+/* pp-css-build: 2026-08-09T1845Z src=2ffca0f */
 /* ── Tokens ───────────────────────────────────────────── */
 :root {
   color-scheme: dark;
@@ -37,6 +37,8 @@
   --emp-ok: #b0b0b0;
   --emp-warn: #a8a8a8;
   --emp-danger: #8a8a8a;
+  /* Currently leeching status icon (torrent row) */
+  --emp-leech-gold: #e0b84a;
   /* none until monkie injects data URL (relative assets/ → Emp 404; :8000 mixed content) */
   --emp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/emp-logo-noir-header.jpg");
 }
@@ -244,14 +246,14 @@ span.r10, span.r20, span.r50, span.r99,
   color: var(--emp-accent-hot) !important;
 }
 
-/* Icon nav — color only */
-.font_icon,
+/* Icon nav — color only (exclude currently-leeching — gold below) */
+.font_icon:not(.icon_torrent_leeching):not(.leeching),
 .nav_icons,
 .icon_container,
 .icon_stack {
   color: var(--emp-text-dim) !important;
 }
-a:hover .font_icon,
+a:hover .font_icon:not(.icon_torrent_leeching):not(.leeching),
 a:hover .nav_icons {
   color: var(--emp-accent-hot) !important;
 }
@@ -696,4 +698,53 @@ td a[title*="Download"],
 .category img {
   filter: none !important;
   opacity: 1 !important;
+}
+
+/*
+ * Currently leeching — GOLD.
+ * Emp:
+ *   <i class="font_icon torrent_icons download warned icon_torrent_leeching"></i>
+ *   <i class="font_icon torrent_icons clickable leeching icon_torrent_leeching"></i>
+ * Stock silver is often gradient / background-clip text — plain `color` fails.
+ * Use filter recolor (works on icon-font + painted glyphs).
+ */
+html body i.icon_torrent_leeching,
+html body i.font_icon.icon_torrent_leeching,
+html body i.torrent_icons.icon_torrent_leeching,
+html body i.font_icon.torrent_icons.icon_torrent_leeching,
+html body i.font_icon.torrent_icons.leeching.icon_torrent_leeching,
+html body i.font_icon.torrent_icons.clickable.leeching.icon_torrent_leeching,
+html body i.font_icon.torrent_icons.download.warned.icon_torrent_leeching,
+html body i.torrent_icons.clickable.leeching,
+html body i.leeching.icon_torrent_leeching,
+html body .torrent_table i.icon_torrent_leeching,
+html body #content i.icon_torrent_leeching,
+html body #wrapper i.icon_torrent_leeching {
+  /* kill silver gradient clip if present */
+  background: none !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: #e0b84a !important;
+  -webkit-text-fill-color: #e0b84a !important;
+  fill: #e0b84a !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  /* force gold even when glyph is pre-tinted silver */
+  filter: brightness(0) saturate(100%) invert(76%) sepia(45%) saturate(700%)
+    hue-rotate(5deg) brightness(1.05) contrast(1.05) !important;
+}
+html body i.icon_torrent_leeching::before,
+html body i.font_icon.icon_torrent_leeching::before,
+html body i.torrent_icons.leeching::before,
+html body i.leeching.icon_torrent_leeching::before,
+html body .icon_torrent_leeching::before {
+  background: none !important;
+  background-image: none !important;
+  color: #e0b84a !important;
+  -webkit-text-fill-color: #e0b84a !important;
+  opacity: 1 !important;
+  /* filter on parent is enough; avoid double */
+  filter: none !important;
 }
