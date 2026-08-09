@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-09T1845Z src=2ffca0f */
+/* pp-css-build: 2026-08-09T1900Z src=b7f742c */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -107,14 +107,16 @@ html #header .main-menu {
   box-sizing: border-box !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
-  opacity: 1 !important;
   text-align: left !important;
   border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: none !important;
+  /* cyan neon edge (reads Runner vs stock charcoal pill) */
+  border: 1px solid rgba(94, 231, 255, 0.22) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(94, 231, 255, 0.06),
+    0 0 12px rgba(94, 231, 255, 0.08) !important;
   z-index: 7 !important;
   font-size: 10pt !important;
-  opacity: 0.92 !important; /* stock Dark menu is slightly translucent */
+  opacity: 1 !important;
 }
 html .main-menu__list {
   padding: 5px 0 0 0 !important;
@@ -134,31 +136,54 @@ html .main-menu__link {
   padding: 0.5em !important;
 }
 
-/* Alert — stock: width 400px; margin 5px auto; padding 0.2em; text-align center */
-html .alert-bar {
+/*
+ * Alert — kill stock gold plate.
+ * Selectors cover BEM .alert-bar and legacy .alertbar.
+ */
+html .alert-bars .alert-bar,
+html .alert-bar,
+html #header .alert-bar,
+html div.alert-bar,
+html .alertbar {
   display: block !important;
   width: 400px !important;
   max-width: calc(100% - 16px) !important;
   margin: 5px auto !important;
-  padding: 0.2em !important;
+  padding: 0.35em 0.6em !important;
   box-sizing: border-box !important;
   text-align: center !important;
   font-weight: bold !important;
   border-radius: 4px !important;
   background: linear-gradient(
     90deg,
-    rgba(255, 45, 149, 0.22),
-    rgba(94, 231, 255, 0.14)
+    rgba(255, 45, 149, 0.38) 0%,
+    rgba(20, 28, 48, 0.95) 42%,
+    rgba(94, 231, 255, 0.28) 100%
   ) !important;
-  border: 1px solid rgba(94, 231, 255, 0.32) !important;
+  background-color: #0e1624 !important;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 45, 149, 0.38) 0%,
+    rgba(20, 28, 48, 0.95) 42%,
+    rgba(94, 231, 255, 0.28) 100%
+  ) !important;
+  border: 1px solid rgba(94, 231, 255, 0.45) !important;
+  box-shadow:
+    0 0 14px rgba(94, 231, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 45, 149, 0.12) !important;
   color: var(--ptp-text) !important;
   float: none !important;
   position: relative !important;
   left: auto !important;
   right: auto !important;
+  filter: none !important;
 }
-html .alert-bar__link {
+html .alert-bar__link,
+html .alert-bar a,
+html .alertbar a {
   color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
+  background: transparent !important;
 }
 
 /* Search strip — stock: width 1013px; margin 0 auto; padding 0.6em; text-align center */
@@ -178,23 +203,21 @@ html .search-bar {
 }
 
 /*
- * Logo — same element + box as Dark (Default):
- *   .site-logo { top:20px; width:700px; height:124px; margin:0 auto 20px;
- *                background: url(images/logo-new.png) top center no-repeat }
- *   .site-logo__link { width:700px; height:124px; margin-top:8px }
- * Only the background image is swapped (Imagine noir wordmark).
+ * Logo — kill stock rainbow (logo-new.png) on parent AND link.
+ * Modern PTP may paint on either; paint neon on both so cascade always wins.
+ * Monkie: --ptp-logo set via GM blob; public CDN rewrites none → jpg URL.
  */
 html .site-logo,
 html #header .site-logo,
-html div.site-logo {
+html div.site-logo,
+html .site-logo__link,
+html a.site-logo__link,
+html #header a.site-logo__link,
+html #header .site-logo a {
   position: relative !important;
-  top: 20px !important;
-  width: 700px !important;
-  height: 124px !important;
-  max-width: 700px !important;
-  margin: 0 auto 20px auto !important;
-  padding: 0 !important;
-  /* paint on parent like stock dark/style.css (not a second wider plate) */
+  box-sizing: border-box !important;
+  /* full shorthand first to clear stock background: url(...) */
+  background: transparent none no-repeat center center / contain !important;
   background-color: transparent !important;
   background-image: var(--ptp-logo) !important;
   background-repeat: no-repeat !important;
@@ -203,6 +226,24 @@ html div.site-logo {
   filter: none !important;
   box-shadow: none !important;
   border: none !important;
+  outline: none !important;
+  text-shadow: none !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html .site-logo,
+html #header .site-logo,
+html div.site-logo {
+  top: 20px !important;
+  width: 700px !important;
+  height: 124px !important;
+  max-width: 700px !important;
+  margin: 0 auto 20px auto !important;
+  padding: 0 !important;
   text-align: center !important;
 }
 
@@ -216,7 +257,6 @@ html .site-logo__link::after {
   background-image: none !important;
 }
 
-/* Hit target only — same 700×124 as stock; no second background plate */
 html .site-logo__link,
 html a.site-logo__link,
 html #header a.site-logo__link {
@@ -226,25 +266,15 @@ html #header a.site-logo__link {
   max-width: 700px !important;
   margin-top: 8px !important;
   padding: 0 !important;
-  border: none !important;
-  outline: none !important;
-  color: transparent !important;
-  background: transparent !important;
-  background-image: none !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  filter: none !important;
-  opacity: 1 !important;
-  visibility: visible !important;
   border-radius: 0 !important;
 }
 
+/* Chrome text — cool ice (not stock grey); cyan reserved for hover */
 html .main-menu__link,
 html .user-info-bar__link,
 html .tabs__bar__link,
 html .search-bar a {
-  color: #c8d4e0 !important; /* stock Dark-like chrome text */
+  color: #b8d0e4 !important;
   text-shadow: none !important;
   background-image: none !important;
   font-weight: 400 !important;
@@ -252,12 +282,13 @@ html .search-bar a {
 html .main-menu__link:hover,
 html .user-info-bar__link:hover {
   color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
 }
 html .user-info-bar__text {
-  color: #8a9aab !important;
+  color: var(--ptp-text-dim) !important;
 }
 html .user-info-bar__link--important {
-  color: #dce6f0 !important;
+  color: #e4f0fa !important;
   font-weight: 600 !important;
 }
 
@@ -458,30 +489,32 @@ html span.green,
 html .important_text_green {
   color: #c0c0c0 !important;
 }
-/* Stock ratio ladder is rainbow orange/green — flatten to silver scale */
+/* Ratio ladder — cool cyan scale (not stock orange/green or flat silver) */
 html .ratio-00,
 html .ratio-01,
 html .ratio-02,
 html .ratio-03 {
-  color: #6a6a6a !important;
+  color: #4a6a78 !important;
 }
 html .ratio-04,
 html .ratio-05,
 html .ratio-06 {
-  color: #8a8a8a !important;
+  color: #5a90a8 !important;
 }
 html .ratio-07,
 html .ratio-08,
 html .ratio-09 {
-  color: #a8a8a8 !important;
+  color: #6eb8d0 !important;
 }
 html .ratio-10,
 html .ratio-20,
 html .ratio-50,
 html .ratio-infinite,
 html #stats_ratio .user-info-bar__text,
-html #stats_ratio span {
-  color: #d0d0d0 !important;
+html #stats_ratio span,
+html #stats_ratio .ratio-10 {
+  color: var(--ptp-accent) !important;
+  text-shadow: 0 0 6px var(--ptp-glow-cyan) !important;
 }
 html .freeleech,
 html .torrent_label.tl_free,
@@ -621,8 +654,8 @@ html .body .post {
   border-color: var(--ptp-border) !important;
 }
 
-html .alertbar,
-html .alert,
+/* Generic .alert / messages only — do NOT include .alertbar (header collection bar) */
+html .alert:not(.alert-bar),
 html .error_message,
 html .save_message {
   background: var(--ptp-surface-2) !important;
@@ -630,7 +663,7 @@ html .save_message {
   color: var(--ptp-text) !important;
 }
 
-/* .alert-bar geometry + neon fill set above (stock 400× centered) */
+/* .alert-bar neon fill set above (stock gold killed) */
 html .alert--warning {
   background: #1c1c1c !important;
   border-color: #4a4a4a !important;
@@ -1577,25 +1610,25 @@ html .forum-post__heading {
   text-shadow: none !important;
   box-shadow: none !important;
 }
-/* Header chrome: stock Dark greys; cyan reserved for hover / content accents */
+/* Header chrome — ice text; cyan hover */
 html #header .main-menu a,
 html #header .user-info-bar a {
-  color: #c8d4e0 !important;
+  color: #b8d0e4 !important;
 }
 html #header .main-menu a:hover,
 html #header .user-info-bar a:hover {
-  color: #9af3ff !important;
+  color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 8px var(--ptp-glow-cyan) !important;
 }
-/* Highlighted / donations keep subtle accent without glow */
 html .user-info-bar__link--highlighted {
-  color: #7ad4ea !important;
-  text-shadow: none !important;
+  color: var(--ptp-accent-hot) !important;
+  text-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
 }
 html .user-info-bar__link--donations-behind {
-  color: #e0a060 !important;
-  text-shadow: none !important;
+  color: var(--ptp-amber) !important;
+  text-shadow: 0 0 6px rgba(255, 154, 60, 0.35) !important;
 }
-/* Content links keep runner cyan (torrent formats etc.) */
+/* Content links keep runner cyan */
 html #content a,
 html .page__main-content a {
   color: var(--ptp-link) !important;
@@ -1611,7 +1644,7 @@ html #torrent_tags a {
   border-radius: 3px !important;
 }
 
-/* Win over layout-fallback capsule inputs (layout had border-radius:10px) */
+/* Win over layout-fallback capsule inputs */
 html .search-bar__search-field__input,
 html .search-bar input[type="text"],
 html .search-bar input[type="search"],
@@ -1627,11 +1660,17 @@ html .search-bar input:not([type]) {
 html .search-bar {
   border-top-left-radius: 4px !important;
   border-top-right-radius: 4px !important;
+  border: 1px solid rgba(94, 231, 255, 0.1) !important;
+  border-bottom: none !important;
 }
-html .main-menu {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: none !important;
-  opacity: 0.95 !important;
+/* Re-assert cyan menu edge (must stay last vs stock-soft greys) */
+html .main-menu,
+html #header .main-menu {
+  border: 1px solid rgba(94, 231, 255, 0.22) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(94, 231, 255, 0.06),
+    0 0 12px rgba(94, 231, 255, 0.08) !important;
+  opacity: 1 !important;
 }
 /* Torrent edition blocks flatter */
 html .basic-movie-list__torrent-edition,
@@ -1643,7 +1682,37 @@ html tr.group_torrent td {
   box-shadow: none !important;
 }
 
-/* === ptp-runner stock-soft END === */
+/*
+ * Final cascade win — last rules in sheet beat stock dark/style.css
+ * when external CSS appends after Dark, or monkie injects last.
+ */
+html .site-logo,
+html #header .site-logo,
+html .site-logo__link,
+html a.site-logo__link,
+html #header a.site-logo__link {
+  background-image: var(--ptp-logo) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+}
+html .alert-bars .alert-bar,
+html .alert-bar,
+html #header .alert-bar {
+  background-color: #0e1624 !important;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 45, 149, 0.38) 0%,
+    rgba(20, 28, 48, 0.95) 42%,
+    rgba(94, 231, 255, 0.28) 100%
+  ) !important;
+  border: 1px solid rgba(94, 231, 255, 0.45) !important;
+  box-shadow:
+    0 0 14px rgba(94, 231, 255, 0.12),
+    inset 0 0 0 1px rgba(255, 45, 149, 0.12) !important;
+}
+
+/* === ptp-runner V15 cascade-win END === */
 
 /* ── layout fallback (no Dark base) ── */
 html body ,
