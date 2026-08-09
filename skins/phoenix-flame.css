@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-09T1907Z src=58ee476 */
+/* pp-css-build: 2026-08-09T1914Z src=085ea78 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7073,6 +7073,182 @@ html body #menu #torrent_reviews>li.active>a {
 
 	/* When Staff already reparented, never show a menu ghost (none left under #menu) */
 }
+/* === torrent badges Apollo-like (New red / Freeleech yellow) ===
+ * Visual: Apollostage group rows — New/#e85050 red, Freeleech/#f9e340 yellow.
+ * classes: .new .tl_new .freeleech .tl_free .torrent_label
+ */
+html body .new,
+html body strong.new,
+html body span.new,
+html body a.new,
+html body .tl_new,
+html body strong.tl_new,
+html body span.tl_new,
+html body .torrent_label.tl_new,
+html body .torrent_label.new,
+html body strong.torrent_label.new,
+html body .torrent_table .new,
+html body .torrent_table .tl_new,
+html body .group_torrent .new,
+html body .group_torrent .tl_new,
+html body #torrent_details .new,
+html body #torrent_details .tl_new,
+html body td .new,
+html body td .tl_new,
+html body .torrent_info .new,
+html body .torrent_info .tl_new,
+html body .group_info .new,
+html body .group_info .tl_new {
+  color: #e85050 !important;
+  -webkit-text-fill-color: #e85050 !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+html body .freeleech,
+html body strong.freeleech,
+html body span.freeleech,
+html body a.freeleech,
+html body .tl_free,
+html body strong.tl_free,
+html body span.tl_free,
+html body .torrent_label.tl_free,
+html body strong.torrent_label.tl_free,
+html body .torrent_table .freeleech,
+html body .torrent_table .tl_free,
+html body .group_torrent .freeleech,
+html body .group_torrent .tl_free,
+html body #torrent_details .freeleech,
+html body #torrent_details .tl_free,
+html body td .freeleech,
+html body td .tl_free,
+html body .torrent_info .freeleech,
+html body .torrent_info .tl_free,
+html body .group_info .freeleech,
+html body .group_info .tl_free,
+html body a[title*="Freeleech" i],
+html body a[title*="freeleech" i],
+html body .group_torrent strong.important_text_alt,
+html body .torrent_table strong.important_text_alt,
+html body #torrent_details strong.important_text_alt {
+  color: #f9e340 !important;
+  -webkit-text-fill-color: #f9e340 !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+/* hide stock new/fl icon imgs; use + / F pills */
+html body .new > img,
+html body strong.new > img,
+html body span.new > img,
+html body .tl_new > img,
+html body .torrent_label.tl_new > img,
+html body .torrent_label.new > img {
+  display: none !important;
+}
+html body .new::before,
+html body strong.new::before,
+html body span.new::before,
+html body a.new::before,
+html body .tl_new::before,
+html body strong.tl_new::before,
+html body span.tl_new::before,
+html body .torrent_label.tl_new::before,
+html body .torrent_label.new::before {
+  content: "+" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 4px 0 2px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: #e85050 !important;
+  background-color: #e85050 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font: 800 11px/1 system-ui, -apple-system, sans-serif !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+html body .freeleech > img,
+html body strong.freeleech > img,
+html body span.freeleech > img,
+html body .tl_free > img,
+html body .torrent_label.tl_free > img {
+  /* stock F circle → yellow */
+  filter: invert(85%) sepia(90%) saturate(600%) hue-rotate(5deg) brightness(1.05) contrast(1.05) !important;
+  opacity: 1 !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  width: auto !important;
+  height: auto !important;
+  vertical-align: middle !important;
+}
+html body .freeleech::before,
+html body strong.freeleech::before,
+html body span.freeleech::before,
+html body .tl_free::before,
+html body .torrent_label.tl_free::before {
+  content: "F" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 4px 0 2px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: #f9e340 !important;
+  background-color: #f9e340 !important;
+  color: #1a1400 !important;
+  -webkit-text-fill-color: #1a1400 !important;
+  font: 800 10px/1 system-ui, -apple-system, sans-serif !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  text-shadow: none !important;
+}
+/* if both img and ::before, hide img when we force F pill */
+/* Prefer filter on existing F icon; skip duplicate ::before when img present */
+html body .freeleech:has(> img)::before,
+html body strong.freeleech:has(> img)::before,
+html body .tl_free:has(> img)::before,
+html body .torrent_label.tl_free:has(> img)::before {
+  content: none !important;
+  display: none !important;
+}
+html body .group_torrent img[alt="New" i],
+html body .group_torrent img[alt="New!" i],
+html body .group_torrent img[title="New" i],
+html body .group_torrent img[title*="Newly" i],
+html body .group_torrent img[src*="symbols/new" i],
+html body .group_torrent img[src*="/new." i],
+html body .group_torrent img[src*="new.png" i],
+html body .group_torrent img[src*="new.gif" i],
+html body .torrent_table .group_info img[alt="New" i],
+html body .torrent_table td img[alt="New" i],
+html body #torrent_details .group_torrent img[alt="New" i] {
+  filter: invert(32%) sepia(90%) saturate(2000%) hue-rotate(340deg) brightness(1.05) contrast(1.1) !important;
+  opacity: 1 !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+}
+html body .group_torrent img[alt*="Freeleech" i],
+html body .group_torrent img[title*="Freeleech" i],
+html body .group_torrent img[src*="freeleech" i],
+html body .group_torrent img[src*="free" i][src*="leech" i],
+html body .torrent_table img[alt*="Freeleech" i],
+html body .torrent_table img[title*="Freeleech" i],
+html body #torrent_details img[alt*="Freeleech" i] {
+  filter: invert(85%) sepia(90%) saturate(600%) hue-rotate(5deg) brightness(1.05) contrast(1.05) !important;
+  opacity: 1 !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+}
+/* === torrent badges Apollo-like END === */
+
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
 /* ============================================================
  * Public Gazelle skins — mobile appendix
@@ -7266,179 +7442,3 @@ body {
 	}
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
-
-/* === torrent badges Apollo-like (New red / Freeleech yellow) ===
- * Visual: Apollostage group rows — New/#e85050 red, Freeleech/#f9e340 yellow.
- * classes: .new .tl_new .freeleech .tl_free .torrent_label
- */
-html body .new,
-html body strong.new,
-html body span.new,
-html body a.new,
-html body .tl_new,
-html body strong.tl_new,
-html body span.tl_new,
-html body .torrent_label.tl_new,
-html body .torrent_label.new,
-html body strong.torrent_label.new,
-html body .torrent_table .new,
-html body .torrent_table .tl_new,
-html body .group_torrent .new,
-html body .group_torrent .tl_new,
-html body #torrent_details .new,
-html body #torrent_details .tl_new,
-html body td .new,
-html body td .tl_new,
-html body .torrent_info .new,
-html body .torrent_info .tl_new,
-html body .group_info .new,
-html body .group_info .tl_new {
-  color: #e85050 !important;
-  -webkit-text-fill-color: #e85050 !important;
-  font-weight: 700 !important;
-  font-style: normal !important;
-}
-html body .freeleech,
-html body strong.freeleech,
-html body span.freeleech,
-html body a.freeleech,
-html body .tl_free,
-html body strong.tl_free,
-html body span.tl_free,
-html body .torrent_label.tl_free,
-html body strong.torrent_label.tl_free,
-html body .torrent_table .freeleech,
-html body .torrent_table .tl_free,
-html body .group_torrent .freeleech,
-html body .group_torrent .tl_free,
-html body #torrent_details .freeleech,
-html body #torrent_details .tl_free,
-html body td .freeleech,
-html body td .tl_free,
-html body .torrent_info .freeleech,
-html body .torrent_info .tl_free,
-html body .group_info .freeleech,
-html body .group_info .tl_free,
-html body a[title*="Freeleech" i],
-html body a[title*="freeleech" i],
-html body .group_torrent strong.important_text_alt,
-html body .torrent_table strong.important_text_alt,
-html body #torrent_details strong.important_text_alt {
-  color: #f9e340 !important;
-  -webkit-text-fill-color: #f9e340 !important;
-  font-weight: 700 !important;
-  font-style: normal !important;
-}
-/* hide stock new/fl icon imgs; use + / F pills */
-html body .new > img,
-html body strong.new > img,
-html body span.new > img,
-html body .tl_new > img,
-html body .torrent_label.tl_new > img,
-html body .torrent_label.new > img {
-  display: none !important;
-}
-html body .new::before,
-html body strong.new::before,
-html body span.new::before,
-html body a.new::before,
-html body .tl_new::before,
-html body strong.tl_new::before,
-html body span.tl_new::before,
-html body .torrent_label.tl_new::before,
-html body .torrent_label.new::before {
-  content: "+" !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 15px !important;
-  height: 15px !important;
-  margin: 0 4px 0 2px !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-  background: #e85050 !important;
-  background-color: #e85050 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  font: 800 11px/1 system-ui, -apple-system, sans-serif !important;
-  vertical-align: middle !important;
-  box-sizing: border-box !important;
-  border: none !important;
-  text-shadow: none !important;
-}
-html body .freeleech > img,
-html body strong.freeleech > img,
-html body span.freeleech > img,
-html body .tl_free > img,
-html body .torrent_label.tl_free > img {
-  /* stock F circle → yellow */
-  filter: invert(85%) sepia(90%) saturate(600%) hue-rotate(5deg) brightness(1.05) contrast(1.05) !important;
-  opacity: 1 !important;
-  max-width: 16px !important;
-  max-height: 16px !important;
-  width: auto !important;
-  height: auto !important;
-  vertical-align: middle !important;
-}
-html body .freeleech::before,
-html body strong.freeleech::before,
-html body span.freeleech::before,
-html body .tl_free::before,
-html body .torrent_label.tl_free::before {
-  content: "F" !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 15px !important;
-  height: 15px !important;
-  margin: 0 4px 0 2px !important;
-  padding: 0 !important;
-  border-radius: 50% !important;
-  background: #f9e340 !important;
-  background-color: #f9e340 !important;
-  color: #1a1400 !important;
-  -webkit-text-fill-color: #1a1400 !important;
-  font: 800 10px/1 system-ui, -apple-system, sans-serif !important;
-  vertical-align: middle !important;
-  box-sizing: border-box !important;
-  border: none !important;
-  text-shadow: none !important;
-}
-/* if both img and ::before, hide img when we force F pill */
-/* Prefer filter on existing F icon; skip duplicate ::before when img present */
-html body .freeleech:has(> img)::before,
-html body strong.freeleech:has(> img)::before,
-html body .tl_free:has(> img)::before,
-html body .torrent_label.tl_free:has(> img)::before {
-  content: none !important;
-  display: none !important;
-}
-html body .group_torrent img[alt="New" i],
-html body .group_torrent img[alt="New!" i],
-html body .group_torrent img[title="New" i],
-html body .group_torrent img[title*="Newly" i],
-html body .group_torrent img[src*="symbols/new" i],
-html body .group_torrent img[src*="/new." i],
-html body .group_torrent img[src*="new.png" i],
-html body .group_torrent img[src*="new.gif" i],
-html body .torrent_table .group_info img[alt="New" i],
-html body .torrent_table td img[alt="New" i],
-html body #torrent_details .group_torrent img[alt="New" i] {
-  filter: invert(32%) sepia(90%) saturate(2000%) hue-rotate(340deg) brightness(1.05) contrast(1.1) !important;
-  opacity: 1 !important;
-  max-width: 16px !important;
-  max-height: 16px !important;
-}
-html body .group_torrent img[alt*="Freeleech" i],
-html body .group_torrent img[title*="Freeleech" i],
-html body .group_torrent img[src*="freeleech" i],
-html body .group_torrent img[src*="free" i][src*="leech" i],
-html body .torrent_table img[alt*="Freeleech" i],
-html body .torrent_table img[title*="Freeleech" i],
-html body #torrent_details img[alt*="Freeleech" i] {
-  filter: invert(85%) sepia(90%) saturate(600%) hue-rotate(5deg) brightness(1.05) contrast(1.05) !important;
-  opacity: 1 !important;
-  max-width: 16px !important;
-  max-height: 16px !important;
-}
-/* === torrent badges Apollo-like END === */

@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-09T1907Z src=58ee476 */
+/* pp-css-build: 2026-08-09T1914Z src=085ea78 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -1181,185 +1181,6 @@ html .tags a:hover {
   box-shadow: 0 0 12px var(--ptp-glow-magenta) !important;
 }
 
-/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (ptp) — do not edit in skin; edit styles/mobile/ptp.css then re-run append-mobile-public.py === */
-/* ============================================================
- * Public PTP skins — mobile appendix
- * Used by: ptp-dark.css, ptp-runner.css
- * Stock Dark uses fixed 700px logo / 1013px shell — scale down on phones.
- * ============================================================ */
-
-/* Both Cinema Noir + Blade Runner share data-monkies-ptp-skin */
-html {
-	overflow-x: clip;
-}
-
-/*
- * Fluid media — but NOT basic-movie-list covers.
- * Blanket max-width:100% on img collapses table cover column (0×0): stock
- * wants 117px thumbs; cell is content-sized; max-width:100% → circular 0.
- */
-html img:not(.basic-movie-list__movie__cover),
-html video,
-html svg {
-	max-width: 100% !important;
-	height: auto !important;
-}
-
-/* Restore stock Dark browse thumbs (basic list / cover column) */
-html .basic-movie-list__movie__cover,
-html .basic-movie-list__movie__cover-link img {
-	max-width: none !important;
-	width: 117px !important;
-	height: auto !important;
-}
-html .basic-movie-list__movie__cover-link {
-	width: 117px !important;
-	display: block !important;
-}
-
-/*
- * Pinwheel policy: off-screen cover rows skip layout/paint until scrolled near.
- * Does not change visible size; reduces main-thread cost of 50× full posters.
- */
-html .basic-movie-list__details-row,
-html table.torrent_table tbody > tr {
-	content-visibility: auto;
-	contain-intrinsic-size: auto 48px;
-}
-
-@media (max-width: 1040px) {
-	/* Page shell: stock 1013 / 750 / 400 boxes → fluid */
-	html #wrapper,
-	html #content,
-	html #header,
-	html #footer,
-	html .wrapper,
-	html body > #wrapper {
-		width: 100% !important;
-		max-width: 100% !important;
-		min-width: 0 !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		box-sizing: border-box !important;
-		padding-left: max(8px, env(safe-area-inset-left, 0px)) !important;
-		padding-right: max(8px, env(safe-area-inset-right, 0px)) !important;
-	}
-
-	/* Logo: stock 700×124 collapses */
-	html .site-logo,
-	html #header .site-logo,
-	html div.site-logo {
-		width: min(700px, 100%) !important;
-		max-width: 100% !important;
-		height: auto !important;
-		min-height: 72px !important;
-		aspect-ratio: 700 / 124 !important;
-		top: 10px !important;
-		margin: 8px auto 12px auto !important;
-		background-size: contain !important;
-		background-position: center center !important;
-	}
-
-	html .site-logo__link,
-	html a.site-logo__link,
-	html #header a.site-logo__link {
-		width: 100% !important;
-		max-width: 100% !important;
-		height: auto !important;
-		min-height: 72px !important;
-		aspect-ratio: 700 / 124 !important;
-		margin-top: 0 !important;
-	}
-
-	/* Nav / search bars fluid */
-	html .main-menu,
-	html .user-info-bar,
-	html .search-bar,
-	html .tabs__bar,
-	html #nav,
-	html .page__main {
-		width: 100% !important;
-		max-width: 100% !important;
-		min-width: 0 !important;
-		box-sizing: border-box !important;
-	}
-
-	html .main-menu,
-	html .tabs__bar {
-		overflow-x: auto !important;
-		-webkit-overflow-scrolling: touch !important;
-		flex-wrap: nowrap !important;
-	}
-
-	html .main-column,
-	html .sidebar,
-	html .page__sidebar,
-	html .page__content {
-		float: none !important;
-		width: 100% !important;
-		max-width: 100% !important;
-		display: block !important;
-	}
-
-	html table {
-		font-size: 12px !important;
-		max-width: 100% !important;
-	}
-
-	html .box,
-	html .panel,
-	html .torrent-info {
-		overflow-x: auto !important;
-		-webkit-overflow-scrolling: touch !important;
-	}
-
-	html input[type="text"],
-	html input[type="password"],
-	html input[type="search"],
-	html input[type="email"],
-	html select,
-	html textarea {
-		max-width: 100% !important;
-		box-sizing: border-box !important;
-		font-size: 16px !important;
-	}
-}
-
-@media (max-width: 600px) {
-	html .site-logo,
-	html #header .site-logo,
-	html div.site-logo {
-		min-height: 56px !important;
-		top: 6px !important;
-		margin-bottom: 8px !important;
-	}
-
-	html .main-menu__link,
-	html .user-info-bar__link,
-	html .tabs__bar__link {
-		padding: 8px 10px !important;
-		font-size: 13px !important;
-		white-space: nowrap !important;
-	}
-
-	html body#login .box,
-	html body#login form {
-		width: 100% !important;
-		max-width: 100% !important;
-		box-sizing: border-box !important;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html *,
-	html *::before,
-	html *::after {
-		animation-duration: 0.01ms !important;
-		transition-duration: 0.01ms !important;
-	}
-}
-/* === MONKIES-PUBLIC-MOBILE v1 END === */
-
 /* === ptp-runner BEM fortify BEGIN ===
  * Stock Dark (Default) BEM classes from live PTP (2026) — colors only.
  * Geometry stays on official dark/style.css.
@@ -1779,7 +1600,364 @@ html #header .alert-bar {
     inset 0 0 0 1px rgba(255, 45, 149, 0.12) !important;
 }
 
-/* === ptp-runner V15 cascade-win END === */
+/*
+ * basic-movie-list (top10 / browse list view)
+ * Stock Dark owns column geometry + rating chips. External-only Runner (or
+ * content-visibility on rowspan rows) jammed Time/Size/S/L into a vertical
+ * scrap heap and flattened IMDb/MC/PTP to plain text.
+ */
+html table.basic-movie-list,
+html table.torrent_table.basic-movie-list {
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+html table.basic-movie-list > thead > tr > th,
+html table.basic-movie-list > tbody > tr > td {
+  vertical-align: top !important;
+  box-sizing: border-box !important;
+}
+/* Cover column */
+html table.basic-movie-list > thead > tr > th.small,
+html table.basic-movie-list > tbody > tr > td:first-child {
+  width: 117px !important;
+  max-width: 130px !important;
+  min-width: 100px !important;
+  padding: 6px 8px 6px 4px !important;
+}
+/* Name column fills middle */
+html table.basic-movie-list > thead > tr > th[width="100%"],
+html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td:nth-child(2) {
+  width: auto !important;
+  min-width: 280px !important;
+}
+/* Stat columns — keep a real track so nobr time/size don't wrap into mush */
+html table.basic-movie-list > thead > tr > th:nth-child(3),
+html table.basic-movie-list > thead > tr > th:nth-child(4),
+html table.basic-movie-list > thead > tr > th.sign,
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td.nobr,
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:nth-child(n + 2) {
+  white-space: nowrap !important;
+  width: 1% !important;
+  min-width: 3.2em !important;
+  text-align: right !important;
+  padding: 4px 8px !important;
+  vertical-align: middle !important;
+}
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:first-child {
+  white-space: normal !important;
+  width: auto !important;
+  min-width: 0 !important;
+  text-align: left !important;
+}
+/* Empty colspan cell on details row (placeholder for stat cols) */
+html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td[colspan="5"],
+html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td.nobr[colspan] {
+  padding: 0 !important;
+  width: 1% !important;
+  white-space: nowrap !important;
+}
+/* Kill content-visibility on list rows (rowspan) */
+html table.basic-movie-list tbody > tr,
+html .basic-movie-list__details-row,
+html .basic-movie-list__torrent-row {
+  content-visibility: visible !important;
+  contain: none !important;
+}
+
+/* Bookmark floats right of title row */
+html .basic-movie-list__movie__bookmark {
+  float: right !important;
+  margin: 0 0 0 12px !important;
+  font-size: 11px !important;
+}
+html .basic-movie-list__movie__bookmark a {
+  color: var(--ptp-text-dim) !important;
+}
+html .basic-movie-list__movie__bookmark a:hover {
+  color: var(--ptp-accent-hot) !important;
+}
+
+/* IMDb / MC / PTP rating chips (stock green-ish pills → cool cyan chips) */
+html .basic-movie-list__movie__ratings-and-tags {
+  display: block !important;
+  margin: 4px 0 2px !important;
+  line-height: 1.55 !important;
+}
+html .basic-movie-list__movie__rating-container {
+  display: inline-block !important;
+  margin: 0 6px 4px 0 !important;
+  padding: 1px 7px 2px !important;
+  border-radius: 3px !important;
+  background: rgba(94, 231, 255, 0.1) !important;
+  border: 1px solid rgba(94, 231, 255, 0.22) !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+}
+html .basic-movie-list__movie__rating__title,
+html .basic-movie-list__movie__rating__title a {
+  color: var(--ptp-text-dim) !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+html .basic-movie-list__movie__rating__rating {
+  color: var(--ptp-accent-hot) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+/* Tags — quieter chips, not giant pills */
+html .basic-movie-list__movie__tags,
+html span.basic-movie-list__movie__tags {
+  display: inline !important;
+  color: var(--ptp-text-mute) !important;
+}
+html a.basic-movie-list__movie__tag,
+html .basic-movie-list__movie__tag {
+  display: inline !important;
+  color: var(--ptp-accent-soft) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  font-size: 11px !important;
+  font-style: italic !important;
+}
+html a.basic-movie-list__movie__tag:hover {
+  color: var(--ptp-link-hover) !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Freeleech accent on format line */
+html .torrent-info__download-modifier--free,
+html .basic-movie-list__torrent-row .torrent-info__download-modifier--free {
+  color: var(--ptp-ok) !important;
+  font-weight: 650 !important;
+}
+
+/* Top10 filter card — readable fields */
+html .search-form.panel,
+html .panel.form--horizontal,
+html .search-form--narrow {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 4px !important;
+  max-width: 640px !important;
+  margin: 0 auto 16px auto !important;
+}
+html .search-form .form__input,
+html .search-form input[type="text"],
+html .search-form select {
+  background: var(--ptp-bg) !important;
+  color: var(--ptp-text) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 3px !important;
+  min-height: 28px !important;
+  padding: 4px 8px !important;
+}
+html .search-form input[type="submit"],
+html .search-form button[type="submit"] {
+  background: linear-gradient(180deg, #1a3048, #0e1a28) !important;
+  color: var(--ptp-accent-hot) !important;
+  border: 1px solid rgba(94, 231, 255, 0.35) !important;
+  border-radius: 4px !important;
+  padding: 6px 14px !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+}
+
+/* === ptp-runner V17 basic-movie-list END === */
+
+/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (ptp) — do not edit in skin; edit styles/mobile/ptp.css then re-run append-mobile-public.py === */
+/* ============================================================
+ * Public PTP skins — mobile appendix
+ * Used by: ptp-dark.css, ptp-runner.css
+ * Stock Dark uses fixed 700px logo / 1013px shell — scale down on phones.
+ * ============================================================ */
+
+/* Both Cinema Noir + Blade Runner share data-monkies-ptp-skin */
+html {
+	overflow-x: clip;
+}
+
+/*
+ * Fluid media — but NOT basic-movie-list covers.
+ * Blanket max-width:100% on img collapses table cover column (0×0): stock
+ * wants 117px thumbs; cell is content-sized; max-width:100% → circular 0.
+ */
+html img:not(.basic-movie-list__movie__cover),
+html video,
+html svg {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+/* Restore stock Dark browse thumbs (basic list / cover column) */
+html .basic-movie-list__movie__cover,
+html .basic-movie-list__movie__cover-link img {
+	max-width: none !important;
+	width: 117px !important;
+	height: auto !important;
+}
+html .basic-movie-list__movie__cover-link {
+	width: 117px !important;
+	display: block !important;
+}
+
+/*
+ * Pinwheel: only simple torrent rows. NEVER basic-movie-list details/torrent
+ * rows — rowspan/colspan + content-visibility collapses Time/Size/S/L into
+ * a jammed text stack (top10 / browse list).
+ */
+html table.torrent_table:not(.basic-movie-list) tbody > tr {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 48px;
+}
+html table.basic-movie-list tbody > tr,
+html .basic-movie-list__details-row,
+html .basic-movie-list__torrent-row {
+	content-visibility: visible !important;
+	contain: none !important;
+	contain-intrinsic-size: none !important;
+}
+
+@media (max-width: 1040px) {
+	/* Page shell: stock 1013 / 750 / 400 boxes → fluid */
+	html #wrapper,
+	html #content,
+	html #header,
+	html #footer,
+	html .wrapper,
+	html body > #wrapper {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		box-sizing: border-box !important;
+		padding-left: max(8px, env(safe-area-inset-left, 0px)) !important;
+		padding-right: max(8px, env(safe-area-inset-right, 0px)) !important;
+	}
+
+	/* Logo: stock 700×124 collapses */
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
+		width: min(700px, 100%) !important;
+		max-width: 100% !important;
+		height: auto !important;
+		min-height: 72px !important;
+		aspect-ratio: 700 / 124 !important;
+		top: 10px !important;
+		margin: 8px auto 12px auto !important;
+		background-size: contain !important;
+		background-position: center center !important;
+	}
+
+	html .site-logo__link,
+	html a.site-logo__link,
+	html #header a.site-logo__link {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto !important;
+		min-height: 72px !important;
+		aspect-ratio: 700 / 124 !important;
+		margin-top: 0 !important;
+	}
+
+	/* Nav / search bars fluid */
+	html .main-menu,
+	html .user-info-bar,
+	html .search-bar,
+	html .tabs__bar,
+	html #nav,
+	html .page__main {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		box-sizing: border-box !important;
+	}
+
+	html .main-menu,
+	html .tabs__bar {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+		flex-wrap: nowrap !important;
+	}
+
+	html .main-column,
+	html .sidebar,
+	html .page__sidebar,
+	html .page__content {
+		float: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		display: block !important;
+	}
+
+	html table {
+		font-size: 12px !important;
+		max-width: 100% !important;
+	}
+
+	html .box,
+	html .panel,
+	html .torrent-info {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+
+	html input[type="text"],
+	html input[type="password"],
+	html input[type="search"],
+	html input[type="email"],
+	html select,
+	html textarea {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		font-size: 16px !important;
+	}
+}
+
+@media (max-width: 600px) {
+	html .site-logo,
+	html #header .site-logo,
+	html div.site-logo {
+		min-height: 56px !important;
+		top: 6px !important;
+		margin-bottom: 8px !important;
+	}
+
+	html .main-menu__link,
+	html .user-info-bar__link,
+	html .tabs__bar__link {
+		padding: 8px 10px !important;
+		font-size: 13px !important;
+		white-space: nowrap !important;
+	}
+
+	html body#login .box,
+	html body#login form {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html *,
+	html *::before,
+	html *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+/* === MONKIES-PUBLIC-MOBILE v1 END === */
 
 /* ── layout fallback (no Dark base) ── */
 html body ,
@@ -2111,6 +2289,48 @@ html .last5-movies__table td {
   text-align: center !important;
   border: none !important;
   background: transparent !important;
+}
+
+/* basic-movie-list (top10 / browse) — column tracks without stock Dark */
+html table.basic-movie-list,
+html table.basic-movie-list {
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: collapse !important;
+}
+html table.basic-movie-list tbody > tr,
+html table.basic-movie-list tbody > tr {
+  content-visibility: visible !important;
+  contain: none !important;
+}
+html table.basic-movie-list .basic-movie-list__movie__cover,
+html table.basic-movie-list .basic-movie-list__movie__cover {
+  width: 117px !important;
+  max-width: none !important;
+  height: auto !important;
+  display: block !important;
+}
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td.nobr,
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td.nobr,
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:nth-child(n + 2),
+html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:nth-child(n + 2) {
+  white-space: nowrap !important;
+  width: 1% !important;
+  text-align: right !important;
+  vertical-align: middle !important;
+}
+html .basic-movie-list__movie__bookmark,
+html .basic-movie-list__movie__bookmark {
+  float: right !important;
+}
+html .basic-movie-list__movie__rating-container,
+html .basic-movie-list__movie__rating-container {
+  display: inline-block !important;
+  margin: 0 6px 4px 0 !important;
+  padding: 1px 7px 2px !important;
+  border-radius: 3px !important;
+  white-space: nowrap !important;
+  font-size: 11px !important;
 }
 
 /* Cover grids (homepage browse etc.) */

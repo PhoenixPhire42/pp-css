@@ -716,7 +716,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-09T1907Z src=58ee476 */
+/* pp-css-build: 2026-08-09T1914Z src=085ea78 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -6837,200 +6837,6 @@ body#user #userform fieldset {
 }
 /* === settings Apollo spacing END === */
 
-/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
-/* ============================================================
- * Public Gazelle skins — mobile appendix
- * Used by: phoenix-*, orpheus-matrix, redacted-synth
- * Appended by styles/append-mobile-public.py (idempotent).
- *
- * IMPORTANT: Rules that change size (font 16px, height:auto on imgs,
- * stacked columns) MUST stay inside max-width media queries.
- * Global height:auto on all imgs blew up Neo logos/header (“everything big”).
- * ============================================================ */
-
-/* Desktop-safe overflow only — no height rewrites */
-html,
-body {
-	max-width: 100% !important;
-	overflow-x: clip !important;
-}
-
-/* Scroll wrapper when stock tables are wider than the phone */
-@media (max-width: 820px) {
-	html body {
-		padding-left: env(safe-area-inset-left, 0px) !important;
-		padding-right: env(safe-area-inset-right, 0px) !important;
-	}
-
-	html body #wrapper,
-	html body #content,
-	html body #maincontent,
-	html body .thin,
-	html body #footer {
-		width: 100% !important;
-		max-width: 100% !important;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		box-sizing: border-box !important;
-		padding-left: max(6px, env(safe-area-inset-left, 0px)) !important;
-		padding-right: max(6px, env(safe-area-inset-right, 0px)) !important;
-	}
-
-	/* Media only on small screens — never force desktop logo/header huge */
-	html body img,
-	html body video,
-	html body svg,
-	html body iframe,
-	html body embed,
-	html body object {
-		max-width: 100% !important;
-		height: auto !important;
-	}
-
-	/* Keep header logos from exploding even with height:auto */
-	html body #logo img,
-	html body #header #logo img,
-	html body #logo a img {
-		max-width: min(220px, 55vw) !important;
-		max-height: 64px !important;
-		width: auto !important;
-		height: auto !important;
-		object-fit: contain !important;
-	}
-
-	html body #header,
-	html body #wrapper #header,
-	html body #main_site_menu {
-		width: 100% !important;
-		max-width: 100% !important;
-		box-sizing: border-box !important;
-		overflow-x: auto !important;
-		overflow-y: visible !important;
-		-webkit-overflow-scrolling: touch !important;
-	}
-
-	html body #logo,
-	html body #header #logo,
-	html body #logo a {
-		max-width: min(220px, 55vw) !important;
-		width: auto !important;
-		height: auto !important;
-		background-size: contain !important;
-	}
-
-	/* Two-column layouts stack */
-	html body .main_column,
-	html body .sidebar,
-	html body .two_columns .main_column,
-	html body .two_columns .sidebar,
-	html body #content .main_column,
-	html body #content .sidebar {
-		float: none !important;
-		display: block !important;
-		width: 100% !important;
-		max-width: 100% !important;
-		margin: 0 0 12px !important;
-		box-sizing: border-box !important;
-	}
-
-	html body .box,
-	html body .thin,
-	html body #content {
-		overflow-x: auto !important;
-		-webkit-overflow-scrolling: touch !important;
-	}
-
-	html body table,
-	html body .torrent_table,
-	html body #torrent_table {
-		max-width: 100% !important;
-		font-size: 12px !important;
-	}
-
-	html body .linkbox a,
-	html body .brackets,
-	html body a.brackets {
-		padding: 4px 8px !important;
-		line-height: 1.5 !important;
-	}
-
-	html body input[type="text"],
-	html body input[type="password"],
-	html body input[type="email"],
-	html body input[type="search"],
-	html body input.inputtext,
-	html body select,
-	html body textarea {
-		max-width: 100% !important;
-		box-sizing: border-box !important;
-		font-size: 16px !important; /* iOS: no focus zoom — phone only */
-	}
-
-	html body .box_image img,
-	html body .sidebar img,
-	html body #cover img,
-	html body .cover img {
-		max-width: 100% !important;
-		height: auto !important;
-	}
-
-	html body [id$="-theme-pill"],
-	html body [id*="monkies"][id*="pill"],
-	html body #monkies-pp-theme-pill,
-	html body #monkies-ops-theme-pill,
-	html body #monkies-red-theme-pill {
-		right: max(8px, env(safe-area-inset-right, 0px)) !important;
-		top: max(8px, env(safe-area-inset-top, 0px)) !important;
-		left: auto !important;
-		max-width: calc(100vw - 24px) !important;
-		z-index: 2147483000 !important;
-	}
-}
-
-@media (max-width: 520px) {
-	html body #userinfo,
-	html body #userinfo_username,
-	html body #userinfo_minor,
-	html body #userinfo_major,
-	html body #userinfo_stats,
-	html body #searchbars {
-		max-width: 100% !important;
-		box-sizing: border-box !important;
-	}
-
-	html body .header h2,
-	html body .thin > .header h2 {
-		font-size: 1.05em !important;
-		line-height: 1.3 !important;
-		word-break: break-word !important;
-	}
-
-	html body .auth_form input.inputtext,
-	html body .auth_form input[type="text"],
-	html body .auth_form input[type="password"],
-	html body .auth_form input[type="email"] {
-		width: 100% !important;
-		max-width: 100% !important;
-		flex: 1 1 100% !important;
-	}
-
-	html body .auth_form label {
-		text-align: left !important;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html body *,
-	html body *::before,
-	html body *::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
-}
-/* === MONKIES-PUBLIC-MOBILE v1 END === */
-
 /* === monkie-pub-parity v3 BEGIN — menu lock + Staff major-band + 90/100 thumbs + profile 100 === */
 @media (min-width: 576px) {
 /* pp-menu V62 Staff reparent + major-band fallback */#header{position:relative!important;overflow:visible!important}#main_site_menu,#menu,#wrapper #header #menu,#header #menu,#main_site_menu #menu{height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;box-sizing:border-box!important;flex:0 0 50px!important;position:relative!important;z-index:100!important}#menu>ul,#menu>ul.main_site_menu_inner{height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;display:flex!important;flex-flow:row nowrap!important;align-items:stretch!important;box-sizing:border-box!important;width:calc(100% - 149px)!important;position:static!important;z-index:100!important;margin:0!important;padding:0!important}#menu>ul>li:not(#nav_staff){height:50px!important;max-height:50px!important;min-height:0!important;overflow:visible!important;flex:1 1 0!important;box-sizing:border-box!important;position:relative!important;width:auto!important;z-index:1!important}#menu>ul>li:not(#nav_staff):hover,#menu>ul>li:not(#nav_staff):focus-within{z-index:300!important}#menu>ul>li:not(#nav_staff)>a{display:block!important;height:50px!important;max-height:50px!important;min-height:0!important;line-height:50px!important;overflow:hidden!important;box-sizing:border-box!important;padding-top:0!important;padding-bottom:0!important}#menu>ul>li#nav_index{flex:0 0 50px!important;max-width:50px!important;width:50px!important}#userinfo_major li#nav_staff,#userinfo_major>li#nav_staff{position:static!important;display:list-item!important;float:none!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;flex:0 0 auto!important;margin:0 0 0 8px!important;padding:0!important;background:transparent!important;background-image:none!important;border:none!important;box-shadow:none!important;list-style:none!important;font-size:14.5px!important;font-weight:400!important;line-height:1.25!important;z-index:auto!important;overflow:visible!important}#userinfo_major li#nav_staff>a,#userinfo_major #nav_staff a{display:inline!important;position:static!important;height:auto!important;line-height:1.25!important;padding:0!important;margin:0!important;width:auto!important;background:transparent!important;background-image:none!important;box-shadow:none!important;text-align:left!important;overflow:visible!important;white-space:nowrap!important;font-size:14.5px!important}#userinfo_major:has(#nav_staff){right:8px!important}#menu>ul>li#nav_staff,#header #menu li#nav_staff,#main_site_menu #menu li#nav_staff{position:absolute!important;top: -53px !important;right:8px!important;left:auto!important;bottom:auto!important;float:none!important;display:block!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;flex:0 0 0!important;z-index:200!important;margin:0!important;padding:0!important;background:transparent!important;background-image:none!important;border:none!important;box-shadow:none!important;list-style:none!important;font-size:14.5px!important;font-weight:400!important;line-height:1.25!important;overflow:visible!important}#menu>ul>li#nav_staff>a,#header #menu li#nav_staff a{display:inline!important;position:static!important;height:auto!important;line-height:1.25!important;padding:0!important;margin:0!important;width:auto!important;background:transparent!important;background-image:none!important;box-shadow:none!important;text-align:right!important;overflow:visible!important}#menu>ul>li>ul,#menu #torrent_reviews,#menu ul ul{position:absolute!important;top:100%!important;left:0!important;bottom:auto!important;z-index:1000!important;display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;flex-direction:column!important;height:auto!important;max-height:min(70vh,480px)!important;min-height:0!important;width:max-content!important;min-width:max(100%,12rem)!important;margin:0!important;padding:4px 0!important;overflow:auto!important;list-style:none!important;background:#0a140c!important;border:1px solid #1a4d1a!important;border-radius:0 0 10px 10px!important;box-shadow:0 16px 40px rgba(0,0,0,.65)!important}#menu>ul>li:hover>ul,#menu>ul>li:hover>#torrent_reviews{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}#menu>ul>li:hover>a,#menu>ul>li:focus-within>a{color:#fff!important;background-color:rgba(255,255,255,.08)!important}#menu>ul>li>ul>li,#menu #torrent_reviews>li{height:auto!important;max-height:none!important;min-height:0!important;flex:0 0 auto!important;width:100%!important;overflow:visible!important;background:transparent!important;border:none!important}#menu>ul>li>ul>li+li,#menu #torrent_reviews>li+li{border-top:1px solid rgba(255,255,255,.05)!important}#menu>ul>li>ul>li>a,#menu #torrent_reviews>li>a{display:block!important;height:auto!important;max-height:none!important;min-height:36px!important;line-height:1.35!important;padding:10px 16px!important;overflow:visible!important;white-space:nowrap!important;text-align:left!important;font-size:13px!important;font-weight:500!important;color:#c8ffc8!important;background:transparent!important;border:none!important;border-left:3px solid transparent!important;box-sizing:border-box!important}#menu>ul>li>ul>li>a:hover,#menu #torrent_reviews>li>a:hover{background:rgba(0,255,65,.14)!important;color:#fff!important;border-left-color:rgba(0,255,65,.55)!important}@media (min-width:576px){#header input[type=checkbox],#header input[type=checkbox]+label,input#mobile_main_menu,.hiden_mobile_menu,.hide-input,.mobile_header,.main_mobile_menu_toggle,#header .spinner,form#extra-hidden{display:none!important;visibility:hidden!important;width:0!important;height:0!important;opacity:0!important;pointer-events:none!important;position:absolute!important;left:-9999px!important}#extra1,#extra2,#extra3,#extra4,#extra5,#extra6{display:none!important;opacity:0!important;pointer-events:none!important}}
@@ -8241,3 +8047,197 @@ html:has(#maincontent) #monkies-pp-theme-pill {
 	}
 }
 /* === pp-neo public login fortify END === */
+
+/* === MONKIES-PUBLIC-MOBILE v1 BEGIN (gazelle) — do not edit in skin; edit styles/mobile/gazelle.css then re-run append-mobile-public.py === */
+/* ============================================================
+ * Public Gazelle skins — mobile appendix
+ * Used by: phoenix-*, orpheus-matrix, redacted-synth
+ * Appended by styles/append-mobile-public.py (idempotent).
+ *
+ * IMPORTANT: Rules that change size (font 16px, height:auto on imgs,
+ * stacked columns) MUST stay inside max-width media queries.
+ * Global height:auto on all imgs blew up Neo logos/header (“everything big”).
+ * ============================================================ */
+
+/* Desktop-safe overflow only — no height rewrites */
+html,
+body {
+	max-width: 100% !important;
+	overflow-x: clip !important;
+}
+
+/* Scroll wrapper when stock tables are wider than the phone */
+@media (max-width: 820px) {
+	html body {
+		padding-left: env(safe-area-inset-left, 0px) !important;
+		padding-right: env(safe-area-inset-right, 0px) !important;
+	}
+
+	html body #wrapper,
+	html body #content,
+	html body #maincontent,
+	html body .thin,
+	html body #footer {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		box-sizing: border-box !important;
+		padding-left: max(6px, env(safe-area-inset-left, 0px)) !important;
+		padding-right: max(6px, env(safe-area-inset-right, 0px)) !important;
+	}
+
+	/* Media only on small screens — never force desktop logo/header huge */
+	html body img,
+	html body video,
+	html body svg,
+	html body iframe,
+	html body embed,
+	html body object {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	/* Keep header logos from exploding even with height:auto */
+	html body #logo img,
+	html body #header #logo img,
+	html body #logo a img {
+		max-width: min(220px, 55vw) !important;
+		max-height: 64px !important;
+		width: auto !important;
+		height: auto !important;
+		object-fit: contain !important;
+	}
+
+	html body #header,
+	html body #wrapper #header,
+	html body #main_site_menu {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		overflow-x: auto !important;
+		overflow-y: visible !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+
+	html body #logo,
+	html body #header #logo,
+	html body #logo a {
+		max-width: min(220px, 55vw) !important;
+		width: auto !important;
+		height: auto !important;
+		background-size: contain !important;
+	}
+
+	/* Two-column layouts stack */
+	html body .main_column,
+	html body .sidebar,
+	html body .two_columns .main_column,
+	html body .two_columns .sidebar,
+	html body #content .main_column,
+	html body #content .sidebar {
+		float: none !important;
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 0 12px !important;
+		box-sizing: border-box !important;
+	}
+
+	html body .box,
+	html body .thin,
+	html body #content {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+
+	html body table,
+	html body .torrent_table,
+	html body #torrent_table {
+		max-width: 100% !important;
+		font-size: 12px !important;
+	}
+
+	html body .linkbox a,
+	html body .brackets,
+	html body a.brackets {
+		padding: 4px 8px !important;
+		line-height: 1.5 !important;
+	}
+
+	html body input[type="text"],
+	html body input[type="password"],
+	html body input[type="email"],
+	html body input[type="search"],
+	html body input.inputtext,
+	html body select,
+	html body textarea {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+		font-size: 16px !important; /* iOS: no focus zoom — phone only */
+	}
+
+	html body .box_image img,
+	html body .sidebar img,
+	html body #cover img,
+	html body .cover img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+
+	html body [id$="-theme-pill"],
+	html body [id*="monkies"][id*="pill"],
+	html body #monkies-pp-theme-pill,
+	html body #monkies-ops-theme-pill,
+	html body #monkies-red-theme-pill {
+		right: max(8px, env(safe-area-inset-right, 0px)) !important;
+		top: max(8px, env(safe-area-inset-top, 0px)) !important;
+		left: auto !important;
+		max-width: calc(100vw - 24px) !important;
+		z-index: 2147483000 !important;
+	}
+}
+
+@media (max-width: 520px) {
+	html body #userinfo,
+	html body #userinfo_username,
+	html body #userinfo_minor,
+	html body #userinfo_major,
+	html body #userinfo_stats,
+	html body #searchbars {
+		max-width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	html body .header h2,
+	html body .thin > .header h2 {
+		font-size: 1.05em !important;
+		line-height: 1.3 !important;
+		word-break: break-word !important;
+	}
+
+	html body .auth_form input.inputtext,
+	html body .auth_form input[type="text"],
+	html body .auth_form input[type="password"],
+	html body .auth_form input[type="email"] {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 1 1 100% !important;
+	}
+
+	html body .auth_form label {
+		text-align: left !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html body *,
+	html body *::before,
+	html body *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+/* === MONKIES-PUBLIC-MOBILE v1 END === */
