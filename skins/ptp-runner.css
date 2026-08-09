@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-09T1921Z src=d23587c */
+/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -1409,15 +1409,93 @@ html a.tabs__bar__link.is-selected {
   box-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
 }
 
-/* Ratings / stars */
-html .star-rating,
-html .star-rating-container,
+/* Ratings / stars — stock geometry + site sprite (was missing without Dark base) */
+html .star-rating-container {
+  display: inline-block !important;
+  padding-right: 5px !important;
+  cursor: pointer !important;
+  vertical-align: middle !important;
+}
+html .star-rating {
+  display: inline-block !important;
+  position: relative !important;
+  width: 170px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  background: url("/static/common/stars/stars.png") repeat-x !important;
+  background-image: url("/static/common/stars/stars.png") !important;
+  background-repeat: repeat-x !important;
+  cursor: pointer !important;
+  color: transparent !important;
+  overflow: hidden !important;
+}
+html .star-rating > li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html .star-rating__current-user,
+html .star-rating__site {
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  float: left !important;
+  height: 20px !important;
+  max-width: 170px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  text-indent: -9000px !important;
+  font-size: 1px !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  list-style: none !important;
+  background-image: url("/static/common/stars/stars.png") !important;
+  background-repeat: no-repeat !important;
+}
+/* Sprite rows — match stock dark/style.css */
+html .star-rating__current-user {
+  background-position: left 125px !important;
+  z-index: 19 !important;
+}
+html .star-rating__site {
+  background-position: left 100px !important;
+  z-index: 18 !important;
+}
 html .rating {
   color: var(--ptp-amber) !important;
 }
-html .star-rating__site,
-html .star-rating__current-user {
-  color: var(--ptp-text) !important;
+html .rating a {
+  color: var(--ptp-link) !important;
+}
+
+/* Group torrent rows: [DL|RP|PL] float right like stock */
+html .basic-movie-list__torrent__action,
+html span.basic-movie-list__torrent__action {
+  float: right !important;
+  margin: 0 0 0 10px !important;
+  white-space: nowrap !important;
+  color: var(--ptp-text-dim) !important;
+  font-size: 12px !important;
+}
+html .basic-movie-list__torrent__action a {
+  color: var(--ptp-link) !important;
+}
+html .basic-movie-list__torrent__action a:hover {
+  color: var(--ptp-accent-hot) !important;
+}
+html tr.group_torrent_header > td:first-child {
+  text-align: left !important;
+}
+html tr.group_torrent_header img[src*="check.png"] {
+  width: 12px !important;
+  height: 12px !important;
+  max-width: 12px !important;
+  vertical-align: middle !important;
+  margin: 0 4px 0 0 !important;
 }
 html .forum-post__movie-vote {
   background: var(--ptp-surface-2) !important;
@@ -2462,6 +2540,55 @@ html .search-form--toggleable {
   max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;
+}
+
+/* Group page torrent actions + PTP stars (stock dark/style.css) */
+html .basic-movie-list__torrent__action,
+html .basic-movie-list__torrent__action {
+  float: right !important;
+}
+html .star-rating-container,
+html .star-rating-container {
+  display: inline-block !important;
+  padding-right: 5px !important;
+}
+html .star-rating,
+html .star-rating {
+  display: inline-block !important;
+  position: relative !important;
+  width: 170px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  background: url("/static/common/stars/stars.png") repeat-x !important;
+}
+html .star-rating__current-user,
+html .star-rating__current-user,
+html .star-rating__site,
+html .star-rating__site {
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 20px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: -9000px !important;
+  font-size: 1px !important;
+  list-style: none !important;
+  background-image: url("/static/common/stars/stars.png") !important;
+  background-repeat: no-repeat !important;
+}
+html .star-rating__current-user,
+html .star-rating__current-user {
+  background-position: left 125px !important;
+  z-index: 19 !important;
+}
+html .star-rating__site,
+html .star-rating__site {
+  background-position: left 100px !important;
+  z-index: 18 !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */
