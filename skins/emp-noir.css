@@ -1,0 +1,698 @@
+/*
+ * Empornium — Cinema Noir
+ * Pure greys + black overlay on official Afterdark (layout geometry from stock).
+ * RECOMMENDED: Stylesheet = Afterdark, then External stylesheet URL = this file.
+ * Pure CSS — no userscript required (monkie emp-noir.user.js is optional).
+ *
+ * Logo: skins/assets/emp-logo-noir-header.jpg (jsDelivr)
+ *
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-noir.css
+ *
+ * Emp has no native External CSS field — use monkie styles/emp-external-css.user.js
+ * or Stylus / any userscript that injects this URL as a last stylesheet.
+ */
+/* pp-css-build: 2026-08-09T0244Z src=a27f349 */
+/* ── Tokens ───────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+  --emp-bg: #0a0a0a;
+  --emp-bg-elev: #111111;
+  --emp-surface: #161616;
+  --emp-surface-2: #1c1c1c;
+  --emp-surface-3: #242424;
+  --emp-border: #2e2e2e;
+  --emp-border-soft: rgba(255, 255, 255, 0.08);
+  --emp-text: #d8d8d8;
+  --emp-text-dim: #9a9a9a;
+  --emp-text-mute: #666666;
+  --emp-accent: #c8c8c8;
+  --emp-accent-hot: #f0f0f0;
+  --emp-link: #b0b0b0;
+  --emp-link-hover: #f2f2f2;
+  --emp-link-visited: #888888;
+  --emp-row-a: #1a1a1a;
+  --emp-row-b: #121212;
+  --emp-ok: #b0b0b0;
+  --emp-warn: #a8a8a8;
+  --emp-danger: #8a8a8a;
+  /* none until monkie injects data URL (relative assets/ → Emp 404; :8000 mixed content) */
+  --emp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/emp-logo-noir-header.jpg");
+}
+
+/* ── Base (colors only — Afterdark owns geometry) ─────── */
+html,
+body {
+  background: var(--emp-bg) none !important;
+  background-color: var(--emp-bg) !important;
+  background-image: none !important;
+  color: var(--emp-text) !important;
+}
+
+#wrapper {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+}
+
+#content {
+  background: rgba(12, 12, 12, 0.92) !important;
+  color: var(--emp-text) !important;
+  border-color: var(--emp-border) !important;
+  box-shadow: none !important;
+}
+
+.thin,
+.main_column,
+.sidebar {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+}
+
+/* ── Header chrome ────────────────────────────────────── */
+#header,
+#header_top,
+#header_bottom {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  background-image: none !important;
+  color: var(--emp-text) !important;
+  border-color: var(--emp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/*
+ * Logo — Afterdark box is 180×60 (do not change width/height/position).
+ * Compact wordmark plate fits background-size: contain inside that box.
+ * Stock afterdark sets `background: url(...) !important` on doodle — we override
+ * the full background shorthand last so we win.
+ */
+#logo {
+  background: #000 var(--emp-logo) center center / contain no-repeat !important;
+  filter: none !important;
+}
+#header #logo,
+#header_top #logo {
+  background: #000 var(--emp-logo) center center / contain no-repeat !important;
+}
+#logo a {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  /* keep stock hit target */
+}
+#logo::before,
+#logo::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+
+
+#stats_block,
+#stats_block td,
+table.userinfo_stats,
+table.userinfo_stats td {
+  background: transparent !important;
+  color: var(--emp-text-dim) !important;
+  border-color: transparent !important;
+}
+#stats_block a,
+#stats_block a:visited {
+  color: var(--emp-link) !important;
+}
+#stats_block a:hover {
+  color: var(--emp-link-hover) !important;
+}
+span.stat {
+  color: var(--emp-accent) !important;
+}
+
+/* Ratio ladder → silver scale (class names like r50) */
+span.r00, span.r01, span.r02, span.r03,
+.r00, .r01, .r02, .r03 { color: #5a5a5a !important; }
+span.r04, span.r05, span.r06,
+.r04, .r05, .r06 { color: #7a7a7a !important; }
+span.r07, span.r08, span.r09,
+.r07, .r08, .r09 { color: #9a9a9a !important; }
+span.r10, span.r20, span.r50, span.r99,
+.r10, .r20, .r50, .r99 { color: #d0d0d0 !important; }
+
+/* ── Main menu ────────────────────────────────────────── */
+#menu,
+#menu ul,
+#menu li {
+  background-color: transparent !important;
+  color: var(--emp-text) !important;
+  text-shadow: none !important;
+}
+#menu a,
+#menu a:visited {
+  color: var(--emp-accent) !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+#menu a:hover {
+  color: var(--emp-accent-hot) !important;
+  text-decoration: none !important;
+}
+#menu ul ul,
+#menu li ul {
+  background: var(--emp-surface-2) !important;
+  border: 1px solid var(--emp-border) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+}
+#menu ul ul a {
+  color: var(--emp-text) !important;
+}
+#menu ul ul a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--emp-accent-hot) !important;
+}
+
+/* ── Search bars ──────────────────────────────────────── */
+#searchbars {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+}
+#searchbars .searchcontainer {
+  background-color: var(--emp-surface-2) !important;
+  border-color: var(--emp-border) !important;
+  color: var(--emp-text) !important;
+  box-shadow: none !important;
+}
+#searchbars .searchbox,
+#searchbars input[type="text"],
+#searchbars input:not([type]) {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+  border-color: transparent !important;
+}
+#searchbars .searchbox::placeholder {
+  color: var(--emp-text-mute) !important;
+}
+#searchbars .searchbutton,
+#searchbars .icon_nav_search {
+  color: var(--emp-text-dim) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+/* ── Userinfo / major stats ───────────────────────────── */
+#header_bottom,
+#major_stats,
+#major_stats_left,
+#userinfo_major,
+#userinfo_username,
+#userinfo_major li,
+#userinfo_username li {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+  text-shadow: none !important;
+}
+#userinfo_major a,
+#userinfo_username a,
+#header_bottom a,
+#header_bottom a:visited {
+  color: var(--emp-link) !important;
+  background: transparent !important;
+}
+#userinfo_major a:hover,
+#userinfo_username a:hover,
+#header_bottom a:hover {
+  color: var(--emp-link-hover) !important;
+}
+
+/* Dropdowns under username / inbox menus */
+#userinfo_username ul ul,
+#userinfo_major ul ul,
+#userinfo_username li ul,
+#navmenu_inbox ul,
+#header_bottom ul ul {
+  background: var(--emp-surface-2) !important;
+  border: 1px solid var(--emp-border) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+}
+#userinfo_username ul ul a,
+#header_bottom ul ul a {
+  color: var(--emp-text) !important;
+}
+#userinfo_username ul ul a:hover,
+#header_bottom ul ul a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--emp-accent-hot) !important;
+}
+
+/* Icon nav — color only */
+.font_icon,
+.nav_icons,
+.icon_container,
+.icon_stack {
+  color: var(--emp-text-dim) !important;
+}
+a:hover .font_icon,
+a:hover .nav_icons {
+  color: var(--emp-accent-hot) !important;
+}
+svg.icon {
+  fill: currentColor !important;
+}
+
+/* nicebar (bonus / slots meters) — greyscale fill */
+.nicebar_container {
+  background: var(--emp-surface) !important;
+  border-color: var(--emp-border) !important;
+}
+.nicebar {
+  background: var(--emp-surface-3) !important;
+}
+
+/* ── Links (kill Afterdark #6083E8 blue + #FF6600 orange) ─
+ * High specificity: forum lists, news, blog, torrent titles.
+ * Screenshot residual blues lived in .main_column / .sidebar a.
+ */
+a,
+a:link,
+#content a,
+#content a:link,
+#wrapper a,
+#wrapper a:link,
+.thin a,
+.main_column a,
+.sidebar a,
+.box a,
+.pad a,
+.body a,
+.head a,
+.colhead a,
+.torrent_table a,
+.torrent_table .linkbox a,
+.linkbox a,
+.breadcrumbs a,
+.latest_threads a,
+.latest_threads a:link,
+table a,
+td a,
+#forums a,
+#torrents a,
+#news a,
+#blog a {
+  color: var(--emp-link) !important;
+  text-decoration: none !important;
+}
+a:visited,
+#content a:visited,
+#wrapper a:visited,
+.main_column a:visited,
+.sidebar a:visited,
+.box a:visited,
+.torrent_table a:visited,
+.torrent_table .linkbox a:visited,
+.linkbox a:visited,
+.breadcrumbs a:visited,
+.latest_threads a:visited,
+table a:visited,
+td a:visited {
+  color: var(--emp-link-visited) !important;
+}
+a:hover,
+a:focus,
+#content a:hover,
+#wrapper a:hover,
+.main_column a:hover,
+.sidebar a:hover,
+.box a:hover,
+.head a:hover,
+.torrent_table a:hover,
+.torrent_table .linkbox a:hover,
+.linkbox a:hover,
+.breadcrumbs a:hover,
+.latest_threads a:hover,
+#stats_block a:hover,
+#header_bottom a:hover,
+#menu a:hover,
+table a:hover,
+td a:hover {
+  color: var(--emp-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+/* Nuke leftover hex blues if any rule skips the cascade */
+a[href],
+#content a[href] {
+  color: var(--emp-link) !important;
+}
+
+/* ── Boxes / heads / colheads ─────────────────────────── */
+.box,
+.box .pad,
+.pad,
+.body {
+  background-color: var(--emp-surface) !important;
+  background-image: none !important;
+  color: var(--emp-text) !important;
+  border-color: var(--emp-border) !important;
+  box-shadow: none !important;
+}
+
+.head,
+.box > .head,
+.box h2,
+h2,
+h3,
+h4 {
+  background: var(--emp-surface-2) !important;
+  background-image: none !important;
+  color: var(--emp-accent) !important;
+  border-color: var(--emp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.head a,
+.box h2 a {
+  color: var(--emp-accent) !important;
+}
+.head a:hover {
+  color: var(--emp-accent-hot) !important;
+}
+
+tr.colhead,
+tr.colhead_dark,
+tr.colhead td,
+tr.colhead_dark td,
+tr.colhead th,
+.colhead,
+.colhead_dark {
+  background: var(--emp-surface-3) !important;
+  background-image: none !important;
+  color: var(--emp-accent) !important;
+  border-color: var(--emp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+tr.colhead a,
+tr.colhead_dark a,
+.colhead a {
+  color: var(--emp-accent) !important;
+}
+tr.colhead a:hover,
+.colhead a:hover {
+  color: var(--emp-accent-hot) !important;
+}
+
+/* ── Tables ───────────────────────────────────────────── */
+table {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+  border-color: var(--emp-border) !important;
+}
+td, th {
+  border-color: var(--emp-border) !important;
+  color: inherit;
+}
+
+tr.rowa,
+.rowa,
+tr.rowa td {
+  background-color: var(--emp-row-a) !important;
+  color: var(--emp-text) !important;
+}
+tr.rowb,
+.rowb,
+tr.rowb td {
+  background-color: var(--emp-row-b) !important;
+  color: var(--emp-text) !important;
+}
+tr.rowa:hover td,
+tr.rowb:hover td,
+tr.torrent:hover > td {
+  background-color: #222222 !important;
+}
+
+tr.rowa.sticky,
+tr.rowb.sticky {
+  background-color: #1a1a1e !important;
+}
+
+/* ── Forms ────────────────────────────────────────────── */
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input:not([type]),
+select,
+textarea {
+  background: var(--emp-bg) !important;
+  color: var(--emp-text) !important;
+  border: 1px solid var(--emp-border) !important;
+  box-shadow: none !important;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  outline: none !important;
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--emp-text-mute) !important;
+}
+input[type="text"]:read-only,
+input[type="text"]:-moz-read-only {
+  background: #1a1a1a !important;
+  color: var(--emp-text-mute) !important;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+.button,
+a.brackets,
+.bb_button {
+  background: var(--emp-surface-2) !important;
+  color: var(--emp-accent) !important;
+  border: 1px solid var(--emp-border) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.bb_button:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: var(--emp-accent-hot) !important;
+}
+
+/* BBCode editor chrome */
+.bb_holder,
+.bb_smiley_holder,
+.picker_holder {
+  background: var(--emp-surface) !important;
+  border-color: var(--emp-border) !important;
+  color: var(--emp-text) !important;
+}
+
+/* ── Tags / labels ────────────────────────────────────── */
+.tags a,
+.torrent_tags a,
+#torrent_tags a,
+a[href*="taglist="] {
+  color: var(--emp-text-dim) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--emp-border-soft) !important;
+}
+.tags a:hover,
+.torrent_tags a:hover {
+  color: var(--emp-accent-hot) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Freeleech / special labels → muted silver (not green neon) */
+.freeleech,
+span.freeleech,
+.torrent_label.tl_free,
+.tl_free {
+  color: var(--emp-ok) !important;
+}
+
+.important_text,
+span.red,
+.torrent_red {
+  color: #b8b8b8 !important;
+}
+.important_text_green,
+span.green,
+.torrent_green {
+  color: #c0c0c0 !important;
+}
+
+/* ── Alerts / messages ────────────────────────────────── */
+.alertbar,
+.alert,
+#alerts,
+.error_message,
+.save_message {
+  background: var(--emp-surface-2) !important;
+  border: 1px solid var(--emp-border) !important;
+  color: var(--emp-text) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* ── Forum / posts ────────────────────────────────────── */
+.forum_post,
+.post_container,
+#forums .box {
+  background: var(--emp-surface) !important;
+  border-color: var(--emp-border) !important;
+  color: var(--emp-text) !important;
+}
+blockquote,
+.bbcode blockquote,
+.spoiler {
+  background: var(--emp-bg) !important;
+  border-color: var(--emp-border) !important;
+  color: var(--emp-text-dim) !important;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+#footer,
+#footer_bottom {
+  background: transparent !important;
+  color: var(--emp-text-mute) !important;
+  border-color: var(--emp-border-soft) !important;
+  text-shadow: none !important;
+}
+#footer a,
+#footer a:visited,
+#footer p a,
+#footer p a:visited {
+  color: var(--emp-text-dim) !important;
+}
+#footer a:hover {
+  color: var(--emp-link-hover) !important;
+}
+
+/* ── Autocomplete / overlays ──────────────────────────── */
+#autoresults,
+ul#autoresults {
+  background: var(--emp-surface-2) !important;
+  border: 1px solid var(--emp-border) !important;
+  color: var(--emp-text) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+}
+#autoresults li,
+#autoresults a {
+  color: var(--emp-text) !important;
+  background: transparent !important;
+}
+#autoresults li:hover,
+#autoresults a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--emp-accent-hot) !important;
+}
+
+.lightbox,
+.curtain {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/* ── Misc Afterdark blue leftovers ────────────────────── */
+/* Heads that still used indigo #131327 or blue gradients */
+.box h2,
+#requests tr.colhead,
+#upload tr.colhead,
+#tags tr.colhead,
+#inbox tr.colhead,
+#forums tr.colhead,
+#top10 tr.colhead,
+#torrents tr.colhead,
+#staff tr.colhead,
+#collage tr.colhead,
+#staffpm tr.colhead,
+#tools tr.colhead,
+#userhistory tr.colhead,
+#user tr.colhead {
+  background-color: var(--emp-surface-3) !important;
+  background-image: none !important;
+  color: var(--emp-accent) !important;
+}
+
+/* Smallhead / tab-ish links that used #6083E8 */
+tr.smallhead a,
+tr.smallhead a:visited,
+tr.smallhead button {
+  color: var(--emp-link) !important;
+}
+tr.smallhead a:hover {
+  color: var(--emp-link-hover) !important;
+}
+
+/* BB editor hover was bright blue #6083E8 */
+a.bb_button:hover,
+.bb_icon:hover {
+  background-color: var(--emp-surface-3) !important;
+  color: var(--emp-accent-hot) !important;
+}
+
+/* Forum thread titles in news / home lists (often bare <a> with stock blue) */
+.box .pad a,
+.box .body a,
+.main_column .box a,
+.sidebar .box a,
+#content .box a {
+  color: var(--emp-link) !important;
+}
+.box .pad a:hover,
+.main_column .box a:hover,
+.sidebar .box a:hover {
+  color: var(--emp-link-hover) !important;
+}
+
+/* Category icons — leave images alone; only frame color */
+.cats_col,
+.category {
+  background-color: transparent !important;
+  border-color: var(--emp-border) !important;
+}
+
+/* Torrent grid if used */
+.torrent_grid,
+.tg_container {
+  background: transparent !important;
+  color: var(--emp-text) !important;
+}
+
+/* Code / pre */
+code,
+pre,
+code.bbcode {
+  background: var(--emp-bg) !important;
+  color: var(--emp-text-dim) !important;
+  border-color: var(--emp-border) !important;
+}
+
+/* Selection */
+::selection {
+  background: #3a3a3a;
+  color: #f0f0f0;
+}
+
+
+/* Torrent row action icons (stock blue/cyan) → silver */
+.torrent_table a img,
+.torrent_table .icon,
+td a[title*="Download"],
+.torrent_table svg.icon {
+  filter: grayscale(1) brightness(1.15) !important;
+  opacity: 0.9 !important;
+}
+/* Don't greyscale cover thumbs */
+.torrent_table .cats_col img,
+.torrent_table td:first-child img,
+.category img {
+  filter: none !important;
+  opacity: 1 !important;
+}

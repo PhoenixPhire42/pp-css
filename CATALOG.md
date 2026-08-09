@@ -12,6 +12,7 @@
 | redacted-dark | `skins/redacted-dark.css` | Redacted Dark | RED charcoal standalone |
 | redacted-synth | `skins/redacted-synth.css` | Redacted Synth | RED synthwave magenta/violet/cyan standalone |
 | broadcasthe-dark | `skins/broadcasthe-dark.css` | BTN Dark Ambient | Overlay on darknround; void + teal aurora + Imagine logo |
+| emp-noir | `skins/emp-noir.css` | Emp Cinema Noir | Empornium greyscale on Afterdark; logo `skins/assets/emp-logo-noir-header.jpg` |
 | ptp-dark | `skins/ptp-dark.css` | PTP Cinema Noir | PassThePopcorn greyscale on Dark (Default); logo in `skins/assets/ptp-logo-noir-header.png` |
 | ptp-runner | `skins/ptp-runner.css` | PTP Blade Runner | Cyan/magenta/amber neon on Dark; logo `skins/assets/ptp-logo-runner-header.jpg` |
 | thelounge-matrix | `skins/thelounge-matrix.css` | The Lounge Matrix | IRC client Custom Stylesheet |

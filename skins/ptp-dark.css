@@ -11,6 +11,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
+/* pp-css-build: 2026-08-09T0244Z src=a27f349 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1105,8 +1106,8 @@ html .search-bar {
   padding: 0.6em !important;
   margin: 0 auto !important;
   text-align: center !important;
-  border-top-right-radius: 10px !important;
-  border-top-left-radius: 10px !important;
+  border-top-right-radius: 4px !important;
+  border-top-left-radius: 4px !important;
   list-style: none !important;
   white-space: nowrap !important;
   overflow: visible !important;
@@ -1158,8 +1159,8 @@ html .search-bar input:not([type]) {
   width: auto !important;
   max-width: 9em !important;
   font-size: 0.9em !important;
-  border-radius: 10px !important;
-  padding: 2px 3px !important;
+  border-radius: 3px !important; /* stock Dark-like, not capsule pills */
+  padding: 2px 4px !important;
   margin: 0 2px !important;
   vertical-align: middle !important;
 }

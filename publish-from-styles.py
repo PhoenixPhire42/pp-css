@@ -176,6 +176,27 @@ SKINS = {
             "/skins/assets/btn-logo-ambient-header.jpg"
         ),
     },
+    "emp-noir.css": {
+        "header": """/*
+ * Empornium — Cinema Noir
+ * Pure greys + black overlay on official Afterdark (layout geometry from stock).
+ * RECOMMENDED: Stylesheet = Afterdark, then External stylesheet URL = this file.
+ * Pure CSS — no userscript required (monkie emp-noir.user.js is optional).
+ *
+ * Logo: skins/assets/emp-logo-noir-header.jpg (jsDelivr)
+ *
+ * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
+ *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-noir.css
+ *
+ * Emp has no native External CSS field — use monkie styles/emp-external-css.user.js
+ * or Stylus / any userscript that injects this URL as a last stylesheet.
+ */
+""",
+        "logo_cdn": (
+            "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
+            "/skins/assets/emp-logo-noir-header.jpg"
+        ),
+    },
     "ptp-dark.css": {
         "header": """/*
  * PassThePopcorn — Cinema Noir
@@ -329,13 +350,13 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     if not logo_cdn:
         return css
     css = re.sub(
-        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/ptp-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/(?:ptp|emp)-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
         f'url("{logo_cdn}")',
         css,
         flags=re.I,
     )
     css = re.sub(
-        r'url\(\s*["\']?(?:\.\./)*styles/assets/ptp-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
+        r'url\(\s*["\']?(?:\.\./)*(?:styles/)?assets/(?:ptp|emp)-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
         f'url("{logo_cdn}")',
         css,
         flags=re.I,
@@ -344,6 +365,15 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     if "ptp-logo" in logo_cdn:
         css = re.sub(
             r"(--ptp-logo:\s*)none(\s*;)",
+            rf'\1url("{logo_cdn}")\2',
+            css,
+            count=1,
+            flags=re.I,
+        )
+    # Emp Cinema Noir — same pattern (--emp-logo:none until monkie injects data URL)
+    if "emp-logo" in logo_cdn:
+        css = re.sub(
+            r"(--emp-logo:\s*)none(\s*;)",
             rf'\1url("{logo_cdn}")\2',
             css,
             count=1,
