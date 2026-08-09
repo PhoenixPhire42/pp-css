@@ -11,7 +11,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-09T1900Z src=b7f742c */
+/* pp-css-build: 2026-08-09T1907Z src=58ee476 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -516,12 +516,17 @@ html .movie_info {
 }
 
 html .spoiler,
-html .hidden,
 html blockquote,
 html .bbcode blockquote {
   background: var(--ptp-bg) !important;
   border-color: var(--ptp-border) !important;
   color: var(--ptp-text-dim) !important;
+}
+
+/* Utility .hidden (last5 tabs etc.) — must stay display:none */
+html .hidden,
+html table.hidden {
+  display: none !important;
 }
 
 html .forum_post,
@@ -1253,7 +1258,50 @@ html #footer {
   clear: both !important;
 }
 
-/* Cover grids (homepage Latest Torrents etc.) */
+/* Utility hide — last5 GP/Personal tab tables */
+html .hidden,
+html .hidden,
+html table.hidden,
+html table.hidden {
+  display: none !important;
+}
+
+/*
+ * Index last5 posters: empty <a.last5-movies__link style="background-image:url(...)">
+ * (not <img>). Without a box they collapse and only titles show.
+ */
+html a.last5-movies__link,
+html a.last5-movies__link,
+html .last5-movies__link,
+html .last5-movies__link {
+  display: block !important;
+  width: 117px !important;
+  height: 172px !important;
+  max-width: 100% !important;
+  margin: 0 auto 8px auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+}
+html .last5-movies__table,
+html .last5-movies__table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border: none !important;
+}
+html .last5-movies__table td,
+html .last5-movies__table td {
+  width: 20% !important;
+  vertical-align: top !important;
+  text-align: center !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Cover grids (homepage browse etc.) */
 html .cover-movie-list ,
 html .cover-movie-list {
   display: inline-block !important;

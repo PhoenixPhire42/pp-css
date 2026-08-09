@@ -294,7 +294,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 @media(min-width:575px){.thin:last-child>:not(.two_columns){margin:4px}
 #nav_donate .tooltip:after{color:red;content:"\2764\FE0F";font-size:75%;vertical-align:top}
 /* Staff — Apollo SS (match Neo PP): major-band top -53px right 8px, not stats -31px */
-/* pp-css-build: 2026-08-09T1900Z src=b7f742c */
+/* pp-css-build: 2026-08-09T1907Z src=58ee476 */
 #nav_staff{font-weight:400}
 #menu>ul>#nav_staff{display:inline;font-size:14.5px;position:absolute;right:8px;top:-53px;padding:0;max-width:none;white-space:nowrap}
 #menu>ul>#nav_staff>a{line-height:1.25;padding:0}
