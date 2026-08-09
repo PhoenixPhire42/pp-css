@@ -188,8 +188,9 @@ SKINS = {
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-noir.css
  *
- * Emp has no native External CSS field — use monkie styles/emp-external-css.user.js
- * or Stylus / any userscript that injects this URL as a last stylesheet.
+ * Emp has no native External CSS field — do not paste this into a fake Settings row.
+ * Install: Violentmonkey monkie styles/emp-noir.user.js (or Stylus @import this URL).
+ * Emp Settings → Stylesheet = Afterdark only.
  */
 """,
         "logo_cdn": (
