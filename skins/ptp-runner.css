@@ -9,7 +9,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-09T1914Z src=085ea78 */
+/* pp-css-build: 2026-08-09T1921Z src=d23587c */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -1740,8 +1740,7 @@ html .basic-movie-list__torrent-row .torrent-info__download-modifier--free {
   font-weight: 650 !important;
 }
 
-/* Top10 filter card — readable fields */
-html .search-form.panel,
+/* Top10 narrow filter card only — NOT full browse advanced form */
 html .panel.form--horizontal,
 html .search-form--narrow {
   background: var(--ptp-surface) !important;
@@ -1750,18 +1749,37 @@ html .search-form--narrow {
   max-width: 640px !important;
   margin: 0 auto 16px auto !important;
 }
+/* Browse advanced search — full width panel (stock ~content width) */
+html .filter_torrents.panel,
+html .search-form--toggleable,
+html .search-form.search-form--toggleable {
+  background: var(--ptp-surface) !important;
+  border: 1px solid var(--ptp-border) !important;
+  border-radius: 4px !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto 12px auto !important;
+  box-sizing: border-box !important;
+}
 html .search-form .form__input,
 html .search-form input[type="text"],
-html .search-form select {
+html .search-form input[type="number"],
+html .search-form select,
+html .filter_torrents .form__input,
+html .filter_torrents input[type="text"],
+html .filter_torrents select {
   background: var(--ptp-bg) !important;
   color: var(--ptp-text) !important;
   border: 1px solid var(--ptp-border) !important;
   border-radius: 3px !important;
   min-height: 28px !important;
   padding: 4px 8px !important;
+  box-sizing: border-box !important;
 }
 html .search-form input[type="submit"],
-html .search-form button[type="submit"] {
+html .search-form button[type="submit"],
+html .filter_torrents input[type="submit"],
+html .filter_torrents input[type="button"] {
   background: linear-gradient(180deg, #1a3048, #0e1a28) !important;
   color: var(--ptp-accent-hot) !important;
   border: 1px solid rgba(94, 231, 255, 0.35) !important;
@@ -1771,7 +1789,93 @@ html .search-form button[type="submit"] {
   font-weight: 600 !important;
 }
 
-/* === ptp-runner V17 basic-movie-list END === */
+/*
+ * PTP grid system (stock dark/style.css) — browse advanced search.
+ * Without this, .grid__item are block → single-column tower (Runner V17 bug).
+ * Units are tenths: grid-u-4-10 = 40%.
+ */
+html .grid {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 0 4px 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important; /* kill inline-block gaps */
+}
+html .grid::after {
+  content: "" !important;
+  display: table !important;
+  clear: both !important;
+}
+html .grid__item {
+  display: inline-block !important;
+  float: none !important;
+  vertical-align: top !important;
+  box-sizing: border-box !important;
+  padding: 0 6px 8px 0 !important;
+  margin: 0 !important;
+  font-size: 12px !important; /* restore after parent font-size:0 */
+  list-style: none !important;
+}
+/* tenths */
+html .grid-u-1-10 { width: 10% !important; }
+html .grid-u-2-10 { width: 20% !important; }
+html .grid-u-3-10 { width: 30% !important; }
+html .grid-u-4-10 { width: 40% !important; }
+html .grid-u-5-10 { width: 50% !important; }
+html .grid-u-6-10 { width: 60% !important; }
+html .grid-u-7-10 { width: 70% !important; }
+html .grid-u-8-10 { width: 80% !important; }
+html .grid-u-9-10 { width: 90% !important; }
+html .grid-u-10-10,
+html .grid-u-1 {
+  width: 100% !important;
+}
+html .grid-offset-u-1-10 { margin-left: 10% !important; }
+html .grid-offset-u-2-10 { margin-left: 20% !important; }
+/* Nested grids keep full width of parent item */
+html .grid__item > .grid {
+  width: 100% !important;
+  font-size: 0 !important;
+}
+html .grid__item .form__input.grid-u-1,
+html .grid__item input.grid-u-1,
+html .grid__item select.grid-u-1 {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+/* Checkbox / radio rows */
+html .form__checkbox-label,
+html .form__radio-label {
+  color: var(--ptp-text-dim) !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+}
+html .search-form__advanced-basic-toggler {
+  margin: 0 0 10px 0 !important;
+  font-size: 12px !important;
+}
+/* Category checkbox list — horizontal chips, not giant bullets */
+html .filter_torrents ul,
+html #filter_torrents_form ul {
+  list-style: none !important;
+  margin: 6px 0 !important;
+  padding: 0 !important;
+}
+html .filter_torrents ul > li,
+html #filter_torrents_form ul > li {
+  display: inline-block !important;
+  list-style: none !important;
+  margin: 0 12px 6px 0 !important;
+  padding: 0 !important;
+  color: var(--ptp-text) !important;
+  font-size: 12px !important;
+}
+html .filter_torrents ul > li::marker {
+  content: none !important;
+}
+
+/* === ptp-runner V18 search grid END === */
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (ptp) — do not edit in skin; edit styles/mobile/ptp.css then re-run append-mobile-public.py === */
 /* ============================================================
@@ -2289,6 +2393,75 @@ html .last5-movies__table td {
   text-align: center !important;
   border: none !important;
   background: transparent !important;
+}
+
+/*
+ * PTP .grid system — browse advanced search (stock dark/style.css).
+ * tenths: grid-u-4-10 = 40%. Without this, advanced search stacks vertically.
+ */
+html .grid,
+html .grid {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-size: 0 !important;
+}
+html .grid::after,
+html .grid::after {
+  content: "" !important;
+  display: table !important;
+  clear: both !important;
+}
+html .grid__item,
+html .grid__item {
+  display: inline-block !important;
+  vertical-align: top !important;
+  box-sizing: border-box !important;
+  padding: 0 6px 8px 0 !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+html .grid-u-1-10,
+html .grid-u-1-10 { width: 10% !important; }
+html .grid-u-2-10,
+html .grid-u-2-10 { width: 20% !important; }
+html .grid-u-3-10,
+html .grid-u-3-10 { width: 30% !important; }
+html .grid-u-4-10,
+html .grid-u-4-10 { width: 40% !important; }
+html .grid-u-5-10,
+html .grid-u-5-10 { width: 50% !important; }
+html .grid-u-6-10,
+html .grid-u-6-10 { width: 60% !important; }
+html .grid-u-7-10,
+html .grid-u-7-10 { width: 70% !important; }
+html .grid-u-8-10,
+html .grid-u-8-10 { width: 80% !important; }
+html .grid-u-9-10,
+html .grid-u-9-10 { width: 90% !important; }
+html .grid-u-10-10,
+html .grid-u-10-10,
+html .grid-u-1,
+html .grid-u-1 { width: 100% !important; }
+html .grid-offset-u-1-10,
+html .grid-offset-u-1-10 { margin-left: 10% !important; }
+html .grid-offset-u-2-10,
+html .grid-offset-u-2-10 { margin-left: 20% !important; }
+html .grid__item .form__input.grid-u-1,
+html .grid__item .form__input.grid-u-1,
+html .grid__item input.grid-u-1,
+html .grid__item input.grid-u-1 {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+html .filter_torrents.panel,
+html .filter_torrents.panel,
+html .search-form--toggleable,
+html .search-form--toggleable {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */

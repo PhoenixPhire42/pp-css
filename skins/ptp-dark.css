@@ -11,7 +11,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-09T1914Z src=085ea78 */
+/* pp-css-build: 2026-08-09T1921Z src=d23587c */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1306,6 +1306,75 @@ html .last5-movies__table td {
   text-align: center !important;
   border: none !important;
   background: transparent !important;
+}
+
+/*
+ * PTP .grid system — browse advanced search (stock dark/style.css).
+ * tenths: grid-u-4-10 = 40%. Without this, advanced search stacks vertically.
+ */
+html .grid,
+html .grid {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-size: 0 !important;
+}
+html .grid::after,
+html .grid::after {
+  content: "" !important;
+  display: table !important;
+  clear: both !important;
+}
+html .grid__item,
+html .grid__item {
+  display: inline-block !important;
+  vertical-align: top !important;
+  box-sizing: border-box !important;
+  padding: 0 6px 8px 0 !important;
+  margin: 0 !important;
+  font-size: 12px !important;
+}
+html .grid-u-1-10,
+html .grid-u-1-10 { width: 10% !important; }
+html .grid-u-2-10,
+html .grid-u-2-10 { width: 20% !important; }
+html .grid-u-3-10,
+html .grid-u-3-10 { width: 30% !important; }
+html .grid-u-4-10,
+html .grid-u-4-10 { width: 40% !important; }
+html .grid-u-5-10,
+html .grid-u-5-10 { width: 50% !important; }
+html .grid-u-6-10,
+html .grid-u-6-10 { width: 60% !important; }
+html .grid-u-7-10,
+html .grid-u-7-10 { width: 70% !important; }
+html .grid-u-8-10,
+html .grid-u-8-10 { width: 80% !important; }
+html .grid-u-9-10,
+html .grid-u-9-10 { width: 90% !important; }
+html .grid-u-10-10,
+html .grid-u-10-10,
+html .grid-u-1,
+html .grid-u-1 { width: 100% !important; }
+html .grid-offset-u-1-10,
+html .grid-offset-u-1-10 { margin-left: 10% !important; }
+html .grid-offset-u-2-10,
+html .grid-offset-u-2-10 { margin-left: 20% !important; }
+html .grid__item .form__input.grid-u-1,
+html .grid__item .form__input.grid-u-1,
+html .grid__item input.grid-u-1,
+html .grid__item input.grid-u-1 {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+html .filter_torrents.panel,
+html .filter_torrents.panel,
+html .search-form--toggleable,
+html .search-form--toggleable {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */
