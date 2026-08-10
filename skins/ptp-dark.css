@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1814Z src=daf4684 */
+/* pp-css-build: 2026-08-10T1819Z src=38c3532 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1530,13 +1530,25 @@ html .basic-movie-list__torrent__action {
   float: right !important;
 }
 /*
- * User star rating (group page #ptp_rating_td).
- * MUST use absolute https://passthepopcorn.me/… for sprites — path-absolute
- * /static/… resolves to the CSS host (jsDelivr / :8000), not PTP.
+ * User star rating (group page #ptp_rating_td) — click opens qtip popup.
+ * - Sprite URL must be absolute PTP host (CDN CSS would 404 /static/…).
+ * - Do NOT set pointer-events:none on fill layers (breaks qtip hit-testing).
+ * - Do NOT set overflow:hidden on the bar (can swallow clicks / tip).
+ * Match stock Dark geometry so Load-on-top-of-Dark stays interactive.
  */
+html #ptp_rating_td,
+html #ptp_rating_td {
+  position: relative !important;
+  z-index: 6 !important;
+  min-width: 200px !important;
+  vertical-align: middle !important;
+  pointer-events: auto !important;
+}
 html .star-rating-container,
 html .star-rating-container {
   display: inline-block !important;
+  position: relative !important;
+  z-index: 7 !important;
   padding-right: 5px !important;
   cursor: pointer !important;
   pointer-events: auto !important;
@@ -1549,6 +1561,7 @@ html .star-rating--popup-starter,
 html .star-rating--popup-starter {
   display: inline-block !important;
   position: relative !important;
+  z-index: 8 !important;
   width: 170px !important;
   height: 20px !important;
   margin: 0 !important;
@@ -1556,12 +1569,14 @@ html .star-rating--popup-starter {
   list-style: none !important;
   cursor: pointer !important;
   pointer-events: auto !important;
-  /* absolute host so CDN/external CSS still loads the sprite */
+  /* empty-star track */
   background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: repeat-x !important;
-  overflow: hidden !important;
+  background-position: left top !important;
+  overflow: visible !important; /* was hidden — blocked click/qtip */
 }
+/* Fill overlays (site avg / personal) — keep receiving events so qtip sees the target */
 html .star-rating__current-user,
 html .star-rating__current-user,
 html .star-rating__site,
@@ -1573,27 +1588,34 @@ html .star-rating__site {
   height: 20px !important;
   margin: 0 !important;
   padding: 0 !important;
+  border: 0 !important;
   text-indent: -9000px !important;
   font-size: 1px !important;
+  line-height: 20px !important;
   list-style: none !important;
-  pointer-events: none !important; /* clicks hit the ul (qtip popup) */
+  cursor: pointer !important;
+  pointer-events: auto !important;
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: no-repeat !important;
 }
+/* Stock sprite rows — match dark/style.css (y-offset into stars.png) */
 html .star-rating__current-user,
 html .star-rating__current-user {
   background-position: left 125px !important;
-  z-index: 19 !important;
+  z-index: 10 !important;
 }
 html .star-rating__site,
 html .star-rating__site {
   background-position: left 100px !important;
-  z-index: 18 !important;
+  z-index: 9 !important;
 }
-html #ptp_rating_td,
-html #ptp_rating_td {
-  min-width: 200px !important;
-  vertical-align: middle !important;
+/* qtip vote popup must sit above panels/sidebar */
+html .qtip,
+html .qtip,
+html .qtip-default,
+html .qtip-default {
+  z-index: 20000 !important;
+  pointer-events: auto !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */
