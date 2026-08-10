@@ -11,7 +11,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1729Z src=3de8fbe */
+/* pp-css-build: 2026-08-10T1747Z src=2f42d9d */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -843,6 +843,11 @@ html .basic-movie-list__torrent-row {
 	contain-intrinsic-size: none !important;
 }
 
+/*
+ * ≤1040: fluid chrome (logo / menu / shell).
+ * Keep stock Dark TWO-COLUMN group layout (715 + 250) until true phone.
+ * Old stack-at-1040 crushed Cover / Movie Info vs Dark Default on laptops.
+ */
 @media (max-width: 1040px) {
 	/* Page shell: stock 1013 / 750 / 400 boxes → fluid */
 	html #wrapper,
@@ -850,7 +855,8 @@ html .basic-movie-list__torrent-row {
 	html #header,
 	html #footer,
 	html .wrapper,
-	html body > #wrapper {
+	html body > #wrapper,
+	html .page__main-content {
 		width: 100% !important;
 		max-width: 100% !important;
 		min-width: 0 !important;
@@ -907,14 +913,22 @@ html .basic-movie-list__torrent-row {
 		flex-wrap: nowrap !important;
 	}
 
-	html .main-column,
-	html .sidebar,
-	html .page__sidebar,
-	html .page__content {
-		float: none !important;
-		width: 100% !important;
-		max-width: 100% !important;
+	/* Group page: keep Cover + Movie Info sidebar beside torrents (stock Dark) */
+	html .sidebar {
+		float: right !important;
+		width: 250px !important;
+		max-width: 32% !important;
 		display: block !important;
+		box-sizing: border-box !important;
+	}
+	html .main-column {
+		float: none !important;
+		display: block !important;
+		width: auto !important;
+		max-width: none !important;
+		margin: 0 255px 10px 0 !important;
+		overflow: hidden !important;
+		box-sizing: border-box !important;
 	}
 
 	html table {
@@ -938,6 +952,20 @@ html .basic-movie-list__torrent-row {
 		max-width: 100% !important;
 		box-sizing: border-box !important;
 		font-size: 16px !important;
+	}
+}
+
+/* Phone only: stack main + sidebar (was wrongly at 1040) */
+@media (max-width: 720px) {
+	html .main-column,
+	html .sidebar,
+	html .page__sidebar,
+	html .page__content {
+		float: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 0 1em 0 !important;
+		display: block !important;
 	}
 }
 
@@ -1279,17 +1307,38 @@ html .page__title ,
 html .page__title {
   text-align: center !important;
 }
+/*
+ * Group page two-column — stock dark/style.css:
+ *   .sidebar { float:right; width:250px }
+ *   .main-column { margin:0 255px 10px 0; width:715px }
+ * DOM order is sidebar first, then main-column. Do not stack on desktop.
+ * max-width:100% on main with margin-right:255 was crushing the sidebar
+ * (main ate full content width; Cover/Movie Info clipped).
+ */
 html .main-column ,
 html .main-column {
+  float: none !important;
+  display: block !important;
   margin: 0 255px 10px 0 !important;
   width: 715px !important;
-  max-width: 100% !important;
+  max-width: calc(100% - 255px) !important;
   overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 html .sidebar ,
 html .sidebar {
   float: right !important;
   width: 250px !important;
+  max-width: 250px !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+/* Clear floats after group two-column so Synopsis/Ratings stay full width */
+html .page__main-content::after ,
+html .page__main-content::after {
+  content: "" !important;
+  display: table !important;
+  clear: both !important;
 }
 html .panel ,
 html .panel {
