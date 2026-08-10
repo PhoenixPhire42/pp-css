@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1759Z src=54edb91 */
+/* pp-css-build: 2026-08-10T1814Z src=daf4684 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1529,13 +1529,24 @@ html .basic-movie-list__torrent__action,
 html .basic-movie-list__torrent__action {
   float: right !important;
 }
+/*
+ * User star rating (group page #ptp_rating_td).
+ * MUST use absolute https://passthepopcorn.me/… for sprites — path-absolute
+ * /static/… resolves to the CSS host (jsDelivr / :8000), not PTP.
+ */
 html .star-rating-container,
 html .star-rating-container {
   display: inline-block !important;
   padding-right: 5px !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  vertical-align: middle !important;
+  min-width: 170px !important;
 }
 html .star-rating,
-html .star-rating {
+html .star-rating,
+html .star-rating--popup-starter,
+html .star-rating--popup-starter {
   display: inline-block !important;
   position: relative !important;
   width: 170px !important;
@@ -1543,7 +1554,13 @@ html .star-rating {
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
-  background: url("/static/common/stars/stars.png") repeat-x !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  /* absolute host so CDN/external CSS still loads the sprite */
+  background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  background-repeat: repeat-x !important;
+  overflow: hidden !important;
 }
 html .star-rating__current-user,
 html .star-rating__current-user,
@@ -1559,7 +1576,8 @@ html .star-rating__site {
   text-indent: -9000px !important;
   font-size: 1px !important;
   list-style: none !important;
-  background-image: url("/static/common/stars/stars.png") !important;
+  pointer-events: none !important; /* clicks hit the ul (qtip popup) */
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: no-repeat !important;
 }
 html .star-rating__current-user,
@@ -1571,6 +1589,11 @@ html .star-rating__site,
 html .star-rating__site {
   background-position: left 100px !important;
   z-index: 18 !important;
+}
+html #ptp_rating_td,
+html #ptp_rating_td {
+  min-width: 200px !important;
+  vertical-align: middle !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */

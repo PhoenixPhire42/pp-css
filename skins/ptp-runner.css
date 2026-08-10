@@ -12,7 +12,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1759Z src=54edb91 */
+/* pp-css-build: 2026-08-10T1814Z src=daf4684 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -1359,67 +1359,34 @@ html a.tabs__bar__link.is-selected {
   box-shadow: 0 0 10px var(--ptp-glow-cyan) !important;
 }
 
-/* Ratings / stars — stock geometry + site sprite (was missing without Dark base) */
-html .star-rating-container {
-  display: inline-block !important;
-  padding-right: 5px !important;
+/*
+ * User star rating — DO NOT set background:url(/static/…).
+ * Path-absolute URLs resolve against the stylesheet origin (jsDelivr / monkie-dev),
+ * not PTP, so sprites 404 and !important hides stock Dark’s working stars.
+ * Geometry + sprites: official Dark, or ptp-dark-layout (absolute PTP URL).
+ * Paint only the text next to the control.
+ */
+html .star-rating-container,
+html .star-rating,
+html .star-rating--popup-starter {
   cursor: pointer !important;
-  vertical-align: middle !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
-html .star-rating {
-  display: inline-block !important;
-  position: relative !important;
-  width: 170px !important;
-  height: 20px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-  background: url("/static/common/stars/stars.png") repeat-x !important;
-  background-image: url("/static/common/stars/stars.png") !important;
-  background-repeat: repeat-x !important;
-  cursor: pointer !important;
-  color: transparent !important;
-  overflow: hidden !important;
-}
-html .star-rating > li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-html .star-rating__current-user,
-html .star-rating__site {
-  display: block !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  float: left !important;
-  height: 20px !important;
-  max-width: 170px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-decoration: none !important;
-  text-indent: -9000px !important;
-  font-size: 1px !important;
-  line-height: 0 !important;
-  color: transparent !important;
-  list-style: none !important;
-  background-image: url("/static/common/stars/stars.png") !important;
-  background-repeat: no-repeat !important;
-}
-/* Sprite rows — match stock dark/style.css */
-html .star-rating__current-user {
-  background-position: left 125px !important;
-  z-index: 19 !important;
-}
-html .star-rating__site {
-  background-position: left 100px !important;
-  z-index: 18 !important;
+html #ptp_rating_td,
+html #movie-ratings-table .star-rating-container {
+  min-width: 170px !important;
 }
 html .rating {
   color: var(--ptp-amber) !important;
 }
 html .rating a {
   color: var(--ptp-link) !important;
+}
+html #ptp_your_rating {
+  /* stock toggles visibility after vote — never force hidden */
+  color: var(--ptp-text-dim) !important;
 }
 
 /* Group torrent rows: [DL|RP|PL] float right like stock */
@@ -2599,13 +2566,24 @@ html .basic-movie-list__torrent__action,
 html .basic-movie-list__torrent__action {
   float: right !important;
 }
+/*
+ * User star rating (group page #ptp_rating_td).
+ * MUST use absolute https://passthepopcorn.me/… for sprites — path-absolute
+ * /static/… resolves to the CSS host (jsDelivr / :8000), not PTP.
+ */
 html .star-rating-container,
 html .star-rating-container {
   display: inline-block !important;
   padding-right: 5px !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  vertical-align: middle !important;
+  min-width: 170px !important;
 }
 html .star-rating,
-html .star-rating {
+html .star-rating,
+html .star-rating--popup-starter,
+html .star-rating--popup-starter {
   display: inline-block !important;
   position: relative !important;
   width: 170px !important;
@@ -2613,7 +2591,13 @@ html .star-rating {
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
-  background: url("/static/common/stars/stars.png") repeat-x !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  /* absolute host so CDN/external CSS still loads the sprite */
+  background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  background-repeat: repeat-x !important;
+  overflow: hidden !important;
 }
 html .star-rating__current-user,
 html .star-rating__current-user,
@@ -2629,7 +2613,8 @@ html .star-rating__site {
   text-indent: -9000px !important;
   font-size: 1px !important;
   list-style: none !important;
-  background-image: url("/static/common/stars/stars.png") !important;
+  pointer-events: none !important; /* clicks hit the ul (qtip popup) */
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: no-repeat !important;
 }
 html .star-rating__current-user,
@@ -2641,6 +2626,11 @@ html .star-rating__site,
 html .star-rating__site {
   background-position: left 100px !important;
   z-index: 18 !important;
+}
+html #ptp_rating_td,
+html #ptp_rating_td {
+  min-width: 200px !important;
+  vertical-align: middle !important;
 }
 
 /* basic-movie-list (top10 / browse) — column tracks without stock Dark */
