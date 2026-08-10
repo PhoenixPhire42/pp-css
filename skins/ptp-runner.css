@@ -12,7 +12,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1829Z src=5b11bf4 */
+/* pp-css-build: 2026-08-10T1839Z src=7882d77 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -2632,12 +2632,86 @@ html .star-rating__site {
   background-position: left 100px !important;
   z-index: 9 !important;
 }
-/* qtip vote popup must sit above panels/sidebar */
+/*
+ * qtip2 base + PTP vote tip (normally in official Dark stylesheet).
+ * Without Dark (External Replace / standalone Runner), qtip has no CSS →
+ * tip exists in DOM but is invisible / non-interactive / empty-looking.
+ * Ported from jquery.qtip defaults + dark PTP chrome.
+ */
 html .qtip,
-html .qtip,
-html .qtip-default,
-html .qtip-default {
+html .qtip {
+  position: absolute !important;
+  /* JS sets left/top/display on show — do not force display:none !important */
+  max-width: 320px !important;
+  min-width: 80px !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  direction: ltr !important;
+  padding: 0 !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
   z-index: 20000 !important;
+  pointer-events: auto !important;
+  box-sizing: border-box !important;
+}
+html .qtip-content,
+html .qtip-content,
+html .qtip-titlebar,
+html .qtip-titlebar {
+  position: relative !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+html .qtip-content,
+html .qtip-content {
+  padding: 8px 10px !important;
+  text-align: left !important;
+  word-wrap: break-word !important;
+  min-height: 1em !important;
+  color: inherit !important;
+  background: transparent !important;
+}
+html .qtip-default,
+html .qtip-default,
+html .qtip-ptp,
+html .qtip-ptp,
+html .qtip-dark,
+html .qtip-dark {
+  border: 1px solid var(--ptp-border, #2a2a2a) !important;
+  background: var(--ptp-surface-2, #1a1a1a) !important;
+  background-color: var(--ptp-surface-2, #1a1a1a) !important;
+  color: var(--ptp-text, #e6e6e6) !important;
+  border-radius: 4px !important;
+}
+/* Vote popup chrome — links/buttons must be clickable */
+html .qtip-ptp a,
+html .qtip-ptp a,
+html .qtip-content a,
+html .qtip-content a,
+html .qtip-content button,
+html .qtip-content button,
+html .qtip-content input,
+html .qtip-content input {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  color: var(--ptp-link, #6ed4e8) !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+html .qtip-ptp a:hover,
+html .qtip-ptp a:hover,
+html .qtip-content a:hover,
+html .qtip-content a:hover {
+  color: var(--ptp-accent-hot, #9af3ff) !important;
+  text-decoration: underline !important;
+}
+/* Shown tip (qtip toggles aria-hidden / removes display:none via JS) */
+html .qtip[aria-hidden="false"],
+html .qtip[aria-hidden="false"] {
+  visibility: visible !important;
+  opacity: 1 !important;
   pointer-events: auto !important;
 }
 
