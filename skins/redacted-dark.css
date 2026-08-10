@@ -1,12 +1,12 @@
 /*
  * Redacted — Dark
  * Charcoal standalone theme for redacted.sh (recolored REDStage-Sunset structure).
- * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
- * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
+ * STANDALONE external CSS (structure + theme + CDN logos). No userscript required.
+ * Logos use absolute jsDelivr urls (not relative assets/).
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-dark.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/redacted-dark.css
  */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 /*
  * Redacted Dark standalone
  * Structure: recolored REDStage-Sunset base → theme overlay. Stock skins deferred at runtime.
@@ -2854,8 +2854,8 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
 
 /* Monkie-hosted logos (stock /static/… 404 when stock deferred / external-only) */
 :root {
-	--monkies-red-logo-header: url(assets/redacted-logo-dark-header.png);
-	--monkies-red-logo-login: url(assets/redacted-logo-dark-login.png);
+	--monkies-red-logo-header: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/redacted-logo-dark-header.png");
+	--monkies-red-logo-login: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/redacted-logo-dark-login.png");
 }
 
 :root {

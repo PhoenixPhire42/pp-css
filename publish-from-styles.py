@@ -17,6 +17,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 
+# Public CDN root for standalone external CSS (jsDelivr @main).
+# Relative url(assets/…) breaks when Gazelle inlines external sheets or when
+# the CSS URL base is not …/skins/ — always rewrite to absolute CDN.
+CDN_SKINS = "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins"
+CDN_ASSETS = f"{CDN_SKINS}/assets"
+
 SKINS = {
     "phoenix-dark.css": {
         "header": """/*
@@ -134,10 +140,10 @@ SKINS = {
         "header": """/*
  * Redacted — Dark
  * Charcoal standalone theme for redacted.sh (recolored REDStage-Sunset structure).
- * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
- * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
+ * STANDALONE external CSS (structure + theme + CDN logos). No userscript required.
+ * Logos use absolute jsDelivr urls (not relative assets/).
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-dark.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/redacted-dark.css
  */
 """,
         # Monkie gates polish on html[data-monkies-redacted-skin="dark"]; drop for public.
@@ -147,13 +153,13 @@ SKINS = {
         "header": """/*
  * Redacted — Synth
  * 80s synthwave (magenta / violet / cyan neon) for redacted.sh.
- * Self-contained standalone CSS (structure + theme). Pure CSS — no userscript required.
- * Use as an external stylesheet URL on Redacted (or paste where custom CSS is allowed).
+ * STANDALONE external CSS (structure + theme + CDN logos). No userscript required.
+ * Public build ungates monkie html.mrs scope → plain html.
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-synth.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/redacted-synth.css
  */
 """,
-        # Monkie gates polish on html[data-monkies-redacted-skin="synth"]; drop for public.
+        # Monkie gates polish on html[data-monkies-redacted-skin="synth"] / html.mrs.
         "rewrite_skin_attr": "synth",
     },
     "broadcasthe-dark.css": {
@@ -346,35 +352,111 @@ def rewrite_monkies_skin_attr(css: str, skin: str) -> str:
     return pat.sub("html", css)
 
 
+def ungate_monkie_scope_classes(css: str) -> str:
+    """
+    Monkie injects html.mrs (RED Synth) / html.mrd (RED Dark) at runtime.
+    Public external CSS must not depend on those classes.
+    """
+    css = re.sub(r"\bhtml\.mrs\b", "html", css)
+    css = re.sub(r"\bhtml\.mrd\b", "html", css)
+    # Collapse accidental "html html" from chained rewrites
+    css = re.sub(r"\bhtml(\s+)html\b", r"html\1", css)
+    return css
+
+
+def ungate_for_public(css: str, rewrite_skin_attr: str | None) -> str:
+    """Drop monkie-only selector gates so the sheet works as pure external CSS."""
+    css = ungate_monkie_scope_classes(css)
+    if not rewrite_skin_attr:
+        return css
+    css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
+    # OPS Neo also keeps matrix as legacy data-skin value
+    if rewrite_skin_attr == "neo":
+        css = rewrite_monkies_skin_attr(css, "matrix")
+    # PTP layout dual-gates dark|runner — ungate sibling for public
+    if rewrite_skin_attr == "runner":
+        css = rewrite_monkies_skin_attr(css, "dark")
+    if rewrite_skin_attr == "dark":
+        css = rewrite_monkies_skin_attr(css, "runner")
+    # Mobile appendix uses bare html[data-monkies-ptp-skin] (any value)
+    if rewrite_skin_attr in ("runner", "dark"):
+        css = re.sub(
+            r"html\[data-monkies-ptp-skin\]",
+            "html",
+            css,
+            flags=re.I,
+        )
+    return css
+
+
+_ASSET_BASENAME = r"[A-Za-z0-9._@+-]+\.(?:png|jpe?g|svg|webp|gif|ico)"
+
+# url(…) pointing at monkie-local or relative assets/ → absolute jsDelivr
+_URL_LOCALHOST_ASSETS = re.compile(
+    rf"""url\(\s*(['"]?)https?://(?:127\.0\.0\.1|localhost)(?::\d+)?"""
+    rf"""/(?:styles/)?assets/({_ASSET_BASENAME})(?:\?[^'")\s]*)?\1\s*\)""",
+    re.I,
+)
+_URL_RELATIVE_ASSETS = re.compile(
+    rf"""url\(\s*(['"]?)(?:\.\./)*(?:styles/)?assets/({_ASSET_BASENAME})(?:\?[^'")\s]*)?\1\s*\)""",
+    re.I,
+)
+# Already on our CDN but wrong pin/path — normalize to CDN_ASSETS
+_URL_CDN_ASSETS = re.compile(
+    rf"""url\(\s*(['"]?)https?://cdn\.jsdelivr\.net/gh/PhoenixPhire42/pp-css@[^/]+"""
+    rf"""/skins/assets/({_ASSET_BASENAME})(?:\?[^'")\s]*)?\1\s*\)""",
+    re.I,
+)
+
+
+def _cdn_asset_url(name: str) -> str:
+    return f'url("{CDN_ASSETS}/{name}")'
+
+
+def rewrite_all_asset_urls_to_cdn(css: str) -> str:
+    """
+    Every pub skin is standalone external CSS: rewrite all local/relative
+    assets/ references to absolute jsDelivr URLs under skins/assets/.
+    Leaves data:, site-root (/svg/…), and unrelated https urls alone.
+    """
+
+    def _sub_name(m: re.Match[str]) -> str:
+        return _cdn_asset_url(m.group(2))
+
+    css = _URL_LOCALHOST_ASSETS.sub(_sub_name, css)
+    css = _URL_RELATIVE_ASSETS.sub(_sub_name, css)
+    css = _URL_CDN_ASSETS.sub(_sub_name, css)
+    return css
+
+
 def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
-    """Replace monkie-dev :8000 / relative asset logo urls with public CDN."""
+    """
+    Overlay skins (PTP/Emp/BTN) store --*-logo:none until monkie injects a data URL.
+    Public external CSS must paint the CDN logo without monkie.
+    Generic assets/ → CDN is handled by rewrite_all_asset_urls_to_cdn.
+    """
     if not logo_cdn:
         return css
-    css = re.sub(
-        r'url\(\s*["\']?https?://127\.0\.0\.1:8000/styles/assets/(?:ptp|emp)-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
-        f'url("{logo_cdn}")',
-        css,
-        flags=re.I,
-    )
-    css = re.sub(
-        r'url\(\s*["\']?(?:\.\./)*(?:styles/)?assets/(?:ptp|emp)-logo-(?:noir|runner)-header\.(?:png|jpg)(?:\?[^"\')\s]*)?["\']?\s*\)',
-        f'url("{logo_cdn}")',
-        css,
-        flags=re.I,
-    )
-    # PTP monkie uses --ptp-logo:none + GM inject; public external CSS must paint CDN logo
+    # Force known var → absolute CDN (covers :none and any prior url)
     if "ptp-logo" in logo_cdn:
         css = re.sub(
-            r"(--ptp-logo:\s*)none(\s*;)",
+            r"(--ptp-logo:\s*)(?:none|url\([^)]*\))(\s*;)",
             rf'\1url("{logo_cdn}")\2',
             css,
             count=1,
             flags=re.I,
         )
-    # Emp Cinema Noir — same pattern (--emp-logo:none until monkie injects data URL)
     if "emp-logo" in logo_cdn:
         css = re.sub(
-            r"(--emp-logo:\s*)none(\s*;)",
+            r"(--emp-logo:\s*)(?:none|url\([^)]*\))(\s*;)",
+            rf'\1url("{logo_cdn}")\2',
+            css,
+            count=1,
+            flags=re.I,
+        )
+    if "btn-logo" in logo_cdn or "ambient" in logo_cdn:
+        css = re.sub(
+            r"(--(?:btn|monkies-btn)-logo[^:]*:\s*)(?:none|url\([^)]*\))(\s*;)",
             rf'\1url("{logo_cdn}")\2',
             css,
             count=1,
@@ -384,7 +466,7 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
 
 
 _ASSET_NAME_RE = re.compile(
-    r"(?:styles/)?assets/([A-Za-z0-9._@+-]+\.(?:png|jpe?g|svg|webp|gif|ico))",
+    rf"(?:styles/)?assets/({_ASSET_BASENAME})",
     re.I,
 )
 
@@ -446,24 +528,9 @@ def render_public_css(
     css = rewrite_header(css, header)
     css = soft_clean(css)
     css = strip_internal_dnu_attr_rules(css)
-    if rewrite_skin_attr:
-        css = rewrite_monkies_skin_attr(css, rewrite_skin_attr)
-        # OPS Neo also keeps matrix as legacy data-skin value
-        if rewrite_skin_attr == "neo":
-            css = rewrite_monkies_skin_attr(css, "matrix")
-        # PTP layout dual-gates dark|runner — ungate sibling for public
-        if rewrite_skin_attr == "runner":
-            css = rewrite_monkies_skin_attr(css, "dark")
-        if rewrite_skin_attr == "dark":
-            css = rewrite_monkies_skin_attr(css, "runner")
-        # Mobile appendix uses bare html[data-monkies-ptp-skin] (any value)
-        if rewrite_skin_attr in ("runner", "dark"):
-            css = re.sub(
-                r"html\[data-monkies-ptp-skin\]",
-                "html",
-                css,
-                flags=re.I,
-            )
+    css = ungate_for_public(css, rewrite_skin_attr)
+    # Absolute CDN assets first (standalone external CSS — no monkie, no relative base)
+    css = rewrite_all_asset_urls_to_cdn(css)
     css = rewrite_logo_cdn(css, logo_cdn)
     if append_src and append_src.is_file():
         extra = append_src.read_text(encoding="utf-8")
@@ -477,6 +544,8 @@ def render_public_css(
             flags=re.I,
         )
         extra = re.sub(r"html\s*,\s*html", "html", extra)
+        extra = ungate_monkie_scope_classes(extra)
+        extra = rewrite_all_asset_urls_to_cdn(extra)
         extra = rewrite_logo_cdn(extra, logo_cdn)
         css = css.rstrip() + "\n\n/* ── layout fallback (no Dark base) ── */\n" + extra
     open_b, close_b = css.count("{"), css.count("}")

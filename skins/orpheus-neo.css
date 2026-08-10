@@ -10,7 +10,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css
  * Legacy: skins/orpheus-matrix.css (same sheet)
  */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 :root {
     --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
@@ -1052,7 +1052,7 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
         width: 200px
     }
     #header #logo a {
-        background: url(assets/orpheus-logo-matrix-header.png) 0 50% / contain no-repeat;
+        background: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/orpheus-logo-matrix-header.png") 0 50% / contain no-repeat;
         background-size: contain
     }
     #header #logo>a {
@@ -2155,7 +2155,7 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
         z-index: 400
     }
     #extra5 {
-        background-image: url(assets/orpheus-logo-matrix-header.png);
+        background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/orpheus-logo-matrix-header.png");
         background-position: 0;
         background-size: auto 30px;
         background-repeat: no-repeat;
@@ -2209,7 +2209,7 @@ tr.snatched_group div.tags:before, tr.snatched_torrent div.tags:before {
     }
     #header #logo a {
         display: inline-block;
-        background: url(assets/orpheus-logo-matrix-header.png) 50% no-repeat;
+        background: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/orpheus-logo-matrix-header.png") 50% no-repeat;
         background-size: var(--row-height);
         width: var(--row-height)
     }
@@ -2459,7 +2459,7 @@ body {
 #header #logo a,
 #header #logo > a {
 	filter: none !important;
-	background-image: url(assets/orpheus-logo-matrix-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/orpheus-logo-matrix-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: 0 50% !important;
 	background-size: contain !important;
@@ -8086,7 +8086,7 @@ html body #header #logo a {
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/orpheus-logo-matrix-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/orpheus-logo-matrix-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;

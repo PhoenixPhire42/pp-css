@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -5909,7 +5909,7 @@ html body #header #logo a {
 	min-height: 41px !important;
 	margin-top: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -5971,7 +5971,7 @@ html body #maincontent #logo > a {
 	margin: 0 auto !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-size: contain !important;
@@ -6835,7 +6835,7 @@ html body #wrapper #header #logo > a {
 	width: 300px !important;
 	height: 45px !important;
 	min-height: 45px !important;
-	background-image: background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -6858,7 +6858,7 @@ html body #maincontent #logo a {
 	display: inline-block !important;
 	width: 320px !important;
 	height: 52px !important;
-	background-image: background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
 	background-size: contain !important;
@@ -7003,7 +7003,7 @@ html body #wrapper #header #logo > a {
 	height: 48px !important;
 	min-height: 48px !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -7018,7 +7018,7 @@ html body #wrapper #header #logo > a {
 }
 html body #header #logo a img { display: none !important; }
 html body #maincontent #logo a {
-	background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-size: contain !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
@@ -7233,7 +7233,7 @@ html body #wrapper #header #logo a {
 	width: 290px !important;
 	height: 44px !important;
 	min-height: 44px !important;
-	background-image: url(assets/phoenix-logo-light-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-light-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -7273,7 +7273,7 @@ html body #maincontent #logo a[href*="index"] {
 	margin: 0 auto !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-maclite-public.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-maclite-public.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-size: contain !important;

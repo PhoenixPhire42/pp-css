@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -6301,7 +6301,7 @@ html body #header #logo a {
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-synth-header-alt.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-synth-header-alt.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -6516,7 +6516,7 @@ html body #maincontent #logo a img {
 	display: none !important;
 }
 html body #maincontent #logo a {
-	background-image: url(assets/phoenix-logo-synth-header-alt.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-synth-header-alt.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-size: contain !important;
@@ -6770,7 +6770,7 @@ html body #wrapper #header #logo > a {
 	width: 290px !important;
 	height: 46px !important;
 	min-height: 46px !important;
-	background-image: url(assets/phoenix-logo-synth-header-alt.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-synth-header-alt.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -6781,7 +6781,7 @@ html body #wrapper #header #logo > a {
 }
 html body #header #logo a img { display: none !important; }
 html body #maincontent #logo a {
-	background-image: url(assets/phoenix-logo-synth-header-alt.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-synth-header-alt.png") !important;
 	background-size: contain !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;

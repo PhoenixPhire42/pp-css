@@ -716,7 +716,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -3510,7 +3510,7 @@ html body #header #logo a {
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-neo-matrix-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-neo-matrix-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -7849,7 +7849,7 @@ html body #maincontent .maincell #logo a {
 	margin: 0 auto !important;
 	padding: 0 !important;
 	background-color: transparent !important;
-	background-image: url(assets/phoenix-logo-neo-matrix.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-neo-matrix.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-size: contain !important;

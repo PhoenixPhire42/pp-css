@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-09T1929Z src=cd1acd3 */
+/* pp-css-build: 2026-08-10T1528Z src=1dd4eb3 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -2387,7 +2387,7 @@ html #wrapper #header #logo a {
 	display: block !important;
 	width: 400px !important;
 	height: 60px !important;
-	background-image: url(assets/phoenix-logo-reborn-header.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-reborn-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
 	background-size: contain !important;
@@ -2407,7 +2407,7 @@ html #maincontent #logo a {
 	display: block !important;
 	width: 100% !important;
 	height: 100px !important;
-	background-image: url(assets/phoenix-logo-reborn-public.png) !important;
+	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-reborn-public.png") !important;
 	background-size: contain !important;
 	background-repeat: no-repeat !important;
 	background-position: center !important;
