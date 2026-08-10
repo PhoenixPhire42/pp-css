@@ -11,7 +11,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1603Z src=c5bbdf6 */
+/* pp-css-build: 2026-08-10T1727Z src=3f5ba6e */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1517,15 +1517,24 @@ html table.basic-movie-list {
   table-layout: auto !important;
   border-collapse: collapse !important;
 }
+html table.basic-movie-list > thead > tr > th,
+html table.basic-movie-list > thead > tr > th {
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  padding: 5px 8px !important;
+  box-sizing: border-box !important;
+}
 html table.basic-movie-list tbody > tr,
 html table.basic-movie-list tbody > tr {
   content-visibility: visible !important;
   contain: none !important;
 }
 html table.basic-movie-list .basic-movie-list__movie__cover,
-html table.basic-movie-list .basic-movie-list__movie__cover {
+html table.basic-movie-list .basic-movie-list__movie__cover,
+html table.basic-movie-list .basic-movie-list__movie__cover-link img,
+html table.basic-movie-list .basic-movie-list__movie__cover-link img {
   width: 117px !important;
-  max-width: none !important;
+  max-width: 117px !important;
   height: auto !important;
   display: block !important;
 }

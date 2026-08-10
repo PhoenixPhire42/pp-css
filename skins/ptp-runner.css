@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1603Z src=c5bbdf6 */
+/* pp-css-build: 2026-08-10T1727Z src=3f5ba6e */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -187,7 +187,7 @@ html .alertbar a {
   background: transparent !important;
 }
 
-/* Search strip — stock: width 1013px; margin 0 auto; padding 0.6em; text-align center */
+/* Search strip — stock Dark: width 1013px; inline fields (nowrap, no float stack) */
 html .search-bar {
   width: 1013px !important;
   max-width: 100% !important;
@@ -201,6 +201,35 @@ html .search-bar {
   border-bottom: none !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  list-style: none !important;
+}
+html .search-bar__list,
+html .search-bar > ul,
+html .search-bar ul {
+  display: inline !important;
+  list-style: none !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+}
+html .search-bar li,
+html .search-bar__search-field {
+  display: inline !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  float: none !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+}
+html .search-bar__search-field__form,
+html .search-bar form {
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /*
@@ -264,8 +293,9 @@ html #header a.site-logo__link {
   display: block !important;
   width: 700px !important;
   height: 124px !important;
-  max-width: 700px !important;
-  margin-top: 8px !important;
+  max-width: 100% !important;
+  /* stock Dark: no extra top margin on the link — parent .site-logo has top:20px */
+  margin: 0 auto !important;
   padding: 0 !important;
   border-radius: 0 !important;
 }
@@ -1682,9 +1712,8 @@ html #header .alert-bar {
 
 /*
  * basic-movie-list (top10 / browse list view)
- * Stock Dark owns column geometry + rating chips. External-only Runner (or
- * content-visibility on rowspan rows) jammed Time/Size/S/L into a vertical
- * scrap heap and flattened IMDb/MC/PTP to plain text.
+ * Match stock Dark column tracks + solid colhead bar (standalone or on-top-of-Dark).
+ * External-only Runner used to jam Time/Size/S/L into a vertical scrap heap.
  */
 html table.basic-movie-list,
 html table.torrent_table.basic-movie-list {
@@ -1693,18 +1722,41 @@ html table.torrent_table.basic-movie-list {
   border-collapse: collapse !important;
   border-spacing: 0 !important;
 }
-html table.basic-movie-list > thead > tr > th,
+/* Solid header bar — same structural weight as stock Dark colhead */
+html table.basic-movie-list > thead > tr,
+html table.basic-movie-list > thead > tr.colhead,
+html table.basic-movie-list > thead > tr.colhead_dark {
+  background: var(--ptp-surface-2) !important;
+}
+html table.basic-movie-list > thead > tr > th {
+  background: var(--ptp-surface-2) !important;
+  color: var(--ptp-accent) !important;
+  border-bottom: 1px solid var(--ptp-border) !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  padding: 5px 8px !important;
+  font-weight: 650 !important;
+  white-space: nowrap !important;
+}
 html table.basic-movie-list > tbody > tr > td {
   vertical-align: top !important;
   box-sizing: border-box !important;
 }
-/* Cover column */
+/* Cover column — stock ~117px poster track */
 html table.basic-movie-list > thead > tr > th.small,
 html table.basic-movie-list > tbody > tr > td:first-child {
   width: 117px !important;
   max-width: 130px !important;
   min-width: 100px !important;
   padding: 6px 8px 6px 4px !important;
+}
+html table.basic-movie-list .basic-movie-list__movie__cover,
+html table.basic-movie-list .basic-movie-list__movie__cover-link,
+html table.basic-movie-list .basic-movie-list__movie__cover-link img {
+  width: 117px !important;
+  max-width: 117px !important;
+  height: auto !important;
+  display: block !important;
 }
 /* Name column fills middle */
 html table.basic-movie-list > thead > tr > th[width="100%"],
@@ -2765,15 +2817,24 @@ html table.basic-movie-list {
   table-layout: auto !important;
   border-collapse: collapse !important;
 }
+html table.basic-movie-list > thead > tr > th,
+html table.basic-movie-list > thead > tr > th {
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  padding: 5px 8px !important;
+  box-sizing: border-box !important;
+}
 html table.basic-movie-list tbody > tr,
 html table.basic-movie-list tbody > tr {
   content-visibility: visible !important;
   contain: none !important;
 }
 html table.basic-movie-list .basic-movie-list__movie__cover,
-html table.basic-movie-list .basic-movie-list__movie__cover {
+html table.basic-movie-list .basic-movie-list__movie__cover,
+html table.basic-movie-list .basic-movie-list__movie__cover-link img,
+html table.basic-movie-list .basic-movie-list__movie__cover-link img {
   width: 117px !important;
-  max-width: none !important;
+  max-width: 117px !important;
   height: auto !important;
   display: block !important;
 }
