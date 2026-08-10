@@ -206,14 +206,13 @@ SKINS = {
     },
     "ptp-dark.css": {
         "header": """/*
- * PassThePopcorn — Cinema Noir
- * Pure greys + black. RECOMMENDED: Official stylesheet = Dark (Default), then
- * Append this URL (or use monkie Noir). Pure CSS — no userscript required.
- *
- * This public build includes a layout fallback so Replace mode still works.
- * Best results: keep Dark (Default) as the official site stylesheet.
+ * PassThePopcorn — Cinema Noir (paint only)
+ * Pure greys + black. STRUCTURE = official Dark (Default); this sheet is PAINT.
+ * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
+ * Standalone: layout fallback embedded (ptp-dark-layout).
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
+ * Policy: monkie styles/PTP-STRUCTURE.md
  *
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
@@ -228,13 +227,15 @@ SKINS = {
     },
     "ptp-runner.css": {
         "header": """/*
- * PassThePopcorn — Blade Runner
+ * PassThePopcorn — Blade Runner (paint only)
  * Wet neon noir: void black, cyan, magenta, amber (2049-inspired).
- * Structure mirrors official Dark (Default) — layout fallback embedded.
- * Best: External Url + “Load on top of Dark stylesheet”.
- * Standalone also works (geometry from ptp-dark-layout).
+ *
+ * STRUCTURE = official Dark (Default). This sheet is PAINT only.
+ * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
+ * Standalone: layout fallback is embedded after paint (ptp-dark-layout).
  *
  * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
+ * Policy: monkie styles/PTP-STRUCTURE.md
  *
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css

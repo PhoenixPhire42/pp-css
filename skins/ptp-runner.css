@@ -1,16 +1,18 @@
 /*
- * PassThePopcorn — Blade Runner
+ * PassThePopcorn — Blade Runner (paint only)
  * Wet neon noir: void black, cyan, magenta, amber (2049-inspired).
- * Structure mirrors official Dark (Default) — layout fallback embedded.
- * Best: External Url + “Load on top of Dark stylesheet”.
- * Standalone also works (geometry from ptp-dark-layout).
+ *
+ * STRUCTURE = official Dark (Default). This sheet is PAINT only.
+ * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
+ * Standalone: layout fallback is embedded after paint (ptp-dark-layout).
  *
  * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
+ * Policy: monkie styles/PTP-STRUCTURE.md
  *
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1757Z src=8f08f75 */
+/* pp-css-build: 2026-08-10T1759Z src=54edb91 */
 html {
   color-scheme: dark;
   /* void + cool underglow */

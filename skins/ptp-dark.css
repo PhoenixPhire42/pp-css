@@ -1,17 +1,16 @@
 /*
- * PassThePopcorn — Cinema Noir
- * Pure greys + black. RECOMMENDED: Official stylesheet = Dark (Default), then
- * Append this URL (or use monkie Noir). Pure CSS — no userscript required.
- *
- * This public build includes a layout fallback so Replace mode still works.
- * Best results: keep Dark (Default) as the official site stylesheet.
+ * PassThePopcorn — Cinema Noir (paint only)
+ * Pure greys + black. STRUCTURE = official Dark (Default); this sheet is PAINT.
+ * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
+ * Standalone: layout fallback embedded (ptp-dark-layout).
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
+ * Policy: monkie styles/PTP-STRUCTURE.md
  *
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1757Z src=8f08f75 */
+/* pp-css-build: 2026-08-10T1759Z src=54edb91 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
