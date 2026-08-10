@@ -230,8 +230,9 @@ SKINS = {
         "header": """/*
  * PassThePopcorn — Blade Runner
  * Wet neon noir: void black, cyan, magenta, amber (2049-inspired).
- * RECOMMENDED: Official stylesheet = Dark (Default), then Append this URL
- * (or monkie pill → Runner). Pure CSS — no userscript required.
+ * Structure mirrors official Dark (Default) — layout fallback embedded.
+ * Best: External Url + “Load on top of Dark stylesheet”.
+ * Standalone also works (geometry from ptp-dark-layout).
  *
  * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
  *
