@@ -154,27 +154,48 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css
 
 ### PTP skins — Noir & Blade Runner (passthepopcorn.me)
 
-Both are **overlays**. **Official stylesheet must be Dark (Default)** (`static/styles/dark/style.css`).
+**Architecture:** Dark Default owns **structure** (boxes, columns, grids).  
+Noir / Runner only **paint** (colors, logo image, neon).  
+Details: monkie `styles/PTP-STRUCTURE.md`.
 
-**Monkie (recommended)**  
-Custom CSS = **Do not load**. Fixed pill cycles: **Noir → Runner → Stock**.
+#### Supported install (required for full page parity)
 
-**No monkie — Append one of:**
+1. **Edit** → Stylesheet → **Dark (Default)** (`static/styles/dark/style.css`)
+2. **External CSS** → mode **Load on top of Dark** (not Replace / Standalone)
+3. **External URL** — pin a commit/tag (jsDelivr only):
 
 ```text
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-runner.css
 ```
 
 ```text
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css
 ```
 
-**Wrong:** `github.com/…/blob/…` as official stylesheet (breaks layout).
+4. Save → hard-refresh (⌘⇧R)
 
 | Skin | Look |
 |------|------|
-| Noir | Pure greys + silver wordmark |
-| Runner | Void black, cyan/magenta/amber neon, rain ambient |
+| **Noir** | Pure greys + silver wordmark |
+| **Runner** | Void black, cyan/magenta/amber neon |
+
+**Monkie:** Custom CSS = **Do not load**. Pill cycles **Noir → Runner → Stock**.  
+If Official Dark is missing, monkie injects `ptp-dark-layout.css` as structure fallback.
+
+**Standalone / Replace:** still ships embedded layout (parity may lag). Prefer Dark + on top.
+
+**Wrong:** `github.com/…/blob/…` or raw.githubusercontent as official sheet.
+
+#### Smoke checklist (after pin change)
+
+Compare to stock Dark — only color should differ:
+
+1. Group page — torrents left (~715) + Cover / Movie Info right (~250)  
+2. Top10 / browse list — poster + Name + stats not stacked  
+3. Advanced search — field grid side-by-side  
+4. Forums / inbox  
+5. Collage view  
+6. Phone width ≤720 — sidebar may stack (expected)
 
 Logos:
 

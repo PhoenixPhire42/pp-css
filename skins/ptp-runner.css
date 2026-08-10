@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1748Z src=5c7a6ea */
+/* pp-css-build: 2026-08-10T1757Z src=8f08f75 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -93,50 +93,19 @@ html .search-bar {
 }
 
 /*
- * Main menu — stock Dark geometry (dark/style.css):
- *   width:750px; height:28px; margin:5px auto 10px; text-align:left;
- *   border-radius:10px; opacity was 0.75 — we keep full opacity for neon.
- * box-sizing:border-box so 1px neon edge doesn't grow the box past 750.
+ * Main menu — paint only (geometry: Dark / ptp-dark-layout 750×28).
  */
 html .main-menu,
 html #header .main-menu {
-  width: 750px !important;
-  max-width: 100% !important;
-  height: 28px !important;
-  margin: 5px auto 10px auto !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
-  text-align: left !important;
-  border-radius: 10px !important;
   /* cyan neon edge (reads Runner vs stock charcoal pill) */
   border: 1px solid rgba(94, 231, 255, 0.22) !important;
   box-shadow:
     inset 0 0 0 1px rgba(94, 231, 255, 0.06),
     0 0 12px rgba(94, 231, 255, 0.08) !important;
-  z-index: 7 !important;
-  font-size: 10pt !important;
   opacity: 1 !important;
 }
-html .main-menu__list {
-  padding: 5px 0 0 0 !important;
-  margin: 0 !important;
-  text-align: center !important;
-  list-style: none !important;
-}
-html .main-menu__item {
-  display: inline !important;
-  padding: 5px !important;
-  margin: 0 !important;
-  text-align: center !important;
-  font-size: 12px !important;
-  list-style: none !important;
-}
-html .main-menu__link {
-  padding: 0.5em !important;
-}
-
 /*
  * Alert — kill stock gold plate.
  * Selectors cover BEM .alert-bar and legacy .alertbar.
@@ -187,50 +156,13 @@ html .alertbar a {
   background: transparent !important;
 }
 
-/* Search strip — stock Dark: width 1013px; inline fields (nowrap, no float stack) */
+/* Search strip — paint only (geometry: Dark / layout) */
 html .search-bar {
-  width: 1013px !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  margin-top: 0 !important;
-  padding: 0.6em !important;
-  box-sizing: border-box !important;
-  text-align: center !important;
-  border-top-left-radius: 4px !important;
-  border-top-right-radius: 4px !important;
-  border-bottom: none !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
-  white-space: nowrap !important;
-  overflow: visible !important;
-  list-style: none !important;
+  border-bottom: none !important;
 }
-html .search-bar__list,
-html .search-bar > ul,
-html .search-bar ul {
-  display: inline !important;
-  list-style: none !important;
-  margin: 0 6px !important;
-  padding: 0 !important;
-  white-space: nowrap !important;
-}
-html .search-bar li,
-html .search-bar__search-field {
-  display: inline !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: relative !important;
-  float: none !important;
-  vertical-align: middle !important;
-  white-space: nowrap !important;
-}
-html .search-bar__search-field__form,
-html .search-bar form {
-  display: inline !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+
 
 /*
  * Logo — kill stock rainbow (logo-new.png) on parent AND link.
@@ -265,17 +197,6 @@ html #header .site-logo a {
   visibility: visible !important;
 }
 
-html .site-logo,
-html #header .site-logo,
-html div.site-logo {
-  top: 20px !important;
-  width: 700px !important;
-  height: 124px !important;
-  max-width: 700px !important;
-  margin: 0 auto 20px auto !important;
-  padding: 0 !important;
-  text-align: center !important;
-}
 
 html .site-logo::before,
 html .site-logo::after,
@@ -290,15 +211,10 @@ html .site-logo__link::after {
 html .site-logo__link,
 html a.site-logo__link,
 html #header a.site-logo__link {
-  display: block !important;
-  width: 700px !important;
-  height: 124px !important;
-  max-width: 100% !important;
-  /* stock Dark: no extra top margin on the link — parent .site-logo has top:20px */
-  margin: 0 auto !important;
-  padding: 0 !important;
+  /* size from Dark / layout; paint background on parent + link above */
   border-radius: 0 !important;
 }
+
 
 /* Chrome text — cool ice (not stock grey); cyan reserved for hover */
 html .main-menu__link,
@@ -1711,18 +1627,8 @@ html #header .alert-bar {
 }
 
 /*
- * basic-movie-list (top10 / browse list view)
- * Match stock Dark column tracks + solid colhead bar (standalone or on-top-of-Dark).
- * External-only Runner used to jam Time/Size/S/L into a vertical scrap heap.
+ * basic-movie-list — paint only (column tracks in ptp-dark-layout / Dark).
  */
-html table.basic-movie-list,
-html table.torrent_table.basic-movie-list {
-  width: 100% !important;
-  table-layout: auto !important;
-  border-collapse: collapse !important;
-  border-spacing: 0 !important;
-}
-/* Solid header bar — same structural weight as stock Dark colhead */
 html table.basic-movie-list > thead > tr,
 html table.basic-movie-list > thead > tr.colhead,
 html table.basic-movie-list > thead > tr.colhead_dark {
@@ -1732,71 +1638,9 @@ html table.basic-movie-list > thead > tr > th {
   background: var(--ptp-surface-2) !important;
   color: var(--ptp-accent) !important;
   border-bottom: 1px solid var(--ptp-border) !important;
-  vertical-align: middle !important;
-  box-sizing: border-box !important;
-  padding: 5px 8px !important;
   font-weight: 650 !important;
-  white-space: nowrap !important;
 }
-html table.basic-movie-list > tbody > tr > td {
-  vertical-align: top !important;
-  box-sizing: border-box !important;
-}
-/* Cover column — stock ~117px poster track */
-html table.basic-movie-list > thead > tr > th.small,
-html table.basic-movie-list > tbody > tr > td:first-child {
-  width: 117px !important;
-  max-width: 130px !important;
-  min-width: 100px !important;
-  padding: 6px 8px 6px 4px !important;
-}
-html table.basic-movie-list .basic-movie-list__movie__cover,
-html table.basic-movie-list .basic-movie-list__movie__cover-link,
-html table.basic-movie-list .basic-movie-list__movie__cover-link img {
-  width: 117px !important;
-  max-width: 117px !important;
-  height: auto !important;
-  display: block !important;
-}
-/* Name column fills middle */
-html table.basic-movie-list > thead > tr > th[width="100%"],
-html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td:nth-child(2) {
-  width: auto !important;
-  min-width: 280px !important;
-}
-/* Stat columns — keep a real track so nobr time/size don't wrap into mush */
-html table.basic-movie-list > thead > tr > th:nth-child(3),
-html table.basic-movie-list > thead > tr > th:nth-child(4),
-html table.basic-movie-list > thead > tr > th.sign,
-html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td.nobr,
-html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:nth-child(n + 2) {
-  white-space: nowrap !important;
-  width: 1% !important;
-  min-width: 3.2em !important;
-  text-align: right !important;
-  padding: 4px 8px !important;
-  vertical-align: middle !important;
-}
-html table.basic-movie-list > tbody > tr.basic-movie-list__torrent-row > td:first-child {
-  white-space: normal !important;
-  width: auto !important;
-  min-width: 0 !important;
-  text-align: left !important;
-}
-/* Empty colspan cell on details row (placeholder for stat cols) */
-html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td[colspan="5"],
-html table.basic-movie-list > tbody > tr.basic-movie-list__details-row > td.nobr[colspan] {
-  padding: 0 !important;
-  width: 1% !important;
-  white-space: nowrap !important;
-}
-/* Kill content-visibility on list rows (rowspan) */
-html table.basic-movie-list tbody > tr,
-html .basic-movie-list__details-row,
-html .basic-movie-list__torrent-row {
-  content-visibility: visible !important;
-  contain: none !important;
-}
+
 
 /* Bookmark floats right of title row */
 html .basic-movie-list__movie__bookmark {
@@ -1997,98 +1841,21 @@ html .filter_torrents input[type="button"] {
   font-weight: 600 !important;
 }
 
-/*
- * PTP grid system (stock dark/style.css) — browse advanced search.
- * Without this, .grid__item are block → single-column tower (Runner V17 bug).
- * Units are tenths: grid-u-4-10 = 40%.
- */
-html .grid {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  margin: 0 0 4px 0 !important;
-  padding: 0 !important;
-  font-size: 0 !important; /* kill inline-block gaps */
-}
-html .grid::after {
-  content: "" !important;
-  display: table !important;
-  clear: both !important;
-}
-html .grid__item {
-  display: inline-block !important;
-  float: none !important;
-  vertical-align: top !important;
-  box-sizing: border-box !important;
-  padding: 0 6px 8px 0 !important;
-  margin: 0 !important;
-  font-size: 12px !important; /* restore after parent font-size:0 */
-  list-style: none !important;
-}
-/* tenths + halves/thirds/quarters (Edit Stylesheet uses grid-u-1-3) */
-html .grid-u-1-10 { width: 10% !important; }
-html .grid-u-2-10 { width: 20% !important; }
-html .grid-u-3-10 { width: 30% !important; }
-html .grid-u-4-10 { width: 40% !important; }
-html .grid-u-5-10 { width: 50% !important; }
-html .grid-u-6-10 { width: 60% !important; }
-html .grid-u-7-10 { width: 70% !important; }
-html .grid-u-8-10 { width: 80% !important; }
-html .grid-u-9-10 { width: 90% !important; }
-html .grid-u-10-10,
-html .grid-u-1 {
-  width: 100% !important;
-}
-html .grid-u-1-2 { width: 50% !important; }
-html .grid-u-1-3 { width: 33.3333% !important; }
-html .grid-u-2-3 { width: 66.6667% !important; }
-html .grid-u-1-4 { width: 25% !important; }
-html .grid-u-3-4 { width: 75% !important; }
-html .grid-offset-u-1-10 { margin-left: 10% !important; }
-html .grid-offset-u-2-10 { margin-left: 20% !important; }
-/* Nested grids keep full width of parent item */
-html .grid__item > .grid {
-  width: 100% !important;
-  font-size: 0 !important;
-}
-html .grid__item .form__input.grid-u-1,
-html .grid__item input.grid-u-1,
-html .grid__item select.grid-u-1 {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-/* Checkbox / radio rows */
+/* Form labels / filter list — paint only (grid geometry in ptp-dark-layout) */
 html .form__checkbox-label,
 html .form__radio-label {
   color: var(--ptp-text-dim) !important;
-  font-size: 12px !important;
-  white-space: nowrap !important;
 }
 html .search-form__advanced-basic-toggler {
-  margin: 0 0 10px 0 !important;
-  font-size: 12px !important;
-}
-/* Category checkbox list — horizontal chips, not giant bullets */
-html .filter_torrents ul,
-html #filter_torrents_form ul {
-  list-style: none !important;
-  margin: 6px 0 !important;
-  padding: 0 !important;
+  color: var(--ptp-link) !important;
 }
 html .filter_torrents ul > li,
 html #filter_torrents_form ul > li {
-  display: inline-block !important;
-  list-style: none !important;
-  margin: 0 12px 6px 0 !important;
-  padding: 0 !important;
   color: var(--ptp-text) !important;
-  font-size: 12px !important;
-}
-html .filter_torrents ul > li::marker {
-  content: none !important;
 }
 
-/* === ptp-runner V18 search grid END === */
+/* === ptp-runner grid geometry REMOVED (see ptp-dark-layout) === */
+
 
 /* === MONKIES-PUBLIC-MOBILE v1 BEGIN (ptp) — do not edit in skin; edit styles/mobile/ptp.css then re-run append-mobile-public.py === */
 /* ============================================================
