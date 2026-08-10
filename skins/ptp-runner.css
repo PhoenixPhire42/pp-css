@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1747Z src=2f42d9d */
+/* pp-css-build: 2026-08-10T1748Z src=5c7a6ea */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -2611,27 +2611,42 @@ html .page__title {
  * Group page two-column — stock dark/style.css:
  *   .sidebar { float:right; width:250px }
  *   .main-column { margin:0 255px 10px 0; width:715px }
- * DOM order is sidebar first, then main-column. Do not stack on desktop.
- * max-width:100% on main with margin-right:255 was crushing the sidebar
- * (main ate full content width; Cover/Movie Info clipped).
+ * DOM order is sidebar first, then main-column.
+ * Desktop-only (min-width 721): layout is appended after mobile appendix,
+ * so unscoped desktop rules would override phone stack. Scope both.
+ * max-width:100% on main with margin-right:255 crushed the sidebar.
  */
-html .main-column ,
-html .main-column {
-  float: none !important;
-  display: block !important;
-  margin: 0 255px 10px 0 !important;
-  width: 715px !important;
-  max-width: calc(100% - 255px) !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
+@media (min-width: 721px) {
+  html .main-column ,
+  html .main-column {
+    float: none !important;
+    display: block !important;
+    margin: 0 255px 10px 0 !important;
+    width: 715px !important;
+    max-width: calc(100% - 255px) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  html .sidebar ,
+  html .sidebar {
+    float: right !important;
+    width: 250px !important;
+    max-width: 250px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
 }
-html .sidebar ,
-html .sidebar {
-  float: right !important;
-  width: 250px !important;
-  max-width: 250px !important;
-  box-sizing: border-box !important;
-  display: block !important;
+@media (max-width: 720px) {
+  html .main-column ,
+  html .main-column ,
+  html .sidebar ,
+  html .sidebar {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1em 0 !important;
+    display: block !important;
+  }
 }
 /* Clear floats after group two-column so Synopsis/Ratings stay full width */
 html .page__main-content::after ,
