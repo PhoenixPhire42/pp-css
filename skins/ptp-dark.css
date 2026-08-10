@@ -10,7 +10,7 @@
  * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-dark.css
  */
-/* pp-css-build: 2026-08-10T1839Z src=7882d77 */
+/* pp-css-build: 2026-08-10T1848Z src=6469f49 */
 html {
   color-scheme: dark;
   --ptp-bg: #050505;
@@ -1555,8 +1555,9 @@ html .star-rating-container {
   vertical-align: middle !important;
   min-width: 170px !important;
 }
-html .star-rating,
-html .star-rating,
+/* Small bar on group page (JS uses 169px = ~170) — NOT the vote-popup big bar */
+html .star-rating:not(.star-rating--big),
+html .star-rating:not(.star-rating--big),
 html .star-rating--popup-starter,
 html .star-rating--popup-starter {
   display: inline-block !important;
@@ -1569,18 +1570,16 @@ html .star-rating--popup-starter {
   list-style: none !important;
   cursor: pointer !important;
   pointer-events: auto !important;
-  /* empty-star track */
   background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: repeat-x !important;
   background-position: left top !important;
-  overflow: visible !important; /* was hidden — blocked click/qtip */
+  overflow: visible !important;
 }
-/* Fill overlays (site avg / personal) — keep receiving events so qtip sees the target */
-html .star-rating__current-user,
-html .star-rating__current-user,
-html .star-rating__site,
-html .star-rating__site {
+html .star-rating:not(.star-rating--big) > .star-rating__current-user,
+html .star-rating:not(.star-rating--big) > .star-rating__current-user,
+html .star-rating:not(.star-rating--big) > .star-rating__site,
+html .star-rating:not(.star-rating--big) > .star-rating__site {
   display: block !important;
   position: absolute !important;
   left: 0 !important;
@@ -1598,16 +1597,144 @@ html .star-rating__site {
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: no-repeat !important;
 }
-/* Stock sprite rows — match dark/style.css (y-offset into stars.png) */
-html .star-rating__current-user,
-html .star-rating__current-user {
+html .star-rating:not(.star-rating--big) > .star-rating__current-user,
+html .star-rating:not(.star-rating--big) > .star-rating__current-user {
   background-position: left 125px !important;
   z-index: 10 !important;
 }
-html .star-rating__site,
-html .star-rating__site {
+html .star-rating:not(.star-rating--big) > .star-rating__site,
+html .star-rating:not(.star-rating--big) > .star-rating__site {
   background-position: left 100px !important;
   z-index: 9 !important;
+}
+
+/*
+ * Vote popup big bar — browse.js HandleMovieTooltipVoteWindowStarMouseMove:
+ *   oX capped 0..299, oY must be 0..39, rating = oX/299*100
+ * Our 170×20 rule was crushing --big → stars unusable for picking a score.
+ */
+html .star-rating-container--big,
+html .star-rating-container--big,
+html #MovieTooltipVoteWindowStarContainer,
+html #MovieTooltipVoteWindowStarContainer {
+  display: block !important;
+  width: 300px !important;
+  height: 40px !important;
+  margin: 0 auto 8px auto !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 9 !important;
+}
+html .star-rating--big,
+html .star-rating--big,
+html #MovieTooltipVoteWindowStar,
+html #MovieTooltipVoteWindowStar {
+  display: block !important;
+  position: relative !important;
+  width: 300px !important;
+  height: 40px !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  overflow: hidden !important;
+  /* scale 17×75 sprite → ~30×132 so one star ~30px, track 300px = 10 stars */
+  background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  background-repeat: repeat-x !important;
+  background-position: left top !important;
+  background-size: 30px 150px !important;
+}
+html .star-rating__current-user--big,
+html .star-rating__current-user--big,
+html #MovieTooltipVoteWindowCurrentStar,
+html #MovieTooltipVoteWindowCurrentStar {
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  list-style: none !important;
+  cursor: pointer !important;
+  pointer-events: none !important; /* mousemove is on container */
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: 30px 150px !important;
+  /* personal/gold row scaled (~125 * 150/75) */
+  background-position: left 250px !important;
+  z-index: 2 !important;
+}
+
+/* Vote form controls inside qtip */
+html #MovieTooltipVoteWindow,
+html #MovieTooltipVoteWindow {
+  pointer-events: auto !important;
+  text-align: center !important;
+  min-width: 300px !important;
+  color: var(--ptp-text, #e6e6e6) !important;
+}
+html #MovieTooltipVoteWindowForm,
+html #MovieTooltipVoteWindowForm {
+  display: block !important;
+  margin: 6px 0 0 0 !important;
+  pointer-events: auto !important;
+}
+html #MovieTooltipVoteWindow input[type="text"],
+html #MovieTooltipVoteWindow input[type="text"],
+html #MovieTooltipVoteWindowVoteTextInput,
+html #MovieTooltipVoteWindowVoteTextInput {
+  display: inline-block !important;
+  width: 3.5em !important;
+  min-width: 3em !important;
+  height: auto !important;
+  padding: 4px 6px !important;
+  margin: 0 4px 4px 0 !important;
+  box-sizing: border-box !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  color: var(--ptp-text, #e6e6e6) !important;
+  background: var(--ptp-bg, #0a0a0a) !important;
+  border: 1px solid var(--ptp-border, #333) !important;
+  border-radius: 3px !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+html #MovieTooltipVoteWindow input[type="submit"],
+html #MovieTooltipVoteWindow input[type="submit"],
+html #MovieTooltipVoteWindow input[type="button"],
+html #MovieTooltipVoteWindow input[type="button"] {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 3.5em !important;
+  height: auto !important;
+  padding: 4px 10px !important;
+  margin: 0 3px 4px 0 !important;
+  box-sizing: border-box !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--ptp-text, #e6e6e6) !important;
+  background: var(--ptp-surface, #121212) !important;
+  border: 1px solid var(--ptp-border, #333) !important;
+  border-radius: 3px !important;
+}
+/* Keep Remove hidden until you have a vote */
+html #MovieTooltipVoteWindow input.hidden,
+html #MovieTooltipVoteWindow input.hidden,
+html #MovieTooltipVoteWindowRemoveButton.hidden,
+html #MovieTooltipVoteWindowRemoveButton.hidden {
+  display: none !important;
 }
 /*
  * qtip2 base + PTP vote tip (normally in official Dark stylesheet).
