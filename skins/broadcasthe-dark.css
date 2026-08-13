@@ -11,7 +11,7 @@
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
-/* pp-css-build: 2026-08-13T1545Z src=3bb80a0 */
+/* pp-css-build: 2026-08-13T1553Z src=5e1d304 */
 /* ══════════════════════════════════════════════════════════
  * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
@@ -819,6 +819,14 @@ tr.rowb:hover td {
 
 table a { color: var(--btn-text) !important; }
 table a:hover { color: var(--btn-accent) !important; }
+
+/* Episode break — stock .first is 4px; 1px td borders made it invisible */
+.torrent_table tr.group_torrent.first td,
+table.torrent_table tr.group_torrent.first td,
+.torrent_table tr.group_torrent.first,
+#content table tr.group_torrent.first td {
+	border-top: 3px solid rgba(170, 195, 225, 0.55) !important;
+}
 
 /* Edit profile: long form tables */
 /* series.php also uses body#user — do not wrap every table */
