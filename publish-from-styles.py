@@ -170,7 +170,7 @@ SKINS = {
  * Pure CSS — no userscript required.
  *
  * Best: Stylesheet = darknround, then External Append this URL.
- * If External replaces maincss, geometry is re-asserted so layout still holds.
+ * Paint only — darknround owns chips, donation bar, menu, 8pt shell, stars.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
  * Use jsDelivr (Content-Type: text/css):
@@ -209,7 +209,7 @@ SKINS = {
  * PassThePopcorn — Cinema Noir (paint only)
  * Pure greys + black. STRUCTURE = official Dark (Default); this sheet is PAINT.
  * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
- * Standalone: layout fallback embedded (ptp-dark-layout).
+ * Paint only — do not embed layout (layout over Dark kills the star qtip).
  *
  * Logo: skins/assets/ptp-logo-noir-header.png (jsDelivr)
  * Policy: monkie styles/PTP-STRUCTURE.md
@@ -223,7 +223,7 @@ SKINS = {
             "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
             "/skins/assets/ptp-logo-noir-header.png"
         ),
-        "append_layout": "ptp-dark-layout.css",
+        # Dark+on-top: do not append layout (kills stock star qtip).
     },
     "ptp-runner.css": {
         "header": """/*
@@ -232,7 +232,7 @@ SKINS = {
  *
  * STRUCTURE = official Dark (Default). This sheet is PAINT only.
  * REQUIRED: Stylesheet = Dark (Default) + External = Load on top of Dark.
- * Standalone: layout fallback is embedded after paint (ptp-dark-layout).
+ * Paint only — do not embed layout (layout over Dark kills the star qtip).
  *
  * Logo: skins/assets/ptp-logo-runner-header.jpg (jsDelivr)
  * Policy: monkie styles/PTP-STRUCTURE.md
@@ -246,7 +246,7 @@ SKINS = {
             "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
             "/skins/assets/ptp-logo-runner-header.jpg"
         ),
-        "append_layout": "ptp-dark-layout.css",
+        # Dark+on-top: do not append layout (kills stock star qtip).
     },
     "thelounge-matrix.css": {
         "header": """/*

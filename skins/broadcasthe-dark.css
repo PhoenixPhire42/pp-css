@@ -5,13 +5,13 @@
  * Pure CSS — no userscript required.
  *
  * Best: Stylesheet = darknround, then External Append this URL.
- * If External replaces maincss, geometry is re-asserted so layout still holds.
+ * Paint only — darknround owns chips, donation bar, menu, 8pt shell, stars.
  *
  * IMPORTANT: Do NOT use raw.githubusercontent.com (serves text/plain; page goes blank).
  * Use jsDelivr (Content-Type: text/css):
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/broadcasthe-dark.css
  */
-/* pp-css-build: 2026-08-13T0453Z src=23757a2 */
+/* pp-css-build: 2026-08-13T1540Z src=97be654 */
 /* ══════════════════════════════════════════════════════════
  * Tokens — dark ambient
  * ══════════════════════════════════════════════════════════ */
@@ -63,13 +63,7 @@ html {
 }
 
 body {
-	width: 100% !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	font-family: var(--btn-font) !important;
-	/* Keep readable; stock is 8pt — slight bump is intentional polish */
-	font-size: 12px !important;
-	line-height: 1.5 !important;
+	/* darknround owns font-family tahoma + font-size 8pt + shell width */
 	color: var(--btn-text) !important;
 	background-color: var(--btn-bg) !important;
 	/* layered ambient aurora — replaces darknround shadow.png body bg */
@@ -95,17 +89,9 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: var(--btn-font) !important;
 	color: var(--btn-text) !important;
-	font-weight: 700 !important;
-	margin: 8px 0 !important;
 }
-h2 {
-	font-size: 1.25rem !important;
-	text-align: center !important;
-}
-h3 {
-	font-size: 1.05rem !important;
+h2, h3 {
 	text-align: center !important;
 }
 h1.hidden {
@@ -123,42 +109,47 @@ p { margin: 8px 5px; color: var(--btn-text-dim); }
 	color: var(--btn-text-dim);
 }
 
-img { border: none; max-width: 100%; }
+img { border: none; }
 
-/* Stock BTN helper: hide labels / submit buttons in searchbars (was in skin, not global.css) */
+/* Stock darknround: .hidden parks off-screen (searchbar labels). Do not clip/size. */
 .hidden {
-	position: absolute !important;
-	left: -10000px !important;
-	width: 1px !important;
-	height: 1px !important;
-	overflow: hidden !important;
-	clip: rect(0, 0, 0, 0) !important;
+	position: absolute;
+	left: -10000px;
 }
-input.hidden,
-input[type="submit"].hidden,
-button.hidden {
-	display: none !important;
-	position: absolute !important;
-	left: -10000px !important;
+input.hidden {
+	position: absolute;
+	display: none;
 }
 
-/* Forms — solid fills (inputs need opacity for readability) */
-input, select, textarea, button {
-	font-family: var(--btn-font) !important;
-	font-size: 12.5px !important;
+/* Forms — color only. Never pad/size radios (hover-rating stars on series). */
+input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]):not([type="image"]),
+select,
+textarea,
+button:not(.star) {
 	color: var(--btn-text) !important;
 	background: var(--btn-surface-2-solid) !important;
 	border: 1px solid var(--btn-border) !important;
-	border-radius: var(--btn-radius-sm) !important;
-	padding: 6px 10px !important;
 	outline: none !important;
 }
-input:hover, select:hover, textarea:hover {
+/* hover-rating.css owns .star-rating geometry — do not restyle */
+.star-rating,
+.star-rating input,
+.star-rating label,
+.star-rating .rating,
+.star-rating .rating-bg,
+.star-rating .rating-consensus {
+	font-size: inherit;
+	max-width: none;
+}
+input:not([type="radio"]):not([type="checkbox"]):hover,
+select:hover,
+textarea:hover {
 	border-color: var(--btn-border-strong) !important;
 }
-input:focus, select:focus, textarea:focus {
+input:not([type="radio"]):not([type="checkbox"]):focus,
+select:focus,
+textarea:focus {
 	border-color: var(--btn-accent) !important;
-	box-shadow: 0 0 0 3px var(--btn-accent-dim) !important;
 }
 input[type="submit"]:not(.hidden),
 input[type="button"]:not(.hidden),
@@ -181,49 +172,28 @@ button:not(.hidden):hover {
 .r20, .r50, .r99 { color: var(--btn-ok) !important; }
 
 /* ══════════════════════════════════════════════════════════
- * Shell — stock darknround sizes, ambient surfaces
+ * Shell — paint only (darknround owns 980/960 sizes)
  * ══════════════════════════════════════════════════════════ */
 #wrapper {
-	width: 980px !important;
-	max-width: calc(100vw - 16px) !important;
-	margin: 5px auto !important;
-	padding: 0 5px !important;
-	/* recolor stock t2.png shell */
+	/* recolor stock t2.png shell — do not change width/margin */
 	background:
 		linear-gradient(165deg, rgba(16, 22, 36, 0.88) 0%, rgba(8, 10, 16, 0.94) 55%, rgba(10, 12, 20, 0.96) 100%) !important;
-	border: 4px solid #0c1018 !important;
-	border-radius: 0.75em !important;
+	border-color: #0c1018 !important;
 	box-shadow:
 		var(--btn-shadow),
 		inset 0 1px 0 rgba(160, 200, 255, 0.05) !important;
 }
 
 #header {
-	width: 960px !important;
-	max-width: 100% !important;
-	margin: 0 auto !important;
-	padding: 0 !important;
-	position: relative !important;
-	/* stock: no min-height — chips sit absolute over logo */
-	min-height: 0 !important;
+	/* stock: relative, 960 — leave geometry to darknround */
 }
 
 #content {
-	width: 960px !important;
-	max-width: 100% !important;
-	margin: 10px auto !important;
-	overflow: hidden !important;
-	position: relative !important;
+	overflow: visible !important;
 }
 
 #footer {
-	width: 960px !important;
-	max-width: 100% !important;
-	margin: 40px auto 0 !important;
-	padding: 1em 0 !important;
-	text-align: center !important;
 	color: var(--btn-text-mute) !important;
-	font-size: 11px !important;
 	border-top: 1px solid var(--btn-border) !important;
 }
 #footer a { color: var(--btn-text-dim) !important; }
@@ -234,10 +204,8 @@ button:not(.hidden):hover {
  * darknround uses head.png; we swap image only.
  */
 #logo {
-	width: 960px !important;
-	max-width: 100% !important;
-	height: 140px !important;
-	margin: 0 0 8px 0 !important; /* flush with header — chips align cleanly */
+	/* stock 960×140 + margin-bottom 10px — swap image only */
+	position: relative !important;
 	background-color: #020308 !important;
 	background-image:
 		radial-gradient(ellipse 70% 90% at 28% 50%, rgba(94, 200, 232, 0.10), transparent 60%),
@@ -246,13 +214,9 @@ button:not(.hidden):hover {
 	background-repeat: no-repeat !important;
 	background-position: center center, center center, center center !important;
 	background-size: cover, cover, cover !important;
-	border-radius: var(--btn-radius-sm) !important;
-	border: 1px solid var(--btn-border) !important;
 	box-shadow:
 		0 0 40px rgba(94, 200, 232, 0.08),
 		inset 0 0 60px rgba(0, 0, 0, 0.35) !important;
-	overflow: hidden !important;
-	position: relative !important;
 }
 #logo::after {
 	content: "";
@@ -263,87 +227,19 @@ button:not(.hidden):hover {
 	border-radius: inherit;
 }
 #logo a {
-	display: block !important;
-	width: 960px !important;
-	max-width: 100% !important;
-	height: 140px !important;
 	border: none !important;
-	position: relative !important;
-	z-index: 1 !important;
 }
 
 /*
- * Donation — glass pill stacked under #userinfo_major (same right edge).
- * Screenshot V5 still floated donations on the far right of the banner;
- * pin under Upload/Invite/Donate, leave stats as a full bar below.
- * #header is position:relative; logo ~140px tall.
+ * Donation — stock darknround: top 75px, right -30px, width 120px, bar PNGs.
+ * Paint text only; do not hide #DonBk/#DonBr or restack the pill.
  */
 #donation {
-	position: absolute !important;
-	display: block !important;
-	width: auto !important;
-	min-width: 0 !important;
-	max-width: 110px !important;
-	height: auto !important;
-	/* major chip ~ top 16–18px, height ~50 → sit just under it */
-	top: 58px !important;
-	right: 8px !important;
-	left: auto !important;
-	z-index: 1003 !important;
-	font-size: 10.5px !important;
-	text-align: center !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	pointer-events: auto !important;
 	color: var(--btn-text-dim) !important;
-}
-#donation > div {
-	position: relative !important;
-	width: auto !important;
-	height: auto !important;
-	margin: 0 !important;
-	padding: 4px 9px !important;
-	background: rgba(8, 12, 18, 0.88) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 10px !important;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
-	overflow: hidden !important;
-	box-sizing: border-box !important;
-}
-/* Kill stock bar PNGs + absolute stack */
-#donation img,
-#DonBk img,
-#DonBr img,
-#DonBk,
-#DonBr {
-	display: none !important;
-}
-#donation div div {
-	position: static !important;
-	display: inline !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-#DonInfo {
-	position: static !important;
-	width: auto !important;
-	line-height: 1.25 !important;
-	text-indent: 0 !important;
-	top: auto !important;
-	left: auto !important;
-	display: inline !important;
 }
 #donation a,
 #DonInfo a {
 	color: var(--btn-accent-soft) !important;
-	font-weight: 650 !important;
-	font-size: 10.5px !important;
-	text-decoration: none !important;
-	text-shadow: none !important;
-	letter-spacing: 0.01em !important;
-	white-space: nowrap !important;
 }
 #donation a:hover,
 #DonInfo a:hover {
@@ -351,126 +247,40 @@ button:not(.hidden):hover {
 }
 
 /* ══════════════════════════════════════════════════════════
- * Userinfo chips — compact top-right cluster (clear wordmark)
- * Ambient glass was wider than stock; stock anchors left them on the logo.
+ * Userinfo chips — stock darknround anchors, ambient paint
+ * username top -145 / right 160 · major -145 / 65 · stats -50 / 65
  * ══════════════════════════════════════════════════════════ */
 #userinfo {
-	position: relative !important;
 	color: var(--btn-text-dim) !important;
-	font-size: 11px !important;
-}
-#userinfo ul {
-	list-style: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-#userinfo li {
-	display: inline !important;
-	margin: 0 !important;
-	line-height: 1.25 !important;
-	vertical-align: middle !important;
-	padding: 0 !important;
 }
 #userinfo a { color: var(--btn-text) !important; }
 #userinfo a:hover { color: var(--btn-accent-soft) !important; }
 #userinfo .username {
-	font-weight: 700 !important;
 	color: var(--btn-accent) !important;
 }
 #userinfo span.stat {
 	color: var(--btn-text) !important;
-	font-variant-numeric: tabular-nums;
 }
 
-/* Shared compact glass for account chips */
 #userinfo_username,
 #userinfo_major,
 #userinfo_stats {
-	background: rgba(8, 12, 18, 0.82) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 10px !important;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
-	text-shadow: none !important;
-	font-size: 11px !important;
-	line-height: 1.3 !important;
-	box-sizing: border-box !important;
+	background: rgba(8, 12, 18, 0.88) !important;
+	border-color: var(--btn-border) !important;
+	color: var(--btn-accent) !important;
 }
-
-/*
- * Top-right stack over dark sky of logo (not over BroadcasTheNet wordmark).
- * username | major side-by-side; stats full width under them.
- */
 #userinfo_username {
-	position: absolute !important;
-	top: -132px !important;
-	right: 108px !important;
-	z-index: 1001 !important;
-	display: block !important;
-	padding: 4px 8px !important;
-	min-width: 0 !important;
-	max-width: 120px !important;
-	color: var(--btn-accent) !important;
+	top: -145px !important;
+	right: 160px !important;
 }
-#userinfo_username li {
-	display: block !important;
-	text-align: right !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	line-height: 1.3 !important;
-}
-#userinfo_username .username {
-	font-size: 11.5px !important;
-	letter-spacing: 0.01em !important;
-}
-
 #userinfo_major {
-	position: absolute !important;
-	top: -132px !important;
-	right: 8px !important;
-	z-index: 1001 !important;
-	display: block !important;
-	padding: 4px 8px !important;
-	min-width: 0 !important;
-	max-width: 92px !important;
-	color: var(--btn-accent) !important;
+	top: -145px !important;
+	right: 65px !important;
 }
-#userinfo_major li {
-	display: block !important;
-	text-align: left !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	white-space: nowrap !important;
-	line-height: 1.3 !important;
-}
-#userinfo_major a { font-weight: 650 !important; }
-
-/*
- * Stats — bottom of logo, full right edge under the major+donation stack.
- * top -42 ≈ lower third of 140px logo (userinfo sits just under logo).
- */
 #userinfo_stats {
-	position: absolute !important;
-	top: -42px !important;
-	right: 8px !important;
-	z-index: 1001 !important;
-	display: block !important;
-	padding: 4px 10px !important;
+	top: -50px !important;
+	right: 65px !important;
 	color: var(--btn-text-dim) !important;
-	white-space: nowrap !important;
-	text-align: right !important;
-	width: auto !important;
-	max-width: calc(100% - 16px) !important;
-	font-size: 10.5px !important;
-}
-#userinfo_stats li {
-	display: inline !important;
-	margin: 0 0.35em 0 0 !important;
-	padding: 0 !important;
-}
-#userinfo_stats li:last-child {
-	margin-right: 0 !important;
 }
 #userinfo_stats a {
 	color: var(--btn-accent) !important;
@@ -478,22 +288,7 @@ button:not(.hidden):hover {
 #userinfo_stats .stat,
 #userinfo_stats #pointsStats,
 #userinfo_stats #toplumens {
-	font-weight: 600 !important;
 	color: var(--btn-text) !important;
-}
-
-#userinfo_minor {
-	position: absolute !important;
-	top: -119px !important;
-	left: 50% !important;
-	margin-left: -492px !important;
-	width: 975px !important;
-	text-align: right !important;
-	font-size: 8pt !important;
-	z-index: -1 !important;
-	list-style: none !important;
-	padding: 2px 5px !important;
-	pointer-events: none !important;
 }
 
 /* brackets helpers */
@@ -508,154 +303,34 @@ button:not(.hidden):hover {
  * "#menu ul.potato-menu-group" or the root bar becomes a dropdown.
  * Submenu hide/show is in global.css (visibility/opacity + :hover).
  * ══════════════════════════════════════════════════════════ */
-/* Stock #menu: 960 wide, margin-top -26px, line-height 30, padding 2px */
+/* Paint only — global.css / darknround own hover show-hide + 160px dropdowns */
 #menu {
-	width: 960px !important;
-	max-width: 100% !important;
-	margin: -26px 0 0 0 !important;
-	padding: 2px !important;
-	text-align: center !important;
 	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 0.875em !important;
+	border-color: var(--btn-border) !important;
 	box-shadow:
 		var(--btn-shadow-soft),
 		inset 0 1px 0 rgba(160, 200, 255, 0.05),
 		0 0 24px rgba(94, 200, 232, 0.04) !important;
-	backdrop-filter: blur(14px) saturate(1.15);
-	-webkit-backdrop-filter: blur(14px) saturate(1.15);
-	font-size: 1em !important;
-	line-height: 30px !important;
-	list-style: none !important;
-	position: relative !important;
-	z-index: 100 !important;
 	overflow: visible !important;
-	text-shadow: 1px 1px 1px #111 !important;
 }
-
-/* Root bar only */
-#menu1,
-ul.potato-menu.potato-menu-group {
-	margin: 0 auto !important;
-	padding: 0 !important;
-	list-style: none !important;
-	position: relative !important;
-	display: inline-block !important;
-	text-align: left !important;
-	float: none !important;
-	width: auto !important;
-	left: auto !important;
-	top: auto !important;
-	background: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
-}
-
-#menu1:after,
-ul.potato-menu:after {
-	content: " ";
-	display: block;
-	visibility: hidden;
-	clear: both;
-	height: 0.1px;
-	font-size: 0.1em;
-	line-height: 0;
-}
-
-/* Top-level items */
-ul.potato-menu > li.potato-menu-item {
-	margin: 0 !important;
-	padding: 0 !important;
-	position: relative !important;
-	list-style: none !important;
-	list-style-position: outside !important;
-	display: inline !important;
-	float: left !important;
-	background: transparent !important;
-	border: none !important;
-}
-
-/* Stock potato top links: height/line-height 30, padding 0 20px */
-ul.potato-menu > li.potato-menu-item > a {
-	display: block !important;
-	padding: 0 20px !important;
-	height: 30px !important;
-	line-height: 30px !important;
-	overflow: hidden !important;
-	white-space: nowrap !important;
+#menu ul li a {
 	color: var(--btn-text) !important;
-	font-weight: 700 !important;
-	font-size: inherit !important;
-	border-radius: var(--btn-radius-sm) !important;
-	outline: 0 !important;
-	vertical-align: middle !important;
-	text-decoration: none !important;
-	width: auto !important;
-	background: transparent !important;
 }
-
 ul.potato-menu > li.potato-menu-item > a:hover,
-ul.potato-menu > li.potato-menu-hover > a {
+ul.potato-menu > li.potato-menu-hover > a,
+#menu ul li a:hover {
 	color: var(--btn-text) !important;
 	background: var(--btn-accent-dim) !important;
 }
-
-/* Nested dropdown panels ONLY (not #menu1 itself) */
-ul.potato-menu > li > ul.potato-menu-group,
-/* Nested dropdown panels ONLY (not #menu1). Stock width 160. */
 ul.potato-menu ul.potato-menu-group {
-	margin: 0 !important;
-	padding: 0 !important;
-	position: absolute !important;
-	z-index: 1000 !important;
-	left: 0 !important;
-	top: 100% !important;
 	background: rgba(8, 11, 18, 0.94) !important;
 	border: 1px solid var(--btn-border-strong) !important;
-	border-radius: var(--btn-radius-sm) !important;
 	box-shadow: var(--btn-shadow), 0 0 28px rgba(94, 200, 232, 0.08) !important;
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
-	width: 160px !important;
-	text-align: left !important;
-	list-style: none !important;
-	/* reinforce global.css hide; hover reveals */
-	visibility: hidden !important;
-	opacity: 0 !important;
 }
-
-ul.potato-menu > li:hover > ul.potato-menu-group,
-ul.potato-menu > li.potato-menu-hover > ul.potato-menu-group,
-.potato-menu-item:hover > ul.potato-menu-group {
-	visibility: visible !important;
-	opacity: 1 !important;
-	transition: visibility 0ms linear 80ms, opacity 100ms linear 80ms;
-}
-
-ul.potato-menu ul.potato-menu-group > li.potato-menu-item {
-	float: none !important;
-	display: block !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	position: relative !important;
-	width: 100% !important;
-}
-
-ul.potato-menu ul.potato-menu-group > li.potato-menu-item > a {
-	display: block !important;
-	width: 140px !important;
-	height: auto !important;
-	line-height: 1.35 !important;
-	padding: 0 10px !important;
+ul.potato-menu ul.potato-menu-group a {
 	color: var(--btn-text-dim) !important;
-	font-weight: 600 !important;
-	font-size: inherit !important;
-	border-radius: 0 !important;
-	overflow: visible !important;
-	background: transparent !important;
 }
-
-ul.potato-menu ul.potato-menu-group > li.potato-menu-item > a:hover {
+ul.potato-menu ul.potato-menu-group a:hover {
 	background: var(--btn-accent-dim) !important;
 	color: var(--btn-accent-soft) !important;
 }
@@ -663,39 +338,7 @@ ul.potato-menu ul.potato-menu-group > li.potato-menu-item > a:hover {
 /* ══════════════════════════════════════════════════════════
  * Search bars (inline row under nav)
  * ══════════════════════════════════════════════════════════ */
-/* Stock searchbars: 945 wide */
-#searchbars {
-	width: 945px !important;
-	max-width: 100% !important;
-	margin: 0 auto !important;
-	padding: 4px 0 !important;
-	text-align: center !important;
-	position: relative !important;
-	z-index: 50 !important;
-}
-
-#searchbars ul {
-	margin: 0 auto !important;
-	padding: 0 !important;
-	list-style: none !important;
-	display: block !important;
-	text-align: center !important;
-}
-
-#searchbars ul li {
-	display: inline-block !important;
-	margin: 3px 2px !important;
-	padding: 0 !important;
-	list-style: none !important;
-	vertical-align: middle !important;
-	float: none !important;
-}
-
-#searchbars ul li form {
-	display: inline !important;
-	margin: 0 !important;
-}
-
+/* Searchbars — paint only (stock 945 / input sizes) */
 #searchbars input[type="text"],
 #searchbars input:not([type="submit"]):not([type="hidden"]),
 input#series,
@@ -704,20 +347,9 @@ input#actor,
 input#request,
 input#forum,
 input#user-search {
-	position: relative !important;
-	display: inline-block !important;
-	width: 118px !important;
-	min-width: 0 !important;
-	max-width: 140px !important;
-	padding: 6px 10px !important;
-	font-size: 12px !important;
 	background: var(--btn-surface-solid) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 999px !important;
+	border-color: var(--btn-border) !important;
 	color: var(--btn-text) !important;
-	box-shadow:
-		inset 0 1px 4px rgba(0, 0, 0, 0.45),
-		0 0 12px rgba(94, 200, 232, 0.04) !important;
 }
 
 #searchbars input::placeholder {
@@ -741,19 +373,14 @@ input#user-search {
  * ══════════════════════════════════════════════════════════ */
 .box,
 div.box {
-	font-size: 13px !important;
+	/* stock font-size 8pt — do not bump; overflow visible so dropdowns/stars work */
 	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: var(--btn-radius) !important;
+	border-color: var(--btn-border) !important;
 	color: var(--btn-text) !important;
-	margin: 0 5px 12px 5px !important;
+	overflow: visible !important;
 	box-shadow:
 		var(--btn-shadow-soft),
 		inset 0 1px 0 rgba(160, 200, 255, 0.04) !important;
-	overflow: hidden !important;
-	list-style: none !important;
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
 }
 
 .box > .head,
@@ -767,10 +394,6 @@ div.head,
 	border-radius: 0 !important;
 	color: var(--btn-accent-soft) !important;
 	font-weight: 700 !important;
-	font-size: 12px !important;
-	letter-spacing: 0.04em !important;
-	padding: 10px 14px !important;
-	margin: 0 !important;
 	text-shadow: 0 0 18px rgba(94, 200, 232, 0.25);
 }
 
@@ -783,76 +406,26 @@ div.head,
 .box .pad,
 .box .body,
 .pad {
-	padding: 12px !important;
 	background: transparent !important;
 	color: var(--btn-text-dim) !important;
-	border: none !important;
 }
 
-/*
- * Columns — stock darknround:
- *   .main_column 590 float left (default pages)
- *   home: .main_column float right, .sidebar float left
- *   #content .home .main_column 590
- */
-.main_column {
-	float: left !important;
-	width: 590px !important;
-	max-width: 100% !important;
-	margin: 0 0 10px 0 !important;
-}
-/* Stock default: sidebar right 250 */
-.sidebar {
-	float: right !important;
-	width: 250px !important;
-	max-width: 100% !important;
-	height: 100% !important;
-}
-/* Home index: stock flips — sidebar left, main right */
-.home .main_column {
-	float: right !important;
-	margin: 0 0 10px 0 !important;
-}
-.home .sidebar {
-	float: left !important;
-}
-#content .home .main_column { width: 590px !important; }
-#content .home .sidebar { width: auto !important; }
-/* Stock home heads sit absolute over boxes (margin-top -22) */
-#content .home .box {
-	margin: 42px 5px 10px !important;
-}
+/* Columns — darknround owns 590 / 250 / home flip. Paint heads only. */
 #content .home .head {
-	position: absolute !important;
-	margin-top: -22px !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: 6px 6px 0 0 !important;
-}
-#content .home .main_column .head {
-	width: 570px !important;
-}
-#content .home .sidebar .head {
-	width: 230px !important;
+	border-color: var(--btn-border) !important;
 }
 
 /* ══════════════════════════════════════════════════════════
  * Tables / forms (edit profile, torrents, etc.)
  * ══════════════════════════════════════════════════════════ */
 table {
-	border-collapse: separate !important;
-	border-spacing: 0 !important;
-	width: 100% !important;
 	color: var(--btn-text) !important;
-	background: transparent !important;
+	overflow: visible !important;
 }
 
 table td,
 table th {
-	padding: 8px 10px !important;
-	border-bottom: 1px solid rgba(42, 49, 64, 0.9) !important;
 	color: var(--btn-text-dim) !important;
-	vertical-align: middle !important;
-	background: transparent !important;
 }
 
 tr.colhead td,
@@ -877,15 +450,11 @@ tr.rowb:hover td {
 table a { color: var(--btn-text) !important; }
 table a:hover { color: var(--btn-accent) !important; }
 
-/* Edit profile: long form tables */
-#user table,
-body#user table {
+/* Edit profile only — series.php also uses body#user, so do not wrap all tables */
+body#user .coda-slider table,
+body#user #slider table {
 	background: var(--btn-surface) !important;
-	border: 1px solid var(--btn-border) !important;
-	border-radius: var(--btn-radius) !important;
-}
-#user table td {
-	background: transparent !important;
+	border-color: var(--btn-border) !important;
 }
 #user h2 a {
 	color: var(--btn-accent) !important;
@@ -1128,7 +697,7 @@ ul.stats li,
 /* Table polish */
 table {
 	border-radius: var(--btn-radius-sm) !important;
-	overflow: hidden !important;
+	overflow: visible !important;
 }
 tr.colhead td:first-child,
 .colhead td:first-child {
@@ -1402,7 +971,7 @@ html body a.tor_highlight_snatch.tor_highlight_seed::after {
 html,
 body {
 	max-width: 100% !important;
-	overflow-x: clip !important;
+	overflow-x: visible !important;
 }
 
 img,

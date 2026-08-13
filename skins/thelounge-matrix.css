@@ -12,7 +12,7 @@
  * Failsafe: add ?nocss to the Lounge URL if something breaks.
  * Source: monkie styles/thelounge-matrix.css → PhoenixPhire42/pp-css
  */
-/* pp-css-build: 2026-08-13T0453Z src=23757a2 */
+/* pp-css-build: 2026-08-13T1540Z src=97be654 */
 /* ── Core tokens ─────────────────────────────────────────── */
 :root {
 	--matrix-green: #00ff41;

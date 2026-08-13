@@ -180,9 +180,9 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/ptp-dark.css
 | **Runner** | Void black, cyan/magenta/amber neon |
 
 **Monkie:** Custom CSS = **Do not load**. Pill cycles **Noir → Runner → Stock**.  
-If Official Dark is missing, monkie injects `ptp-dark-layout.css` as structure fallback.
+If Official Dark is missing, monkie injects `ptp-dark-layout.css` as structure fallback. Public runner/noir sheets are **paint only** (no embedded layout — layout over Dark kills the star Rate qtip).
 
-**Standalone / Replace:** still ships embedded layout (parity may lag). Prefer Dark + on top.
+**Standalone / Replace:** use Dark + on top. Paint sheets no longer embed layout.
 
 **Wrong:** `github.com/…/blob/…` or raw.githubusercontent as official sheet.
 
