@@ -12,7 +12,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-10T1848Z src=6469f49 */
+/* pp-css-build: 2026-08-13T0453Z src=23757a2 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -22,9 +22,10 @@ html {
   --ptp-surface-2: #141c2c;
   --ptp-border: #1e2a3c;
   --ptp-border-soft: rgba(94, 231, 255, 0.12);
-  --ptp-text: #d8e6f0;
-  --ptp-text-dim: #7a90a8;
-  --ptp-text-mute: #4a5c70;
+  /* body / secondary / tertiary — raised for WCAG-ish contrast on void */
+  --ptp-text: #e8f2f8;
+  --ptp-text-dim: #b0c4d6;
+  --ptp-text-mute: #8aa0b4;
   /* neon triad: cyan / magenta / amber */
   --ptp-accent: #5ee7ff;
   --ptp-accent-hot: #9af3ff;
@@ -32,8 +33,8 @@ html {
   --ptp-magenta: #ff2d95;
   --ptp-magenta-soft: #c41e72;
   --ptp-amber: #ff9a3c;
-  --ptp-link: #6ed4e8;
-  --ptp-link-hover: #b8f4ff;
+  --ptp-link: #8ee4f4;
+  --ptp-link-hover: #c8f8ff;
   --ptp-ok: #5ed9a0;
   --ptp-warn: #ff9a3c;
   --ptp-danger: #ff4d6d;
@@ -223,7 +224,7 @@ html .main-menu__link,
 html .user-info-bar__link,
 html .tabs__bar__link,
 html .search-bar a {
-  color: #b8d0e4 !important;
+  color: #d0e4f2 !important;
   text-shadow: none !important;
   background-image: none !important;
   font-weight: 400 !important;
@@ -271,7 +272,7 @@ html a:focus {
   color: var(--ptp-link-hover) !important;
 }
 html a:visited {
-  color: #888888 !important;
+  color: #9ab8c8 !important;
 }
 
 /* ── Header / menu / userinfo ─────────────────────────── */
@@ -378,7 +379,8 @@ html .colhead_dark {
 html .box {
   border-radius: var(--ptp-radius) !important;
   border: 1px solid var(--ptp-border) !important;
-  overflow: hidden;
+  /* visible so qtip vote popup / dropdowns are not clipped if tip stays in-box */
+  overflow: visible;
 }
 
 /* ── Tables ───────────────────────────────────────────── */
@@ -431,29 +433,29 @@ html th {
 html .torrent_red,
 html span.red,
 html .important_text {
-  color: #bbbbbb !important;
+  color: #d8e4ee !important;
 }
 html .torrent_green,
 html span.green,
 html .important_text_green {
-  color: #c0c0c0 !important;
+  color: #c8dce8 !important;
 }
-/* Ratio ladder — cool cyan scale (not stock orange/green or flat silver) */
+/* Ratio ladder — cool cyan scale (readable lows; not stock orange/green) */
 html .ratio-00,
 html .ratio-01,
 html .ratio-02,
 html .ratio-03 {
-  color: #4a6a78 !important;
+  color: #7a9aac !important;
 }
 html .ratio-04,
 html .ratio-05,
 html .ratio-06 {
-  color: #5a90a8 !important;
+  color: #8ab4c8 !important;
 }
 html .ratio-07,
 html .ratio-08,
 html .ratio-09 {
-  color: #6eb8d0 !important;
+  color: #9ecce0 !important;
 }
 html .ratio-10,
 html .ratio-20,
@@ -583,9 +585,15 @@ html .sidebar .box img {
 }
 
 html .rating,
-html .ratings,
-html .movie_info {
+html .ratings {
   color: var(--ptp-text-dim) !important;
+}
+/* Movie Info sidebar — body copy at main text, not dim */
+html .movie_info,
+html .movie_info td,
+html .movie_info th,
+html .panel__body .movie_info {
+  color: var(--ptp-text) !important;
 }
 
 html .spoiler,
@@ -942,13 +950,13 @@ html .basic-movie-list__movie__title-row > a[href*="torrents.php"]:hover {
 html .basic-movie-list__movie__title-row > a:not(:first-of-type),
 html .basic-movie-list__movie__title-row > a[href*="artist.php"],
 html .basic-movie-list__movie__title-row a[href*="artist.php"] {
-  color: #7d93a8 !important;
+  color: #b0c4d6 !important;
   font-weight: 500 !important;
   text-shadow: none !important;
 }
 html .basic-movie-list__movie__title-row > a:not(:first-of-type):hover,
 html .basic-movie-list__movie__title-row a[href*="artist.php"]:hover {
-  color: #b0c4d4 !important;
+  color: #d8e8f4 !important;
 }
 
 /* Cover / small-cover titles */
@@ -963,7 +971,7 @@ html .huge-movie-list__movie__title a {
 }
 html .huge-movie-list__movie__director-list,
 html .huge-movie-list__movie__director-list a {
-  color: #7d93a8 !important;
+  color: #b0c4d6 !important;
   font-weight: 500 !important;
 }
 
@@ -978,17 +986,17 @@ html .page__title a {
 html .movie_info a[href*="artist.php"],
 html .panel__body a[href*="artist.php"],
 html #content .sidebar a[href*="artist.php"] {
-  color: #8aa0b4 !important;
+  color: #c0d4e4 !important;
   font-weight: 500 !important;
 }
 html .movie_info a[href*="artist.php"]:hover,
 html .panel__body a[href*="artist.php"]:hover {
-  color: #c5d6e6 !important;
+  color: #e8f4fc !important;
 }
 
 /* “by” plain text between title and director */
 html .basic-movie-list__movie__title-row {
-  color: #6a7e90 !important;
+  color: #a8bcd0 !important;
 }
 
 /*
@@ -1361,9 +1369,9 @@ html a.tabs__bar__link.is-selected {
 
 /*
  * User star rating — paint text only.
- * Geometry / sprites / click: ptp-dark-layout (and stock Dark).
+ * Geometry / sprites / click: ptp-dark-layout V34 (and stock Dark).
  * Never set background url(/static/…) here (breaks under jsDelivr).
- * Never pointer-events:none on fill layers (breaks qtip vote popup).
+ * Never force width/height on .star-rating here (breaks big vote bar).
  */
 html .rating {
   color: var(--ptp-amber) !important;
@@ -1455,11 +1463,32 @@ html .movie-page__trailer,
 html .movie-page__actor-column {
   color: var(--ptp-text) !important;
 }
+/* Synopsis plot + cast table — keep body readable (stock/dark often greys these) */
+html .movie-page__trailer + p,
+html .panel__body > p,
+html .box .body,
+html .box .pad,
+html #synopsis,
+html .synopsis,
+html .bbcode {
+  color: var(--ptp-text) !important;
+}
+html .movie-page__actor-column a,
+html table.table--panel-like a[href*="artist.php"],
+html #actors a,
+html .actors a {
+  color: var(--ptp-link) !important;
+}
+html .movie-page__actor-column td,
+html #actors td,
+html .actors td {
+  color: var(--ptp-text) !important;
+}
 html .preformatted-text--scrolled,
 html pre {
   background: var(--ptp-bg) !important;
   border: 1px solid var(--ptp-border) !important;
-  color: var(--ptp-text-dim) !important;
+  color: var(--ptp-text) !important;
   border-radius: 4px !important;
 }
 /* === ptp-runner movie-page fortify END === */
@@ -1482,7 +1511,7 @@ html .forum-post__heading {
 /* Header chrome — ice text; cyan hover */
 html #header .main-menu a,
 html #header .user-info-bar a {
-  color: #b8d0e4 !important;
+  color: #d0e4f2 !important;
 }
 html #header .main-menu a:hover,
 html #header .user-info-bar a:hover {
@@ -2553,11 +2582,11 @@ html .basic-movie-list__torrent__action {
   float: right !important;
 }
 /*
- * User star rating (group page #ptp_rating_td) — click opens qtip popup.
- * - Sprite URL must be absolute PTP host (CDN CSS would 404 /static/…).
- * - Do NOT set pointer-events:none on fill layers (breaks qtip hit-testing).
- * - Do NOT set overflow:hidden on the bar (can swallow clicks / tip).
- * Match stock Dark geometry so Load-on-top-of-Dark stays interactive.
+ * User star rating (group page #ptp_rating_td) — click opens qtip vote popup.
+ * Mirror stock dark/style.css exactly (browse.js / details.js).
+ * Sprite URLs MUST be absolute PTP host — CDN/external CSS would 404 /static/….
+ * Do NOT set overflow:hidden on the small bar (can clip hit area / tip).
+ * Small fill layers: pointer-events:none so clicks hit #star0 (qtip target).
  */
 html #ptp_rating_td,
 html #ptp_rating_td {
@@ -2566,6 +2595,7 @@ html #ptp_rating_td {
   min-width: 200px !important;
   vertical-align: middle !important;
   pointer-events: auto !important;
+  overflow: visible !important;
 }
 html .star-rating-container,
 html .star-rating-container {
@@ -2577,8 +2607,9 @@ html .star-rating-container {
   pointer-events: auto !important;
   vertical-align: middle !important;
   min-width: 170px !important;
+  overflow: visible !important;
 }
-/* Small bar on group page (JS uses 169px = ~170) — NOT the vote-popup big bar */
+/* Small bar (#star0) — JS widths use 169px track; NOT the vote-popup big bar */
 html .star-rating:not(.star-rating--big),
 html .star-rating:not(.star-rating--big),
 html .star-rating--popup-starter,
@@ -2597,6 +2628,7 @@ html .star-rating--popup-starter {
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: repeat-x !important;
   background-position: left top !important;
+  background-size: auto !important;
   overflow: visible !important;
 }
 html .star-rating:not(.star-rating--big) > .star-rating__current-user,
@@ -2615,41 +2647,73 @@ html .star-rating:not(.star-rating--big) > .star-rating__site {
   font-size: 1px !important;
   line-height: 20px !important;
   list-style: none !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
+  /* clicks must hit the ul (qtip is bound to #star0) */
+  pointer-events: none !important;
   background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
   background-repeat: no-repeat !important;
+  background-size: auto !important;
 }
 html .star-rating:not(.star-rating--big) > .star-rating__current-user,
 html .star-rating:not(.star-rating--big) > .star-rating__current-user {
   background-position: left 125px !important;
-  z-index: 10 !important;
+  z-index: 19 !important;
 }
 html .star-rating:not(.star-rating--big) > .star-rating__site,
 html .star-rating:not(.star-rating--big) > .star-rating__site {
   background-position: left 100px !important;
-  z-index: 9 !important;
+  z-index: 18 !important;
+}
+/*
+ * ID rules (no skin attr) — wins even when monkie hasDark skipped layout before,
+ * External CSS rewrites, or data-monkies-ptp-skin missing. Site-average fill
+ * (#starsiteCur0) sits on top of #star0 and must not eat the qtip click.
+ */
+#ptp_rating_td,
+#ptp_rating_td .star-rating-container,
+#star0 {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+#star0 {
+  z-index: 8 !important;
+  display: inline-block !important;
+  width: 170px !important;
+  height: 20px !important;
+}
+#starsiteCur0,
+#starCur0,
+#ptp_rating_td .star-rating__site,
+#ptp_rating_td .star-rating__current-user {
+  pointer-events: none !important;
 }
 
 /*
- * Vote popup big bar — browse.js HandleMovieTooltipVoteWindowStarMouseMove:
+ * Vote popup big bar — stock uses stars2_big_light_v2.png (30×132 native),
+ * NOT scaled stars.png. browse.js HandleMovieTooltipVoteWindowStarMouseMove:
  *   oX capped 0..299, oY must be 0..39, rating = oX/299*100
- * Our 170×20 rule was crushing --big → stars unusable for picking a score.
+ * Crushing --big to 170×20 makes oY always fail → “nothing happens”.
  */
+/* Ungated IDs — vote tip must work even if data-monkies-ptp-skin missing */
+#MovieTooltipVoteWindowStarContainer,
 html .star-rating-container--big,
 html .star-rating-container--big,
 html #MovieTooltipVoteWindowStarContainer,
 html #MovieTooltipVoteWindowStarContainer {
   display: block !important;
   width: 300px !important;
-  height: 40px !important;
+  height: auto !important;
+  min-height: 40px !important;
   margin: 0 auto 8px auto !important;
-  padding: 0 !important;
+  padding: 4px !important;
   cursor: pointer !important;
   pointer-events: auto !important;
   position: relative !important;
   z-index: 9 !important;
+  box-sizing: content-box !important;
 }
+#MovieTooltipVoteWindowStar,
 html .star-rating--big,
 html .star-rating--big,
 html #MovieTooltipVoteWindowStar,
@@ -2665,13 +2729,14 @@ html #MovieTooltipVoteWindowStar {
   cursor: pointer !important;
   pointer-events: auto !important;
   overflow: hidden !important;
-  /* scale 17×75 sprite → ~30×132 so one star ~30px, track 300px = 10 stars */
-  background: url("https://passthepopcorn.me/static/common/stars/stars.png") repeat-x left top !important;
-  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  /* stock dark/style.css — absolute host for CDN/external */
+  background: url("https://passthepopcorn.me/static/common/stars/stars2_big_light_v2.png") repeat-x left top !important;
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars2_big_light_v2.png") !important;
   background-repeat: repeat-x !important;
   background-position: left top !important;
-  background-size: 30px 150px !important;
+  background-size: auto !important;
 }
+#MovieTooltipVoteWindowCurrentStar,
 html .star-rating__current-user--big,
 html .star-rating__current-user--big,
 html #MovieTooltipVoteWindowCurrentStar,
@@ -2685,23 +2750,29 @@ html #MovieTooltipVoteWindowCurrentStar {
   padding: 0 !important;
   border: 0 !important;
   list-style: none !important;
-  cursor: pointer !important;
-  pointer-events: none !important; /* mousemove is on container */
-  background-image: url("https://passthepopcorn.me/static/common/stars/stars.png") !important;
+  pointer-events: none !important; /* mousemove is on #MovieTooltipVoteWindowStarContainer */
+  background-image: url("https://passthepopcorn.me/static/common/stars/stars2_big_light_v2.png") !important;
   background-repeat: no-repeat !important;
-  background-size: 30px 150px !important;
-  /* personal/gold row scaled (~125 * 150/75) */
-  background-position: left 250px !important;
+  background-size: auto !important;
+  /* stock: left 220px into the 30×132 sheet */
+  background-position: left 220px !important;
   z-index: 2 !important;
 }
 
 /* Vote form controls inside qtip */
 html #MovieTooltipVoteWindow,
-html #MovieTooltipVoteWindow {
+html #MovieTooltipVoteWindow,
+html #MovieTooltipVoteWindow.text--center,
+html #MovieTooltipVoteWindow.text--center {
+  display: block !important;
   pointer-events: auto !important;
   text-align: center !important;
   min-width: 300px !important;
+  width: auto !important;
+  max-width: none !important;
   color: var(--ptp-text, #e6e6e6) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 html #MovieTooltipVoteWindowForm,
 html #MovieTooltipVoteWindowForm {
@@ -2763,22 +2834,60 @@ html #MovieTooltipVoteWindowRemoveButton.hidden {
  * qtip2 base + PTP vote tip (normally in official Dark stylesheet).
  * Without Dark (External Replace / standalone Runner), qtip has no CSS →
  * tip exists in DOM but is invisible / non-interactive / empty-looking.
- * Ported from jquery.qtip defaults + dark PTP chrome.
+ * Ported from stock dark/style.css — vote tip needs max-width:none (300px stars).
+ * NEVER force max-width with !important on all .qtip (broke .qtip-ptp).
  */
 html .qtip,
 html .qtip {
   position: absolute !important;
-  /* JS sets left/top/display on show — do not force display:none !important */
-  max-width: 320px !important;
-  min-width: 80px !important;
-  font-size: 12px !important;
-  line-height: 1.35 !important;
+  /* stock parks off-screen; JS sets left/top/display on show — no display:!important */
+  max-width: 280px;
+  min-width: 50px !important;
+  font-size: 10.5px !important;
+  line-height: 12px !important;
   direction: ltr !important;
   padding: 0 !important;
+  border-width: 1px;
+  border-style: solid;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
   z-index: 20000 !important;
   pointer-events: auto !important;
   box-sizing: border-box !important;
+}
+/* Vote popup class from details.js style.classes — must beat base max-width */
+html .qtip.qtip-ptp,
+html .qtip.qtip-ptp,
+html .qtip-ptp,
+html .qtip-ptp {
+  max-width: none !important;
+  min-width: 320px !important;
+  line-height: normal !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: var(--ptp-border, gray) !important;
+  border-radius: 4px !important;
+  background: rgba(0, 0, 0, 0.92) !important;
+  background-color: rgba(0, 0, 0, 0.92) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55) !important;
+  z-index: 20000 !important;
+  pointer-events: auto !important;
+  /* Do NOT force display — qtip hide uses display:none. */
+}
+/* Open paint when vote UI is present / marked open. Never display:!important. */
+html .qtip.qtip-ptp.monkies-vote-qtip-open,
+html .qtip.qtip-ptp.monkies-vote-qtip-open,
+html .qtip.qtip-ptp[aria-hidden="false"],
+html .qtip.qtip-ptp[aria-hidden="false"],
+html .qtip.qtip-ptp:has(#MovieTooltipVoteWindow),
+html .qtip.qtip-ptp:has(#MovieTooltipVoteWindow),
+html .qtip.qtip-ptp.qtip-focus,
+html .qtip.qtip-ptp.qtip-focus,
+html .qtip.qtip-ptp.qtip-hover,
+html .qtip.qtip-ptp.qtip-hover {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 html .qtip-content,
 html .qtip-content,
@@ -2790,17 +2899,16 @@ html .qtip-titlebar {
 }
 html .qtip-content,
 html .qtip-content {
-  padding: 8px 10px !important;
+  padding: 9px !important;
   text-align: left !important;
   word-wrap: break-word !important;
   min-height: 1em !important;
   color: inherit !important;
   background: transparent !important;
+  overflow: visible !important;
 }
 html .qtip-default,
 html .qtip-default,
-html .qtip-ptp,
-html .qtip-ptp,
 html .qtip-dark,
 html .qtip-dark {
   border: 1px solid var(--ptp-border, #2a2a2a) !important;
@@ -2809,15 +2917,11 @@ html .qtip-dark {
   color: var(--ptp-text, #e6e6e6) !important;
   border-radius: 4px !important;
 }
-/* Vote popup chrome — links/buttons must be clickable */
+/* Vote popup chrome — links/buttons must be clickable (not all inputs = cyan links) */
 html .qtip-ptp a,
 html .qtip-ptp a,
 html .qtip-content a,
-html .qtip-content a,
-html .qtip-content button,
-html .qtip-content button,
-html .qtip-content input,
-html .qtip-content input {
+html .qtip-content a {
   pointer-events: auto !important;
   cursor: pointer !important;
   color: var(--ptp-link, #6ed4e8) !important;
@@ -2826,6 +2930,14 @@ html .qtip-content input {
   line-height: 1.4 !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+#MovieTooltipVoteWindow input,
+html #MovieTooltipVoteWindow input,
+html #MovieTooltipVoteWindow input {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
 }
 html .qtip-ptp a:hover,
 html .qtip-ptp a:hover,
