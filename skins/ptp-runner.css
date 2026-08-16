@@ -12,7 +12,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-13T1553Z src=5e1d304 */
+/* pp-css-build: 2026-08-16T1635Z src=runner-v30 */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -96,10 +96,21 @@ html .search-bar {
 }
 
 /*
- * Main menu — paint only (geometry: Dark / ptp-dark-layout 750×28).
+ * Main menu — neon edge + stock Dark chrome size.
+ * Paint-only stripped width/height; on Dark+on-top the 1px border + missing
+ * box-sizing grew the pill and dropped Home/Movies on the bottom edge.
+ * Same exception Noir already keeps (alert bar is the other chrome exception).
  */
 html .main-menu,
 html #header .main-menu {
+  width: 750px !important;
+  max-width: 100% !important;
+  height: 28px !important;
+  margin: 5px auto 10px auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  border-radius: 10px !important;
   background-color: var(--ptp-bg-elev) !important;
   background-image: none !important;
   /* cyan neon edge (reads Runner vs stock charcoal pill) */
@@ -108,6 +119,27 @@ html #header .main-menu {
     inset 0 0 0 1px rgba(94, 231, 255, 0.06),
     0 0 12px rgba(94, 231, 255, 0.08) !important;
   opacity: 1 !important;
+}
+html .main-menu__list,
+html .main-menu ul {
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  list-style: none !important;
+}
+html .main-menu__item,
+html .main-menu li {
+  display: inline !important;
+  list-style: none !important;
+  padding: 5px !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  float: none !important;
+  vertical-align: middle !important;
+}
+html .main-menu__link {
+  padding: 0.5em !important;
 }
 /*
  * Alert — kill stock gold plate.
@@ -1596,9 +1628,17 @@ html .search-bar {
   border: 1px solid rgba(94, 231, 255, 0.1) !important;
   border-bottom: none !important;
 }
-/* Re-assert cyan menu edge (must stay last vs stock-soft greys) */
+/* Re-assert cyan menu edge + 750×28 chrome (must stay last vs stock-soft greys) */
 html .main-menu,
 html #header .main-menu {
+  width: 750px !important;
+  max-width: 100% !important;
+  height: 28px !important;
+  margin: 5px auto 10px auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+  border-radius: 10px !important;
   border: 1px solid rgba(94, 231, 255, 0.22) !important;
   box-shadow:
     inset 0 0 0 1px rgba(94, 231, 255, 0.06),
