@@ -10,7 +10,7 @@
  *
  * Legacy alias (same sheet): skins/phoenix-flame.css
  */
-/* pp-css-build: 2026-08-18T2052Z src=c987fef */
+/* pp-css-build: 2026-08-18T2056Z src=7429957 */
 :root {
     --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
@@ -6427,7 +6427,7 @@ min-height: 42px !important;
 margin: 0 !important;
 padding: 0 !important;
 background-color: transparent !important;
-background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-flame-header.png") !important;
+background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-ember-header.png") !important;
 background-repeat: no-repeat !important;
 background-position: left center !important;
 background-size: contain !important;
@@ -6470,7 +6470,7 @@ min-height: 56px !important;
 margin: 0 auto !important;
 padding: 0 !important;
 background-color: transparent !important;
-background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-flame-header.png") !important;
+background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-ember-header.png") !important;
 background-repeat: no-repeat !important;
 background-position: center center !important;
 background-size: contain !important;
