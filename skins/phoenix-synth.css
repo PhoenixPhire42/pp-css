@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-18T2118Z src=8d300f7 */
+/* pp-css-build: 2026-08-18T2127Z src=5a7df57 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7037,13 +7037,13 @@ html body #userinfo_major a:hover {
 		overflow: visible !important;
 		padding: 0 !important;
 	}
-	html body #userinfo_username,
-	html body #userinfo_minor {
+	html body #userinfo_username:not(:hover),
+	html body #userinfo_minor:not(:hover) {
 		height: 50px !important;
 		max-height: 50px !important;
 	}
-	html body #userinfo_username > li > a,
-	html body #userinfo_username a.username {
+	html body #userinfo_username:not(:hover) > li > a,
+	html body #userinfo_username:not(:hover) a.username {
 		line-height: 50px !important;
 		height: 50px !important;
 	}
@@ -7789,6 +7789,8 @@ body {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		overflow: hidden !important;
+		display: block !important;
+		flex-direction: column !important;
 		z-index: 961 !important;
 		padding: 0 !important;
 		margin: 0 !important;
@@ -7827,9 +7829,25 @@ body {
 	}
 	html body #userinfo_username:not(:hover) > li:not(#nav_userinfo),
 	html body #userinfo_username:not(:hover) a:not(.username),
+	html body #userinfo_username:not(:hover) #nav_userclass,
+	html body #userinfo_username:not(:hover) #nav_useredit,
+	html body #userinfo_username:not(:hover) #nav_logout,
 	html body #userinfo_minor:not(:hover) > li,
 	html body #userinfo_minor:not(:hover) a {
 		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		overflow: hidden !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	html body #userinfo_username:not(:hover) #nav_userinfo,
+	html body #userinfo_username:not(:hover) > li#nav_userinfo {
+		display: block !important;
+		visibility: visible !important;
+		height: 50px !important;
+		width: 100% !important;
+		overflow: hidden !important;
 	}
 	html body #userinfo_username #nav_userinfo > a,
 	html body #userinfo_username a.username {
