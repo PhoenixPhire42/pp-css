@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-13T1553Z src=5e1d304 */
+/* pp-css-build: 2026-08-18T1937Z src=d51767e */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7049,16 +7049,16 @@ html body #userinfo_major a:hover {
 	}
 }
 
-/* === pp-staff-pub-appendix v5 (Apollo SS + no ghost) ===
- * Visual SoT: styles/_ref-apollostage-header-staff.jpg
- *   Staff AFTER Donate on top-right line; tabs clean.
+/* === pp-staff-pub-appendix v6 (Apollo stock CB + no Invite ghost) ===
+ * Visual SoT: Apollostage stock + styles/_ref-apollostage-header-staff.jpg
  *
- * BUG v4: selector `html body #header li#nav_staff` also matched Staff
- * reparented into #userinfo_major (major lives under #header) → abs top:-53px
- * right:8px overlaid "Invite (∞)" (ghost Staff in stats line).
+ * BUG (v5): #menu>ul { position:relative } + Staff right:8px → CB is the SHORT
+ * tab strip (calc(100%-149px)), so Staff lands on Wiki/Heywood instead of Donate.
  *
- * Fix: absolute rules ONLY under #menu / #main_site_menu — never bare #header li.
- * Reparented #userinfo_major #nav_staff: static only, higher/equal specificity after.
+ * Fix: #menu is full-width position:relative CB; #menu>ul is position:static.
+ * Menu-resident Staff: abs top:-53px right:8px (major band, header-right).
+ * Reparented Staff: static after Donate; major right:8px only when :has(#nav_staff).
+ * Never bare `html body #header li#nav_staff` (matches reparented major under header).
  */
 @media (min-width: 576px) {
 	html body #header,
@@ -7069,12 +7069,13 @@ html body #userinfo_major a:hover {
 	html body #menu,
 	html body #header #menu,
 	html body #main_site_menu {
+		position: relative !important;
 		overflow: visible !important;
 	}
 	html body #menu > ul,
 	html body #menu > ul.main_site_menu_inner {
 		overflow: visible !important;
-		position: relative !important;
+		position: static !important;
 	}
 
 	html body #userinfo_major {
@@ -7190,6 +7191,130 @@ html body #userinfo_major a:hover {
 
 	/* When Staff already reparented, never show a menu ghost (none left under #menu) */
 }
+
+/* === torrents dropdown (hover only) ===
+ * Synth never hid #torrent_reviews. Apollo display:none was lost in the
+ * standalone embed, and #menu li tab paint restyled Browse/Reviews/Collages
+ * as a left column of 50px tabs — covering Settings + the first searchbar.
+ * focus-within left Torrents stuck open (same bug Neo closed).
+ */
+html body #menu > ul > li {
+	position: relative !important;
+}
+html body #menu > ul > li > ul,
+html body #menu #torrent_reviews,
+html body #menu ul ul,
+html body #menu ul#torrent_reviews,
+html body #menu > ul > li input:checked ~ ul,
+html body #menu > ul > li input:checked ~ #torrent_reviews,
+html body #menu > ul > li:not(:hover) > ul,
+html body #menu > ul > li:not(:hover) > #torrent_reviews,
+html body #menu #nav_torrents:not(:hover) ul#torrent_reviews {
+	display: none !important;
+	visibility: hidden !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	position: absolute !important;
+	top: 100% !important;
+	left: 0 !important;
+	bottom: auto !important;
+	z-index: 1000 !important;
+	flex-direction: column !important;
+	height: auto !important;
+	max-height: 0 !important;
+	min-height: 0 !important;
+	min-width: max(100%, 12rem) !important;
+	width: max-content !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+	overflow: hidden !important;
+	background: #12082a !important;
+	background-image: none !important;
+	border: 1px solid #3d1f6e !important;
+	border-radius: 0 0 10px 10px !important;
+	box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65) !important;
+}
+html body #menu > ul > li:hover > ul,
+html body #menu > ul > li:hover > #torrent_reviews,
+html body #menu #nav_torrents:hover ul#torrent_reviews {
+	display: flex !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	pointer-events: auto !important;
+	max-height: min(70vh, 480px) !important;
+	padding: 4px 0 !important;
+	overflow: auto !important;
+}
+html body #menu > ul > li > ul > li,
+html body #menu #torrent_reviews > li,
+html body #menu ul#torrent_reviews > li {
+	height: auto !important;
+	max-height: none !important;
+	min-height: 0 !important;
+	flex: 0 0 auto !important;
+	width: 100% !important;
+	overflow: visible !important;
+	position: relative !important;
+	top: auto !important;
+	right: auto !important;
+	left: auto !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	filter: none !important;
+}
+html body #menu > ul > li > ul > li + li,
+html body #menu #torrent_reviews > li + li {
+	border-top: 1px solid rgba(255, 107, 203, 0.12) !important;
+}
+html body #menu > ul > li > ul > li > a,
+html body #menu #torrent_reviews > li > a,
+html body #menu ul#torrent_reviews > li > a {
+	display: block !important;
+	height: auto !important;
+	max-height: none !important;
+	min-height: 36px !important;
+	line-height: 1.35 !important;
+	padding: 10px 16px !important;
+	overflow: visible !important;
+	white-space: nowrap !important;
+	text-align: left !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	color: #efe6ff !important;
+	-webkit-text-fill-color: #efe6ff !important;
+	background: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	border-left: 3px solid transparent !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	box-sizing: border-box !important;
+}
+html body #menu > ul > li > ul > li > a:hover,
+html body #menu #torrent_reviews > li > a:hover,
+html body #menu ul#torrent_reviews > li > a:hover {
+	background: rgba(255, 107, 203, 0.16) !important;
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left-color: #ff6bcb !important;
+}
+html body #menu > ul > li > ul > li.selected > a,
+html body #menu > ul > li > ul > li.active > a,
+html body #menu #torrent_reviews > li.selected > a,
+html body #menu #torrent_reviews > li.active > a,
+html body #menu #torrent_reviews > li > a.selected,
+html body #menu #torrent_reviews > li > a.active {
+	background: rgba(255, 42, 109, 0.14) !important;
+	color: #fff !important;
+	-webkit-text-fill-color: #fff !important;
+	border-left: 3px solid #ff2a6d !important;
+	border-bottom: none !important;
+}
+
 /* === torrent badges Apollo-like (New red / Freeleech yellow) ===
  * Visual: Apollostage group rows — New/#e85050 red, Freeleech/#f9e340 yellow.
  * classes: .new .tl_new .freeleech .tl_free .torrent_label

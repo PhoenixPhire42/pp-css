@@ -12,7 +12,7 @@
  * IMPORTANT: Prefer jsDelivr. Never use github.com/…/blob/… as official CSS.
  *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/ptp-runner.css
  */
-/* pp-css-build: 2026-08-16T1635Z src=runner-v30 */
+/* pp-css-build: 2026-08-18T1937Z src=d51767e */
 html {
   color-scheme: dark;
   /* void + cool underglow */
@@ -43,7 +43,8 @@ html {
   --ptp-radius: 3px;
   --ptp-glow-cyan: rgba(94, 231, 255, 0.22);
   --ptp-glow-magenta: rgba(255, 45, 149, 0.18);
-  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg"); /* 1.0.563: logo injected idle via GM (avoid 85KB CSSOM) */
+  /* GM blob still wins via html.style; URL fallback so a :8000 overlay cannot blank the wordmark */
+  --ptp-logo: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/ptp-logo-runner-header.jpg");
 }
 
 /* ── Base (colors only — Dark owns max-width / font-size / layout) ── */
@@ -952,6 +953,22 @@ html #monkies-ptp-theme-pill {
   background: linear-gradient(180deg, #142030, #0a1018) !important;
   color: var(--ptp-accent) !important;
   box-shadow: 0 0 16px rgba(94, 231, 255, 0.12) !important;
+}
+/* Linkbox Taste? is page chrome, not a HUD */
+html .linkbox #monkies-ptp-taste-btn,
+html .monkies-ptp-taste-wrap #monkies-ptp-taste-btn {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  min-width: 0 !important;
+  padding: 1px 8px !important;
+  font: 650 10px/1.35 system-ui, sans-serif !important;
+  box-shadow: none !important;
+  vertical-align: middle !important;
+}
+html body > #monkies-ptp-taste-btn,
+html #monkies-ptp-taste-btn[style*="fixed"] {
+  display: none !important;
 }
 
 /* Soft cyan cast on thumbs — rain-on-glass, not full grey */
