@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-18T2007Z src=fcb3b8a */
+/* pp-css-build: 2026-08-18T2019Z src=9882b63 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -6273,11 +6273,11 @@ html body .poll input[value="Vote"] {
 html body #wrapper #header #logo,
 html body #header #logo {
 	box-sizing: content-box !important;
-	width: 250px !important;
-	min-width: 220px !important;
-	max-width: 280px !important;
-	height: 40px !important;
-	padding: 22px 8px 14px 10px !important;
+	width: 340px !important;
+	min-width: 300px !important;
+	max-width: 380px !important;
+	height: 52px !important;
+	padding: 18px 8px 12px 10px !important;
 	margin: 0 !important;
 	background: transparent !important;
 	background-image: none !important;
@@ -6294,10 +6294,10 @@ html body #wrapper #header #logo a,
 html body #header #logo a {
 	display: block !important;
 	box-sizing: border-box !important;
-	width: 230px !important;
+	width: 320px !important;
 	max-width: 100% !important;
-	height: 40px !important;
-	min-height: 40px !important;
+	height: 52px !important;
+	min-height: 52px !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: transparent !important;
@@ -6753,11 +6753,11 @@ html body #menu li:nth-child(n+7) a {
 }
 html body #wrapper #header #logo,
 html body #header #logo {
-	width: 250px !important;
-	min-width: 220px !important;
-	max-width: 280px !important;
-	height: 40px !important;
-	padding: 22px 8px 14px 10px !important;
+	width: 340px !important;
+	min-width: 300px !important;
+	max-width: 380px !important;
+	height: 52px !important;
+	padding: 18px 8px 12px 10px !important;
 	opacity: 1 !important;
 	filter: none !important;
 	overflow: visible !important;
@@ -6767,9 +6767,9 @@ html body #header #logo > a,
 html body #wrapper #header #logo a,
 html body #wrapper #header #logo > a {
 	display: block !important;
-	width: 230px !important;
-	height: 40px !important;
-	min-height: 40px !important;
+	width: 320px !important;
+	height: 52px !important;
+	min-height: 52px !important;
 	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-synth-header-alt.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
@@ -7722,8 +7722,8 @@ body {
 	}
 
 	/* Menu-resident Staff — same band as Donate.
-	 * Logo box is 40+22+14=76px; #userinfo starts there; major is top:-53px
-	 * → Staff top = 76-53 = 23px from #header. */
+	 * Logo box is 52+18+12=82px; #userinfo starts there; major is top:-53px
+	 * → Staff top = 82-53 = 29px from #header. */
 	html body #menu,
 	html body #header #menu,
 	html body #wrapper #header #menu,
@@ -7737,7 +7737,7 @@ body {
 	html body #header #menu > ul > #nav_staff,
 	html body #main_site_menu li#nav_staff {
 		position: absolute !important;
-		top: 23px !important;
+		top: 29px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
