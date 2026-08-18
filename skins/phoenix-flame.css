@@ -7,7 +7,7 @@
  * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css
  * Canonical: https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-ember.css
  */
-/* pp-css-build: 2026-08-18T2056Z src=7429957 */
+/* pp-css-build: 2026-08-18T2059Z src=44b2f17 */
 :root {
     --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
@@ -7451,6 +7451,47 @@ body {
 	}
 }
 /* === MONKIES-PUBLIC-MOBILE v1 END === */
+
+/* === ember list covers (browse) ===
+ * Neo has this; Ember standalone never sized .group_image so browse
+ * thumbs collapsed to the silver cats bar + play triangle.
+ */
+html body#torrents .group_image,
+html body .torrent_table .group_image,
+html body .big_info .group_image,
+html body td.big_info .group_image {
+	float: left !important;
+	display: block !important;
+	width: 90px !important;
+	min-width: 90px !important;
+	max-width: 90px !important;
+	margin: 0 10px 0 0 !important;
+	overflow: visible !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+html body#torrents .group_image img,
+html body .torrent_table .group_image img,
+html body .big_info .group_image img,
+html body .group_image img {
+	display: block !important;
+	width: 90px !important;
+	max-width: 90px !important;
+	min-width: 90px !important;
+	height: auto !important;
+	max-height: 90px !important;
+	object-fit: cover !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	border-radius: 3px !important;
+	border: 1px solid #3a2018 !important;
+	background: #140c0a !important;
+}
+html body#torrents td.td_info.big_info,
+html body .torrent_table td.td_info.big_info {
+	vertical-align: top !important;
+}
+
 
 /* === ember Heywood / ▾ v1 ===
  * Stock + standalone blanked #userinfo_minor:before { content:"" }.
