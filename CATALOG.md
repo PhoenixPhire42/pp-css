@@ -3,7 +3,8 @@
 | id | file | title | notes |
 |----|------|-------|-------|
 | phoenix-dark | `skins/phoenix-dark.css` | Phoenix Dark | Charcoal + rose-ember |
-| phoenix-flame | `skins/phoenix-flame.css` | Phoenix Flame | Ember + fire |
+| phoenix-ember | `skins/phoenix-ember.css` | Phoenix Ember | Ember + fire |
+| phoenix-flame | `skins/phoenix-flame.css` | Phoenix Ember (legacy filename) | same as ember |
 | phoenix-neo | `skins/phoenix-neo.css` | Neo Phoenix | Matrix green |
 | phoenix-synth | `skins/phoenix-synth.css` | Phoenix Synth | 80s synthwave magenta/violet/cyan |
 | phoenix-maclite | `skins/phoenix-maclite.css` | Phoenix MacLite | Apple-inspired light UI (SF blue + soft grey) |

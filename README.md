@@ -33,7 +33,8 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 |------|------|-----|
 | **Neo Phoenix** | Matrix green-on-black | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-neo.css` |
 | **Dark** | Charcoal + rose-ember | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-dark.css` |
-| **Flame** | Ember + fire accents · **standalone** (do not also load ApolloStage) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css` |
+| **Ember** | Ember + fire accents · **standalone** (do not also load ApolloStage) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-ember.css` |
+| **Ember (legacy Flame filename)** | same sheet as Ember | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
 | **Orpheus Neo** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css` |
@@ -58,7 +59,7 @@ Prefer a **version tag or commit pin** so updates don’t change under people un
 ## Monkie ↔ public sync
 
 **Source of truth:** monkie `styles/*.css` (+ `styles/assets/`).  
-**Every public skin** is rebuilt from monkie on publish — not Flame-only.
+**Every public skin** is rebuilt from monkie on publish — not Ember-only.
 
 ### Automatic (preferred)
 
@@ -107,26 +108,26 @@ After a publish, install URLs:
 
 ```text
 # best — immutable commit pin (from publish.sh output)
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@<sha>/skins/phoenix-flame.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@<sha>/skins/phoenix-ember.css
 
 # main — after Action/purge (may take 1–2 min)
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-ember.css
 ```
 
-Verify freshness: open the CSS URL and look for `pp-css-build:` / `flame-build:` near the top.
+Verify freshness: open the CSS URL and look for `pp-css-build:` / `pp-skin: ember` near the top.
 
-### Flame — install (standalone)
+### Ember — install (standalone)
 
 1. **Edit settings → Site Appearance**
 2. **Stylesheet:** leave as-is only if the site *requires* one; best: pick a minimal base **or** clear external-only if your gazelle allows it.
-3. **Do not** stack ApolloStage + Flame external (both are full skins → broken layout).
-4. **External stylesheet URL** (use the **tag pin**, not bare `@main` — jsDelivr caches `@main` for a long time):
+3. **Do not** stack ApolloStage + Ember external (both are full skins → broken layout).
+4. **External stylesheet URL** (use the **commit/tag pin**, not bare `@main` — jsDelivr caches `@main` for a long time):
 
 ```text
-https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
+https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-ember.css
 ```
 
-5. Save → hard-refresh. View source: you should see that `phoenix-flame.css` link; optional check the file starts with `flame-build:` / `STANDALONE`.
+5. Save → hard-refresh. View source: you should see that `phoenix-ember.css` link; optional check the file starts with `pp-skin: ember` / `STANDALONE`.
 
 
 
@@ -310,6 +311,7 @@ https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/thelounge-matrix.cs
 
 ```text
 skins/phoenix-dark.css
+skins/phoenix-ember.css
 skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css

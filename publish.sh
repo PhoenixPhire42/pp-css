@@ -132,9 +132,9 @@ if [[ "$DO_PURGE" -eq 1 ]]; then
 fi
 
 echo ""
-echo "==> verify flame header on CDN (may take ~30s)"
+echo "==> verify ember header on CDN (may take ~30s)"
 sleep 2
-curl -fsSL "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css" 2>/dev/null \
+curl -fsSL "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-ember.css" 2>/dev/null \
   | head -20 || echo "warn: CDN fetch failed (try again shortly)"
 echo ""
 echo "Done. Prefer @${NEW_SHA} pins in site settings if @main ever lags again."

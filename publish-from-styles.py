@@ -35,18 +35,34 @@ SKINS = {
  */
 """,
     },
-    "phoenix-flame.css": {
+    "phoenix-ember.css": {
         "header": """/*
- * Phoenix Project — Flame
+ * Phoenix Project — Ember
  * Ember black + phoenix fire accents.
  * STANDALONE pure CSS — do NOT also load ApolloStage (double layout).
  * Site Appearance: leave main Stylesheet minimal/empty if possible; set ONLY
  * External stylesheet URL to this file (jsDelivr). Prefer a version pin.
  *
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@v1.2.1-flame/skins/phoenix-flame.css
- * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-flame.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-ember.css
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-ember.css
+ *
+ * Legacy alias (same sheet): skins/phoenix-flame.css
  */
 """,
+        "source": "phoenix-ember.css",
+    },
+    "phoenix-flame.css": {
+        "header": """/*
+ * Phoenix Project — Ember (legacy filename: phoenix-flame.css)
+ * pp-skin: ember
+ * Prefer skins/phoenix-ember.css — this file is a permanent alias for old pins.
+ * Ember black + phoenix fire accents. STANDALONE — do NOT also load ApolloStage.
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css
+ * Canonical: https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-ember.css
+ */
+""",
+        "source": "phoenix-ember.css",
     },
     "phoenix-neo.css": {
         "header": """/*
