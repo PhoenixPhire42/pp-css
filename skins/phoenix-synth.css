@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-18T2143Z src=e958e0a */
+/* pp-css-build: 2026-08-18T2153Z src=081686d */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -4982,8 +4982,8 @@ html body#user h2 {
 	color: #efe6ff !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
-	line-height: 1.35 !important;
-	margin: 12px 0 6px !important;
+	line-height: 1.3 !important;
+	margin: 4px 0 2px !important;
 }
 html body#user .user_title,
 html body#user span.user_title,
@@ -4997,8 +4997,8 @@ html body#user .donor_icon {
 	filter: none !important;
 }
 html body#user .linkbox {
-	line-height: 1.8 !important;
-	margin: 0 0 14px !important;
+	line-height: 1.3 !important;
+	margin: 0 0 8px !important;
 	text-align: right !important;
 }
 html body#user .linkbox a {
@@ -7826,6 +7826,54 @@ html body#requests .search_form,
 html body#requests #content .box.pad:has(.search_form),
 html body#requests a[onclick*="search"] {
 	color: #c4b0e8 !important;
+}
+
+/* Profile title row — username left, Settings/Friends/FL tokens right.
+ * Apollo .header is flex-wrap + both children flex:1 0 auto, so the h2
+ * ate the first row and the linkbox wrapped into a tall empty band. */
+html body#user .thin > .header {
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: baseline !important;
+	justify-content: space-between !important;
+	gap: 12px !important;
+	box-sizing: border-box !important;
+	width: 100% !important;
+	flex: 1 1 100% !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	margin: 4px 4px 2px !important;
+	padding: 0 !important;
+}
+html body#user .thin > .header h2,
+html body#user .header h2 {
+	flex: 1 1 auto !important;
+	width: auto !important;
+	min-width: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+html body#user .thin > .header .linkbox {
+	flex: 0 0 auto !important;
+	align-self: baseline !important;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: inherit !important;
+	white-space: nowrap !important;
+}
+html body#user .thin > .header:has(+ .linkbox) {
+	width: auto !important;
+	flex: 1 1 auto !important;
+}
+html body#user .thin > .header + .linkbox {
+	flex: 0 0 auto !important;
+	align-self: baseline !important;
+	width: auto !important;
+	margin: 4px 4px 2px auto !important;
+	padding: 0 !important;
+	line-height: 1.3 !important;
+	white-space: nowrap !important;
 }
 
 
