@@ -581,7 +581,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-18T2138Z src=489c3a4 */
+/* pp-css-build: 2026-08-18T2143Z src=e958e0a */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -7741,6 +7741,93 @@ html body #taglist td a:hover {
 	border-color: rgba(5, 217, 232, 0.5) !important;
 	box-shadow: 0 0 10px rgba(5, 217, 232, 0.18) !important;
 }
+
+/* list covers — same 90px as Neo/Ember */
+html body#torrents .group_image,
+html body .torrent_table .group_image,
+html body .big_info .group_image,
+html body td.big_info .group_image {
+	float: left !important;
+	display: block !important;
+	width: 90px !important;
+	min-width: 90px !important;
+	max-width: 90px !important;
+	margin: 0 10px 0 0 !important;
+	overflow: visible !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+}
+html body#torrents .group_image img,
+html body .torrent_table .group_image img,
+html body .big_info .group_image img,
+html body .group_image img {
+	display: block !important;
+	width: 90px !important;
+	max-width: 90px !important;
+	min-width: 90px !important;
+	height: auto !important;
+	max-height: 90px !important;
+	object-fit: cover !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	border-radius: 3px !important;
+	border: 1px solid #3d1f6e !important;
+	background: #12082a !important;
+}
+
+/* requests pager + vote [+] + search toggle */
+html body#requests .linkbox,
+html body#requests .thin > .header .linkbox {
+	color: #8f7ab8 !important;
+}
+html body#requests .linkbox a {
+	color: #c4b0e8 !important;
+}
+html body#requests .linkbox a:hover {
+	color: #7af0ff !important;
+}
+html body#requests .pager_wrapper,
+html body#requests p.pager,
+html body#requests .pagenumbers,
+html body#requests .linkbox + .pager,
+html body#requests strong.pager {
+	color: #8f7ab8 !important;
+}
+html body#requests .pager a,
+html body#requests .pagenumbers a,
+html body#requests a[href*="page="] {
+	color: #c4b0e8 !important;
+}
+html body#requests .pager a:hover,
+html body#requests a[href*="page="]:hover {
+	color: #7af0ff !important;
+}
+html body#requests .pager strong,
+html body#requests strong.pager,
+html body#requests .pagenumbers strong {
+	color: #0a0418 !important;
+	background: #05d9e8 !important;
+	border-radius: 999px !important;
+	padding: 2px 8px !important;
+}
+html body#requests a[href*="action=vote"],
+html body#requests .request_table a.brackets {
+	color: #7af0ff !important;
+	border: 1px solid rgba(5, 217, 232, 0.35) !important;
+	border-radius: 4px !important;
+	padding: 0 5px !important;
+	font-weight: 600 !important;
+}
+html body#requests a[href*="action=vote"]:hover {
+	background: rgba(5, 217, 232, 0.14) !important;
+	color: #fff !important;
+}
+html body#requests .search_form,
+html body#requests #content .box.pad:has(.search_form),
+html body#requests a[onclick*="search"] {
+	color: #c4b0e8 !important;
+}
+
 
 
 /* === synth Heywood / ▾ / Staff v51 ===
