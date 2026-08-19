@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0027Z src=539d230 */
+/* pp-css-build: 2026-08-19T0031Z src=a1d6dff */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -5419,7 +5419,7 @@ html body#upload #dnulist tr:not(.colhead):hover td {
 }
 html body#upload #dnulist tr:not(.colhead) td:first-child {
 	font-weight: 600 !important;
-	color: #e8eaea !important;
+	color: #1d1d1f !important;
 	width: 38% !important;
 }
 html body#upload #dnulist a {
@@ -5496,11 +5496,13 @@ html body#upload #dynamic_form table td {
 }
 html body#upload table.layout.border tr:nth-child(even) td,
 html body#upload table.layout.border.slice tr:nth-child(even) td {
-	background: #1f282c !important;
+	background: #f5f5f7 !important;
+	color: #1d1d1f !important;
 }
 html body#upload table.layout.border tr:hover td,
 html body#upload table.layout.border.slice tr:hover td {
-	background: #252f34 !important;
+	background: #ebebf0 !important;
+	color: #1d1d1f !important;
 }
 html body#upload table.layout.border td.label,
 html body#upload table.layout.border.slice td.label,
@@ -5548,8 +5550,9 @@ html body#upload textarea:focus {
 	box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.22) !important;
 }
 html body#upload input[type="file"] {
-	color: var(--text) !important;
+	color: #1d1d1f !important;
 	font-size: 12px !important;
+	color-scheme: light !important;
 }
 html body#upload input[type="checkbox"],
 html body#upload input[type="radio"] {
@@ -5576,11 +5579,11 @@ html body#upload .preview_wrap .text_preview {
 html body#upload #add_format,
 html body#upload #remove_format,
 html body#upload input[type="button"] {
-	background: linear-gradient(#3a424a, #2a3138) !important;
+	background: #e8e8ed !important;
 	color: #1d1d1f !important;
-	border: 1px solid var(--border-accent) !important;
-	border-radius: 3px !important;
-	font-weight: 700 !important;
+	border: 1px solid #d2d2d7 !important;
+	border-radius: 8px !important;
+	font-weight: 600 !important;
 	min-width: 28px !important;
 	height: 28px !important;
 	padding: 0 10px !important;
@@ -5590,8 +5593,8 @@ html body#upload input[type="button"] {
 html body#upload #add_format:hover,
 html body#upload #remove_format:hover,
 html body#upload input[type="button"]:hover {
-	background: linear-gradient(#4a525a, #343b44) !important;
-	color: #fff !important;
+	background: #d2d2d7 !important;
+	color: #1d1d1f !important;
 }
 html body#upload #post,
 html body#upload input#post[type="submit"] {
