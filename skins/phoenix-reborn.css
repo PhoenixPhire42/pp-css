@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0053Z src=a134e70 */
+/* pp-css-build: 2026-08-19T0056Z src=217f163 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -6069,7 +6069,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 		z-index: 260 !important;
 	}
 	html body #userinfo_major {
-		right: 58px !important;
+		right: 50px !important;
 		top: -53px !important;
 	}
 	html body #userinfo_major:has(#nav_staff) {
