@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0023Z src=3a2a036 */
+/* pp-css-build: 2026-08-19T0027Z src=539d230 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -9527,5 +9527,26 @@ body {
 		color: #0077ed !important;
 		-webkit-text-fill-color: #0077ed !important;
 		background: transparent !important;
+	}
+
+	/* javajedi / ▾ flyout above Settings Sections.
+	 * backdrop-filter on #header makes a stacking context at z-index:auto,
+	 * so later #content (sticky .head z-index:1) covered Inbox / Uploads. */
+	html body #header,
+	html body #wrapper #header {
+		z-index: 400 !important;
+		overflow: visible !important;
+	}
+	html body #userinfo,
+	html body #header #userinfo {
+		z-index: 1200 !important;
+	}
+	html body #header #userinfo_username:hover,
+	html body #header ul#userinfo_username:hover {
+		z-index: 1302 !important;
+	}
+	html body #header #userinfo_minor:hover,
+	html body #header ul#userinfo_minor:hover {
+		z-index: 1301 !important;
 	}
 }
