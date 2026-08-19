@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0046Z src=b5518d7 */
+/* pp-css-build: 2026-08-19T0049Z src=c44d7be */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -5974,8 +5974,9 @@ html body #torrent_details img[alt*="Freeleech" i] {
 
 /* === reborn Staff v6 (header CB, Donate line) ===
  * v5 used #menu>ul as CB + top:-53px, but stock top:-31px / reborn top:12px
- * left Staff on the stats/Ratio line. Logo box is 68px (border-box);
- * #userinfo starts there; major is top:-53px → Staff top = 68-53 = 15px. */
+ * left Staff on the stats/Ratio line. Logo box is 68px (border-box) + menu
+ * margin-top 8px; major is top:-53px → Staff top = 68+8-53 = 23px.
+ * v6.1: 15px sat high on the ❤️; 41px major gap was too tight for Staff. */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header,
@@ -5993,7 +5994,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 		z-index: 260 !important;
 	}
 	html body #userinfo_major {
-		right: 41px !important;
+		right: 58px !important;
 		top: -53px !important;
 	}
 	html body #userinfo_major:has(#nav_staff) {
@@ -6030,7 +6031,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 	html #header #menu li#nav_staff,
 	html #header #menu > ul > li#nav_staff:nth-child(n) {
 		position: absolute !important;
-		top: 15px !important;
+		top: 23px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
