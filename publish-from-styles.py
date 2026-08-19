@@ -111,16 +111,6 @@ SKINS = {
         # Monkie gates polish on html[data-monkies-phoenix-skin="reborn"]; drop for public.
         "rewrite_skin_attr": "reborn",
     },
-    "phoenix-light.css": {
-        "header": """/*
- * Phoenix Project — Light (legacy MacLite sibling)
- * Light UI chrome. Prefer phoenix-maclite.css for new installs.
- * Pure CSS — no userscript required. Built from monkie styles/phoenix-light.css.
- *
- *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/phoenix-light.css
- */
-""",
-    },
     "orpheus-neo.css": {
         "header": """/*
  * Orpheus Network — Neo
@@ -754,6 +744,14 @@ def main() -> None:
             logo_cdn=meta.get("logo_cdn"),
             append_src=append_src,
         )
+
+    keep = set(SKINS.keys())
+    dest_dir = HERE / "skins"
+    if dest_dir.is_dir():
+        for p in dest_dir.glob("*.css"):
+            if p.name not in keep:
+                p.unlink()
+                print(f"  removed leftover {p.relative_to(HERE)}")
 
     print("Done. Commit, tag, push — see README.md for jsDelivr URLs.")
 
