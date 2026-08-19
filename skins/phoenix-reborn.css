@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0043Z src=3cd7e36 */
+/* pp-css-build: 2026-08-19T0046Z src=b5518d7 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -5971,3 +5971,120 @@ html body #torrent_details img[alt*="Freeleech" i] {
   max-height: 16px !important;
 }
 /* === torrent badges Apollo-like END === */
+
+/* === reborn Staff v6 (header CB, Donate line) ===
+ * v5 used #menu>ul as CB + top:-53px, but stock top:-31px / reborn top:12px
+ * left Staff on the stats/Ratio line. Logo box is 68px (border-box);
+ * #userinfo starts there; major is top:-53px → Staff top = 68-53 = 15px. */
+@media (min-width: 576px) {
+	html body #header,
+	html body #wrapper #header,
+	html body #userinfo,
+	html #header {
+		position: relative !important;
+		overflow: visible !important;
+	}
+	html body #userinfo_major,
+	html body #userinfo_stats {
+		overflow: visible !important;
+		flex-wrap: nowrap !important;
+		white-space: nowrap !important;
+		align-items: baseline !important;
+		z-index: 260 !important;
+	}
+	html body #userinfo_major {
+		right: 41px !important;
+		top: -53px !important;
+	}
+	html body #userinfo_major:has(#nav_staff) {
+		right: 8px !important;
+	}
+	html body #userinfo:has(#userinfo_major #nav_staff) #menu li#nav_staff,
+	html body #header:has(#userinfo_major #nav_staff) #menu li#nav_staff,
+	html #header:has(#userinfo_major #nav_staff) #menu li#nav_staff {
+		display: none !important;
+	}
+
+	html body #menu,
+	html body #header #menu,
+	html body #wrapper #header #menu,
+	html body #main_site_menu,
+	html #header #menu {
+		overflow: visible !important;
+	}
+	html body #menu > ul,
+	html body #menu > ul.main_site_menu_inner,
+	html body #header #menu > ul {
+		position: static !important;
+		overflow: visible !important;
+	}
+
+	html body #header #menu li#nav_staff,
+	html body #wrapper #header #menu li#nav_staff,
+	html body #header #menu > ul > li#nav_staff,
+	html body #header #menu > ul > #nav_staff,
+	html body #header #menu > ul > li#nav_staff:nth-child(n),
+	html body #header #menu li#nav_staff:nth-child(n),
+	html body #wrapper #header #menu > ul > li#nav_staff:nth-child(n),
+	html body #main_site_menu li#nav_staff,
+	html #header #menu li#nav_staff,
+	html #header #menu > ul > li#nav_staff:nth-child(n) {
+		position: absolute !important;
+		top: 15px !important;
+		right: 8px !important;
+		left: auto !important;
+		bottom: auto !important;
+		z-index: 280 !important;
+		display: block !important;
+		float: none !important;
+		width: auto !important;
+		max-width: none !important;
+		height: auto !important;
+		min-height: 0 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		flex: 0 0 auto !important;
+		background: transparent !important;
+		background-image: none !important;
+		border: none !important;
+		box-shadow: none !important;
+		overflow: visible !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+		list-style: none !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+	}
+	html body #header #menu li#nav_staff > a,
+	html body #header #menu li#nav_staff a,
+	html body #header #menu > ul > li#nav_staff:nth-child(n) > a,
+	html body #header #menu li#nav_staff:nth-child(n) a,
+	html body #wrapper #header #menu li#nav_staff a,
+	html body #main_site_menu li#nav_staff a,
+	html #header #menu li#nav_staff a {
+		display: inline !important;
+		position: static !important;
+		color: #ddc58d !important;
+		-webkit-text-fill-color: #ddc58d !important;
+		background: transparent !important;
+		font-size: 14.5px !important;
+		font-weight: 400 !important;
+		line-height: 1.25 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		height: auto !important;
+		max-height: none !important;
+		overflow: visible !important;
+		white-space: nowrap !important;
+		text-shadow: none !important;
+		text-decoration: none !important;
+	}
+	html body #header #menu li#nav_staff a:hover,
+	html body #header #menu > ul > li#nav_staff:nth-child(n) a:hover,
+	html #header #menu li#nav_staff a:hover {
+		color: #f0d9a8 !important;
+		-webkit-text-fill-color: #f0d9a8 !important;
+		background: transparent !important;
+	}
+}
