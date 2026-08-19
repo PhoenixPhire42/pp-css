@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0049Z src=c44d7be */
+/* pp-css-build: 2026-08-19T0051Z src=adedd22 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -2374,9 +2374,13 @@ html #maincontent #logo a img {
 }
 html #header #logo,
 html #wrapper #header #logo {
-	width: 420px !important;
-	height: 68px !important;
-	padding: 4px 8px 4px 8px !important;
+	box-sizing: border-box !important;
+	width: 340px !important;
+	min-width: 300px !important;
+	max-width: 380px !important;
+	height: 88px !important;
+	padding: 2px 8px 2px 10px !important;
+	margin: 0 !important;
 	background: transparent !important;
 	filter: none !important;
 	overflow: visible !important;
@@ -2385,8 +2389,11 @@ html #header #logo a,
 html #header #logo > a,
 html #wrapper #header #logo a {
 	display: block !important;
-	width: 400px !important;
-	height: 60px !important;
+	box-sizing: border-box !important;
+	width: 320px !important;
+	max-width: 100% !important;
+	height: 84px !important;
+	min-height: 84px !important;
 	background-image: url("https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/assets/phoenix-logo-reborn-header.png") !important;
 	background-repeat: no-repeat !important;
 	background-position: left center !important;
@@ -2856,7 +2863,7 @@ html #wrapper #header #menu {
 	filter: none !important;
 	-webkit-filter: none !important;
 	padding: 4px 6px !important;
-	margin: 8px 0 0 !important;
+	margin: 4px 0 0 !important;
 }
 @media (max-width: 480px) {
 	html #menu,
@@ -5975,8 +5982,9 @@ html body #torrent_details img[alt*="Freeleech" i] {
 /* === reborn Staff v6 (header CB, Donate line) ===
  * v5 used #menu>ul as CB + top:-53px, but stock top:-31px / reborn top:12px
  * left Staff on the stats/Ratio line. Logo box is 68px (border-box) + menu
- * margin-top 8px; major is top:-53px → Staff top = 68+8-53 = 23px.
- * v6.1: 15px sat high on the ❤️; 41px major gap was too tight for Staff. */
+ * margin-top 4px; major is top:-53px → Staff top = 88+4-53 = 39px.
+ * v6.1: 15px sat high on the ❤️; 41px major gap was too tight for Staff.
+ * v6.2: logo 68→88px to fill the header band. */
 @media (min-width: 576px) {
 	html body #header,
 	html body #wrapper #header,
@@ -6031,7 +6039,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 	html #header #menu li#nav_staff,
 	html #header #menu > ul > li#nav_staff:nth-child(n) {
 		position: absolute !important;
-		top: 23px !important;
+		top: 39px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
