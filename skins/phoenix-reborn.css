@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0051Z src=adedd22 */
+/* pp-css-build: 2026-08-19T0053Z src=a134e70 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -5639,26 +5639,93 @@ html #searchbars > ul > li:hover {
 }
 
 
-/* Cap index thumbs — height:auto alone shows full-res covers */
-body#index #latest_uploads img,
-body#index .latest_uploads img,
-body#index table.recent img,
-body#index ul.collage_images img,
-html body#index #latest_uploads img,
-html body#index .latest_uploads img,
-html body#index ul.collage_images img {
-	border-radius: 2px !important;
-	max-width: 120px !important;
-	max-height: 120px !important;
+/* Index Latest Uploads — fluid squares that fill the box (not 120px / 600px cap).
+ * 5 thumbs → 20%. 6 thumbs → ~16.66% so a sixth isn't clipped by .box overflow. */
+html body#index #latest_uploads,
+html body#index .box#latest_uploads {
+	overflow: visible !important;
+}
+html body#index #latest_uploads .body,
+html body#index #latest_uploads .pad,
+html body#index .box#latest_uploads .body {
+	overflow: visible !important;
+	padding: 8px !important;
+}
+html body#index ul.collage_images,
+html body#index #latest_uploads ul.collage_images {
+	margin: 0 !important;
+	width: 100% !important;
+	max-width: none !important;
+	display: block !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	overflow: visible !important;
+}
+html body#index ul.collage_images li {
+	display: block !important;
+	float: left !important;
+	width: 20% !important;
+	max-width: none !important;
+	height: auto !important;
+	min-height: 0 !important;
+	overflow: hidden !important;
+	position: relative !important;
+	box-sizing: border-box !important;
+	margin: 0 !important;
+	padding: 2px !important;
+}
+html body#index ul.collage_images:has(> li:nth-child(6)):not(:has(> li:nth-child(7))) li {
+	width: 16.666% !important;
+}
+html body#index ul.collage_images li::before,
+html body#index ul.collage_images li:before {
+	content: "" !important;
+	display: block !important;
+	float: none !important;
+	padding-top: 100% !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+html body#index ul.collage_images li a {
+	display: block !important;
+	position: absolute !important;
+	left: 2px !important;
+	top: 2px !important;
+	right: 2px !important;
+	bottom: 2px !important;
 	width: auto !important;
 	height: auto !important;
-	object-fit: cover !important;
-	vertical-align: middle !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
-body#index #latest_uploads ul.collage_images,
-body#index .latest_uploads ul.collage_images,
-html body#index #latest_uploads ul.collage_images {
-	max-width: 600px !important;
+html body#index ul.collage_images li a img,
+html body#index #latest_uploads img,
+html body#index .latest_uploads img,
+html body#index table.recent img,
+html body#index ul.collage_images img {
+	position: absolute !important;
+	left: 0 !important;
+	top: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	max-width: none !important;
+	max-height: none !important;
+	object-fit: cover !important;
+	border-radius: 8px !important;
+	display: block !important;
+	margin: 0 !important;
+}
+html body#index table.recent {
+	width: 100% !important;
+	table-layout: fixed !important;
+	border-spacing: 4px !important;
+}
+html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td {
+	width: 20% !important;
+	max-width: none !important;
+	padding: 2px !important;
+	box-sizing: border-box !important;
+	position: relative !important;
 }
 
 /* === pp-staff-pub-appendix v5 (Apollo SS + no ghost) ===
