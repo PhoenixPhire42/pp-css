@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0037Z src=2c3854e */
+/* pp-css-build: 2026-08-19T0043Z src=3cd7e36 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -1308,8 +1308,8 @@ body#collage .cats_applications, body#collage .cats_audiobooks, body#collage .ca
 }
 #musicbrainz_popup {
     color: #1d1d1f;
-    background: #1d2424;
-    border: #bf5af2;
+    background: #ffffff;
+    border: 1px solid #d2d2d7;
     padding: 1rem;
     font-weight: 600
 }
@@ -2474,7 +2474,7 @@ a:focus {
 	text-shadow: none !important;
 }
 h1, h2, h3, h4, h5, h6 {
-	color: #fff !important;
+	color: #1d1d1f !important;
 	font-weight: 400 !important;
 }
 .user_title,
@@ -3050,11 +3050,11 @@ body#top10 .torrent_table td:first-child strong {
 	background: var(--background-dimmed);
 }
 *::-webkit-scrollbar-thumb {
-	background: #3a454a;
+	background: #c7c7cc;
 	border-radius: 5px;
 }
 *::-webkit-scrollbar-thumb:hover {
-	background: #4a565c;
+	background: #aeaeb2;
 }
 #extra1, #extra2, #extra3 {
 	background: #959a9e !important;
@@ -3231,12 +3231,12 @@ body#index .sidebar .box ul.stats a {
 }
 body#index .box .body strong,
 body#index .news_post .body strong {
-	color: #e8eaea !important;
+	color: #1d1d1f !important;
 	font-weight: 600 !important;
 }
 body#upload .thin > h2,
 body#upload h2 {
-	color: #fff !important;
+	color: #1d1d1f !important;
 	font-weight: 400 !important;
 	margin: 16px 0 10px !important;
 }
@@ -3436,7 +3436,7 @@ html body h5,
 html body h6,
 html body b,
 html body strong {
-	color: #e8eaea !important;
+	color: #1d1d1f !important;
 }
 html body a,
 html body a:link {
@@ -3847,9 +3847,9 @@ html body #noty_bottomRight_layout_container .noty_buttons a {
 	border: 1px solid transparent !important;
 }
 html body #noty_bottomRight_layout_container .noty_buttons a:hover {
-	color: #fff !important;
-	background: rgba(0, 113, 227, 0.2) !important;
-	border-color: rgba(0, 113, 227, 0.4) !important;
+	color: #0071e3 !important;
+	background: rgba(0, 113, 227, 0.12) !important;
+	border-color: rgba(0, 113, 227, 0.35) !important;
 }
 html body .tooltipster-default,
 html body .tooltipster-base {
@@ -4777,8 +4777,8 @@ html body#top10 .torrent_table .tags a {
 	vertical-align: middle !important;
 }
 html body#top10 .torrent_table .tags a:hover {
-	color: var(--link-hover) !important;
-	background: #333d42 !important;
+	color: #0071e3 !important;
+	background: #d6ebff !important;
 }
 html body#top10 .torrent_table .tags {
 	word-spacing: -0.35em !important;
@@ -4789,7 +4789,7 @@ html body#top10 .torrent_table .tags a {
 html body#top10 .torrent_label,
 html body#top10 .tl_snatched,
 html body#top10 strong.torrent_label {
-	color: #83e4a6 !important;
+	color: #248a3d !important;
 	font-weight: 600 !important;
 	text-shadow: none !important;
 }
@@ -4819,8 +4819,8 @@ html body#user h2 {
 	color: #1d1d1f !important;
 	font-weight: 500 !important;
 	font-size: 22px !important;
-	line-height: 1.35 !important;
-	margin: 12px 0 6px !important;
+	line-height: 1.3 !important;
+	margin: 4px 0 2px !important;
 }
 html body#user .user_title,
 html body#user span.user_title,
@@ -4834,8 +4834,8 @@ html body#user .donor_icon {
 	filter: none !important;
 }
 html body#user .linkbox {
-	line-height: 1.8 !important;
-	margin: 0 0 14px !important;
+	line-height: 1.3 !important;
+	margin: 0 0 8px !important;
 	text-align: right !important;
 }
 html body#user .linkbox a {
@@ -4946,7 +4946,7 @@ html body#user .sidebar .box_image img {
 	object-fit: contain !important;
 	border-radius: 4px !important;
 	border: 1px solid var(--border) !important;
-	background: #0a0c0e !important;
+	background: #f5f5f7 !important;
 	box-shadow: none !important;
 	filter: none !important;
 }
@@ -5291,7 +5291,7 @@ html body#user table.recent tr:not(.colhead) > td > a {
 	overflow: hidden !important;
 	border: 1px solid var(--border) !important;
 	line-height: 0 !important;
-	background: #0a0c0e !important;
+	background: #f5f5f7 !important;
 }
 html body#user table.recent tr:not(.colhead) > td > a:hover {
 	border-color: rgba(0, 113, 227, 0.5) !important;
@@ -5626,9 +5626,9 @@ html body#upload table td .min_padding {
 }
 html body#upload .bc2red-btn,
 html body .bc2red-btn.bc2red-primary {
-	background: linear-gradient(180deg, #3a3232 0%, #2a2222 100%) !important;
-	color: #f0d0d0 !important;
-	border: 1px solid rgba(0, 113, 227, 0.4) !important;
+	background: #fff2f2 !important;
+	color: #c41e1e !important;
+	border: 1px solid #f5c2c2 !important;
 	border-radius: 4px !important;
 	font-weight: 600 !important;
 	font-size: 11px !important;
@@ -5639,9 +5639,9 @@ html body .bc2red-btn.bc2red-primary {
 }
 html body#upload .bc2red-btn:hover,
 html body .bc2red-btn.bc2red-primary:hover {
-	background: linear-gradient(180deg, #4a3a3a 0%, #322828 100%) !important;
-	color: #fff !important;
-	border-color: rgba(0, 113, 227, 0.65) !important;
+	background: #ffe5e5 !important;
+	color: #a11616 !important;
+	border-color: #e8a0a0 !important;
 }
 html body#upload #nav_upload a,
 html body #userinfo_major #nav_upload.active a {
@@ -9552,4 +9552,50 @@ body {
 	html body #header ul#userinfo_minor:hover {
 		z-index: 1301 !important;
 	}
+}
+
+/* Profile title row — username left, Settings/Friends/FL tokens right. */
+html body#user .thin > .header {
+	display: flex !important;
+	flex-flow: row nowrap !important;
+	align-items: baseline !important;
+	justify-content: space-between !important;
+	gap: 12px !important;
+	box-sizing: border-box !important;
+	width: 100% !important;
+	flex: 1 1 100% !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	margin: 4px 4px 2px !important;
+	padding: 0 !important;
+}
+html body#user .thin > .header h2,
+html body#user .header h2 {
+	flex: 1 1 auto !important;
+	width: auto !important;
+	min-width: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+html body#user .thin > .header .linkbox {
+	flex: 0 0 auto !important;
+	align-self: baseline !important;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: inherit !important;
+	white-space: nowrap !important;
+}
+html body#user .thin > .header:has(+ .linkbox) {
+	width: auto !important;
+	flex: 1 1 auto !important;
+}
+html body#user .thin > .header + .linkbox {
+	flex: 0 0 auto !important;
+	align-self: baseline !important;
+	width: auto !important;
+	margin: 4px 4px 2px auto !important;
+	padding: 0 !important;
+	line-height: 1.3 !important;
+	white-space: nowrap !important;
 }
