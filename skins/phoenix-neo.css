@@ -716,7 +716,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-19T0056Z src=217f163 */
+/* pp-css-build: 2026-08-19T0101Z src=5769d05 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }

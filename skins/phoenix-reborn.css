@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-19T0056Z src=217f163 */
+/* pp-css-build: 2026-08-19T0101Z src=5769d05 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -2863,7 +2863,7 @@ html #wrapper #header #menu {
 	filter: none !important;
 	-webkit-filter: none !important;
 	padding: 4px 6px !important;
-	margin: 4px 0 0 !important;
+	margin: 8px 0 0 !important;
 }
 @media (max-width: 480px) {
 	html #menu,
@@ -6049,7 +6049,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 /* === reborn Staff v6 (header CB, Donate line) ===
  * v5 used #menu>ul as CB + top:-53px, but stock top:-31px / reborn top:12px
  * left Staff on the stats/Ratio line. Logo box is 68px (border-box) + menu
- * margin-top 4px; major is top:-53px → Staff top = 88+4-53 = 39px.
+ * margin-top 8px; major is top:-53px → Staff top = 88+8-53 = 43px.
  * v6.1: 15px sat high on the ❤️; 41px major gap was too tight for Staff.
  * v6.2: logo 68→88px to fill the header band. */
 @media (min-width: 576px) {
@@ -6106,7 +6106,7 @@ html body #torrent_details img[alt*="Freeleech" i] {
 	html #header #menu li#nav_staff,
 	html #header #menu > ul > li#nav_staff:nth-child(n) {
 		position: absolute !important;
-		top: 39px !important;
+		top: 43px !important;
 		right: 8px !important;
 		left: auto !important;
 		bottom: auto !important;
