@@ -10,7 +10,7 @@
  *
  * Legacy alias (same sheet): skins/phoenix-flame.css
  */
-/* pp-css-build: 2026-08-19T0127Z src=feea5af */
+/* pp-css-build: 2026-08-20T0028Z src=b4634e5 */
 :root {
     --system-ui: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --monospace-ui: "Cascadia Code", "Consolas", "Ubuntu Mono", "Fira Code", "Menlo", "Liberation Mono", "Monaco", monospace
@@ -6825,9 +6825,12 @@ html body #menu>ul.main_site_menu_inner {
 	flex-flow:row nowrap!important;
 	align-items:stretch!important;
 	box-sizing:border-box!important;
-	width:100%!important;
-	position:relative!important;
+	/* Reserve 100px name + 50px ▾ — width:100% painted Wiki onto Heywood */
+	width:calc(100% - 149px)!important;
+	position:static!important;
 	z-index:100!important;
+	margin:0!important;
+	padding:0!important;
 }
 html body #menu>ul>li {
 	height:50px!important;
@@ -6969,7 +6972,8 @@ html body #menu #torrent_reviews>li.active>a {
 	html body #menu > ul,
 	html body #menu > ul.main_site_menu_inner {
 		overflow: visible !important;
-		position: relative !important;
+		position: static !important;
+		width: calc(100% - 149px) !important;
 	}
 
 	html body #userinfo_major {
@@ -7496,14 +7500,16 @@ html body .torrent_table td.td_info.big_info {
 }
 
 
-/* === ember Heywood / ▾ v1 ===
- * Stock + standalone blanked #userinfo_minor:before { content:"" }.
- * Screenshot: username tab only (javajedi), no 50px chevron cell.
- * Restore Apollostage 100px name + 50px ▾; orange glyph; solid hover plate.
+/* === ember Heywood / ▾ v2 ===
+ * v1 closed `html body #header #userinfo_username` (2 IDs) beat
+ * `#userinfo_username:hover` (1 ID) → flyout stuck at 50px; Settings/Logout
+ * painted over the name. Wiki overlapped because #menu>ul was width:100%.
+ * Closed rail must be :not(:hover); open must include #header (2 IDs + hover).
  */
 @media (min-width: 576px) {
-	html body #userinfo_username,
-	html body #header #userinfo_username {
+	html body #userinfo_username:not(:hover),
+	html body #header #userinfo_username:not(:hover),
+	html body #header ul#userinfo_username:not(:hover) {
 		display: block !important;
 		position: absolute !important;
 		top: auto !important;
@@ -7516,14 +7522,16 @@ html body .torrent_table td.td_info.big_info {
 		min-height: 50px !important;
 		max-height: 50px !important;
 		overflow: hidden !important;
+		flex-direction: column !important;
 		z-index: 961 !important;
 		padding: 0 !important;
 		margin: 0 !important;
 		box-sizing: border-box !important;
 		border-radius: 0 !important;
 	}
-	html body #userinfo_minor,
-	html body #header #userinfo_minor {
+	html body #userinfo_minor:not(:hover),
+	html body #header #userinfo_minor:not(:hover),
+	html body #header ul#userinfo_minor:not(:hover) {
 		display: block !important;
 		visibility: visible !important;
 		opacity: 1 !important;
@@ -7551,9 +7559,25 @@ html body .torrent_table td.td_info.big_info {
 	}
 	html body #userinfo_username:not(:hover) > li:not(#nav_userinfo),
 	html body #userinfo_username:not(:hover) a:not(.username),
+	html body #userinfo_username:not(:hover) #nav_userclass,
+	html body #userinfo_username:not(:hover) #nav_useredit,
+	html body #userinfo_username:not(:hover) #nav_logout,
 	html body #userinfo_minor:not(:hover) > li,
 	html body #userinfo_minor:not(:hover) a {
 		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		overflow: hidden !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	html body #userinfo_username:not(:hover) #nav_userinfo,
+	html body #userinfo_username:not(:hover) > li#nav_userinfo {
+		display: block !important;
+		visibility: visible !important;
+		height: 50px !important;
+		width: 100% !important;
+		overflow: hidden !important;
 	}
 	html body #userinfo_minor::before,
 	html body #userinfo_minor:before,
@@ -7581,8 +7605,10 @@ html body .torrent_table td.td_info.big_info {
 		visibility: visible !important;
 		pointer-events: none !important;
 	}
-	html body #userinfo_username:hover,
-	html body #userinfo_minor:hover {
+	html body #header #userinfo_username:hover,
+	html body #header ul#userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
+	html body #header ul#userinfo_minor:hover {
 		right: 0 !important;
 		width: 160px !important;
 		min-width: 160px !important;
@@ -7592,6 +7618,8 @@ html body .torrent_table td.td_info.big_info {
 		min-height: 50px !important;
 		padding: 50px 0 6px !important;
 		overflow: visible !important;
+		display: block !important;
+		flex-direction: column !important;
 		z-index: 1200 !important;
 		border: none !important;
 		border-radius: 0 !important;
@@ -7599,14 +7627,16 @@ html body .torrent_table td.td_info.big_info {
 		background-image: none !important;
 		box-shadow: none !important;
 	}
-	html body #userinfo_username:hover {
+	html body #header #userinfo_username:hover,
+	html body #header ul#userinfo_username:hover {
 		z-index: 1202 !important;
 	}
-	html body #userinfo_minor:hover {
+	html body #header #userinfo_minor:hover,
+	html body #header ul#userinfo_minor:hover {
 		z-index: 1201 !important;
 	}
-	html body #userinfo_username:hover::after,
-	html body #userinfo_minor:hover::after {
+	html body #header #userinfo_username:hover::after,
+	html body #header #userinfo_minor:hover::after {
 		content: "" !important;
 		display: block !important;
 		position: absolute !important;
@@ -7649,14 +7679,17 @@ html body .torrent_table td.td_info.big_info {
 		color: #fff !important;
 		-webkit-text-fill-color: #fff !important;
 	}
-	html body #userinfo_username:hover #nav_userinfo,
-	html body #userinfo_username:hover > li#nav_userinfo {
+	html body #header #userinfo_username:hover #nav_userinfo,
+	html body #header #userinfo_username:hover > li#nav_userinfo {
 		display: block !important;
 		position: absolute !important;
 		top: 0 !important;
 		right: 50px !important;
+		left: auto !important;
 		width: 100px !important;
 		height: 50px !important;
+		margin: 0 !important;
+		padding: 0 !important;
 		z-index: 3 !important;
 	}
 	html body #userinfo_minor:hover::before,
