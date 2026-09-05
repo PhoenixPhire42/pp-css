@@ -9553,30 +9553,47 @@ body {
 	}
 }
 
-/* Profile title row — username left, Settings/Friends/FL tokens right. */
-html body#user .thin > .header {
+/* Profile shell — V66. V65 :has(+ .linkbox){width:auto} put Settings on
+ * the same .thin flex line as .main_column, so the profile shoved right.
+ * Grid: title row full width (name left, Settings right), columns below. */
+html body#user .thin:has(> .main_column):has(> .sidebar) {
+	display: grid !important;
+	grid-template-columns: minmax(0, 3fr) minmax(240px, 1fr) !important;
+	grid-template-areas:
+		"title title"
+		"main side" !important;
+	column-gap: 8px !important;
+	row-gap: 0 !important;
+	align-items: start !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+}
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header {
+	grid-area: title !important;
 	display: flex !important;
 	flex-flow: row nowrap !important;
 	align-items: baseline !important;
 	justify-content: space-between !important;
 	gap: 12px !important;
-	box-sizing: border-box !important;
 	width: 100% !important;
-	flex: 1 1 100% !important;
+	max-width: 100% !important;
 	min-width: 0 !important;
-	min-height: 0 !important;
-	margin: 4px 4px 2px !important;
+	margin: 4px 0 10px !important;
 	padding: 0 !important;
+	box-sizing: border-box !important;
+	flex: none !important;
 }
-html body#user .thin > .header h2,
-html body#user .header h2 {
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header h2,
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header h2 a {
 	flex: 1 1 auto !important;
 	width: auto !important;
 	min-width: 0 !important;
 	margin: 0 !important;
 	padding: 0 !important;
+	line-height: 1.3 !important;
 }
-html body#user .thin > .header .linkbox {
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header .linkbox {
 	flex: 0 0 auto !important;
 	align-self: baseline !important;
 	width: auto !important;
@@ -9584,19 +9601,42 @@ html body#user .thin > .header .linkbox {
 	padding: 0 !important;
 	line-height: inherit !important;
 	white-space: nowrap !important;
+	text-align: right !important;
 }
-html body#user .thin > .header:has(+ .linkbox) {
-	width: auto !important;
-	flex: 1 1 auto !important;
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header:has(+ .linkbox) {
+	padding-right: 18rem !important;
+	justify-content: flex-start !important;
 }
-html body#user .thin > .header + .linkbox {
-	flex: 0 0 auto !important;
+html body#user .thin:has(> .main_column):has(> .sidebar) > .header + .linkbox {
+	grid-area: title !important;
+	justify-self: end !important;
 	align-self: baseline !important;
 	width: auto !important;
-	margin: 4px 4px 2px auto !important;
+	max-width: none !important;
+	margin: 4px 0 10px !important;
 	padding: 0 !important;
 	line-height: 1.3 !important;
 	white-space: nowrap !important;
+	text-align: right !important;
+	flex: none !important;
+}
+html body#user .thin:has(> .main_column):has(> .sidebar) > .main_column {
+	grid-area: main !important;
+	width: auto !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	flex: none !important;
+	float: none !important;
+	order: 0 !important;
+}
+html body#user .thin:has(> .main_column):has(> .sidebar) > .sidebar {
+	grid-area: side !important;
+	width: auto !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	flex: none !important;
+	float: none !important;
+	order: 0 !important;
 }
 
 /* V65 — Search = SF blue primary, Reset = gray secondary.
