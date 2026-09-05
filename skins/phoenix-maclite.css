@@ -584,7 +584,6 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-20T0028Z src=b4634e5 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -9598,4 +9597,63 @@ html body#user .thin > .header + .linkbox {
 	padding: 0 !important;
 	line-height: 1.3 !important;
 	white-space: nowrap !important;
+}
+
+/* V65 — Search = SF blue primary, Reset = gray secondary.
+ * Top10/requests leftover submit rules painted Search light-gray while
+ * type=button Reset inherited the MacLite blue pill. */
+html body form.search_form input[type="submit"],
+html body#top10 form.search_form input[type="submit"],
+html body#requests input[type="submit"],
+html body#requests input[value="Search requests"],
+html body#torrents .filter_torrents input[type="submit"],
+html body input.search_button,
+html body input[value="Search"],
+html body input[value="Filter torrents"],
+html body input[value="Search requests"] {
+	background: #0071e3 !important;
+	background-image: none !important;
+	color: #ffffff !important;
+	-webkit-text-fill-color: #ffffff !important;
+	border: none !important;
+	border-radius: 980px !important;
+	font-weight: 500 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+html body form.search_form input[type="submit"]:hover,
+html body#top10 form.search_form input[type="submit"]:hover,
+html body#requests input[type="submit"]:hover,
+html body input.search_button:hover,
+html body input[value="Search"]:hover,
+html body input[value="Filter torrents"]:hover,
+html body input[value="Search requests"]:hover {
+	background: #0077ed !important;
+	color: #ffffff !important;
+	-webkit-text-fill-color: #ffffff !important;
+}
+html body input[type="reset"],
+html body input.reset_button,
+html body input[type="button"][value="Reset"],
+html body input[value="Reset"],
+html body#top10 input[value="Reset"],
+html body#torrents input[value="Reset"],
+html body#requests input[value="Reset"] {
+	background: #e8e8ed !important;
+	background-image: none !important;
+	color: #1d1d1f !important;
+	-webkit-text-fill-color: #1d1d1f !important;
+	border: none !important;
+	border-radius: 980px !important;
+	font-weight: 500 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+html body input[type="reset"]:hover,
+html body input.reset_button:hover,
+html body input[type="button"][value="Reset"]:hover,
+html body input[value="Reset"]:hover {
+	background: #d2d2d7 !important;
+	color: #1d1d1f !important;
+	-webkit-text-fill-color: #1d1d1f !important;
 }
