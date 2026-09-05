@@ -4320,12 +4320,16 @@ html body#forums .forum_index h4 a {
 html body#forums .forum_index h4 a:hover {
 	color: var(--link-hover) !important;
 }
+/* Last Post / unread thread cell: title must not ellipsis at 55%.
+ * Stock floats last_topic + last_poster in one cell; the 55% nowrap
+ * cut unread titles and left forum names looking clipped. */
 html body#forums .forum_index .last_topic {
-	float: left !important;
-	max-width: 55% !important;
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-	white-space: nowrap !important;
+	float: none !important;
+	display: inline !important;
+	max-width: none !important;
+	overflow: visible !important;
+	text-overflow: unset !important;
+	white-space: normal !important;
 }
 html body#forums .forum_index .last_topic a {
 	color: var(--text) !important;
@@ -4335,10 +4339,13 @@ html body#forums .forum_index .last_topic a:hover {
 	color: var(--link-hover) !important;
 }
 html body#forums .forum_index .last_poster {
-	float: right !important;
+	float: none !important;
+	display: block !important;
+	clear: both !important;
 	color: var(--text-weak) !important;
 	font-size: 12.5px !important;
-	white-space: nowrap !important;
+	white-space: normal !important;
+	margin-top: 2px !important;
 }
 html body#forums .forum_index .last_poster a {
 	color: var(--text-dimmed) !important;
@@ -4555,6 +4562,30 @@ html body#forums table.forum_index td.read.tooltipstered::before {
 	background-color: transparent !important;
 	border: 2px solid #4a565c !important;
 	box-shadow: none !important;
+}
+/* pp-css-build: 2026-09-05T1630Z neo-v68 unread forums clip */
+/* Unread topics (and any 4-col list): first cell is the forum NAME, not the
+ * 28px read/unread icon. Icon rules (td.unread { max-width:32px }) were
+ * clipping Technology / Announcements / Entertainment to "Technolo…". */
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty),
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty).unread,
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty).read,
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty)[class*="unread"],
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty)[class*="read"] {
+	width: auto !important;
+	min-width: 8.5em !important;
+	max-width: none !important;
+	text-align: left !important;
+	white-space: normal !important;
+	overflow: visible !important;
+	text-overflow: unset !important;
+	padding-left: 11px !important;
+	padding-right: 11px !important;
+}
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty)::before,
+html body#forums table.forum_index tr:not(.colhead) > td:first-child:not(:empty)::after {
+	content: none !important;
+	display: none !important;
 }
 html body#forums .last_read,
 html body .forum_index .last_read {
@@ -7037,7 +7068,6 @@ html body #userinfo_major #nav_staff a {
   font-size: 14.5px !important;
 }
 
-/* pp-css-build: 2026-09-05T1600Z neo-v67 Latest Uploads flex strip */
 /* Index Latest Uploads — V67 even flex strip.
  * Bugs: global `ul { padding-left:16px }` indented the row (first thumb inset,
  * 5×20% overflow clipped). `.box .body img` (1,2,2) beat collage selectors
