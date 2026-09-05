@@ -582,11 +582,14 @@ pre {
 }
 ul.collage_images {
     margin: 0;
+    padding: 0;
+    list-style: none;
     width: 100%
 }
 ul.collage_images li {
     display: block;
     height: auto;
+    margin: 0;
     overflow: hidden;
     position: relative;
     width: 20%
@@ -716,7 +719,6 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
-/* pp-css-build: 2026-08-20T0028Z src=b4634e5 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -7035,52 +7037,96 @@ html body #userinfo_major #nav_staff a {
   font-size: 14.5px !important;
 }
 
-/* index Latest Uploads — Apollo fluid 20% squares (not fixed 100px) */
-html body#index ul.collage_images {
-  margin: 0 !important;
-  width: 100% !important;
-  display: block !important;
+/* pp-css-build: 2026-09-05T1600Z neo-v67 Latest Uploads flex strip */
+/* Index Latest Uploads — V67 even flex strip.
+ * Bugs: global `ul { padding-left:16px }` indented the row (first thumb inset,
+ * 5×20% overflow clipped). `.box .body img` (1,2,2) beat collage selectors
+ * (1,1,6) → height:auto + margin:8px 0 + 1px border, so tiles didn't share a
+ * baseline. Float 20% also left a hole when a 6th thumb wrapped.
+ * Flex nowrap + padding:0 + beat .body img so 5 or 6 equal squares fill the box. */
+html body#index #latest_uploads,
+html body#index .box#latest_uploads,
+html body#index .box:has(ul.collage_images),
+html body#index .main_column .box:has(ul.collage_images) {
+  overflow: visible !important;
 }
-html body#index ul.collage_images li {
+html body#index #latest_uploads .body,
+html body#index #latest_uploads .pad,
+html body#index .box#latest_uploads .body,
+html body#index .box:has(ul.collage_images) .body,
+html body#index .box:has(ul.collage_images) .pad {
+  overflow: visible !important;
+  padding: 8px !important;
+}
+html body#index ul.collage_images,
+html body#index #latest_uploads ul.collage_images,
+html body#index .box:has(ul.collage_images) ul.collage_images {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  width: 100% !important;
+  max-width: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  overflow: visible !important;
+  float: none !important;
+}
+html body#index ul.collage_images li,
+html body#index .box:has(ul.collage_images) ul.collage_images li {
   display: block !important;
-  float: left !important;
-  width: 20% !important;
+  float: none !important;
+  flex: 1 1 0 !important;
+  width: auto !important;
   max-width: none !important;
   height: auto !important;
+  min-width: 0 !important;
   min-height: 0 !important;
   overflow: hidden !important;
   position: relative !important;
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 0 !important;
+  border-radius: 8px !important;
 }
 html body#index ul.collage_images li::before,
 html body#index ul.collage_images li:before {
   content: "" !important;
   display: block !important;
-  float: left !important;
+  float: none !important;
   padding-top: 100% !important;
   width: 0 !important;
   height: 0 !important;
 }
-html body#index ul.collage_images li a {
+html body#index ul.collage_images li a,
+html body#index .box:has(ul.collage_images) ul.collage_images li a {
   display: block !important;
   position: absolute !important;
+  inset: 0 !important;
   left: 0 !important;
   top: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: auto !important;
+  height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
 }
+html body#index .box .body ul.collage_images img,
+html body#index .box .body ul.collage_images li a img,
+html body#index .box .pad ul.collage_images img,
 html body#index ul.collage_images li a img,
 html body#index #latest_uploads img,
 html body#index .latest_uploads img,
 html body#index table.recent img,
 html body#index ul.collage_images img {
   position: absolute !important;
+  inset: 0 !important;
   left: 0 !important;
   top: 0 !important;
   width: 100% !important;
@@ -7088,17 +7134,35 @@ html body#index ul.collage_images img {
   max-width: none !important;
   max-height: none !important;
   object-fit: cover !important;
-  border-radius: 2px !important;
+  object-position: center !important;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
   display: block !important;
   margin: 0 !important;
+  padding: 0 !important;
+  vertical-align: top !important;
 }
 /* table.recent on index (if used instead of collage_images) */
+html body#index table.recent {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: separate !important;
+  border-spacing: 6px !important;
+}
 html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td {
-  width: 20% !important;
+  width: auto !important;
   max-width: none !important;
-  padding: 2px !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
   position: relative !important;
+  vertical-align: top !important;
+}
+html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td:before,
+html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td::before {
+  display: none !important;
+  content: none !important;
+  padding-top: 0 !important;
 }
 html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td > a {
   display: block !important;
@@ -7107,6 +7171,7 @@ html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td > a {
   padding-top: 100% !important;
   height: 0 !important;
   overflow: hidden !important;
+  border-radius: 8px !important;
 }
 html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td > a img {
   position: absolute !important;
@@ -7114,6 +7179,10 @@ html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td > a img {
   top: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  object-fit: cover !important;
+  border: none !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
 }
 
 /* profile Recent Uploads / Snatches — same 100px cap (was fluid 20% cells = huge on wide) */
