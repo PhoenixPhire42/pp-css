@@ -9697,3 +9697,26 @@ html body input[value="Reset"]:hover {
 	color: #1d1d1f !important;
 	-webkit-text-fill-color: #1d1d1f !important;
 }
+
+/* V67 — Heywood Settings plate flush under the rail (Neo/Ember).
+ * Hover used right:0 + width:176 + top:54 + 12px card, so the panel
+ * jumped and sat off the tab. 150px plate, 50px from the rail, attached corners. */
+@media (min-width: 576px) {
+	html body #header #userinfo_username:hover,
+	html body #header ul#userinfo_username:hover,
+	html body #header #userinfo_minor:hover,
+	html body #header ul#userinfo_minor:hover {
+		right: 0 !important;
+		width: 150px !important;
+		min-width: 150px !important;
+		max-width: 150px !important;
+		padding: 50px 0 6px !important;
+	}
+	html body #header #userinfo_username:hover::after,
+	html body #header ul#userinfo_username:hover::after,
+	html body #header #userinfo_minor:hover::after,
+	html body #header ul#userinfo_minor:hover::after {
+		top: 50px !important;
+		border-radius: 0 0 12px 12px !important;
+	}
+}
