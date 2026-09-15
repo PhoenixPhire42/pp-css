@@ -584,7 +584,7 @@ pre {
     margin-top: 16px
 }
 /* Index / collage thumbs — classic density (not full-res huge) */
-/* pp-css-build: 2026-08-20T0028Z src=b4634e5 */
+/* pp-css-build: 2026-09-15T2131Z src=549cd93 */
 ul.collage_images {
     margin: 0;
     width: 100%;
@@ -4687,6 +4687,13 @@ html body#user .box_image_avatar .avatar_container {
 	margin: 0 !important;
 	line-height: 0 !important;
 }
+html body#user .avatar_container > div {
+	display: block !important;
+	width: 100% !important;
+	margin: 0 !important;
+	line-height: 0 !important;
+}
+html body#user .avatar_0,
 html body#user .box_image_avatar img,
 html body#user .avatar_container img,
 html body#user .sidebar .box_image img {
@@ -6268,4 +6275,64 @@ html body#requests a[href*="action=vote"]:hover {
 	background: rgba(221, 197, 141, 0.14) !important;
 	color: var(--rb-gold-hi) !important;
 	-webkit-text-fill-color: var(--rb-gold-hi) !important;
+}
+
+/* === reborn V58 avatar ===
+ * Gazelle wraps the avatar in inline-block width:0 + margin-right:150px.
+ * `.sidebar img { max-width:100% }` then collapsed it to ~2px. The hug
+ * rules lived only under [data-monkies-phoenix-skin=reborn], so public
+ * External stylesheet URL never got them.
+ */
+html body#user .sidebar .box_image_avatar,
+html body#user .box_image_avatar {
+	overflow: hidden !important;
+	text-align: center !important;
+}
+html body#user .box_image_avatar > div,
+html body#user .box_image_avatar [align="center"],
+html body#user .box_image_avatar .pad,
+html body#user .box_image_avatar .body {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	padding: 12px !important;
+	margin: 0 !important;
+	box-sizing: border-box !important;
+	text-align: center !important;
+	line-height: 0 !important;
+}
+html body#user .avatar_container,
+html body#user .box_image_avatar .avatar_container {
+	display: block !important;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 0 !important;
+	overflow: hidden !important;
+}
+html body#user .avatar_container > div {
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	line-height: 0 !important;
+}
+html body#user .avatar_0,
+html body#user .box_image_avatar img,
+html body#user .avatar_container img,
+html body#user .sidebar .box_image_avatar img,
+html body#user .sidebar .box_image img {
+	display: block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	position: static !important;
+	float: none !important;
+	width: auto !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	height: auto !important;
+	max-height: min(280px, 70vw) !important;
+	margin: 0 auto !important;
+	object-fit: contain !important;
+	border-radius: 6px !important;
 }

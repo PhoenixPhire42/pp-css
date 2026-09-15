@@ -719,6 +719,7 @@ ul.collage_images li a>span {
     padding: 0
 }
 /* Unread PMs — mint-cyan (theme family, distinct from matrix #00ff41 links) */
+/* pp-css-build: 2026-09-15T2131Z src=549cd93 */
 #inbox .unreadpm {
     background: rgba(58, 239, 200, .14)
 }
@@ -7214,7 +7215,6 @@ html body#index table.recent tr:not(.colhead):not(.colhead_dark) > td > a img {
   border-radius: 8px !important;
 }
 
-/* pp-css-build: 2026-09-05T1730Z neo-v70 profile grid */
 /* Profile shell — V70. V69 :has(+ .linkbox) { width:auto } put Settings on
  * the same .thin flex line as .main_column, so the profile shoved right.
  * Grid: title row full width (name left, Settings right), columns below. */
