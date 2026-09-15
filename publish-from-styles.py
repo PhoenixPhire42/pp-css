@@ -188,28 +188,6 @@ SKINS = {
             "/skins/assets/btn-logo-ambient-header.jpg"
         ),
     },
-    "emp-noir.css": {
-        "header": """/*
- * Empornium — Cinema Noir
- * Pure greys + black overlay on official Afterdark (layout geometry from stock).
- * RECOMMENDED: Stylesheet = Afterdark, then External stylesheet URL = this file.
- * Pure CSS — no userscript required (monkie emp-noir.user.js is optional).
- *
- * Logo: skins/assets/emp-logo-noir-header.jpg (jsDelivr)
- *
- * IMPORTANT: Prefer jsDelivr (Content-Type: text/css). Never use github.com/…/blob/…
- *   https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main/skins/emp-noir.css
- *
- * Emp has no native External CSS field — do not paste this into a fake Settings row.
- * Install: Violentmonkey monkie styles/emp-noir.user.js (or Stylus @import this URL).
- * Emp Settings → Stylesheet = Afterdark only.
- */
-""",
-        "logo_cdn": (
-            "https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@main"
-            "/skins/assets/emp-logo-noir-header.jpg"
-        ),
-    },
     "ptp-dark.css": {
         "header": """/*
  * PassThePopcorn — Cinema Noir (paint only)
@@ -439,7 +417,7 @@ def rewrite_all_asset_urls_to_cdn(css: str) -> str:
 
 def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     """
-    Overlay skins (PTP/Emp/BTN) store --*-logo:none until monkie injects a data URL.
+    Overlay skins (PTP/BTN) store --*-logo:none until monkie injects a data URL.
     Public external CSS must paint the CDN logo without monkie.
     Generic assets/ → CDN is handled by rewrite_all_asset_urls_to_cdn.
     """
@@ -449,14 +427,6 @@ def rewrite_logo_cdn(css: str, logo_cdn: str | None) -> str:
     if "ptp-logo" in logo_cdn:
         css = re.sub(
             r"(--ptp-logo:\s*)(?:none|url\([^)]*\))(\s*;)",
-            rf'\1url("{logo_cdn}")\2',
-            css,
-            count=1,
-            flags=re.I,
-        )
-    if "emp-logo" in logo_cdn:
-        css = re.sub(
-            r"(--emp-logo:\s*)(?:none|url\([^)]*\))(\s*;)",
             rf'\1url("{logo_cdn}")\2',
             css,
             count=1,
