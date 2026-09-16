@@ -8,6 +8,7 @@
 | phoenix-neo | `skins/phoenix-neo.css` | Neo Phoenix | Matrix green |
 | phoenix-synth | `skins/phoenix-synth.css` | Phoenix Synth | 80s synthwave magenta/violet/cyan |
 | phoenix-maclite | `skins/phoenix-maclite.css` | Phoenix MacLite | Apple-inspired light UI (SF blue + soft grey) |
+| phoenix-diablo | `skins/phoenix-diablo.css` | Phoenix Diablo | Hell void + blood red + bone/gold (test, standalone) |
 | orpheus-neo | `skins/orpheus-neo.css` | Orpheus Neo | OPS green-on-black standalone |
 | orpheus-matrix | `skins/orpheus-matrix.css` | Orpheus Neo (legacy filename) | same as orpheus-neo |
 | redacted-dark | `skins/redacted-dark.css` | Redacted Dark | RED charcoal standalone |

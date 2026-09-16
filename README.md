@@ -37,6 +37,7 @@ Published under **PhoenixPhire42/pp-css**. Replace `TAG` with a release tag (e.g
 | **Ember (legacy Flame filename)** | same sheet as Ember | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-flame.css` |
 | **Synth** | 80s synthwave (magenta / violet / cyan) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-synth.css` |
 | **MacLite** | Apple-inspired light UI (SF blue + soft grey) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-maclite.css` |
+| **Diablo** | Hell void + blood + bone gold · **standalone** (do not also load ApolloStage) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-diablo.css` |
 | **Orpheus Neo** | OPS green-on-black (standalone) | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-neo.css` |
 | **Orpheus Neo (legacy filename)** | same sheet as Neo | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/orpheus-matrix.css` |
 | **Redacted Dark** | RED charcoal standalone | `https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/redacted-dark.css` |
@@ -315,6 +316,7 @@ skins/phoenix-flame.css
 skins/phoenix-neo.css
 skins/phoenix-synth.css
 skins/phoenix-maclite.css
+skins/phoenix-diablo.css
 skins/orpheus-neo.css
 skins/redacted-synth.css
 skins/broadcasthe-dark.css

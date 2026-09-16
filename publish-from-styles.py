@@ -98,6 +98,17 @@ SKINS = {
  */
 """,
     },
+    "phoenix-diablo.css": {
+        "header": """/*
+ * Phoenix Project — Diablo (test)
+ * Hell void + blood red + bone/gold. STANDALONE pure CSS.
+ * Do NOT also load ApolloStage (double layout).
+ *
+ * https://cdn.jsdelivr.net/gh/PhoenixPhire42/pp-css@TAG/skins/phoenix-diablo.css
+ */
+""",
+        "rewrite_skin_attr": "diablo",
+    },
     "phoenix-reborn.css": {
         "header": """/*
  * Phoenix Project — Reborn
